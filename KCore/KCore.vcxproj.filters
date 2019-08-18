@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00_Core">
+      <UniqueIdentifier>{0d702d0e-d0b6-4560-86b6-5f894bedec96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Assitor">
+      <UniqueIdentifier>{098862f0-adfe-4238-9826-25e272ab48ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_EngineTest">
+      <UniqueIdentifier>{63f46f29-fbd1-4c53-acc0-b25f16e3fdac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Init&amp;Updater">
+      <UniqueIdentifier>{1c2bbb6f-a248-4221-bc92-a9b4d4d0ad55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Scene">
+      <UniqueIdentifier>{c3436d7b-19bc-4391-b70d-f8ecd7b97c20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_One">
+      <UniqueIdentifier>{d4b77384-bb2c-4b8c-a00b-916d05a971b3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KCore.h">
+      <Filter>00_Core</Filter>
+    </ClInclude>
+    <ClInclude Include="KEngineUpdater.h">
+      <Filter>01_EngineTest</Filter>
+    </ClInclude>
+    <ClInclude Include="KEngineinitiator.h">
+      <Filter>01_EngineTest</Filter>
+    </ClInclude>
+    <ClInclude Include="KInitiator.h">
+      <Filter>01_Init&amp;Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="KUpdater.h">
+      <Filter>01_Init&amp;Updater</Filter>
+    </ClInclude>
+    <ClInclude Include="KName.h">
+      <Filter>03_One</Filter>
+    </ClInclude>
+    <ClInclude Include="KSceneManager.h">
+      <Filter>02_Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="KTemp.h">
+      <Filter>01_Assitor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="KCore.cpp">
+      <Filter>00_Core</Filter>
+    </ClCompile>
+    <ClCompile Include="KEngineinitiator.cpp">
+      <Filter>01_EngineTest</Filter>
+    </ClCompile>
+    <ClCompile Include="KEngineLauncher.cpp">
+      <Filter>01_EngineTest</Filter>
+    </ClCompile>
+    <ClCompile Include="KEngineUpdater.cpp">
+      <Filter>01_EngineTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Kinitiator.cpp">
+      <Filter>01_Init&amp;Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="KUpdater.cpp">
+      <Filter>01_Init&amp;Updater</Filter>
+    </ClCompile>
+    <ClCompile Include="KName.cpp">
+      <Filter>03_One</Filter>
+    </ClCompile>
+    <ClCompile Include="KSceneManager.cpp">
+      <Filter>02_Scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
