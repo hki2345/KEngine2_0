@@ -138,6 +138,7 @@
     <ClInclude Include="KName.h" />
     <ClInclude Include="KSceneManager.h" />
     <ClInclude Include="KUpdater.h" />
+    <ClInclude Include="KVec_Container.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="KName.cpp" />
     <ClCompile Include="KSceneManager.cpp" />
     <ClCompile Include="KUpdater.cpp" />
+    <ClCompile Include="KVec_Container.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,6 +19,9 @@
     <Filter Include="03_One">
       <UniqueIdentifier>{d4b77384-bb2c-4b8c-a00b-916d05a971b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Vector">
+      <UniqueIdentifier>{518ae3bd-d7e7-45ac-a6b3-38302cdf5dbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KCore.h">
@@ -45,6 +48,7 @@
     <ClInclude Include="KTemp.h">
       <Filter>01_Assitor</Filter>
     </ClInclude>
+    <ClInclude Include="KVec_Container.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -71,5 +75,6 @@
     <ClCompile Include="KSceneManager.cpp">
       <Filter>02_Scene</Filter>
     </ClCompile>
+    <ClCompile Include="KVec_Container.cpp" />
   </ItemGroup>
 </Project>
