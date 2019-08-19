@@ -2,11 +2,7 @@
 
 
 
-KTimeManager::KTimeManager()
+void KTimeManager::init()
 {
-}
 
-
-KTimeManager::~KTimeManager()
-{
 }
