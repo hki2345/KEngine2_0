@@ -1,5 +1,5 @@
 #include "KEngineinitiator.h"
-
+#include "KSceneManager.h"
 
 
 KEngineinitiator::KEngineinitiator()
@@ -15,7 +15,9 @@ KEngineinitiator::~KEngineinitiator()
 
 void KEngineinitiator::init()
 {
-	int a = 0;
+	KSceneManager::create_scene(L"Test");
+	KSceneManager::change_scene(L"Test");
+
 	return;
 }
 

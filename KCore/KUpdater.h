@@ -12,6 +12,9 @@ class KUpdater
 {
 public:
 	KUpdater();
+	KUpdater(const KUpdater& _Core) = delete;
+	KUpdater(const KUpdater&& _Core) = delete;
+	void operator=(const KUpdater& _Core) = delete;
 	virtual ~KUpdater() = 0;
 
 

@@ -130,26 +130,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="KComponent.h" />
     <ClInclude Include="KCore.h" />
     <ClInclude Include="KEngineinitiator.h" />
     <ClInclude Include="KEngineUpdater.h" />
     <ClInclude Include="KInitiator.h" />
-    <ClInclude Include="KTemp.h" />
+    <ClInclude Include="KInputManager.h" />
+    <ClInclude Include="KOne.h" />
+    <ClInclude Include="KPathManager.h" />
+    <ClInclude Include="KProgress.h" />
+    <ClInclude Include="KReleaser.h" />
+    <ClInclude Include="KRenderer.h" />
+    <ClInclude Include="KRenderManager.h" />
+    <ClInclude Include="KScene.h" />
+    <ClInclude Include="KMacro.h" />
     <ClInclude Include="KName.h" />
     <ClInclude Include="KSceneManager.h" />
+    <ClInclude Include="KTimeManager.h" />
     <ClInclude Include="KUpdater.h" />
-    <ClInclude Include="KVec_Container.h" />
+    <ClInclude Include="KVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KComponent.cpp" />
     <ClCompile Include="KCore.cpp" />
     <ClCompile Include="KEngineinitiator.cpp" />
     <ClCompile Include="KEngineLauncher.cpp" />
     <ClCompile Include="KEngineUpdater.cpp" />
     <ClCompile Include="Kinitiator.cpp" />
+    <ClCompile Include="KInputManager.cpp" />
     <ClCompile Include="KName.cpp" />
+    <ClCompile Include="KOne.cpp" />
+    <ClCompile Include="KPathManager.cpp" />
+    <ClCompile Include="KProgress.cpp" />
+    <ClCompile Include="KReleaser.cpp" />
+    <ClCompile Include="KRenderer.cpp" />
+    <ClCompile Include="KRenderManager.cpp" />
+    <ClCompile Include="KScene.cpp" />
     <ClCompile Include="KSceneManager.cpp" />
+    <ClCompile Include="KTimeManager.cpp" />
     <ClCompile Include="KUpdater.cpp" />
-    <ClCompile Include="KVec_Container.cpp" />
+    <ClCompile Include="KVector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

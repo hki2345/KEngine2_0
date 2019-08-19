@@ -1,10 +1,8 @@
 #pragma once
 #include <crtdbg.h>
-#include "KInitiator.h"
-#include "KUpdater.h"
 
 
-
+class KUpdater;
 class KCore
 {
 private:
@@ -24,6 +22,7 @@ private:
 private:
 	int main(int argc, char* argv[]) {};
 	static void init();
+	static void release();
 
 public:
 	// 실행 자 없음

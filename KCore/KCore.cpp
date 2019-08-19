@@ -1,5 +1,5 @@
+#include "KMacro.h"
 #include "KCore.h"
-#include "KTemp.h"
 #include "KUpdater.h"
 #include "KSceneManager.h"
 
@@ -22,6 +22,8 @@ void KCore::loop()
 	{
 		progress();
 	}
+
+	release();
 }
 
 void KCore::loop_updater()
@@ -33,7 +35,8 @@ void KCore::loop_updater()
 		progress();
 	}
 
-	release_ptr(pUpdater);
+	RELEASE_PTR(pUpdater);
+	release();
 }
 
 void KCore::shut_down()
@@ -50,4 +53,9 @@ void KCore::progress()
 {
 	KSceneManager::update();
 	KCore::shut_down();
+}
+
+void KCore::release()
+{
+	KSceneManager::release();
 }
