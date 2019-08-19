@@ -40,11 +40,11 @@
     <Filter Include="02_Manager\02_Input">
       <UniqueIdentifier>{23edee2b-62b7-4c02-8132-2a5d2d235b6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Manager\02_KPathManager">
-      <UniqueIdentifier>{118ea9dc-96f9-43cd-bd71-e9a3f4309237}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\02_KTimeManager">
+    <Filter Include="02_Manager\02_KTime">
       <UniqueIdentifier>{c51be676-fec9-45ad-8733-82ad77bad404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Manager\02_KPath">
+      <UniqueIdentifier>{118ea9dc-96f9-43cd-bd71-e9a3f4309237}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,10 +100,10 @@
       <Filter>02_Manager\02_Input</Filter>
     </ClInclude>
     <ClInclude Include="KPathManager.h">
-      <Filter>02_Manager\02_KPathManager</Filter>
+      <Filter>02_Manager\02_KPath</Filter>
     </ClInclude>
     <ClInclude Include="KTimeManager.h">
-      <Filter>02_Manager\02_KTimeManager</Filter>
+      <Filter>02_Manager\02_KTime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -159,10 +159,10 @@
       <Filter>02_Manager\02_Input</Filter>
     </ClCompile>
     <ClCompile Include="KPathManager.cpp">
-      <Filter>02_Manager\02_KPathManager</Filter>
+      <Filter>02_Manager\02_KPath</Filter>
     </ClCompile>
     <ClCompile Include="KTimeManager.cpp">
-      <Filter>02_Manager\02_KTimeManager</Filter>
+      <Filter>02_Manager\02_KTime</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
