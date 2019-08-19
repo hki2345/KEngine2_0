@@ -1,6 +1,8 @@
 #include "KMacro.h"
 #include "KCore.h"
 #include "KUpdater.h"
+#include "KPathManager.h"
+#include "KInputManager.h"
 #include "KSceneManager.h"
 
 
@@ -13,6 +15,7 @@ bool KCore::looping = true;
 
 void KCore::init()
 {
+	KPathManager::init();
 	KSceneManager::init();
 }
 
@@ -48,11 +51,10 @@ void KCore::shut_down()
 
 
 
-
+#include <Windows.h>
 void KCore::progress()
 {
 	KSceneManager::update();
-	KCore::shut_down();
 }
 
 void KCore::release()

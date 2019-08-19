@@ -1,4 +1,9 @@
 #pragma once
+#include <string>
+#include "KMacro.h"
+
+
+
 class KInputManager
 {
 public:
@@ -14,7 +19,7 @@ public:
 
 
 private:
-	static void init();
-	static void update();
+	static void update(const int& _Value);
+	static bool is_press(const int& _Value);
 };
 

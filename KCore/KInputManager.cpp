@@ -1,22 +1,24 @@
 #include "KInputManager.h"
+#include <Windows.h>
+
+#include <iostream>
 
 
-
-KInputManager::KInputManager()
+void KInputManager::update(const int& _Value)
 {
+	SHORT X = GetAsyncKeyState(_Value);
+
+	system("cls");
+	std::cout << X;
 }
 
-
-KInputManager::~KInputManager()
+bool KInputManager::is_press(const int& _Value)
 {
-}
+	SHORT X = GetAsyncKeyState(_Value);
+	if (0 == X)
+	{
+		return false;
+	}
 
-
-
-void KInputManager::init()
-{
-
-}
-void KInputManager::update()
-{
+	return true;
 }
