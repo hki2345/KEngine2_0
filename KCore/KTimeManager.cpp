@@ -1,16 +1,7 @@
 #include "KTimeManager.h"
 #include "KMacro.h"
 
-
-
-KTimeManager::KTimer* KTimeManager::MainTimer = nullptr;
-std::map<std::wstring, KTimeManager::KTimer*> KTimeManager::MapActingTimer;
-std::map<std::wstring, KTimeManager::KTimer*> KTimeManager::MapPauseTimer;
-
-std::map<std::wstring, KTimeManager::KTimer*>::iterator KTimeManager::mSTimer;
-std::map<std::wstring, KTimeManager::KTimer*>::iterator KTimeManager::mETimer;
-std::map<std::wstring, KTimeManager::KTimer*>::iterator KTimeManager::mFTimer;
-
+KTimeManager* KTimeManager::pKTimeManager = nullptr;
 KTimeManager::KTimer::KTimer()
 {
 
@@ -84,7 +75,6 @@ void KTimeManager::update()
 
 void KTimeManager::release()
 {
-	RELEASE_PTR(MainTimer);
 
 	mSTimer = MapActingTimer.begin();
 	mETimer = MapActingTimer.end();
@@ -106,6 +96,9 @@ void KTimeManager::release()
 
 	MapActingTimer.clear();
 	MapPauseTimer.clear();
+
+	RELEASE_PTR(MainTimer);
+	RELEASE_PTR(pKTimeManager);
 }
 
 

@@ -15,11 +15,25 @@ public:
 	KInputManager(const KInputManager& _Core) = delete;
 	KInputManager(const KInputManager&& _Core) = delete;
 	void operator=(const KInputManager& _Core) = delete;
-	~KInputManager() = delete;
+	~KInputManager() {};
 
+	static KInputManager* pKInputManager;
+
+public:
+	static KInputManager* instance()
+	{
+		if (nullptr == pKInputManager)
+		{
+			pKInputManager = new KInputManager();
+		}
+
+		return pKInputManager;
+	}
 
 private:
-	static void update(const int& _Value);
-	static bool is_press(const int& _Value);
+	void update(const int& _Value);
+	bool is_press(const int& _Value);
+
+	void release();
 };
 

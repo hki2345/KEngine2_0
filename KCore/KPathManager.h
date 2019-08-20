@@ -1,5 +1,6 @@
 #pragma once
 #define KNAMING 256
+#include <string>
 
 
 class KPathManager
@@ -13,39 +14,52 @@ public:
 	KPathManager(const KPathManager& _Core) = delete;
 	KPathManager(const KPathManager&& _Core) = delete;
 	void operator=(const KPathManager& _Core) = delete;
-	~KPathManager() = delete;
+	~KPathManager() {};
 
 
-
-
-private:
-	static wchar_t mAllpath[KNAMING];
-	static wchar_t mDrive[KNAMING];
-	static wchar_t mDirectory[KNAMING];
-	static wchar_t mFileName[KNAMING];
-	static wchar_t mExe[KNAMING];
-
-private:
-	static void init();
+	static KPathManager* pKPathManager;
 
 public:
-	inline wchar_t* all_path()
+	static KPathManager* instance()
+	{
+		if (nullptr == pKPathManager)
+		{
+			pKPathManager = new KPathManager();
+		}
+
+		return pKPathManager;
+	}
+
+
+private:
+	std::wstring mAllpath;
+	std::wstring mDrive;
+	std::wstring mDirectory;
+	std::wstring mFileName;
+	std::wstring mExe;
+
+private:
+	void init();
+	void release();
+
+public:
+	inline std::wstring& all_path()
 	{
 		return mAllpath;
 	}
-	inline wchar_t* drive()
+	inline std::wstring& drive()
 	{
 		return mDrive;
 	}
-	inline wchar_t* directory()
+	inline std::wstring& directory()
 	{
 		return mDirectory;
 	}
-	inline wchar_t* file_name()
+	inline std::wstring& file_name()
 	{
 		return mFileName;
 	}
-	inline wchar_t* exe()
+	inline std::wstring& exe()
 	{
 		return mExe;
 	}

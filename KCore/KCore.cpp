@@ -12,15 +12,13 @@
 
 #include <crtdbg.h>
 
-
-KUpdater* KCore::pUpdater = nullptr;
-bool KCore::looping = true;
+KCore* KCore::pKCore = nullptr;
 
 void KCore::init()
 {
-	KPathManager::init();
-	KTimeManager::init();
-	KSceneManager::init();
+	KPathManager::instance()->init();
+	KTimeManager::instance()->init();
+	KSceneManager::instance()->init();
 }
 
 void KCore::loop()
@@ -59,18 +57,20 @@ void KCore::shut_down()
 void KCore::progress()
 {
 	// system("cls");
-	KSceneManager::update();
-	KTimeManager::update();
+	KSceneManager::instance()->update();
+	KTimeManager::instance()->update();
 	// KInputManager::update('0');
 
 
-	std::cout << KTimeManager::accumulate() << std::endl;
-	std::cout << KTimeManager::deltatime() << std::endl;
-	std::cout << KTimeManager::fps() << std::endl;
+	std::cout << KTimeManager::instance()->accumulate() << std::endl;
+	std::cout << KTimeManager::instance()->deltatime() << std::endl;
+	std::cout << KTimeManager::instance()->fps() << std::endl;
 }
 
 void KCore::release()
 {
-	KSceneManager::release();
-	KTimeManager::release();
+	KSceneManager::instance()->release();
+	KPathManager::instance()->release();
+	KTimeManager::instance()->release();
+	RELEASE_PTR(pKCore);
 }

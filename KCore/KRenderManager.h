@@ -10,12 +10,25 @@ public:
 	KRenderManager(const KRenderManager& _Core) = delete;
 	KRenderManager(const KRenderManager&& _Core) = delete;
 	void operator=(const KRenderManager& _Core) = delete;
-	~KRenderManager() = delete;
+	~KRenderManager() {};
+
+	static KRenderManager* pKRenderManager;
+
+public:
+	static KRenderManager* instance()
+	{
+		if (nullptr == pKRenderManager)
+		{
+			pKRenderManager = new KRenderManager();
+		}
+
+		return pKRenderManager;
+	}
 
 
 private:
-	static void init();
-	static void render();
-	static void release();
+	void init();
+	void render();
+	void release();
 };
 

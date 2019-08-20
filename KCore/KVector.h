@@ -46,11 +46,11 @@ public:
 
 
 public:
-	static const KVec2 Zero;
-	static const KVec2 Left;
-	static const KVec2 Right;
-	static const KVec2 Up;
-	static const KVec2 Down;
+	const static KVec2 Zero;
+	const static KVec2 Left;
+	const static KVec2 Right;
+	const static KVec2 Up;
+	const static KVec2 Down;
 
 
 	void set_vector2(const float& _X, const float& _Y) { x = _X; y = _Y; }

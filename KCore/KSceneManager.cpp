@@ -2,12 +2,8 @@
 #include "KSceneManager.h"
 #include "KScene.h"
 
-std::map<std::wstring, KScene*> KSceneManager::MapScene;
-std::map<std::wstring, KScene*>::iterator KSceneManager::mSMapScene;
-std::map<std::wstring, KScene*>::iterator KSceneManager::mEMapScene;
-std::map<std::wstring, KScene*>::iterator KSceneManager::mFMapScene;
-KScene* KSceneManager::curscene = nullptr;
 
+KSceneManager* KSceneManager::pKSceneManager = nullptr;
 
 void KSceneManager::init()
 {
@@ -30,6 +26,9 @@ void KSceneManager::release()
 	}
 
 	MapScene.clear();
+
+
+	RELEASE_PTR(pKSceneManager);
 }
 
 

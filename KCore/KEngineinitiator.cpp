@@ -15,8 +15,8 @@ KEngineinitiator::~KEngineinitiator()
 
 void KEngineinitiator::init()
 {
-	KSceneManager::create_scene(L"Test");
-	KSceneManager::change_scene(L"Test");
+	KSceneManager::instance()->create_scene(L"Test");
+	KSceneManager::instance()->change_scene(L"Test");
 
 	return;
 }

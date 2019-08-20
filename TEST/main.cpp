@@ -8,7 +8,7 @@ int main()
 	while (true)
 	{
 		KTimeManager::update();
-		system("cls");
+		//system("cls");
 		std::cout << KTimeManager::accumulate() << std::endl;
 		std::cout << KTimeManager::deltatime() << std::endl;
 		std::cout << KTimeManager::fps() << std::endl;
