@@ -46,6 +46,9 @@
     <Filter Include="01_Device">
       <UniqueIdentifier>{125b822e-de90-4e06-bd0f-aec4f7fa1ef6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Manager\01_Path">
+      <UniqueIdentifier>{46ab0418-9991-40b8-a18a-31cd6e1cc501}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KCore.h">
@@ -108,6 +111,9 @@
     <ClInclude Include="KCore_Class.h">
       <Filter>00_Core</Filter>
     </ClInclude>
+    <ClInclude Include="KPathManager.h">
+      <Filter>02_Manager\01_Path</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="KTransform.cpp">
       <Filter>01_Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KPathManager.cpp">
+      <Filter>02_Manager\01_Path</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

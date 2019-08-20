@@ -146,6 +146,7 @@
     <ClInclude Include="KInitiator.h" />
     <ClInclude Include="KInputManager.h" />
     <ClInclude Include="KOne.h" />
+    <ClInclude Include="KPathManager.h" />
     <ClInclude Include="KProgress.h" />
     <ClInclude Include="KReleaser.h" />
     <ClInclude Include="KRenderer.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="KInputManager.cpp" />
     <ClCompile Include="KName.cpp" />
     <ClCompile Include="KOne.cpp" />
+    <ClCompile Include="KPathManager.cpp" />
     <ClCompile Include="KProgress.cpp" />
     <ClCompile Include="KReleaser.cpp" />
     <ClCompile Include="KRenderer.cpp" />
