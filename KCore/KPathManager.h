@@ -1,6 +1,5 @@
 #pragma once
-#include "KMacro.h"
-
+#define KNAMING 256
 
 
 class KPathManager

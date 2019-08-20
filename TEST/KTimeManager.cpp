@@ -1,5 +1,4 @@
 #include "KTimeManager.h"
-#include "KMacro.h"
 
 
 
@@ -84,8 +83,6 @@ void KTimeManager::update()
 
 void KTimeManager::release()
 {
-	RELEASE_PTR(MainTimer);
-
 	mSTimer = MapActingTimer.begin();
 	mETimer = MapActingTimer.end();
 

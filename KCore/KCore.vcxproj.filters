@@ -43,8 +43,8 @@
     <Filter Include="02_Manager\02_KTime">
       <UniqueIdentifier>{c51be676-fec9-45ad-8733-82ad77bad404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Manager\02_KPath">
-      <UniqueIdentifier>{118ea9dc-96f9-43cd-bd71-e9a3f4309237}</UniqueIdentifier>
+    <Filter Include="01_Device">
+      <UniqueIdentifier>{125b822e-de90-4e06-bd0f-aec4f7fa1ef6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,11 +99,14 @@
     <ClInclude Include="KInputManager.h">
       <Filter>02_Manager\02_Input</Filter>
     </ClInclude>
-    <ClInclude Include="KPathManager.h">
-      <Filter>02_Manager\02_KPath</Filter>
-    </ClInclude>
     <ClInclude Include="KTimeManager.h">
       <Filter>02_Manager\02_KTime</Filter>
+    </ClInclude>
+    <ClInclude Include="KTransform.h">
+      <Filter>01_Device</Filter>
+    </ClInclude>
+    <ClInclude Include="KCore_Class.h">
+      <Filter>00_Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,11 +161,11 @@
     <ClCompile Include="KInputManager.cpp">
       <Filter>02_Manager\02_Input</Filter>
     </ClCompile>
-    <ClCompile Include="KPathManager.cpp">
-      <Filter>02_Manager\02_KPath</Filter>
-    </ClCompile>
     <ClCompile Include="KTimeManager.cpp">
       <Filter>02_Manager\02_KTime</Filter>
+    </ClCompile>
+    <ClCompile Include="KTransform.cpp">
+      <Filter>01_Device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

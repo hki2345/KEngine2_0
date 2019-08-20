@@ -7,8 +7,6 @@
 void KInputManager::update(const int& _Value)
 {
 	SHORT X = GetAsyncKeyState(_Value);
-
-	system("cls");
 	std::cout << X;
 }
 

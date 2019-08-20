@@ -1,8 +1,6 @@
 #pragma once
 #include <Windows.h>
 #include <map>
-#include "KProgress.h"
-#include "KName.h"
 
 
 
@@ -12,14 +10,14 @@ public:
 	friend class KCore;
 
 private:
-	KTimeManager() {} /* = delete*/;
+	KTimeManager() {} /* = delete*/;	
 	KTimeManager(const KTimeManager& _Core) = delete;
 	KTimeManager(const KTimeManager&& _Core) = delete;
 	void operator=(const KTimeManager& _Core) = delete;
 	~KTimeManager() = delete;
 
 private:
-	class KTimer : public KName
+	class KTimer 
 	{
 	public:
 		friend class KTimeManager;
@@ -58,7 +56,7 @@ private:
 	static std::map<std::wstring, KTimer*>::iterator mETimer;
 	static std::map<std::wstring, KTimer*>::iterator mFTimer;
 
-private:
+public:
 	static void init();
 	static void update();
 	static void release();

@@ -24,6 +24,18 @@ private:
 	std::map<std::wstring, KComponent*>::iterator mEMapComponent;
 	std::map<std::wstring, KComponent*>::iterator mFMapComponent;
 
+public:
+	template <typename T>
+	T* Get_Component()
+	{
+		mSMapComponent = MapComponent.begin();
+		mEMapComponent = MapComponent.end();
+
+		for (; mSMapComponent != mEMapComponent; ++mSMapComponent)
+		{
+
+		}
+	}
 
 protected:
 	virtual void init() override;

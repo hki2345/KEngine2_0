@@ -14,4 +14,3 @@
 
 // 무조건 터진다.
 #define KASSERT assert(false)
-#define KNAMING 256
