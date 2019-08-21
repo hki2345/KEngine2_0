@@ -9,7 +9,7 @@
 class KRenderer
 {
 public:
-	KRenderer() {};
+	KRenderer();
 	KRenderer(const KRenderer& _Core) = delete;
 	KRenderer(const KRenderer&& _Core) = delete;
 	void operator=(const KRenderer& _Core) = delete;
@@ -17,6 +17,7 @@ public:
 
 
 public:
+	virtual void init() = 0;
 	virtual void render() = 0;
 };
 

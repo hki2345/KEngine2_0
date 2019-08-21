@@ -22,9 +22,6 @@
     <Filter Include="02_Manager\01_Render">
       <UniqueIdentifier>{b7b21967-8662-48ca-8d96-5fb358bebe15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Manager\01_Render\Render">
-      <UniqueIdentifier>{41cbea9e-7ea5-42f2-9234-0c7813a0284e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04_Component">
       <UniqueIdentifier>{504e92b8-a0bc-4064-88f8-89229889ba95}</UniqueIdentifier>
     </Filter>
@@ -48,6 +45,9 @@
     </Filter>
     <Filter Include="02_Manager\01_Path">
       <UniqueIdentifier>{46ab0418-9991-40b8-a18a-31cd6e1cc501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04_Component\Render">
+      <UniqueIdentifier>{41cbea9e-7ea5-42f2-9234-0c7813a0284e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +114,12 @@
     <ClInclude Include="KPathManager.h">
       <Filter>02_Manager\01_Path</Filter>
     </ClInclude>
+    <ClInclude Include="KConsole_Render.h">
+      <Filter>04_Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="KActor.h">
+      <Filter>01_Progress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -175,6 +181,12 @@
     </ClCompile>
     <ClCompile Include="KPathManager.cpp">
       <Filter>02_Manager\01_Path</Filter>
+    </ClCompile>
+    <ClCompile Include="KConsole_Render.cpp">
+      <Filter>04_Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="KActor.cpp">
+      <Filter>01_Progress</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,6 +14,8 @@
 
 KCore* KCore::pKCore = nullptr;
 
+
+
 void KCore::init()
 {
 	KPathManager::instance()->init();
@@ -54,13 +56,12 @@ void KCore::shut_down()
 
 
 #include <iostream>
+#include <conio.h>
 void KCore::progress()
 {
-	// system("cls");
 	KSceneManager::instance()->update();
 	KTimeManager::instance()->update();
 	// KInputManager::update('0');
-
 
 	std::cout << KTimeManager::instance()->accumulate() << std::endl;
 	std::cout << KTimeManager::instance()->deltatime() << std::endl;

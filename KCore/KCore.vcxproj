@@ -138,7 +138,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="KActor.h" />
     <ClInclude Include="KComponent.h" />
+    <ClInclude Include="KConsole_Render.h" />
     <ClInclude Include="KCore.h" />
     <ClInclude Include="KCore_Class.h" />
     <ClInclude Include="KEngineinitiator.h" />
@@ -161,7 +163,9 @@
     <ClInclude Include="KVector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KActor.cpp" />
     <ClCompile Include="KComponent.cpp" />
+    <ClCompile Include="KConsole_Render.cpp" />
     <ClCompile Include="KCore.cpp" />
     <ClCompile Include="KEngineinitiator.cpp" />
     <ClCompile Include="KEngineLauncher.cpp" />

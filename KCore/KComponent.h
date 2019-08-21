@@ -1,13 +1,9 @@
 #pragma once
 #include "KProgress.h"
-#include "KName.h"
 
 
 
-
-
-
-class KComponent : public KProgress, KName
+class KComponent : public KProgress
 {
 public:
 	friend class KOne;
@@ -22,8 +18,8 @@ public:
 
 
 protected:
-	virtual void init() override;
-	virtual void update() override;
-	virtual void release() override;
+	virtual void init() = 0;
+	virtual void update() = 0;
+	virtual void release() = 0;
 };
 

@@ -2,10 +2,17 @@
 #include "KInitiator.h"
 #include "KUpdater.h"
 #include "KReleaser.h"
+#include "KActor.h"
+#include "KName.h"
 
 
 
-class KProgress : public KInitiator, KUpdater, KReleaser
+class KProgress : 
+	public KInitiator, 
+	public KUpdater, 
+	public KReleaser, 
+	public KActor,
+	public KName
 {
 public:
 	KProgress();

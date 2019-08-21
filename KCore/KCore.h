@@ -29,8 +29,6 @@ public:
 private:
 	KUpdater* pUpdater;
 	bool looping;
-
-
 private:
 	int main(int argc, char* argv[]) {};
 	void init();

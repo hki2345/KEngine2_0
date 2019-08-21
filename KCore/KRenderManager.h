@@ -1,5 +1,8 @@
 #pragma once
 
+
+
+class KRenderer;
 class KRenderManager
 {
 public:

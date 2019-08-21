@@ -1,12 +1,11 @@
 #pragma once
 #include "KProgress.h"
-#include "KName.h"
 #include <map>
 
 
 
 class KOne;
-class KScene : public KProgress, KName
+class KScene : public KProgress
 {
 public:
 	friend class KSceneManager;
