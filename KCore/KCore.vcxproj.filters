@@ -49,6 +49,12 @@
     <Filter Include="04_Component\Render">
       <UniqueIdentifier>{41cbea9e-7ea5-42f2-9234-0c7813a0284e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04_Component\Translate">
+      <UniqueIdentifier>{2c8d85f5-2998-40df-829e-1325847b7f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Pointer">
+      <UniqueIdentifier>{1caf9bb6-a460-4562-8c63-9d46b8c21dbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KCore.h">
@@ -108,9 +114,6 @@
     <ClInclude Include="KTransform.h">
       <Filter>01_Device</Filter>
     </ClInclude>
-    <ClInclude Include="KCore_Class.h">
-      <Filter>00_Core</Filter>
-    </ClInclude>
     <ClInclude Include="KPathManager.h">
       <Filter>02_Manager\01_Path</Filter>
     </ClInclude>
@@ -119,6 +122,24 @@
     </ClInclude>
     <ClInclude Include="KActor.h">
       <Filter>01_Progress</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>04_Component\Translate</Filter>
+    </ClInclude>
+    <ClInclude Include="KCore_Pointer.h">
+      <Filter>01_Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="PtrOf_Component.h">
+      <Filter>01_Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="PtrOf_KOne.h">
+      <Filter>01_Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="PtrOf_KWindow.h">
+      <Filter>01_Pointer</Filter>
+    </ClInclude>
+    <ClInclude Include="PtrOf_KScene.h">
+      <Filter>01_Pointer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +208,12 @@
     </ClCompile>
     <ClCompile Include="KActor.cpp">
       <Filter>01_Progress</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>04_Component\Translate</Filter>
+    </ClCompile>
+    <ClCompile Include="KCore_Pointer.cpp">
+      <Filter>01_Pointer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

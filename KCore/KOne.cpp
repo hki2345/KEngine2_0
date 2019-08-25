@@ -27,3 +27,9 @@ void KOne::release()
 {
 
 }
+
+
+KComponent* KOne::set_component(KComponent* _Other)
+{
+	return nullptr;
+}

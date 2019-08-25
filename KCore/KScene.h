@@ -1,11 +1,13 @@
 #pragma once
 #include "KProgress.h"
+#include "KRenderer.h"
 #include <map>
 
 
 
 class KOne;
-class KScene : public KProgress
+class KRenderManager;
+class KScene : public KProgress, public KRenderer
 {
 public:
 	friend class KSceneManager;
@@ -19,15 +21,19 @@ protected:
 
 
 private:
-	std::map<std::wstring, KOne*> MapKOne;
-	std::map<std::wstring, KOne*>::iterator mSOneMap;
-	std::map<std::wstring, KOne*>::iterator mEOneMap;
-	std::map<std::wstring, KOne*>::iterator mFOneMap;
+	KRenderManager* curKRenderMgr;
+
+
+	std::multimap<std::wstring, KOne*> MapKOne;
+	std::multimap<std::wstring, KOne*>::iterator mSOneMap;
+	std::multimap<std::wstring, KOne*>::iterator mEOneMap;
+	std::multimap<std::wstring, KOne*>::iterator mFOneMap;
 
 protected:
 	virtual void init() override;
 	virtual void update() override;
 	virtual void release() override;
+	virtual void render() override;
 
 	KOne* create_kone(const wchar_t* _Name);
 	KOne* find_kone(const wchar_t* _Name);

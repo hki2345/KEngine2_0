@@ -13,6 +13,11 @@ void KSceneManager::update()
 {
 	curscene->update();
 }
+void KSceneManager::render()
+{
+	curscene->render();
+}
+
 
 void KSceneManager::release()
 {

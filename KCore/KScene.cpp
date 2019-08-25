@@ -1,7 +1,7 @@
 #include "KScene.h"
 #include "KOne.h"
 #include "KMacro.h"
-
+#include "KRenderManager.h"
 
 
 
@@ -24,6 +24,12 @@ void KScene::init()
 	for (; mSOneMap != mEOneMap; ++mSOneMap)
 	{
 		mSOneMap->second->init();
+	}
+
+	if (nullptr == curKRenderMgr)
+	{
+		curKRenderMgr = new KRenderManager();
+		curKRenderMgr->init();
 	}
 }
 
@@ -50,6 +56,16 @@ void KScene::release()
 	}
 
 	MapKOne.clear();
+
+
+	curKRenderMgr->release();
+	RELEASE_PTR(curKRenderMgr);
+}
+
+
+void KScene::render() 
+{
+	curKRenderMgr->render();
 }
 
 
@@ -65,6 +81,9 @@ KOne* KScene::create_kone(const wchar_t* _Name)
 
 	Tmp = new KOne();
 	Tmp->name(_Name);
+	Tmp->kscene(this);
+
+
 	MapKOne.insert(std::make_pair(_Name, Tmp));
 	return Tmp;
 }

@@ -31,16 +31,17 @@ private:
 		}
 
 private:
-	std::map<std::wstring, KScene*> MapScene;
-	std::map<std::wstring, KScene*>::iterator mSMapScene;
-	std::map<std::wstring, KScene*>::iterator mEMapScene;
-	std::map<std::wstring, KScene*>::iterator mFMapScene;
+	std::multimap<std::wstring, KScene*> MapScene;
+	std::multimap<std::wstring, KScene*>::iterator mSMapScene;
+	std::multimap<std::wstring, KScene*>::iterator mEMapScene;
+	std::multimap<std::wstring, KScene*>::iterator mFMapScene;
 	KScene* curscene;
 
 
 private:
 	void init() ;
 	void update() ;
+	void render();
 	void release();
 
 public:
