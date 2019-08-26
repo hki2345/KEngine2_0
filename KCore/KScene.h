@@ -1,13 +1,12 @@
 #pragma once
 #include "KProgress.h"
-#include "KRenderer.h"
 #include <map>
 
 
 
 class KOne;
 class KRenderManager;
-class KScene : public KProgress, public KRenderer
+class KScene : public KProgress
 {
 public:
 	friend class KSceneManager;
@@ -17,7 +16,7 @@ protected:
 	KScene(const KScene& _Core) = delete;
 	KScene(const KScene&& _Core) = delete;
 	void operator=(const KScene& _Core) = delete;
-	~KScene() override;
+	virtual ~KScene() override {}/* = 0*/;
 
 
 private:
@@ -30,12 +29,13 @@ private:
 	std::multimap<std::wstring, KOne*>::iterator mFOneMap;
 
 protected:
-	virtual void init() override;
+	virtual bool init() override;
 	virtual void update() override;
 	virtual void release() override;
-	virtual void render() override;
+	virtual void render();
 
-	KOne* create_kone(const wchar_t* _Name);
+	KOne* create_kone(const wchar_t* _Name = L"KOne");
+	KOne* create_kone(KOne* _Other, const wchar_t* _Name = L"KOne");
 	KOne* find_kone(const wchar_t* _Name);
 	bool delete_kone(const wchar_t* _Name);
 };

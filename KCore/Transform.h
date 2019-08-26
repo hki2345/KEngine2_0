@@ -11,7 +11,7 @@ public:
 	~Transform();
 
 public:
-	void init() override;
+	bool init() override;
 	void update() override;
 	void release() override;
 

@@ -16,7 +16,7 @@ protected:
 	KOne(const KOne& _Core) = delete;
 	KOne(const KOne&& _Core) = delete;
 	void operator=(const KOne& _Core) = delete;
-	~KOne() override;
+	~KOne() override {};
 
 
 private:
@@ -28,7 +28,7 @@ private:
 
 
 protected:
-	virtual void init() override;
+	virtual bool init() override;
 	virtual void update() override;
 	virtual void release() override;
 
@@ -62,7 +62,7 @@ public:
 		NewCom->kscene(kscene());
 		// NewCom->ComInit();
 
-		if (false == NewCom->Init())
+		if (false == NewCom->init())
 		{
 			delete NewCom;
 			return nullptr;

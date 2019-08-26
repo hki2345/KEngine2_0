@@ -93,6 +93,7 @@ template<typename INIT,  typename UP>
 int core_launch(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	new int;
 	KCore::instance()->init<INIT>(argc, argv);
 	KCore::instance()->loop<UP>();
 	return 0;

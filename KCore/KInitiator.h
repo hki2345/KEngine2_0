@@ -17,6 +17,6 @@ public:
 	virtual ~KInitiator() = 0;
 
 private:
-	virtual void init() = 0;
+	virtual bool init() = 0;
 };
 

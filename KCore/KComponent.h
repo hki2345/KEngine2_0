@@ -15,12 +15,12 @@ public:
 	KComponent(const KComponent& _Core) = delete;
 	KComponent(const KComponent&& _Core) = delete;
 	void operator=(const KComponent& _Core) = delete;
-	~KComponent() override;
+	virtual ~KComponent() override {}/* = 0*/;
 
 
 protected:
-	virtual void init() = 0;
-	virtual void update() = 0;
-	virtual void release() = 0;
+	virtual bool init() override;
+	virtual void update() override;
+	virtual void release() override;
 };
 

@@ -55,6 +55,12 @@
     <Filter Include="01_Pointer">
       <UniqueIdentifier>{1caf9bb6-a460-4562-8c63-9d46b8c21dbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00_EngineTest\KComTest">
+      <UniqueIdentifier>{b021a80c-4d9b-4ab2-99ef-68e8a973630e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_EngineTest\KSceneTest">
+      <UniqueIdentifier>{0f07c603-d3f3-4f59-8f7e-4d5869ef2c57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KCore.h">
@@ -141,6 +147,12 @@
     <ClInclude Include="PtrOf_KScene.h">
       <Filter>01_Pointer</Filter>
     </ClInclude>
+    <ClInclude Include="SceneTest.h">
+      <Filter>00_EngineTest\KSceneTest</Filter>
+    </ClInclude>
+    <ClInclude Include="ComTest.h">
+      <Filter>00_EngineTest\KComTest</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -214,6 +226,12 @@
     </ClCompile>
     <ClCompile Include="KCore_Pointer.cpp">
       <Filter>01_Pointer</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTest.cpp">
+      <Filter>00_EngineTest\KSceneTest</Filter>
+    </ClCompile>
+    <ClCompile Include="ComTest.cpp">
+      <Filter>00_EngineTest\KComTest</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

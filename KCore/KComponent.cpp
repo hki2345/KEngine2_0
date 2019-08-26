@@ -7,6 +7,15 @@ KComponent::KComponent()
 }
 
 
-KComponent::~KComponent()
+bool KComponent::init()
 {
+	return true;
+}
+void KComponent::update()
+{
+
+}
+void KComponent::release()
+{
+
 }

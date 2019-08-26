@@ -7,14 +7,26 @@ KSceneManager* KSceneManager::pKSceneManager = nullptr;
 
 void KSceneManager::init()
 {
+	if (nullptr == curscene)
+	{
+		return;
+	}
 	curscene->init();
 }
 void KSceneManager::update()
 {
+	if (nullptr == curscene)
+	{
+		return;
+	}
 	curscene->update();
 }
 void KSceneManager::render()
 {
+	if (nullptr == curscene)
+	{
+		return;
+	}
 	curscene->render();
 }
 
@@ -38,17 +50,22 @@ void KSceneManager::release()
 
 
 
-
-
-KScene* KSceneManager::create_scene(const wchar_t* _Name)
+KScene* KSceneManager::create_scene(KScene* _Other, const wchar_t* _Name /*= L"KScene"*/)
 {
-	KScene* Tmp = find_scene(_Name);
-	if (nullptr != Tmp)
+	if (nullptr == _Other)
 	{
-		return Tmp;
+		return nullptr;
 	}
 
-	Tmp = new KScene();
+	_Other->name(_Name);
+	MapScene.insert(std::make_pair(_Name, _Other));
+	return _Other;
+}
+
+
+KScene* KSceneManager::create_scene(const wchar_t* _Name/*= L"KScene"*/)
+{
+	KScene* Tmp = new KScene();
 	Tmp->name(_Name);
 	MapScene.insert(std::make_pair(_Name, Tmp));
 	return Tmp;

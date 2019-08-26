@@ -58,6 +58,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="PropertySheet.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -138,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ComTest.h" />
     <ClInclude Include="KActor.h" />
     <ClInclude Include="KComponent.h" />
     <ClInclude Include="KConsole_Render.h" />
@@ -165,9 +167,11 @@
     <ClInclude Include="PtrOf_KOne.h" />
     <ClInclude Include="PtrOf_KScene.h" />
     <ClInclude Include="PtrOf_KWindow.h" />
+    <ClInclude Include="SceneTest.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ComTest.cpp" />
     <ClCompile Include="KActor.cpp" />
     <ClCompile Include="KComponent.cpp" />
     <ClCompile Include="KConsole_Render.cpp" />
@@ -191,6 +195,7 @@
     <ClCompile Include="KTransform.cpp" />
     <ClCompile Include="KUpdater.cpp" />
     <ClCompile Include="KVector.cpp" />
+    <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

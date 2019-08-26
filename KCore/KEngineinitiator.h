@@ -9,6 +9,6 @@ public:
 	~KEngineinitiator() override;
 
 public:
-	void init() override;
+	bool init() override;
 };
 

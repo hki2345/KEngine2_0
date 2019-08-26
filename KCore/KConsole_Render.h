@@ -13,7 +13,7 @@ public:
 	~KConsole_Render() override;
 
 public:
-	void init() override;
+	bool init() override;
 	void update() override;
 	void release() override;
 	void render() override;

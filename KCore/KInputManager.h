@@ -30,7 +30,7 @@ public:
 		return pKInputManager;
 	}
 
-private:
+public:
 	void update(const int& _Value);
 	bool is_press(const int& _Value);
 

@@ -45,7 +45,8 @@ private:
 	void release();
 
 public:
-	KScene* create_scene(const wchar_t* _Name);
+	KScene* create_scene(KScene* _Other, const wchar_t* _Name = L"KScene");
+	KScene* create_scene(const wchar_t* _Name = L"KScene");
 	KScene* find_scene(const wchar_t* _Name);
 	bool delete_scene(const wchar_t* _Name);
 	bool change_scene(const wchar_t* _Name);

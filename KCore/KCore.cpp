@@ -73,5 +73,6 @@ void KCore::release()
 	KSceneManager::instance()->release();
 	KPathManager::instance()->release();
 	KTimeManager::instance()->release();
+	KInputManager::instance()->release();
 	RELEASE_PTR(pKCore);
 }

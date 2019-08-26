@@ -13,9 +13,9 @@ KConsole_Render::~KConsole_Render()
 
 
 
-void KConsole_Render::init()
+bool KConsole_Render::init()
 {
-
+	return true;
 }
 void KConsole_Render::update()
 {

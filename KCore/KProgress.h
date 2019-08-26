@@ -22,7 +22,7 @@ public:
 	virtual ~KProgress() = 0;
 
 public:
-	virtual void init() override = 0;
+	virtual bool init() override = 0;
 	virtual void update() override = 0;
 	virtual void release() override = 0;
 };

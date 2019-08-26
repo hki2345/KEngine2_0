@@ -10,13 +10,7 @@ KScene::KScene()
 }
 
 
-KScene::~KScene()
-{
-}
-
-
-
-void KScene::init()
+bool KScene::init()
 {
 	mSOneMap = MapKOne.begin();
 	mEOneMap = MapKOne.end();
@@ -31,6 +25,8 @@ void KScene::init()
 		curKRenderMgr = new KRenderManager();
 		curKRenderMgr->init();
 	}
+
+	return true;
 }
 
 void KScene::update()
@@ -69,17 +65,24 @@ void KScene::render()
 }
 
 
-
-
-KOne* KScene::create_kone(const wchar_t* _Name)
+KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= L"KOne"*/)
 {
-	KOne* Tmp = find_kone(_Name);
-	if (nullptr != Tmp)
+	if (nullptr == _Other)
 	{
-		return Tmp;
+		return nullptr;
 	}
 
-	Tmp = new KOne();
+	_Other->name(_Name);
+	_Other->kscene(this);
+
+
+	MapKOne.insert(std::make_pair(_Name, _Other));
+	return _Other;
+}
+
+KOne* KScene::create_kone(const wchar_t* _Name/*= L"KOne"*/)
+{
+	KOne* Tmp =  new KOne();
 	Tmp->name(_Name);
 	Tmp->kscene(this);
 

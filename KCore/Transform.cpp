@@ -13,9 +13,9 @@ Transform::~Transform()
 
 
 
-void Transform::init()
+bool Transform::init()
 {
-
+	return true;
 }
 void Transform::update()
 {

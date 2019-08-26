@@ -2,6 +2,9 @@
 #include "KSceneManager.h"
 
 
+#include "SceneTest.h"
+
+
 KEngineinitiator::KEngineinitiator()
 {
 }
@@ -13,11 +16,13 @@ KEngineinitiator::~KEngineinitiator()
 }
 
 
-void KEngineinitiator::init()
+bool KEngineinitiator::init()
 {
-	KSceneManager::instance()->create_scene(L"Test");
+	SceneTest* NSCENE = new SceneTest();
+	
+	KSceneManager::instance()->create_scene(NSCENE, L"Test");
 	KSceneManager::instance()->change_scene(L"Test");
 
-	return;
+	return true;
 }
 
