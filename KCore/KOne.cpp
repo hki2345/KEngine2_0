@@ -12,12 +12,12 @@ KOne::KOne()
 
 bool KOne::init() 
 {
-	mSMapComponent = MapComponent.begin();
-	mEMapComponent = MapComponent.end();
+	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
 
-	for (; mSMapComponent != mEMapComponent; ++mSMapComponent)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSMapComponent->second->init();
+		SIter->second->init();
 	}
 
 	return true;
@@ -25,24 +25,24 @@ bool KOne::init()
 
 void KOne::update()
 {
-	mSMapComponent = MapComponent.begin();
-	mEMapComponent = MapComponent.end();
+	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
 
-	for (; mSMapComponent != mEMapComponent; ++mSMapComponent)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSMapComponent->second->update();
+		SIter->second->update();
 	}
 }
 
 void KOne::release()
 {
-	mSMapComponent = MapComponent.begin();
-	mEMapComponent = MapComponent.end();
+	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
 
-	for (; mSMapComponent != mEMapComponent; ++mSMapComponent)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSMapComponent->second->release();
-		RELEASE_PTR(mSMapComponent->second);
+		SIter->second->release();
+		RELEASE_PTR(SIter->second);
 	}
 
 	MapComponent.clear();

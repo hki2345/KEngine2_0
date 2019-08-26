@@ -32,9 +32,6 @@ private:
 
 private:
 	std::multimap<std::wstring, KScene*> MapScene;
-	std::multimap<std::wstring, KScene*>::iterator mSMapScene;
-	std::multimap<std::wstring, KScene*>::iterator mEMapScene;
-	std::multimap<std::wstring, KScene*>::iterator mFMapScene;
 	KScene* curscene;
 
 

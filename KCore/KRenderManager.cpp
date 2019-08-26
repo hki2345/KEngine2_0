@@ -6,23 +6,23 @@
 
 void KRenderManager::init()
 {
-	SMapKRenderer = MapKRenderer.begin();
-	EMapKRenderer = MapKRenderer.end();
+	std::multimap<int, KRenderer*>::iterator SIter = MapKRenderer.begin();
+	std::multimap<int, KRenderer*>::iterator EIter = MapKRenderer.end();
 
-	for (; SMapKRenderer != EMapKRenderer; ++SMapKRenderer)
+	for (; SIter != EIter; ++SIter)
 	{
-		SMapKRenderer->second->init();
+		SIter->second->init();
 	}
 }
 
 void KRenderManager::render()
 {
-	SMapKRenderer = MapKRenderer.begin();
-	EMapKRenderer = MapKRenderer.end();
+	std::multimap<int, KRenderer*>::iterator SIter = MapKRenderer.begin();
+	std::multimap<int, KRenderer*>::iterator EIter = MapKRenderer.end();
 
-	for (; SMapKRenderer != EMapKRenderer; ++SMapKRenderer)
+	for (; SIter != EIter; ++SIter)
 	{
-		SMapKRenderer->second->render();
+		SIter->second->render();
 	}
 }
 

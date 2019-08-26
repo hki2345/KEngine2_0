@@ -24,10 +24,7 @@ private:
 
 
 	std::multimap<std::wstring, KOne*> MapKOne;
-	std::multimap<std::wstring, KOne*>::iterator mSOneMap;
-	std::multimap<std::wstring, KOne*>::iterator mEOneMap;
-	std::multimap<std::wstring, KOne*>::iterator mFOneMap;
-
+	
 protected:
 	virtual bool init() override;
 	virtual void update() override;

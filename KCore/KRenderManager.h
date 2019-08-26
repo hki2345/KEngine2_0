@@ -25,9 +25,6 @@ private:
 
 private:
 	std::multimap<int, KRenderer*> MapKRenderer;
-	std::multimap<int, KRenderer*>::iterator SMapKRenderer;
-	std::multimap<int, KRenderer*>::iterator EMapKRenderer;
-	std::multimap<int, KRenderer*>::iterator FMapKRenderer;
 
 private:
 	bool insert_krenderer(KRenderer* _Other, const int& _Key = 0);

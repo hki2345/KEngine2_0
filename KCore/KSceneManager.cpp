@@ -33,13 +33,13 @@ void KSceneManager::render()
 
 void KSceneManager::release()
 {
-	mSMapScene = MapScene.begin();
-	mEMapScene = MapScene.end();
+	std::multimap<std::wstring, KScene*>::iterator SIter = MapScene.begin();
+	std::multimap<std::wstring, KScene*>::iterator EIter = MapScene.end();
 
-	for (; mSMapScene != mEMapScene; ++mSMapScene)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSMapScene->second->release();
-		RELEASE_PTR(mSMapScene->second);
+		SIter->second->release();
+		RELEASE_PTR(SIter->second);
 	}
 
 	MapScene.clear();
@@ -75,10 +75,11 @@ KScene* KSceneManager::create_scene(const wchar_t* _Name/*= L"KScene"*/)
 
 KScene* KSceneManager::find_scene(const wchar_t* _Name)
 {
-	mFMapScene = MapScene.find(_Name);
-	if (MapScene.end() != mFMapScene)
+	std::multimap<std::wstring, KScene*>::iterator FIter = MapScene.find(_Name);
+
+	if (MapScene.end() != FIter)
 	{
-		return mFMapScene->second;
+		return FIter->second;
 	}
 
 	return nullptr;
@@ -86,15 +87,17 @@ KScene* KSceneManager::find_scene(const wchar_t* _Name)
 
 bool KSceneManager::delete_scene(const wchar_t* _Name)
 {
-	mFMapScene = MapScene.find(_Name);
-	if (MapScene.end() == mFMapScene)
+	std::multimap<std::wstring, KScene*>::iterator FIter = MapScene.find(_Name);
+
+
+	if (MapScene.end() == FIter)
 	{
 		return false;
 	}
 
-	mFMapScene->second->release();
-	delete mFMapScene->second;
-	MapScene.erase(mFMapScene);
+	FIter->second->release();
+	delete FIter->second;
+	MapScene.erase(FIter);
 	return true;
 }
 

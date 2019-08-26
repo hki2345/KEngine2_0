@@ -20,12 +20,7 @@ protected:
 
 
 private:
-
 	std::multimap<std::wstring, KComponent*> MapComponent;
-	std::multimap<std::wstring, KComponent*>::iterator mSMapComponent;
-	std::multimap<std::wstring, KComponent*>::iterator mEMapComponent;
-	std::multimap<std::wstring, KComponent*>::iterator mFMapComponent;
-
 
 protected:
 	virtual bool init() override;
@@ -39,10 +34,10 @@ public:
 	template <typename T>
 	T* get_component()
 	{
-		mSMapComponent = MapComponent.begin();
-		mEMapComponent = MapComponent.end();
+		std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+		std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
 
-		for (; mSMapComponent != mEMapComponent; ++mSMapComponent)
+		for (; SIter != EIter; ++SIter)
 		{
 			
 		}

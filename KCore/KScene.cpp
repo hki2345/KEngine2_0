@@ -12,12 +12,12 @@ KScene::KScene()
 
 bool KScene::init()
 {
-	mSOneMap = MapKOne.begin();
-	mEOneMap = MapKOne.end();
+	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
-	for (; mSOneMap != mEOneMap; ++mSOneMap)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSOneMap->second->init();
+		SIter->second->init();
 	}
 
 	if (nullptr == curKRenderMgr)
@@ -31,24 +31,24 @@ bool KScene::init()
 
 void KScene::update()
 {
-	mSOneMap = MapKOne.begin();
-	mEOneMap = MapKOne.end();
+	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
-	for (; mSOneMap != mEOneMap; ++mSOneMap)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSOneMap->second->update();
+		SIter->second->update();
 	}
 }
 
 void KScene::release()
 {
-	mSOneMap = MapKOne.begin();
-	mEOneMap = MapKOne.end();
+	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
-	for (; mSOneMap != mEOneMap; ++mSOneMap)
+	for (; SIter != EIter; ++SIter)
 	{
-		mSOneMap->second->release();
-		RELEASE_PTR(mSOneMap->second);
+		SIter->second->release();
+		RELEASE_PTR(SIter->second);
 	}
 
 	MapKOne.clear();
@@ -93,10 +93,10 @@ KOne* KScene::create_kone(const wchar_t* _Name/*= L"KOne"*/)
 
 KOne* KScene::find_kone(const wchar_t* _Name)
 {
-	mFOneMap = MapKOne.find(_Name);
-	if (MapKOne.end() != mFOneMap)
+	std::multimap<std::wstring, KOne*>::iterator FIter = MapKOne.find(_Name);
+	if (MapKOne.end() != FIter)
 	{
-		return mFOneMap->second;
+		return FIter->second;
 	}
 
 	return nullptr;
@@ -104,14 +104,14 @@ KOne* KScene::find_kone(const wchar_t* _Name)
 
 bool KScene::delete_kone(const wchar_t* _Name)
 {
-	mFOneMap = MapKOne.find(_Name);
-	if (MapKOne.end() == mFOneMap)
+	std::multimap<std::wstring, KOne*>::iterator FIter = MapKOne.find(_Name);
+	if (MapKOne.end() == FIter)
 	{
 		return false;
 	}
 
-	mFOneMap->second->release();
-	delete mFOneMap->second;
-	MapKOne.erase(mFOneMap);
+	FIter->second->release();
+	delete FIter->second;
+	MapKOne.erase(FIter);
 	return true;
 }
