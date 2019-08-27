@@ -1,12 +1,11 @@
 #pragma once
-#define KNAMING 256
 #include <string>
-
 
 class KPathManager
 {
 public:
 	friend class KCore;
+	friend class KUnityParse;
 
 public:
 	// 본체에서는 해야하니까

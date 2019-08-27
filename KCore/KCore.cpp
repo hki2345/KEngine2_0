@@ -3,16 +3,30 @@
 #include "KUpdater.h"
 
 #include <KResourceManager.h>
-#include "KPathManager.h"
+#include <KPathManager.h>
 #include "KInputManager.h"
 #include "KSceneManager.h"
 #include "KTimeManager.h"
 
 
 
-#include <crtdbg.h>
+#if _DEBUG
+#if WIN32
+#pragma comment(lib, "KContainer_Debug32")
+#else
+#pragma comment(lib, "KContainer_Debug64")
+#endif // WIN32
 
-KCore* KCore::pKCore = nullptr;
+#else
+#if WIN32
+#pragma comment(lib, "KContainer_Release32")
+#else
+#pragma comment(lib, "KContainer_Release64")
+#endif
+#endif
+
+
+KCore* KCore::pKParse = nullptr;
 
 
 
@@ -74,5 +88,5 @@ void KCore::release()
 	KPathManager::instance()->release();
 	KTimeManager::instance()->release();
 	KInputManager::instance()->release();
-	RELEASE_PTR(pKCore);
+	RELEASE_PTR(pKParse);
 }

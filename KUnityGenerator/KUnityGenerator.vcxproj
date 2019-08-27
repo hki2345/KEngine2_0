@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{5BE456D9-46D0-4286-B735-BE35D4D4E0BB}</ProjectGuid>
-    <RootNamespace>KCore</RootNamespace>
+    <ProjectGuid>{913C5A90-909B-4889-8D4F-1B946972A50D}</ProjectGuid>
+    <RootNamespace>KUnityGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,49 +70,21 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\EXE\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</TargetName>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <OutDir>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</OutDir>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;..\lib;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\EXE\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</TargetName>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <OutDir>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</OutDir>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;..\lib;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\EXE\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</TargetName>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <OutDir>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</OutDir>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;..\lib;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\EXE\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</TargetName>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <OutDir>$(ProjectName)_$(Configuration)$(PlatformArchitecture)</OutDir>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;..\lib;</LibraryPath>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\KContainer;</AdditionalIncludeDirectories>
-      <IncludeInUnityFile>false</IncludeInUnityFile>
-      <OrderInUnityFile>100</OrderInUnityFile>
-      <CombineFilesOnlyFromTheSameFolder>false</CombineFilesOnlyFromTheSameFolder>
-      <MinFilesInUnityFile>2</MinFilesInUnityFile>
-      <CustomUnityFile>false</CustomUnityFile>
-      <UnityFilesDirectory>$(ProjectDir)\Unity</UnityFilesDirectory>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG</PreprocessorDefinitions>
-    </ClCompile>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -120,13 +92,17 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\KContainer;</AdditionalIncludeDirectories>
-      <IncludeInUnityFile>false</IncludeInUnityFile>
-      <OrderInUnityFile>100</OrderInUnityFile>
-      <CombineFilesOnlyFromTheSameFolder>false</CombineFilesOnlyFromTheSameFolder>
-      <MinFilesInUnityFile>2</MinFilesInUnityFile>
-      <CustomUnityFile>false</CustomUnityFile>
-      <UnityFilesDirectory>$(ProjectDir)\Unity</UnityFilesDirectory>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG;WIN32</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG;;WIN32</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\KContainer;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_DEBUG;</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,12 +114,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\KContainer;</AdditionalIncludeDirectories>
-      <IncludeInUnityFile>false</IncludeInUnityFile>
-      <OrderInUnityFile>100</OrderInUnityFile>
-      <CombineFilesOnlyFromTheSameFolder>false</CombineFilesOnlyFromTheSameFolder>
-      <MinFilesInUnityFile>2</MinFilesInUnityFile>
-      <CustomUnityFile>false</CustomUnityFile>
-      <UnityFilesDirectory>$(ProjectDir)\Unity</UnityFilesDirectory>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);;WIN32</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -160,12 +130,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\KContainer;</AdditionalIncludeDirectories>
-      <IncludeInUnityFile>false</IncludeInUnityFile>
-      <OrderInUnityFile>100</OrderInUnityFile>
-      <CombineFilesOnlyFromTheSameFolder>false</CombineFilesOnlyFromTheSameFolder>
-      <MinFilesInUnityFile>2</MinFilesInUnityFile>
-      <CustomUnityFile>false</CustomUnityFile>
-      <UnityFilesDirectory>$(ProjectDir)\Unity</UnityFilesDirectory>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -173,62 +137,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ComTest.h" />
-    <ClInclude Include="KActor.h" />
-    <ClInclude Include="KComponent.h" />
-    <ClInclude Include="KConsole_Render.h" />
-    <ClInclude Include="KCore.h" />
-    <ClInclude Include="KCore_Pointer.h" />
-    <ClInclude Include="KEngineinitiator.h" />
-    <ClInclude Include="KEngineUpdater.h" />
-    <ClInclude Include="KInitiator.h" />
-    <ClInclude Include="KInputManager.h" />
-    <ClInclude Include="KOne.h" />
-    <ClInclude Include="KProgress.h" />
-    <ClInclude Include="KReleaser.h" />
-    <ClInclude Include="KRenderer.h" />
-    <ClInclude Include="KRenderManager.h" />
-    <ClInclude Include="KScene.h" />
-    <ClInclude Include="KMacro.h" />
-    <ClInclude Include="KName.h" />
-    <ClInclude Include="KSceneManager.h" />
-    <ClInclude Include="KTimeManager.h" />
-    <ClInclude Include="KTransform.h" />
-    <ClInclude Include="KUpdater.h" />
-    <ClInclude Include="KVector.h" />
-    <ClInclude Include="PtrOf_Component.h" />
-    <ClInclude Include="PtrOf_KOne.h" />
-    <ClInclude Include="PtrOf_KScene.h" />
-    <ClInclude Include="PtrOf_KWindow.h" />
-    <ClInclude Include="SceneTest.h" />
-    <ClInclude Include="Transform.h" />
+    <ClCompile Include="KUnityParse.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ComTest.cpp" />
-    <ClCompile Include="KActor.cpp" />
-    <ClCompile Include="KComponent.cpp" />
-    <ClCompile Include="KConsole_Render.cpp" />
-    <ClCompile Include="KCore.cpp" />
-    <ClCompile Include="KCore_Pointer.cpp" />
-    <ClCompile Include="KEngineinitiator.cpp" />
-    <ClCompile Include="KEngineLauncher.cpp" />
-    <ClCompile Include="KEngineUpdater.cpp" />
-    <ClCompile Include="Kinitiator.cpp" />
-    <ClCompile Include="KInputManager.cpp" />
-    <ClCompile Include="KName.cpp" />
-    <ClCompile Include="KOne.cpp" />
-    <ClCompile Include="KProgress.cpp" />
-    <ClCompile Include="KReleaser.cpp" />
-    <ClCompile Include="KRenderer.cpp" />
-    <ClCompile Include="KRenderManager.cpp" />
-    <ClCompile Include="KScene.cpp" />
-    <ClCompile Include="KSceneManager.cpp" />
-    <ClCompile Include="KTimeManager.cpp" />
-    <ClCompile Include="KTransform.cpp" />
-    <ClCompile Include="KUpdater.cpp" />
-    <ClCompile Include="KVector.cpp" />
-    <ClCompile Include="SceneTest.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClInclude Include="KUnityParse.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

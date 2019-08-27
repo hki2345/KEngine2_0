@@ -13,17 +13,17 @@ private:
 	void operator=(const KCore& _Core) = delete;
 	~KCore() {};
 
-	static KCore* pKCore;
+	static KCore* pKParse;
 
 public:
 	static KCore* instance()
 	{
-		if (nullptr == pKCore)
+		if (nullptr == pKParse)
 		{
-			pKCore = new KCore();
+			pKParse = new KCore();
 		}
 
-		return pKCore;
+		return pKParse;
 	}
 
 private:
