@@ -12,3 +12,7 @@ x64/*
 *.exe
 *.ilk
 *.pdb
+*.log
+*.tlog
+*.lastbuildstate
+
