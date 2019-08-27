@@ -196,6 +196,8 @@
     <ClInclude Include="KTransform.h" />
     <ClInclude Include="KUpdater.h" />
     <ClInclude Include="KVector.h" />
+    <ClInclude Include="KWindow.h" />
+    <ClInclude Include="KWindowManager.h" />
     <ClInclude Include="PtrOf_Component.h" />
     <ClInclude Include="PtrOf_KOne.h" />
     <ClInclude Include="PtrOf_KScene.h" />
@@ -227,6 +229,8 @@
     <ClCompile Include="KTransform.cpp" />
     <ClCompile Include="KUpdater.cpp" />
     <ClCompile Include="KVector.cpp" />
+    <ClCompile Include="KWindow.cpp" />
+    <ClCompile Include="KWindowManager.cpp" />
     <ClCompile Include="SceneTest.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>

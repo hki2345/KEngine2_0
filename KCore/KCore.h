@@ -13,23 +13,25 @@ private:
 	void operator=(const KCore& _Core) = delete;
 	~KCore() {};
 
-	static KCore* pKParse;
+	static KCore* pKCore;
 
 public:
 	static KCore* instance()
 	{
-		if (nullptr == pKParse)
+		if (nullptr == pKCore)
 		{
-			pKParse = new KCore();
+			pKCore = new KCore();
 		}
 
-		return pKParse;
+		return pKCore;
 	}
 
 private:
 	KUpdater* pUpdater;
 	bool looping;
-private:
+
+
+public:
 	int main(int argc, char* argv[]) {};
 	void init();
 	void release();
@@ -48,6 +50,16 @@ public:
 		INIT OneInit;
 		OneInit.init();
 		
+		KCore::init();
+	}
+
+	// 윈도우용 실행자
+	template <typename INIT>
+	void init(int argc)
+	{
+		INIT OneInit;
+		OneInit.init();
+
 		KCore::init();
 	}
 
@@ -83,6 +95,16 @@ int core_launch(int argc, char* argv[])
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
 	KCore::instance()->init<INIT>(argc, argv);
+	KCore::instance()->loop();
+	return 0;
+}
+
+template<typename INIT>
+int core_launch(int argc)
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	new int;
+	KCore::instance()->init<INIT>(argc);
 	KCore::instance()->loop();
 	return 0;
 }

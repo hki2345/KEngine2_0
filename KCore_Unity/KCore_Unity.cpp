@@ -20,6 +20,8 @@
 #include <KTransform.cpp>
 #include <KUpdater.cpp>
 #include <KVector.cpp>
+#include <KWindow.cpp>
+#include <KWindowManager.cpp>
 #include <Kinitiator.cpp>
 #include <SceneTest.cpp>
 #include <Transform.cpp>

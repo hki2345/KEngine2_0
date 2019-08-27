@@ -26,7 +26,7 @@
 #endif
 
 
-KCore* KCore::pKParse = nullptr;
+KCore* KCore::pKCore = nullptr;
 
 
 
@@ -88,5 +88,5 @@ void KCore::release()
 	KPathManager::instance()->release();
 	KTimeManager::instance()->release();
 	KInputManager::instance()->release();
-	RELEASE_PTR(pKParse);
+	RELEASE_PTR(pKCore);
 }

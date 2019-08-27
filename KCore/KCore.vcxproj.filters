@@ -61,6 +61,9 @@
     <Filter Include="00_EngineTest\KSceneTest">
       <UniqueIdentifier>{0f07c603-d3f3-4f59-8f7e-4d5869ef2c57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_WIndow">
+      <UniqueIdentifier>{83788e8d-7ae3-45b4-946c-abec79c2d17c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KCore.h">
@@ -150,6 +153,12 @@
     <ClInclude Include="ComTest.h">
       <Filter>00_EngineTest\KComTest</Filter>
     </ClInclude>
+    <ClInclude Include="KWindowManager.h">
+      <Filter>01_WIndow</Filter>
+    </ClInclude>
+    <ClInclude Include="KWindow.h">
+      <Filter>01_WIndow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -226,6 +235,12 @@
     </ClCompile>
     <ClCompile Include="ComTest.cpp">
       <Filter>00_EngineTest\KComTest</Filter>
+    </ClCompile>
+    <ClCompile Include="KWindowManager.cpp">
+      <Filter>01_WIndow</Filter>
+    </ClCompile>
+    <ClCompile Include="KWindow.cpp">
+      <Filter>01_WIndow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
