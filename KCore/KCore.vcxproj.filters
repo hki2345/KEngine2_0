@@ -43,9 +43,6 @@
     <Filter Include="01_Device">
       <UniqueIdentifier>{125b822e-de90-4e06-bd0f-aec4f7fa1ef6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Manager\01_Path">
-      <UniqueIdentifier>{46ab0418-9991-40b8-a18a-31cd6e1cc501}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04_Component\Render">
       <UniqueIdentifier>{41cbea9e-7ea5-42f2-9234-0c7813a0284e}</UniqueIdentifier>
     </Filter>
@@ -61,7 +58,7 @@
     <Filter Include="00_EngineTest\KSceneTest">
       <UniqueIdentifier>{0f07c603-d3f3-4f59-8f7e-4d5869ef2c57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01_WIndow">
+    <Filter Include="02_Manager\01_WIndow">
       <UniqueIdentifier>{83788e8d-7ae3-45b4-946c-abec79c2d17c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -154,10 +151,10 @@
       <Filter>00_EngineTest\KComTest</Filter>
     </ClInclude>
     <ClInclude Include="KWindowManager.h">
-      <Filter>01_WIndow</Filter>
+      <Filter>02_Manager\01_WIndow</Filter>
     </ClInclude>
     <ClInclude Include="KWindow.h">
-      <Filter>01_WIndow</Filter>
+      <Filter>02_Manager\01_WIndow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,10 +234,10 @@
       <Filter>00_EngineTest\KComTest</Filter>
     </ClCompile>
     <ClCompile Include="KWindowManager.cpp">
-      <Filter>01_WIndow</Filter>
+      <Filter>02_Manager\01_WIndow</Filter>
     </ClCompile>
     <ClCompile Include="KWindow.cpp">
-      <Filter>01_WIndow</Filter>
+      <Filter>02_Manager\01_WIndow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

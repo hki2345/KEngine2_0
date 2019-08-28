@@ -65,7 +65,7 @@ void KScene::render()
 }
 
 
-KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= L"KOne"*/)
+KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= "KOne"*/)
 {
 	if (nullptr == _Other)
 	{
@@ -80,7 +80,7 @@ KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= L"KOne"*/)
 	return _Other;
 }
 
-KOne* KScene::create_kone(const wchar_t* _Name/*= L"KOne"*/)
+KOne* KScene::create_kone(const wchar_t* _Name/*= "KOne"*/)
 {
 	KOne* Tmp =  new KOne();
 	Tmp->name(_Name);

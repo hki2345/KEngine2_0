@@ -50,7 +50,7 @@ void KSceneManager::release()
 
 
 
-KScene* KSceneManager::create_scene(KScene* _Other, const wchar_t* _Name /*= L"KScene"*/)
+KScene* KSceneManager::create_scene(KScene* _Other, const wchar_t* _Name /*= "KScene"*/)
 {
 	if (nullptr == _Other)
 	{
@@ -63,7 +63,7 @@ KScene* KSceneManager::create_scene(KScene* _Other, const wchar_t* _Name /*= L"K
 }
 
 
-KScene* KSceneManager::create_scene(const wchar_t* _Name/*= L"KScene"*/)
+KScene* KSceneManager::create_scene(const wchar_t* _Name/*= "KScene"*/)
 {
 	KScene* Tmp = new KScene();
 	Tmp->name(_Name);

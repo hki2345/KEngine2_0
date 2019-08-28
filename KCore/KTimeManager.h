@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <map>
+
 #include "KProgress.h"
 #include "KName.h"
 
@@ -82,6 +83,11 @@ private:
 
 
 public:
+	std::wstring fps_string()
+	{
+		return std::to_wstring(MainTimer->Fps);
+	}
+
 	float& fps()
 	{
 		return MainTimer->Fps;

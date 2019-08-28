@@ -16,8 +16,8 @@ public:
 	 
 
 private:
-	std::multiset<std::wstring> MapCpp;
-	std::wstring sTarget;
+	std::multiset<std::string> MapCpp;
+	std::string sTarget;
 
 
 

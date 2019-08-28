@@ -1,6 +1,6 @@
 #pragma once
 #include <crtdbg.h>
-
+#include <Windows.h>
 
 class KUpdater;
 class KCore
@@ -32,20 +32,24 @@ private:
 
 
 public:
-	int main(int argc, char* argv[]) {};
+	int main(int argc, wchar_t*argv[]) {};
+	void init(
+		_In_ HINSTANCE _hInstance,
+		_In_ LPWSTR    _lpCmdLine,
+		_In_ int       _nCmdShow);
 	void init();
 	void release();
 
 public:
 	// 실행 자 없음
-	void init(int argc, char* argv[])
+	void init(int argc, wchar_t* argv[])
 	{
 		KCore::init();
 	}
 
 	// 최초 1회 실행
 	template <typename INIT>
-	void init(int argc, char* argv[])
+	void init(int argc, wchar_t* argv[])
 	{
 		INIT OneInit;
 		OneInit.init();
@@ -55,12 +59,15 @@ public:
 
 	// 윈도우용 실행자
 	template <typename INIT>
-	void init(int argc)
+	void init(
+		_In_ HINSTANCE _hInstance,
+		_In_ LPWSTR    _lpCmdLine,
+		_In_ int       _nCmdShow)
 	{
 		INIT OneInit;
 		OneInit.init();
 
-		KCore::init();
+		KCore::init(_hInstance, _lpCmdLine, _nCmdShow);
 	}
 
 	template <typename UP>
@@ -90,7 +97,7 @@ private:
 // 사실 횟수는 ㅋㅋ;; 그냥 내가 정함 ㅋㅋ
 // 엔진 단계 하나 실행
 template<typename INIT>
-int core_launch(int argc, char* argv[])
+int core_launch(int argc, wchar_t* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
@@ -98,25 +105,43 @@ int core_launch(int argc, char* argv[])
 	KCore::instance()->loop();
 	return 0;
 }
-
-template<typename INIT>
-int core_launch(int argc)
-{
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	new int;
-	KCore::instance()->init<INIT>(argc);
-	KCore::instance()->loop();
-	return 0;
-}
-
 
 // 엔진 단계 하나 실행 및 최신화
 template<typename INIT,  typename UP>
-int core_launch(int argc, char* argv[])
+int core_launch(int argc, wchar_t* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
 	KCore::instance()->init<INIT>(argc, argv);
+	KCore::instance()->loop<UP>();
+	return 0;
+}
+
+
+/******************** Window ********************/
+template<typename INIT>
+int core_launch(
+	_In_ HINSTANCE _hInstance,
+	_In_ LPWSTR    _lpCmdLine,
+	_In_ int       _nCmdShow)
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	new int;
+	KCore::instance()->init<INIT>(_hInstance, _lpCmdLine, _nCmdShow);
+	KCore::instance()->loop();
+	return 0;
+}
+
+// 엔진 단계 하나 실행 및 최신화
+template<typename INIT, typename UP>
+int core_launch(
+	_In_ HINSTANCE _hInstance,
+	_In_ LPWSTR    _lpCmdLine,
+	_In_ int       _nCmdShow)
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	new int;
+	KCore::instance()->init<INIT>(_hInstance, _lpCmdLine, _nCmdShow);
 	KCore::instance()->loop<UP>();
 	return 0;
 }

@@ -18,10 +18,10 @@ KEngineinitiator::~KEngineinitiator()
 
 bool KEngineinitiator::init()
 {
-	SceneTest* NSCENE = new SceneTest();
-	
-	KSceneManager::instance()->create_scene(NSCENE, L"Test");
-	KSceneManager::instance()->change_scene(L"Test");
+	// SceneTest* NSCENE = new SceneTest();
+	// 
+	// KSceneManager::instance()->create_scene(NSCENE, L"Test");
+	// KSceneManager::instance()->change_scene(L"Test");
 
 	return true;
 }
