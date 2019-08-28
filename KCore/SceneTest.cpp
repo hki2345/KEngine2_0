@@ -5,7 +5,7 @@
 
 #include "KCore.h"
 #include "KInputManager.h"
-
+#include "KSceneManager.h"
 
 SceneTest::SceneTest()
 {
@@ -31,4 +31,12 @@ void SceneTest::update()
 	{
 		KCore::instance()->shut_down();
 	}
+
+	Value = KInputManager::instance()->is_press(VK_RIGHT);
+
+	if (true == Value)
+	{
+		KSceneManager::instance()->change_scene(L"Test2");
+	}
+
 }

@@ -3,6 +3,7 @@
 
 
 #include "SceneTest.h"
+#include "SceneTest2.h"
 
 
 KEngineinitiator::KEngineinitiator()
@@ -18,10 +19,12 @@ KEngineinitiator::~KEngineinitiator()
 
 bool KEngineinitiator::init()
 {
-	// SceneTest* NSCENE = new SceneTest();
-	// 
-	// KSceneManager::instance()->create_scene(NSCENE, L"Test");
-	// KSceneManager::instance()->change_scene(L"Test");
+	SceneTest* NSCENE = new SceneTest();
+	SceneTest2* NSCENE2 = new SceneTest2();
+	
+	KSceneManager::instance()->create_scene(NSCENE, L"Test");
+	KSceneManager::instance()->create_scene(NSCENE2, L"Test2");
+	KSceneManager::instance()->change_scene(L"Test");
 
 	return true;
 }

@@ -156,6 +156,9 @@
     <ClInclude Include="KWindow.h">
       <Filter>02_Manager\01_WIndow</Filter>
     </ClInclude>
+    <ClInclude Include="SceneTest2.h">
+      <Filter>00_EngineTest\KSceneTest</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="KWindow.cpp">
       <Filter>02_Manager\01_WIndow</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTest2.cpp">
+      <Filter>00_EngineTest\KSceneTest</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

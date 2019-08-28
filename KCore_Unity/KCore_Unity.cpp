@@ -24,4 +24,5 @@
 #include <KWindowManager.cpp>
 #include <Kinitiator.cpp>
 #include <SceneTest.cpp>
+#include <SceneTest2.cpp>
 #include <Transform.cpp>

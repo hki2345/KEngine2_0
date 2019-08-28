@@ -111,5 +111,6 @@ bool KSceneManager::change_scene(const wchar_t* _Name)
 	}
 
 	curscene = Tmp;
+	curscene->init();
 	return true;
 }

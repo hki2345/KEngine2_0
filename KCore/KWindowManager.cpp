@@ -67,3 +67,13 @@ int KWindowManager::create_window(const wchar_t* _Name)
 
 	return true;
 }
+
+HDC KWindowManager::main_hdc()
+{
+	return MapWindow.begin()->second->hdc();
+}
+
+HWND KWindowManager::main_hwnd()
+{
+	return MapWindow.begin()->second->hwnd();
+}

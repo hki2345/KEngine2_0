@@ -39,6 +39,9 @@ private:
 	int create_window(const wchar_t* _Name);
 
 public:
+	HDC main_hdc();
+	HWND main_hwnd();
+
 	static KWindowManager* instance()
 	{
 		if (nullptr == pKWindowManager)
@@ -48,7 +51,6 @@ public:
 
 		return pKWindowManager;
 	}
-
 	static HINSTANCE& hinstance()
 	{
 		return hInst;

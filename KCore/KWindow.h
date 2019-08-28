@@ -18,6 +18,8 @@ private:
 	MSG Message;
 	WNDCLASS WndClass;
 
+	
+
 private:
 	void update();
 
@@ -31,5 +33,11 @@ private:
 
 	static void DrawCircle(HDC hdc, int _x, int _y, int _rX, int _rY);
 	static void DrawLine(HDC hdc, int x1, int y1, int x2, int y2);
+
+	HDC hdc();
+	HWND hwnd()
+	{
+		return hWnd;
+	}
 };
 

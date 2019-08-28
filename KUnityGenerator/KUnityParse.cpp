@@ -59,25 +59,25 @@ void KUnityParse::update()
 
 void KUnityParse::load_cpp()
 {
-	std::cin >> sTarget;
-	std::string TargetPath = KPathManager::instance()->directory();
+	std::wcin >> sTarget;
+	std::wstring TargetPath = KPathManager::instance()->directory();
 
 	TargetPath += sTarget;
-	TargetPath += '\\';
+	TargetPath += L'\\';
 	
 	
-	struct _finddata_t FD;
+	struct _wfinddata_t FD;
 	intptr_t Handle;
 
-	TargetPath += "*.*";
+	TargetPath += L"*.*";
 
-	Handle = _findfirst(TargetPath.c_str(), &FD);
+	Handle = _wfindfirst(TargetPath.c_str(), &FD);
 
 
-	while (0 == _findnext(Handle, &FD))
+	while (0 == _wfindnext(Handle, &FD))
 	{
-		std::string Tmp = FD.name;
-		if (-1 != (int)Tmp.find(".cpp"))
+		std::wstring Tmp = FD.name;
+		if (-1 != (int)Tmp.find(L".cpp"))
 		{
 			MapCpp.insert(Tmp);
 		}
@@ -89,29 +89,29 @@ void KUnityParse::load_cpp()
 
 void KUnityParse::save_cpp()
 {
-	std::cin >> sTarget;
-	std::string TargetPath = KPathManager::instance()->directory();
+	std::wcin >> sTarget;
+	std::wstring TargetPath = KPathManager::instance()->directory();
 
 	TargetPath += sTarget;
-	TargetPath += '\\';
-	sTarget += ".cpp";
+	TargetPath += L'\\';
+	sTarget += L".cpp";
 	TargetPath += sTarget;
 
 	FILE* NFile;
-	fopen_s(&NFile, TargetPath.c_str(), "wt");
+	_wfopen_s(&NFile, TargetPath.c_str(), L"wt");
 
 
-	std::multiset<std::string>::iterator SIter = MapCpp.begin();
-	std::multiset<std::string>::iterator EIter = MapCpp.end();
+	std::multiset<std::wstring>::iterator SIter = MapCpp.begin();
+	std::multiset<std::wstring>::iterator EIter = MapCpp.end();
 
 
 	for (; SIter != EIter; ++SIter)
 	{
-		std::string IncludePath = "#include <";
+		std::wstring IncludePath = L"#include <";
 		IncludePath += SIter->c_str();
-		IncludePath += ">\n" ;
+		IncludePath += L">\n" ;
 
-		fprintf_s(NFile, IncludePath.c_str(), IncludePath.capacity());
+		fwprintf_s(NFile, IncludePath.c_str(), IncludePath.capacity());
 	}
 
 	fclose(NFile);

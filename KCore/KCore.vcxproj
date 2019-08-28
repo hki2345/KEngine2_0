@@ -204,6 +204,7 @@
     <ClInclude Include="PtrOf_KScene.h" />
     <ClInclude Include="PtrOf_KWindow.h" />
     <ClInclude Include="SceneTest.h" />
+    <ClInclude Include="SceneTest2.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +234,7 @@
     <ClCompile Include="KWindow.cpp" />
     <ClCompile Include="KWindowManager.cpp" />
     <ClCompile Include="SceneTest.cpp" />
+    <ClCompile Include="SceneTest2.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

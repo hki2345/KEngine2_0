@@ -1,4 +1,6 @@
 #include "ComTest.h"
+#include "KWindowManager.h"
+
 
 
 
@@ -15,11 +17,21 @@ ComTest::~ComTest()
 
 bool ComTest::init()
 {
+	Cnt = 0;
 	return true;
 }
 void ComTest::update()
 {
-	int a = 0;
+	++Cnt;
+	HDC hdc = KWindowManager::instance()->main_hdc();
+
+
+	std::wstring Tmp = L"COM";
+
+	Tmp += std::to_wstring(Cnt);
+
+	TextOut(hdc, 1000, 800, Tmp.c_str(), Tmp.size());
+	ReleaseDC(KWindowManager::instance()->main_hwnd(), hdc);
 }
 
 void ComTest::release()

@@ -9,6 +9,9 @@ public:
 	~ComTest();
 
 
+private:
+	int Cnt;
+
 public:
 	virtual bool init();
 	virtual void update();

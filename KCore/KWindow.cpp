@@ -96,29 +96,38 @@ LRESULT CALLBACK KWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 		KCore::instance()->shut_down();
 		return 0;
 	case WM_PAINT:
+	{
 		hdc = BeginPaint(hWnd, &ps);
-		Rectangle(hdc, 200, 100, 800, 300);
-		Ellipse(hdc, 200, 100, 800, 300);
-		DrawLine(hdc, 200, 200, 500, 100);
-		DrawLine(hdc, 200, 200, 500, 300);
-		DrawLine(hdc, 500, 100, 800, 200);
-		DrawLine(hdc, 500, 300, 800, 200);
-
-		DrawCircle(hdc, 500, 500, 300, 400);
-		TextOut(hdc, 100, 100, Tstr, lstrlen(str));
-
-		TextOut(hdc, x, y, TEXT("A"), 1);
-
+		// Rectangle(hdc, 200, 100, 800, 300);
+		// Ellipse(hdc, 200, 100, 800, 300);
+		// DrawLine(hdc, 200, 200, 500, 100);
+		// DrawLine(hdc, 200, 200, 500, 300);
+		// DrawLine(hdc, 500, 100, 800, 200);
+		// DrawLine(hdc, 500, 300, 800, 200);
+		
+		// DrawCircle(hdc, 500, 500, 300, 400);
+		// TextOut(hdc, 100, 100, Tstr, lstrlen(str));
+		// 
+		// TextOut(hdc, x, y, TEXT("A"), 1);
+		
 		for (size_t i = 0; i < g_VecHDC.size(); i++)
 		{
 			DrawLine(hdc, g_VecHDC[i].ox, g_VecHDC[i].oy, g_VecHDC[i].tx, g_VecHDC[i].ty);
 		}
 
-		TextOut(hdc, 1000, 600, KTimeManager::instance()->fps_string().c_str(), KTimeManager::instance()->fps_string().size());
+		std::wstring FPS = L"FPS: ";
+		FPS += KTimeManager::instance()->fps_string();
+
+		TextOut(hdc, 1000, 600, FPS.c_str(), KTimeManager::instance()->fps_string().size());
+
+		FPS = L"Delta: ";
+		FPS += std::to_wstring(KTimeManager::instance()->deltatime());
+		TextOut(hdc, 1000, 620, FPS.c_str(), 10);
 		TextOut(hdc, 1000, 400, KPathManager::instance()->all_path().c_str(), KPathManager::instance()->all_path().size());
 		InvalidateRect(hWnd, NULL, FALSE);
 		EndPaint(hWnd, &ps);
 		return 0;
+	}
 	case WM_CHAR:
 		len = lstrlen(Tstr);
 		Tstr[len] = (TCHAR)wParam;
@@ -203,4 +212,10 @@ void KWindow::DrawCircle(HDC hdc, int _x, int _y, int _rX, int _rY)
 		// DrawLine(hdc, _x, _y, TX + sinf(i * PI / 180) * _rX, TY + cosf(i * PI / 180)* _rY);
 		// SetPixel(hdc, TX + sinf(i * PI / 180) * _rX, TY + cosf(i * PI / 180)* _rY, RGB(1,1,1));
 	}
+}
+
+
+HDC KWindow::hdc()
+{
+	return GetDC(hWnd);
 }

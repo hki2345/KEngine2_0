@@ -57,12 +57,6 @@ public:
 		NewCom->kscene(kscene());
 		// NewCom->ComInit();
 
-		if (false == NewCom->init())
-		{
-			delete NewCom;
-			return nullptr;
-		}
-
 		MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
 		return NewCom;
 	}
