@@ -130,11 +130,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="KFileStream.h" />
     <ClInclude Include="KMacro.h" />
     <ClInclude Include="KPathManager.h" />
     <ClInclude Include="KResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KFileStream.cpp" />
     <ClCompile Include="KPathManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -125,6 +125,8 @@ int core_launch(
 	_In_ LPWSTR    _lpCmdLine,
 	_In_ int       _nCmdShow)
 {
+	// _CrtSetBreakAlloc(235);
+
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
 	KCore::instance()->init<INIT>(_hInstance, _lpCmdLine, _nCmdShow);

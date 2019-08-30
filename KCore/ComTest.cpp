@@ -30,7 +30,7 @@ void ComTest::update()
 
 	Tmp += std::to_wstring(Cnt);
 
-	TextOut(hdc, 1000, 800, Tmp.c_str(), Tmp.size());
+	TextOut(hdc, 1000, 800, Tmp.c_str(), (int)Tmp.size());
 	ReleaseDC(KWindowManager::instance()->main_hwnd(), hdc);
 }
 

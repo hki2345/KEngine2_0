@@ -7,10 +7,28 @@
 #include "KInputManager.h"
 #include "KSceneManager.h"
 
+
+#include <KFileStream.h>
+#include <KPathManager.h>
+
+
 SceneTest::SceneTest()
 {
 	KOne* NONE = create_kone(L"TESTONE");
 	NONE->add_component<ComTest>();
+
+	cc.c = 3;
+	KPathManager::instance()->input_wchar(cc.Name, sizeof(cc.Name), L"ELSA");
+	cc.o = 3.4;
+	cc.x = 12.3f;
+	cc.y = 323.5f;
+	cc.z = 1;
+
+	KFileStream::instance()->write_file<TEST>(L"ELSA.elsa", cc);
+
+	TEST dd;
+
+	KFileStream::instance()->read_file<TEST>(L"ELSA.elsa", dd);
 }
 
 

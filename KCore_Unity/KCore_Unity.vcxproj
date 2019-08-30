@@ -101,7 +101,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\KCore;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\KCore;..\KContainer;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;$(Platform);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -129,7 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\KCore;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\KCore;..\KContainer;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;$(Platform);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

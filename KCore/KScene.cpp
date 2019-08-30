@@ -54,7 +54,10 @@ void KScene::release()
 	MapKOne.clear();
 
 
-	curKRenderMgr->release();
+	if (nullptr != curKRenderMgr)
+	{
+		curKRenderMgr->release();
+	}
 	RELEASE_PTR(curKRenderMgr);
 }
 

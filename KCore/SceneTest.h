@@ -10,6 +10,22 @@ public:
 	~SceneTest();
 
 public:
+	struct TEST
+	{
+		float x;
+		float y;
+		wchar_t Name[24];
+		int z;
+		int c;
+
+		double o;
+	};
+
+private:
+	TEST cc;
+
+
+public:
 	void update() override;
 };
 

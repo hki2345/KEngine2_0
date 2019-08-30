@@ -6,15 +6,12 @@
 class KWindow;
 class KWindowManager
 {
-public:
+private:
 	KWindowManager() {} /* = delete*/;;
 	KWindowManager(const KWindowManager& _Window) = delete;
 	KWindowManager(const KWindowManager&& _Window) = delete;
 	void operator=(const KWindowManager& _Window) = delete;
 	~KWindowManager() {} ;
-
-	
-public:
 	static KWindowManager* pKWindowManager;
 
 public:

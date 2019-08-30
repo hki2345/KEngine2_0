@@ -20,16 +20,16 @@ private:
 
 	static KSceneManager* pKSceneManager;
 
-	public:
-		static KSceneManager* instance()
+public:
+	static KSceneManager* instance()
+	{
+		if (nullptr == pKSceneManager)
 		{
-			if (nullptr == pKSceneManager)
-			{
-				pKSceneManager = new KSceneManager();
-			}
-
-			return pKSceneManager;
+			pKSceneManager = new KSceneManager();
 		}
+
+		return pKSceneManager;
+	}
 
 private:
 	std::multimap<std::wstring, KScene*> MapScene;

@@ -62,5 +62,7 @@ public:
 	{
 		return mExe;
 	}
+
+	bool input_wchar(wchar_t* _Target, const int& _Sizeof, const wchar_t* _Path);
 };
 

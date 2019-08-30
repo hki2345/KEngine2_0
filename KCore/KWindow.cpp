@@ -118,12 +118,12 @@ LRESULT CALLBACK KWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 		std::wstring FPS = L"FPS: ";
 		FPS += KTimeManager::instance()->fps_string();
 
-		TextOut(hdc, 1000, 600, FPS.c_str(), KTimeManager::instance()->fps_string().size());
+		TextOut(hdc, 1000, 600, FPS.c_str(), (int)KTimeManager::instance()->fps_string().size());
 
 		FPS = L"Delta: ";
 		FPS += std::to_wstring(KTimeManager::instance()->deltatime());
 		TextOut(hdc, 1000, 620, FPS.c_str(), 10);
-		TextOut(hdc, 1000, 400, KPathManager::instance()->all_path().c_str(), KPathManager::instance()->all_path().size());
+		TextOut(hdc, 1000, 400, KPathManager::instance()->all_path().c_str(), (int)KPathManager::instance()->all_path().size());
 		InvalidateRect(hWnd, NULL, FALSE);
 		EndPaint(hWnd, &ps);
 		return 0;

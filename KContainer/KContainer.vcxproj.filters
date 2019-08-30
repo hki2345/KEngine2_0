@@ -4,8 +4,10 @@
     <ClInclude Include="KResourceManager.h" />
     <ClInclude Include="KPathManager.h" />
     <ClInclude Include="KMacro.h" />
+    <ClInclude Include="KFileStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KPathManager.cpp" />
+    <ClCompile Include="KFileStream.cpp" />
   </ItemGroup>
 </Project>

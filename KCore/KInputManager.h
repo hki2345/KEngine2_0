@@ -9,14 +9,13 @@ class KInputManager
 public:
 	friend class KCore;
 
-public:
+private:
 	// 본체에서는 해야하니까
 	KInputManager() {} /* = delete*/;
 	KInputManager(const KInputManager& _Core) = delete;
 	KInputManager(const KInputManager&& _Core) = delete;
 	void operator=(const KInputManager& _Core) = delete;
 	~KInputManager() {};
-
 	static KInputManager* pKInputManager;
 
 public:

@@ -3,6 +3,8 @@
 #include "KUpdater.h"
 
 #include <KResourceManager.h>
+#include <KFileStream.h>
+
 #include <KPathManager.h>
 
 
@@ -103,5 +105,6 @@ void KCore::release()
 	KTimeManager::instance()->release();
 	KInputManager::instance()->release();
 	KWindowManager::instance()->release();
+	KFileStream::instance()->release();
 	RELEASE_PTR(pKCore);
 }

@@ -18,7 +18,6 @@ private:
 	KTimeManager(const KTimeManager&& _Core) = delete;
 	void operator=(const KTimeManager& _Core) = delete;
 	~KTimeManager() {};
-
 	static KTimeManager* pKTimeManager;
 
 public:
