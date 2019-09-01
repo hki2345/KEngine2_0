@@ -17,6 +17,18 @@ private:
 public:
 	friend class KCore;
 
+public:
+	static KWindowManager* instance()
+	{
+		if (nullptr == pKWindowManager)
+		{
+			pKWindowManager = new KWindowManager();
+		}
+
+		return pKWindowManager;
+	}
+
+
 private:
 	std::map<std::wstring, KWindow*> MapWindow;
 	static _In_ HINSTANCE hInst ;
@@ -29,32 +41,26 @@ private:
 		_In_ HINSTANCE _hInstance,
 		_In_ LPWSTR    _lpCmdLine,
 		_In_ int       _nCmdShow);
+	void init();
 	void update();
 	void release();
 
 	
-	int create_window(const wchar_t* _Name);
+
 
 public:
-	HDC main_hdc();
-	HWND main_hwnd();
+	int create_window(const wchar_t* _Name);
 
-	static KWindowManager* instance()
-	{
-		if (nullptr == pKWindowManager)
-		{
-			pKWindowManager = new KWindowManager();
-		}
-
-		return pKWindowManager;
-	}
-	static HINSTANCE& hinstance()
+	static inline HINSTANCE& hinstance()
 	{
 		return hInst;
 	}
-	static int& cmdshow()
+	static inline int& cmdshow()
 	{
 		return iCmdShow;
 	}
+	HDC& back_hdc();
+	HDC& main_hdc();
+	HWND& main_hwnd();
 };
 

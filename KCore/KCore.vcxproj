@@ -176,6 +176,8 @@
   <ItemGroup>
     <ClInclude Include="ComTest.h" />
     <ClInclude Include="KActor.h" />
+    <ClInclude Include="KBitMap.h" />
+    <ClInclude Include="KBitMap_Render.h" />
     <ClInclude Include="KComponent.h" />
     <ClInclude Include="KConsole_Render.h" />
     <ClInclude Include="KCore.h" />
@@ -210,6 +212,8 @@
   <ItemGroup>
     <ClCompile Include="ComTest.cpp" />
     <ClCompile Include="KActor.cpp" />
+    <ClCompile Include="KBitMap.cpp" />
+    <ClCompile Include="KBitMap_Render.cpp" />
     <ClCompile Include="KComponent.cpp" />
     <ClCompile Include="KConsole_Render.cpp" />
     <ClCompile Include="KCore.cpp" />

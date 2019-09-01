@@ -7,7 +7,7 @@ class KSceneManager
 {
 public:
 	friend class KCore;
-	friend class KWindowManager;
+	friend class KWindow;
 
 
 private:

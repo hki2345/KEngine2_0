@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -133,11 +133,14 @@
     <ClInclude Include="KFileStream.h" />
     <ClInclude Include="KMacro.h" />
     <ClInclude Include="KPathManager.h" />
+    <ClInclude Include="KResource.h" />
     <ClInclude Include="KResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KFileStream.cpp" />
     <ClCompile Include="KPathManager.cpp" />
+    <ClCompile Include="KResource.cpp" />
+    <ClCompile Include="KResourceManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

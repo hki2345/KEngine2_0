@@ -234,3 +234,4 @@ public:
 
 };
 typedef KVec2 KPoint;
+typedef KVec2 KSize2;

@@ -11,6 +11,7 @@ class KTimeManager
 {
 public:
 	friend class KCore;
+	friend class KWindow;
 
 private:
 	KTimeManager() : MainTimer(nullptr) {} /* = delete*/;

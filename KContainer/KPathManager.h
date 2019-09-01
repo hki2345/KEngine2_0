@@ -7,7 +7,7 @@ public:
 	friend class KCore;
 	friend class KUnityParse;
 
-public:
+private:
 	// 본체에서는 해야하니까
 	KPathManager() {} /* = delete*/;
 	KPathManager(const KPathManager& _Core) = delete;
@@ -63,6 +63,6 @@ public:
 		return mExe;
 	}
 
-	bool input_wchar(wchar_t* _Target, const int& _Sizeof, const wchar_t* _Path);
+	bool input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path);
 };
 

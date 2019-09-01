@@ -1,5 +1,4 @@
 #include "KWindowManager.h"
-#include "KSceneManager.h"
 #include "KWindow.h"
 
 #include "KMacro.h"
@@ -19,9 +18,18 @@ bool KWindowManager::init(
 	hInst = _hInstance;
 	WCmdLine = _lpCmdLine;
 	iCmdShow = _nCmdShow;
-
-	KSceneManager::instance()->init();
 	return true;
+}
+
+void KWindowManager::init()
+{
+	std::map<std::wstring, KWindow*>::iterator SIter = MapWindow.begin();
+	std::map<std::wstring, KWindow*>::iterator EIter = MapWindow.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->init();
+	}
 }
 
 
@@ -33,9 +41,10 @@ void KWindowManager::update()
 	for (; SIter != EIter; ++SIter)
 	{
 		SIter->second->update();
-	}
 
-	KSceneManager::instance()->update();
+		// Ãæµ¹ ¾îÂ¼±¸ ;;
+		SIter->second->render();
+	}
 }
 
 
@@ -46,12 +55,11 @@ void KWindowManager::release()
 
 	for (; SIter != EIter; ++SIter)
 	{
+		SIter->second->release();
 		RELEASE_PTR(SIter->second);
 	}
 
 	MapWindow.clear();
-	KSceneManager::instance()->release();
-
 	RELEASE_PTR(pKWindowManager);
 }
 
@@ -68,12 +76,17 @@ int KWindowManager::create_window(const wchar_t* _Name)
 	return true;
 }
 
-HDC KWindowManager::main_hdc()
+
+
+HDC& KWindowManager::back_hdc()
+{
+	return MapWindow.begin()->second->bhdc();
+}
+HDC& KWindowManager::main_hdc()
 {
 	return MapWindow.begin()->second->hdc();
 }
-
-HWND KWindowManager::main_hwnd()
+HWND& KWindowManager::main_hwnd()
 {
 	return MapWindow.begin()->second->hwnd();
 }

@@ -85,8 +85,11 @@ public:
 	// 코어 업데이트를 실행할 경우 와 아닌경우...
 	void loop();
 	void loop_updater();
+	inline void shut_down()
+	{
+		looping = false;
+	}
 
-	void shut_down();
 private:
 	void progress();
 };

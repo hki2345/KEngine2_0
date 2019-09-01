@@ -23,7 +23,7 @@ bool ComTest::init()
 void ComTest::update()
 {
 	++Cnt;
-	HDC hdc = KWindowManager::instance()->main_hdc();
+	HDC hdc = KWindowManager::instance()->back_hdc();
 
 
 	std::wstring Tmp = L"COM";

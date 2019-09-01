@@ -58,7 +58,10 @@
     <Filter Include="00_EngineTest\KSceneTest">
       <UniqueIdentifier>{0f07c603-d3f3-4f59-8f7e-4d5869ef2c57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Manager\01_WIndow">
+    <Filter Include="05_Resource">
+      <UniqueIdentifier>{7b91d34d-7fbd-4345-85a4-122459f00b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Manager\01_Window">
       <UniqueIdentifier>{83788e8d-7ae3-45b4-946c-abec79c2d17c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -151,14 +154,18 @@
       <Filter>00_EngineTest\KComTest</Filter>
     </ClInclude>
     <ClInclude Include="KWindowManager.h">
-      <Filter>02_Manager\01_WIndow</Filter>
+      <Filter>02_Manager\01_Window</Filter>
     </ClInclude>
     <ClInclude Include="KWindow.h">
-      <Filter>02_Manager\01_WIndow</Filter>
+      <Filter>02_Manager\01_Window</Filter>
     </ClInclude>
     <ClInclude Include="SceneTest2.h">
       <Filter>00_EngineTest\KSceneTest</Filter>
     </ClInclude>
+    <ClInclude Include="KBitMap.h">
+      <Filter>05_Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="KBitMap_Render.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KCore.cpp">
@@ -237,13 +244,17 @@
       <Filter>00_EngineTest\KComTest</Filter>
     </ClCompile>
     <ClCompile Include="KWindowManager.cpp">
-      <Filter>02_Manager\01_WIndow</Filter>
+      <Filter>02_Manager\01_Window</Filter>
     </ClCompile>
     <ClCompile Include="KWindow.cpp">
-      <Filter>02_Manager\01_WIndow</Filter>
+      <Filter>02_Manager\01_Window</Filter>
     </ClCompile>
     <ClCompile Include="SceneTest2.cpp">
       <Filter>00_EngineTest\KSceneTest</Filter>
     </ClCompile>
+    <ClCompile Include="KBitMap.cpp">
+      <Filter>05_Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="KBitMap_Render.cpp" />
   </ItemGroup>
 </Project>

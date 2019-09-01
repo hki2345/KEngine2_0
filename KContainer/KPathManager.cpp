@@ -39,11 +39,11 @@ void KPathManager::release()
 }
 
 
-bool KPathManager::input_wchar(wchar_t* _Target, const int& _Sizeof, const wchar_t* _Path)
+bool KPathManager::input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path)
 {
-	memset(_Target, 0, _Sizeof);
+	memset(_Target, 0, _Target_sizeof);
 
-	int MaxIdx = (int)(_Sizeof * .5f) - 1;
+	int MaxIdx = (int)(_Target_sizeof * .5f) - 1;
 	int idx = (int)wcslen(_Path);
 
 	if (MaxIdx > idx)

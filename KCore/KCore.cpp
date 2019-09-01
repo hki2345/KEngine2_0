@@ -52,6 +52,7 @@ void KCore::init(
 	KTimeManager::instance()->init();
 
 	KWindowManager::instance()->create_window(L"Main");
+	KWindowManager::instance()->init();
 }
 
 
@@ -82,20 +83,10 @@ void KCore::loop_updater()
 
 
 
-void KCore::shut_down()
-{
-	looping = false;
-}
 
 
-
-
-
-#include <iostream>
-#include <conio.h>
 void KCore::progress()
 {
-	KTimeManager::instance()->update();
 	KWindowManager::instance()->update();
 }
 
