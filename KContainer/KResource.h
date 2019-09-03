@@ -4,12 +4,12 @@
 
 class KResource
 {
-public:
+protected:
 	KResource();
 	KResource(const KResource& _Other) = delete;
 	KResource(const KResource&& _Other) = delete;
 	void operator=(const KResource& _Other) = delete;
-	~KResource();
+	virtual ~KResource() = 0;
 
 protected:
 	std::wstring sName;

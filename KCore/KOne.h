@@ -1,12 +1,18 @@
 #pragma once
 #include "KProgress.h"
+#include "PtrOf_KWindow.h"
 #include "PtrOf_KScene.h"
+#include "KTransform.h"
+
 #include <map>
 
 
 class KState;
 class KComponent;
-class KOne : public KProgress, PtrOf_KScene
+class KOne : 
+	public KProgress,
+	public PtrOf_KWindow,
+	public PtrOf_KScene
 {
 public:
 	friend class KScene;
@@ -21,6 +27,9 @@ protected:
 
 private:
 	std::multimap<std::wstring, KComponent*> MapComponent;
+
+	KTransform* pTrans;
+
 
 protected:
 	virtual bool init() override;
@@ -41,21 +50,18 @@ public:
 		{
 			
 		}
+
+		return nullptr;
 	}
 	
 	template <typename Com>
 	Com* add_component()
 	{
-		/*if (false == Com::IsMulti(this))
-		{
-			return nullptr;
-		}*/
-
 		Com* NewCom = new Com();
-		NewCom->one(this);
-		// NewCom->kwindow(kwindow());
+		NewCom->kwindow(kwindow());
 		NewCom->kscene(kscene());
-		// NewCom->ComInit();
+		NewCom->kone(this);
+		NewCom->init();
 
 		MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
 		return NewCom;

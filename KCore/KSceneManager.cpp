@@ -11,7 +11,12 @@ void KSceneManager::init()
 	{
 		return;
 	}
-	curscene->init();
+
+	if (false == bCurInit)
+	{
+		curscene->init();
+		bCurInit = true;
+	}
 }
 void KSceneManager::update()
 {
@@ -60,6 +65,7 @@ KScene* KSceneManager::create_scene(KScene* _Other, const wchar_t* _Name /*= "KS
 	}
 
 	_Other->name(_Name);
+	_Other->kwindow(kwindow());
 	MapScene.insert(std::make_pair(_Name, _Other));
 	return _Other;
 }
@@ -105,6 +111,7 @@ bool KSceneManager::delete_scene(const wchar_t* _Name)
 
 bool KSceneManager::change_scene(const wchar_t* _Name)
 {
+	bCurInit = false;
 	KScene* Tmp = find_scene(_Name);
 	if (nullptr == Tmp)
 	{
@@ -113,6 +120,7 @@ bool KSceneManager::change_scene(const wchar_t* _Name)
 	}
 
 	curscene = Tmp;
-	curscene->init();
+
+	init();
 	return true;
 }

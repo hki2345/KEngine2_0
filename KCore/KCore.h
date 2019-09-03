@@ -51,10 +51,10 @@ public:
 	template <typename INIT>
 	void init(int argc, wchar_t* argv[])
 	{
+		KCore::init();
+
 		INIT OneInit;
 		OneInit.init();
-		
-		KCore::init();
 	}
 
 	// 윈도우용 실행자
@@ -64,10 +64,10 @@ public:
 		_In_ LPWSTR    _lpCmdLine,
 		_In_ int       _nCmdShow)
 	{
+		KCore::init(_hInstance, _lpCmdLine, _nCmdShow);
+		
 		INIT OneInit;
 		OneInit.init();
-
-		KCore::init(_hInstance, _lpCmdLine, _nCmdShow);
 	}
 
 	template <typename UP>

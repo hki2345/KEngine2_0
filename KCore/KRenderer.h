@@ -6,6 +6,7 @@
 // 그 이니시에이터를 상속받아 [발진] 시키도록 한다.
 // 이 이니시에이터는 엔진 단계 발진뿐만 아니라 씬, 오브젝트 등 모든 곳에 쓰인다.
 // 단 메니저 같이 싱글톤으로 될 녀석들은 못씀ㅇㅇ - 인터페이스를 같게하는 걸로 만족
+class KTransform;
 class KRenderer : public KComponent
 {
 public:
@@ -16,8 +17,12 @@ public:
 	virtual ~KRenderer() = 0;
 
 
+
+private:
+	KTransform* MyTrans;
+
 public:
-	virtual bool init() override = 0;
+	virtual bool init() override;
 	virtual void update() override = 0;
 	virtual void release() override = 0;
 

@@ -86,8 +86,11 @@ KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= "KOne"*/)
 KOne* KScene::create_kone(const wchar_t* _Name/*= "KOne"*/)
 {
 	KOne* Tmp =  new KOne();
+
 	Tmp->name(_Name);
+	Tmp->kwindow(kwindow());
 	Tmp->kscene(this);
+	Tmp->init();
 
 
 	MapKOne.insert(std::make_pair(_Name, Tmp));

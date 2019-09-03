@@ -1,9 +1,11 @@
 #pragma once
 #include <map>
+#include "PtrOf_KWindow.h"
+
 
 
 class KScene;
-class KSceneManager
+class KSceneManager : public PtrOf_KWindow
 {
 public:
 	friend class KCore;
@@ -12,7 +14,7 @@ public:
 
 private:
 	// 본체에서는 해야하니까
-	KSceneManager() : curscene(nullptr){} /* = delete*/;
+	KSceneManager() : curscene(nullptr), bCurInit(false){} /* = delete*/;
 	KSceneManager(const KSceneManager& _Core) = delete;
 	KSceneManager(const KSceneManager&& _Core) = delete;
 	void operator=(const KSceneManager& _Core) = delete;
@@ -32,6 +34,8 @@ public:
 	}
 
 private:
+	bool bCurInit;
+
 	std::multimap<std::wstring, KScene*> MapScene;
 	KScene* curscene;
 

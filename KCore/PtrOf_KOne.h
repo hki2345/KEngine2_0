@@ -15,12 +15,12 @@ private:
 	KOne* pKOne;
 
 public:
-	inline KOne* one()
+	inline KOne* kone()
 	{
 		return pKOne;
 	}
 
-	inline void one(KOne* _One)
+	inline void kone(KOne* _One)
 	{
 		pKOne = _One;
 	}

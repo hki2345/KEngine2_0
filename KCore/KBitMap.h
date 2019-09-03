@@ -9,7 +9,7 @@ class KBitMap  final : public KResource
 {
 public:
 	KBitMap();
-	~KBitMap();
+	~KBitMap() override;
 
 private:
 	HDC MyDC;

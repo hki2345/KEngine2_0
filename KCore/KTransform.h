@@ -20,6 +20,8 @@ private:
 	KVec2	mPos;
 
 public:
+	void moving(const KVec2& _Speed);
+
 	inline void pos(const KVec2& _Other)
 	{
 		mPos = _Other;

@@ -1,6 +1,7 @@
 #include "KOne.h"
 #include "KMacro.h"
 #include "KComponent.h"
+#include "KTransform.h"
 
 
 
@@ -12,13 +13,11 @@ KOne::KOne()
 
 bool KOne::init() 
 {
-	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
-	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
-
-	for (; SIter != EIter; ++SIter)
+	if (nullptr == get_component<KTransform>())
 	{
-		SIter->second->init();
-	}
+
+	} 
+	add_component<KTransform>();
 
 	return true;
 }
@@ -52,10 +51,10 @@ void KOne::release()
 KComponent* KOne::set_component(KComponent* _Other)
 {
 	KComponent* NewCom = new KComponent();
-	NewCom->one(this);
+	NewCom->kone(this);
 	// NewCom->kwindow(kwindow());
 	NewCom->kscene(kscene());
-	// NewCom->ComInit();
+	NewCom->init();
 
 	if (false == NewCom->init())
 	{

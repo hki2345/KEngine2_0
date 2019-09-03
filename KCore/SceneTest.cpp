@@ -14,6 +14,19 @@
 
 SceneTest::SceneTest()
 {
+	
+}
+
+
+SceneTest::~SceneTest()
+{
+	int a = 0;
+}
+
+bool SceneTest::init()
+{
+	KScene::init();
+
 	KOne* NONE = create_kone(L"TESTONE");
 	NONE->add_component<ComTest>();
 
@@ -29,12 +42,8 @@ SceneTest::SceneTest()
 	TEST dd;
 
 	KFileStream::instance()->read_file<TEST>(L"ELSA.elsa", dd);
-}
 
-
-SceneTest::~SceneTest()
-{
-	int a = 0;
+	return true;
 }
 
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "PtrOf_KWindow.h"
 #include "KProgress.h"
 #include <map>
 
@@ -6,7 +7,9 @@
 
 class KOne;
 class KRenderManager;
-class KScene : public KProgress
+class KScene : 
+	public PtrOf_KWindow,
+	public KProgress
 {
 public:
 	friend class KSceneManager;

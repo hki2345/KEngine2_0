@@ -22,18 +22,6 @@ KWindow::~KWindow()
 {
 }
 
-
-struct LineInfo
-{
-	int ox;
-	int oy;
-	int tx;
-	int ty;
-};
-
-std::vector<LineInfo> g_VecHDC;
-
-
 void KWindow::init()
 {
 	if (nullptr == BackBitMap)
@@ -42,6 +30,7 @@ void KWindow::init()
 		hBackDC = BackBitMap->size(vSize);
 	}
 
+	KSceneManager::instance()->kwindow(this);
 	KSceneManager::instance()->init();
 }
 

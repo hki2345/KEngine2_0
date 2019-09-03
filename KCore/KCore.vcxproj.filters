@@ -1,264 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="00_Core">
-      <UniqueIdentifier>{0d702d0e-d0b6-4560-86b6-5f894bedec96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03_One">
-      <UniqueIdentifier>{d4b77384-bb2c-4b8c-a00b-916d05a971b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager">
-      <UniqueIdentifier>{cd3aa0ac-9530-4742-96de-422202828d6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\01_Scene">
-      <UniqueIdentifier>{c3436d7b-19bc-4391-b70d-f8ecd7b97c20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\01_Scene\Scene">
-      <UniqueIdentifier>{f5e1c44e-ca93-47ef-955e-5d72e4ab2114}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Progress">
-      <UniqueIdentifier>{1c2bbb6f-a248-4221-bc92-a9b4d4d0ad55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\01_Render">
-      <UniqueIdentifier>{b7b21967-8662-48ca-8d96-5fb358bebe15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04_Component">
-      <UniqueIdentifier>{504e92b8-a0bc-4064-88f8-89229889ba95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_EngineTest">
-      <UniqueIdentifier>{63f46f29-fbd1-4c53-acc0-b25f16e3fdac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_Assitor">
-      <UniqueIdentifier>{098862f0-adfe-4238-9826-25e272ab48ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_KContainer">
-      <UniqueIdentifier>{518ae3bd-d7e7-45ac-a6b3-38302cdf5dbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\02_Input">
-      <UniqueIdentifier>{23edee2b-62b7-4c02-8132-2a5d2d235b6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\02_KTime">
-      <UniqueIdentifier>{c51be676-fec9-45ad-8733-82ad77bad404}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Device">
-      <UniqueIdentifier>{125b822e-de90-4e06-bd0f-aec4f7fa1ef6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04_Component\Render">
-      <UniqueIdentifier>{41cbea9e-7ea5-42f2-9234-0c7813a0284e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04_Component\Translate">
-      <UniqueIdentifier>{2c8d85f5-2998-40df-829e-1325847b7f3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Pointer">
-      <UniqueIdentifier>{1caf9bb6-a460-4562-8c63-9d46b8c21dbc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_EngineTest\KComTest">
-      <UniqueIdentifier>{b021a80c-4d9b-4ab2-99ef-68e8a973630e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_EngineTest\KSceneTest">
-      <UniqueIdentifier>{0f07c603-d3f3-4f59-8f7e-4d5869ef2c57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="05_Resource">
-      <UniqueIdentifier>{7b91d34d-7fbd-4345-85a4-122459f00b72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02_Manager\01_Window">
-      <UniqueIdentifier>{83788e8d-7ae3-45b4-946c-abec79c2d17c}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="KBitMap_Render.cpp" />
+    <ClCompile Include="KBitMap.cpp" />
+    <ClCompile Include="KActor.cpp" />
+    <ClCompile Include="ComTest.cpp" />
+    <ClCompile Include="SceneTest2.cpp" />
+    <ClCompile Include="SceneTest.cpp" />
+    <ClCompile Include="KWindowManager.cpp" />
+    <ClCompile Include="KWindow.cpp" />
+    <ClCompile Include="KVector.cpp" />
+    <ClCompile Include="KUpdater.cpp" />
+    <ClCompile Include="KTransform.cpp" />
+    <ClCompile Include="KTimeManager.cpp" />
+    <ClCompile Include="KSceneManager.cpp" />
+    <ClCompile Include="KScene.cpp" />
+    <ClCompile Include="KRenderManager.cpp" />
+    <ClCompile Include="KRenderer.cpp" />
+    <ClCompile Include="KReleaser.cpp" />
+    <ClCompile Include="KProgress.cpp" />
+    <ClCompile Include="KOne.cpp" />
+    <ClCompile Include="KName.cpp" />
+    <ClCompile Include="KInputManager.cpp" />
+    <ClCompile Include="Kinitiator.cpp" />
+    <ClCompile Include="KEngineUpdater.cpp" />
+    <ClCompile Include="KEngineLauncher.cpp" />
+    <ClCompile Include="KEngineinitiator.cpp" />
+    <ClCompile Include="KCore_Pointer.cpp" />
+    <ClCompile Include="KCore.cpp" />
+    <ClCompile Include="KConsole_Render.cpp" />
+    <ClCompile Include="KComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="KCore.h">
-      <Filter>00_Core</Filter>
-    </ClInclude>
-    <ClInclude Include="KEngineUpdater.h">
-      <Filter>00_EngineTest</Filter>
-    </ClInclude>
-    <ClInclude Include="KEngineinitiator.h">
-      <Filter>00_EngineTest</Filter>
-    </ClInclude>
-    <ClInclude Include="KInitiator.h">
-      <Filter>01_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KUpdater.h">
-      <Filter>01_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KSceneManager.h">
-      <Filter>02_Manager\01_Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="KScene.h">
-      <Filter>02_Manager\01_Scene\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="KProgress.h">
-      <Filter>01_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KMacro.h">
-      <Filter>00_Assitor</Filter>
-    </ClInclude>
-    <ClInclude Include="KRenderer.h">
-      <Filter>01_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KRenderManager.h">
-      <Filter>02_Manager\01_Render</Filter>
-    </ClInclude>
-    <ClInclude Include="KReleaser.h">
-      <Filter>01_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KOne.h">
-      <Filter>03_One</Filter>
-    </ClInclude>
-    <ClInclude Include="KName.h">
-      <Filter>01_KContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="KComponent.h">
-      <Filter>04_Component</Filter>
-    </ClInclude>
-    <ClInclude Include="KVector.h">
-      <Filter>01_KContainer</Filter>
-    </ClInclude>
-    <ClInclude Include="KInputManager.h">
-      <Filter>02_Manager\02_Input</Filter>
-    </ClInclude>
-    <ClInclude Include="KTimeManager.h">
-      <Filter>02_Manager\02_KTime</Filter>
-    </ClInclude>
-    <ClInclude Include="KTransform.h">
-      <Filter>01_Device</Filter>
-    </ClInclude>
-    <ClInclude Include="KConsole_Render.h">
-      <Filter>04_Component\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="KActor.h">
-      <Filter>01_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KCore_Pointer.h">
-      <Filter>01_Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="PtrOf_Component.h">
-      <Filter>01_Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="PtrOf_KOne.h">
-      <Filter>01_Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="PtrOf_KWindow.h">
-      <Filter>01_Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="PtrOf_KScene.h">
-      <Filter>01_Pointer</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTest.h">
-      <Filter>00_EngineTest\KSceneTest</Filter>
-    </ClInclude>
-    <ClInclude Include="ComTest.h">
-      <Filter>00_EngineTest\KComTest</Filter>
-    </ClInclude>
-    <ClInclude Include="KWindowManager.h">
-      <Filter>02_Manager\01_Window</Filter>
-    </ClInclude>
-    <ClInclude Include="KWindow.h">
-      <Filter>02_Manager\01_Window</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTest2.h">
-      <Filter>00_EngineTest\KSceneTest</Filter>
-    </ClInclude>
-    <ClInclude Include="KBitMap.h">
-      <Filter>05_Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="KBitMap_Render.h">
-      <Filter>04_Component\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="KTransform.h">
-      <Filter>04_Component\Translate</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="KCore.cpp">
-      <Filter>00_Core</Filter>
-    </ClCompile>
-    <ClCompile Include="KEngineinitiator.cpp">
-      <Filter>00_EngineTest</Filter>
-    </ClCompile>
-    <ClCompile Include="KEngineLauncher.cpp">
-      <Filter>00_EngineTest</Filter>
-    </ClCompile>
-    <ClCompile Include="KEngineUpdater.cpp">
-      <Filter>00_EngineTest</Filter>
-    </ClCompile>
-    <ClCompile Include="Kinitiator.cpp">
-      <Filter>01_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KUpdater.cpp">
-      <Filter>01_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KSceneManager.cpp">
-      <Filter>02_Manager\01_Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="KScene.cpp">
-      <Filter>02_Manager\01_Scene\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="KProgress.cpp">
-      <Filter>01_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KRenderer.cpp">
-      <Filter>01_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KRenderManager.cpp">
-      <Filter>02_Manager\01_Render</Filter>
-    </ClCompile>
-    <ClCompile Include="KReleaser.cpp">
-      <Filter>01_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KOne.cpp">
-      <Filter>03_One</Filter>
-    </ClCompile>
-    <ClCompile Include="KName.cpp">
-      <Filter>01_KContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="KComponent.cpp">
-      <Filter>04_Component</Filter>
-    </ClCompile>
-    <ClCompile Include="KVector.cpp">
-      <Filter>01_KContainer</Filter>
-    </ClCompile>
-    <ClCompile Include="KInputManager.cpp">
-      <Filter>02_Manager\02_Input</Filter>
-    </ClCompile>
-    <ClCompile Include="KTimeManager.cpp">
-      <Filter>02_Manager\02_KTime</Filter>
-    </ClCompile>
-    <ClCompile Include="KTransform.cpp">
-      <Filter>01_Device</Filter>
-    </ClCompile>
-    <ClCompile Include="KConsole_Render.cpp">
-      <Filter>04_Component\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="KActor.cpp">
-      <Filter>01_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KCore_Pointer.cpp">
-      <Filter>01_Pointer</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTest.cpp">
-      <Filter>00_EngineTest\KSceneTest</Filter>
-    </ClCompile>
-    <ClCompile Include="ComTest.cpp">
-      <Filter>00_EngineTest\KComTest</Filter>
-    </ClCompile>
-    <ClCompile Include="KWindowManager.cpp">
-      <Filter>02_Manager\01_Window</Filter>
-    </ClCompile>
-    <ClCompile Include="KWindow.cpp">
-      <Filter>02_Manager\01_Window</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTest2.cpp">
-      <Filter>00_EngineTest\KSceneTest</Filter>
-    </ClCompile>
-    <ClCompile Include="KBitMap.cpp">
-      <Filter>05_Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="KBitMap_Render.cpp">
-      <Filter>04_Component\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="KTransform.cpp">
-      <Filter>04_Component\Translate</Filter>
-    </ClCompile>
+    <ClInclude Include="KBitMap.h" />
+    <ClInclude Include="KActor.h" />
+    <ClInclude Include="ComTest.h" />
+    <ClInclude Include="SceneTest2.h" />
+    <ClInclude Include="SceneTest.h" />
+    <ClInclude Include="PtrOf_KWindow.h" />
+    <ClInclude Include="PtrOf_KScene.h" />
+    <ClInclude Include="PtrOf_KOne.h" />
+    <ClInclude Include="KWindowManager.h" />
+    <ClInclude Include="KWindow.h" />
+    <ClInclude Include="KVector.h" />
+    <ClInclude Include="KUpdater.h" />
+    <ClInclude Include="KTransform.h" />
+    <ClInclude Include="KTimeManager.h" />
+    <ClInclude Include="KSceneManager.h" />
+    <ClInclude Include="KScene.h" />
+    <ClInclude Include="KRenderManager.h" />
+    <ClInclude Include="KRenderer.h" />
+    <ClInclude Include="KReleaser.h" />
+    <ClInclude Include="KProgress.h" />
+    <ClInclude Include="KOne.h" />
+    <ClInclude Include="KName.h" />
+    <ClInclude Include="KMacro.h" />
+    <ClInclude Include="KInputManager.h" />
+    <ClInclude Include="KInitiator.h" />
+    <ClInclude Include="KEngineUpdater.h" />
+    <ClInclude Include="KEngineinitiator.h" />
+    <ClInclude Include="KCore_Pointer.h" />
+    <ClInclude Include="KCore.h" />
+    <ClInclude Include="KConsole_Render.h" />
+    <ClInclude Include="KComponent.h" />
+    <ClInclude Include="KBitMap_Render.h" />
+    <ClInclude Include="PtrOf_Transform.h" />
   </ItemGroup>
 </Project>

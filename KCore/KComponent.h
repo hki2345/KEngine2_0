@@ -1,10 +1,15 @@
 #pragma once
 #include "KProgress.h"
+#include "PtrOf_KWindow.h"
 #include "PtrOf_KOne.h"
 #include "PtrOf_KScene.h"
 
 
-class KComponent : public KProgress, PtrOf_KOne, PtrOf_KScene
+class KComponent : 
+	public KProgress,
+	public PtrOf_KWindow,
+	public PtrOf_KScene,
+	public PtrOf_KOne
 {
 public:
 	friend class KOne;
