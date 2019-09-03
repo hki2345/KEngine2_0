@@ -1,5 +1,7 @@
 #include <ComTest.cpp>
 #include <KActor.cpp>
+#include <KBitMap.cpp>
+#include <KBitMap_Render.cpp>
 #include <KComponent.cpp>
 #include <KConsole_Render.cpp>
 #include <KCore.cpp>

@@ -1,8 +1,34 @@
 #pragma once
-class KTransform
+#include "KComponent.h"
+#include "KVector.h"
+
+
+
+class KTransform : public KComponent
 {
 public:
 	KTransform();
 	~KTransform();
+
+public:
+	bool init() override;
+	void update() override;
+	void release() override;
+
+
+private:
+	KVec2	mPos;
+
+public:
+	inline void pos(const KVec2& _Other)
+	{
+		mPos = _Other;
+	}
+
+	inline KVec2& pos()
+	{
+		return mPos;
+	}
+
 };
 

@@ -19,8 +19,8 @@ public:
 
 
 protected:
-	virtual bool init() override;
-	virtual void update() override;
-	virtual void release() override;
+	virtual bool init() override { return false; } /*= 0*/;
+	virtual void update() override {}/*= 0*/;
+	virtual void release() override {}/*= 0*/;
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
+#include "KMacro.h"
 
 //
 //vector<T>::iterator i; // bad, vector<T>::iterator might not be a type
@@ -10,23 +11,53 @@
 //typename vector<T>::iterator i;  // OK
 
 
-template <typename ResT>
+template <class ResT>
 class KResourceManager
 {
 private:
-	KResourceManager() {}
+	KResourceManager() {};
 	KResourceManager(const KResourceManager& _Other) = delete;
 	KResourceManager(const KResourceManager&& _Other) = delete;
 	void operator=(const KResourceManager& _Other) = delete;
-	virtual ~KResourceManager() = 0 {}
+	~KResourceManager() {};
 
 
-
-private:
-	static std::map<std::wstring, ResT*> MapRes;
+	static KResourceManager<ResT>* pKResManager;
 
 public:
-	static ResT* find(const wchar_t* _Name)
+	static KResourceManager<ResT>* instance()
+	{
+		if (nullptr == pKResManager)
+		{
+			pKResManager = new KResourceManager<ResT>();
+		}
+
+		return pKResManager;
+	}
+
+private:
+	std::map<std::wstring, ResT*> MapRes;
+
+public:
+	void init() {}
+	void release()
+	{
+		typename std::map<std::wstring, ResT*>::iterator SIter = MapRes.begin();
+		typename std::map<std::wstring, ResT*>::iterator EIter = MapRes.end();
+
+		for (; SIter != EIter; ++SIter)
+		{
+			RELEASE_PTR(SIter->second);
+		}
+
+		MapRes.clear();
+
+		RELEASE_PTR(pKResManager);
+	}
+
+
+
+	ResT* find(const wchar_t* _Name)
 	{
 		typename std::map<std::wstring, ResT*>::iterator FIter = MapRes.find(_Name);
 
@@ -38,7 +69,7 @@ public:
 		return nullptr;
 	}
 
-	static ResT* create(const wchar_t* _Folder, const wchar_t* _Name)
+	ResT* create(const wchar_t* _Folder, const wchar_t* _Name)
 	{
 		ResT* NewRes = new ResT();
 		NewRes->create(_Folder, _Name);
@@ -47,7 +78,7 @@ public:
 		return NewRes;
 	}
 
-	static bool erase(const wchar_t* _Name)
+	bool erase(const wchar_t* _Name)
 	{
 		typename std::map<std::wstring, ResT*>::iterator FIter = MapRes.find(_Name);
 
@@ -61,7 +92,7 @@ public:
 		return false;
 	}
 
-	static bool load(const wchar_t* _Name)
+	bool load(const wchar_t* _Name)
 	{
 		typename std::map<std::wstring, ResT*>::iterator FIter = MapRes.find(_Name);
 
@@ -73,7 +104,7 @@ public:
 		return true;
 	}
 	
-	static bool save(const wchar_t* _Name)
+	bool save(const wchar_t* _Name)
 	{
 		typename std::map<std::wstring, ResT*>::iterator FIter = MapRes.find(_Name);
 
@@ -87,5 +118,5 @@ public:
 };
 
 
-template <typename ResT>
-std::map<std::wstring, ResT*> KResourceManager<ResT>::MapRes;
+template <class ResT>
+KResourceManager<ResT>* KResourceManager<ResT>::pKResManager = nullptr;

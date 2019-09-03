@@ -4,9 +4,7 @@
 
 
 
-class KConsole_Render : 
-	public KRenderer,
-	public KComponent
+class KConsole_Render :  public KRenderer
 {
 public:
 	KConsole_Render();

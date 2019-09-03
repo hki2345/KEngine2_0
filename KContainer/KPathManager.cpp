@@ -1,6 +1,8 @@
 #include "KPathManager.h"
 #include <direct.h>
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
 
 #include "KMacro.h"
 
@@ -62,4 +64,60 @@ bool KPathManager::input_wchar(wchar_t* _Target, const int& _Target_sizeof, cons
 	}
 
 	return true;
+}
+
+
+std::vector<std::wstring> KPathManager::vec_loadline(const wchar_t* _Path)
+{
+	std::vector<std::wstring> Tmp;
+	wchar_t Arr[256];
+
+	std::wifstream ifs(_Path, std::ios::in | std::ios::binary);
+	std::locale loc("KOR");
+	ifs.imbue(loc);
+	
+	while (!ifs.eof())
+	{
+		ifs.getline(Arr, 256);
+		Tmp.push_back(Arr);
+	}
+	
+	ifs.close();
+
+	return Tmp;
+}
+
+
+
+std::vector<std::wstring> KPathManager::split_line(wchar_t* _Path, const std::wstring& _Split /*= L" ,\t\n"*/)
+{
+	std::vector<std::wstring> Tmp;
+	
+	wchar_t* tok = nullptr;
+	wchar_t* ntok = nullptr;
+
+	tok = wcstok_s(_Path, _Split.c_str(), &ntok);
+
+	while (tok != NULL)
+	{
+		// While there are tokens in "string"
+		Tmp.push_back(tok);
+
+		// Get next token:
+		tok = wcstok_s(NULL, _Split.c_str(), &ntok);
+	}
+
+	return Tmp;
+}
+
+
+
+std::vector<std::wstring> KPathManager::split_line(
+	const std::vector<std::wstring>& _Vec,
+	const std::wstring& _Split /*= L" ,\t\n"*/,
+	const int& idx /*= 0*/)
+{
+	wchar_t* Tmp = new wchar_t[_Vec[idx].size()];
+	wcscpy_s(Tmp, _Vec[idx].size(), _Vec[idx].c_str());
+	return split_line(Tmp, _Split);
 }

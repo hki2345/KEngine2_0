@@ -26,12 +26,14 @@ void ComTest::update()
 	HDC hdc = KWindowManager::instance()->back_hdc();
 
 
-	std::wstring Tmp = L"COM";
+	std::wstring Tmp = L"아아아아아아아앙";
 
 	Tmp += std::to_wstring(Cnt);
-
-	TextOut(hdc, 1000, 800, Tmp.c_str(), (int)Tmp.size());
-	ReleaseDC(KWindowManager::instance()->main_hwnd(), hdc);
+	
+	for (int i = 0; i < 100; i++)
+	{
+		TextOut(hdc, 1000, 0 + i * 10, Tmp.c_str(), (int)Tmp.size());
+	}
 }
 
 void ComTest::release()

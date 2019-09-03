@@ -12,9 +12,12 @@ public:
 private:
 	KBitMap* MyBitMap;
 
-
 public:
-	virtual bool init() override;
-	virtual void render() override;
+	void set_bit(const wchar_t* _Name = L"NONE");
+
+	bool init() override;
+	void update() override;
+	void release() override;
+	void render() override;
 };
 

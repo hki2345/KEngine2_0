@@ -13,6 +13,8 @@
 #include "KSceneManager.h"
 #include "KTimeManager.h"
 
+#include "KBitMap.h"
+
 
 #if _DEBUG
 #if Win32
@@ -36,6 +38,8 @@ KCore* KCore::pKCore = nullptr;
 
 void KCore::init()
 {
+	KResourceManager<KBitMap>::instance()->init();
+
 	KSceneManager::instance()->init();
 	KPathManager::instance()->init();
 	KTimeManager::instance()->init();
@@ -92,6 +96,9 @@ void KCore::progress()
 
 void KCore::release()
 {
+	KResourceManager<KBitMap>::instance()->release();
+
+
 	KPathManager::instance()->release();
 	KTimeManager::instance()->release();
 	KInputManager::instance()->release();

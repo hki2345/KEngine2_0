@@ -39,7 +39,7 @@ HDC& KBitMap::size(const KSize2& _Size)
 bool KBitMap::load()
 {
 	MyBitMap = (HBITMAP)LoadImageW(
-		KWindowManager::instance()->hinstance(), L"TEst", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+		KWindowManager::instance()->hinstance(), L"Test.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
 	GetObjectW(MyBitMap, sizeof(BITMAP), &BitMapData);
 	return true;

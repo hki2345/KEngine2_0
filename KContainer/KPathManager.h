@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <string>
 
 class KPathManager
@@ -64,5 +65,11 @@ public:
 	}
 
 	bool input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path);
+	std::vector<std::wstring> vec_loadline(const wchar_t* _Path);
+	std::vector<std::wstring> split_line(wchar_t* _Path, const std::wstring& _Split = L" ,\t\n");
+	std::vector<std::wstring> split_line(
+		const std::vector<std::wstring>& _Vec, 
+		const std::wstring& _Split = L" ,\t\n",
+		const int& idx = 0);
 };
 

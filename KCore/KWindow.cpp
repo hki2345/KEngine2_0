@@ -3,7 +3,6 @@
 #include "KCore.h"
 
 #include <vector>
-#include <KResourceManager.h>
 #include <KPathManager.h>
 #include <KMacro.h>
 
@@ -11,6 +10,7 @@
 #include "KTimeManager.h"
 
 
+#include <KResourceManager.h>
 #include "KBitMap.h"
 
 KWindow::KWindow() : BackBitMap(nullptr)
@@ -38,7 +38,7 @@ void KWindow::init()
 {
 	if (nullptr == BackBitMap)
 	{
-		BackBitMap = KResourceManager<KBitMap>::create(L"", L"BackBuffer");
+		BackBitMap = KResourceManager<KBitMap>::instance()->create(L"", L"BackBuffer");
 		hBackDC = BackBitMap->size(vSize);
 	}
 
@@ -52,11 +52,9 @@ void KWindow::update()
 		TranslateMessage(&Message);
 		DispatchMessage(&Message);
 	}
-	else
-	{
-		KTimeManager::instance()->update();
-		KSceneManager::instance()->update();
-	}
+
+	KTimeManager::instance()->update();
+	KSceneManager::instance()->update();
 }
 
 
@@ -70,7 +68,6 @@ void KWindow::render()
 void KWindow::release()
 {
 	KSceneManager::instance()->release();
-	KResourceManager<KBitMap>::erase(L"BackBuffer");
 }
 
 
@@ -129,110 +126,6 @@ LRESULT CALLBACK KWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 		KCore::instance()->shut_down();
 		PostQuitMessage(0);
 		return 0;
-	//case WM_PAINT:
-	//{
-	//	hdc = BeginPaint(hWnd, &ps);
-	//	
-	//	for (size_t i = 0; i < g_VecHDC.size(); i++)
-	//	{
-	//		DrawLine(hdc, g_VecHDC[i].ox, g_VecHDC[i].oy, g_VecHDC[i].tx, g_VecHDC[i].ty);
-	//	}
-
-	//	std::wstring FPS = L"FPS: ";
-	//	FPS += KTimeManager::instance()->fps_string();
-
-	//	TextOut(hdc, 1000, 600, FPS.c_str(), (int)KTimeManager::instance()->fps_string().size());
-
-	//	FPS = L"Delta: ";
-	//	FPS += std::to_wstring(KTimeManager::instance()->deltatime());
-	//	TextOut(hdc, 1000, 620, FPS.c_str(), 10);
-	//	TextOut(hdc, 1000, 400, KPathManager::instance()->all_path().c_str(), (int)KPathManager::instance()->all_path().size());
-	//	InvalidateRect(hWnd, NULL, FALSE);
-	//	EndPaint(hWnd, &ps);
-	//	return 0;
-	//}
-	//case WM_CHAR:
-	//	len = lstrlen(Tstr);
-	//	Tstr[len] = (TCHAR)wParam;
-	//	Tstr[len + 1] = 0;
-	//	InvalidateRect(hWnd, NULL, FALSE); // 무효화 영역 - 갱신해라 영역(?)
-	//	// 실제로는 무효화를 하는 역할은 아니고 메시지가 있을 떄 무효화 시켜주는 겻 다시 찾아봐ㅠㅠㅠ
-
-	//case WM_KEYDOWN:
-	//	switch (wParam) {
-	//	case VK_LEFT:
-	//		x -= 8;
-	//		break;
-	//	case VK_RIGHT:
-	//		x += 8;
-	//		break;
-	//	case VK_UP:
-	//		y -= 8;
-	//		break;
-	//	case VK_DOWN:
-	//		y += 8;
-	//		break;
-	//	}
-	//	InvalidateRect(hWnd, NULL, TRUE);
-	//case WM_LBUTTONDOWN:
-	//	mx = LOWORD(lParam);
-	//	my = HIWORD(lParam);
-	//	bNowDraw = TRUE;
-	//	return 0;
-	//case WM_MOUSEMOVE:
-	//	if (bNowDraw == TRUE)
-	//	{
-	//		LineInfo Tmp;
-
-	//		hdc = GetDC(hWnd);
-	//		MoveToEx(hdc, mx, my, NULL);
-	//		Tmp.ox = mx;
-	//		Tmp.oy = my;
-
-	//		mx = LOWORD(lParam);
-	//		my = HIWORD(lParam);
-	//		Tmp.tx = mx;
-	//		Tmp.ty = my;
-
-	//		LineTo(hdc, mx, my);
-	//		g_VecHDC.push_back(Tmp);
-
-	//		ReleaseDC(hWnd, hdc);
-	//	}
-	//	return 0;
-
-	//case WM_LBUTTONUP:
-	//	bNowDraw = FALSE;
-	//	return 0;
 	}
 	return (DefWindowProc(hWnd, message, wParam, lParam));
-}
-
-
-
-void KWindow::DrawLine(HDC hdc, int x1, int y1, int x2, int y2)
-{
-	MoveToEx(hdc, x1, y1, NULL);
-	LineTo(hdc, x2, y2);
-}
-
-
-// rx반지름, ry 반지름
-void KWindow::DrawCircle(HDC hdc, int _x, int _y, int _rX, int _rY)
-{
-	int TX = _x;
-	int TY = _y;
-
-
-	float PI = 3.14f;
-
-
-	for (size_t i = 0; i < 360; i++)
-	{
-		DrawLine(hdc,
-			(int)(TX + cosf(i * PI / 180) * _rX), (int)(TX + sinf(i * PI / 180) * _rY),
-			(int)(TX + cosf((i + 1) * PI / 180) * _rX), (int)(TY + sinf((i + 1) * PI / 180)* _rY));
-		// DrawLine(bhdc, _x, _y, TX + sinf(i * PI / 180) * _rX, TY + cosf(i * PI / 180)* _rY);
-		// SetPixel(bhdc, TX + sinf(i * PI / 180) * _rX, TY + cosf(i * PI / 180)* _rY, RGB(1,1,1));
-	}
 }
