@@ -177,7 +177,6 @@
     <ClInclude Include="KEngineUpdater.h" />
     <ClInclude Include="KInitiator.h" />
     <ClInclude Include="KInputManager.h" />
-    <ClInclude Include="KMacro.h" />
     <ClInclude Include="KName.h" />
     <ClInclude Include="KOne.h" />
     <ClInclude Include="KProgress.h" />
