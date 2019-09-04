@@ -58,7 +58,12 @@
     <ClCompile Include="KRenderer.cpp">
       <Filter>04_Render</Filter>
     </ClCompile>
-    <ClCompile Include="KSprite_Render.cpp" />
+    <ClCompile Include="KSprite_Render.cpp">
+      <Filter>04_Render\Child</Filter>
+    </ClCompile>
+    <ClCompile Include="KBitMap_Animator.cpp">
+      <Filter>04_Render\Animator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KTimeManager.h">
@@ -130,7 +135,12 @@
     <ClInclude Include="KRenderer.h">
       <Filter>04_Render</Filter>
     </ClInclude>
-    <ClInclude Include="KSprite_Render.h" />
+    <ClInclude Include="KSprite_Render.h">
+      <Filter>04_Render\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="KBitMap_Animator.h">
+      <Filter>04_Render\Animator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00_KCore">
@@ -180,6 +190,9 @@
     </Filter>
     <Filter Include="00_TestClient\Test">
       <UniqueIdentifier>{5b67aa49-9b54-40e0-b50e-edadbde28af7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04_Render\Animator">
+      <UniqueIdentifier>{375af6da-6956-4fa7-a0af-ffb934ef5a5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

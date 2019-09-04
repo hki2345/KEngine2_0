@@ -13,6 +13,5 @@ public:
 public:
 	bool init() override;
 	void update() override;
-	void release() override;
 	void render() override;
 };

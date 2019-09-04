@@ -3,6 +3,7 @@
 #include "BackDeco.h"
 
 #include <KBitMap_Render.h>
+#include <KBitMap_Animator.h>
 #include <KOne.h>
 
 
@@ -31,8 +32,15 @@ bool InGameScene::init()
 	OnePlayer->size(KPos2(80, 80));
 
 
-	KBitMap_Render* BITREN = OnePlayer->add_component<KBitMap_Render>();
-	BITREN->set_bit(L"Circus\\player0.bmp", 10);
+	KBitMap_Animator* BITREN = OnePlayer->add_component<KBitMap_Animator>();
+	std::vector<std::wstring> Tmp;
+	Tmp.push_back(L"Circus\\player0.bmp");
+	Tmp.push_back(L"Circus\\player1.bmp");
+	Tmp.push_back(L"Circus\\player2.bmp");
+
+	BITREN->insert_animation(L"Play", Tmp, 10);
+
+
 
 	for (int i = 0; i < BackSize; i++)
 	{

@@ -25,9 +25,3 @@ void KConsole_Render::render()
 {
 
 }
-
-
-void KConsole_Render::release()
-{
-
-}

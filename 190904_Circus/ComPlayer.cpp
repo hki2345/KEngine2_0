@@ -88,6 +88,8 @@ void ComPlayer::update_input()
 	{
 		ePlayerDir = fDirWalk[2];
 	}
+
+
 	if (fwalk_distance < fmax_distance)
 	{
 		fwalk_distance += fWalkSpeed * ePlayerDir * KTimeManager::instance()->deltatime();

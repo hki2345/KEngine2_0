@@ -23,6 +23,8 @@ bool KEngineinitiator::init()
 {
 	KResourceManager<KBitMap>::instance()->init();
 	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\player0.bmp");
+	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\player1.bmp");
+	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\player2.bmp");
 	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back.bmp");
 	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back_normal.bmp");
 	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back_deco.bmp");

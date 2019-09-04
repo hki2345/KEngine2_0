@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="KActor.cpp" />
     <ClCompile Include="KBitMap.cpp" />
+    <ClCompile Include="KBitMap_Animator.cpp" />
     <ClCompile Include="KBitMap_Render.cpp" />
     <ClCompile Include="KComponent.cpp" />
     <ClCompile Include="KConsole_Render.cpp" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="KActor.h" />
     <ClInclude Include="KBitMap.h" />
+    <ClInclude Include="KBitMap_Animator.h" />
     <ClInclude Include="KBitMap_Render.h" />
     <ClInclude Include="KComponent.h" />
     <ClInclude Include="KConsole_Render.h" />

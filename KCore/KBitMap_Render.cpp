@@ -36,11 +36,6 @@ bool KBitMap_Render::init()
 	return true;
 }
 
-void KBitMap_Render::update()
-{
-
-}
-
 void KBitMap_Render::render()
 {
 	TransparentBlt(
@@ -55,4 +50,5 @@ void KBitMap_Render::render()
 		MyBitMap->size().x,
 		MyBitMap->size().y,
 		RGB(255, 0, 255));
+	
 }
