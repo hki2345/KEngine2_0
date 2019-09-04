@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include <map>
 
-#include "KProgress.h"
 #include "KName.h"
 
 

@@ -1,6 +1,5 @@
 #include "KMacro.h"
 #include "KCore.h"
-#include "KUpdater.h"
 
 #include <KResourceManager.h>
 #include <KFileStream.h>
@@ -75,8 +74,8 @@ void KCore::loop_updater()
 
 	while (looping)
 	{
-		pUpdater->update();
 		progress();
+		pUpdater->update();
 	}
 
 	RELEASE_PTR(pUpdater);

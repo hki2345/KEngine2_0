@@ -13,11 +13,7 @@ KOne::KOne()
 
 bool KOne::init() 
 {
-	if (nullptr == get_component<KTransform>())
-	{
-
-	} 
-	add_component<KTransform>();
+	MyTrans =  add_component<KTransform>();
 
 	return true;
 }
@@ -65,4 +61,20 @@ KComponent* KOne::set_component(KComponent* _Other)
 	MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
 	return NewCom;
 	return nullptr;
+}
+
+
+
+void KOne::pos(const KVec2& _Pos)
+{
+	MyTrans->pos(_Pos);
+}
+void KOne::size(const KSize2& _Size)
+{
+	MyTrans->size(_Size);
+}
+
+void KOne::moving(const KSize2& _Value)
+{
+	MyTrans->moving(_Value);
 }

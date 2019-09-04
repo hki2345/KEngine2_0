@@ -6,8 +6,47 @@
 #include <locale>
 #include <vector>
 
+class AAA
+{
+	int x;
+};
+
+class BBB
+{
+public:
+	BBB();
+	~BBB();
+
+private:
+
+};
+
+BBB::BBB()
+{
+}
+
+BBB::~BBB()
+{
+}
+
 int main()
 {
+	AAA a = AAA();
+
+	BBB b1 = BBB();
+	BBB b2 = BBB(b1);
+
+	size_t AA = typeid(a).hash_code();
+
+
+	char orig[64] = "Hello, World!";
+	std::cout << orig << " (char *)" << std::endl;
+	size_t newsize = strlen(orig) + 1;
+	wchar_t * wcstring = new wchar_t[newsize];
+	size_t convertedChars = 0;
+	mbstowcs_s(&convertedChars, wcstring, newsize, orig, _TRUNCATE);
+
+
 
 	wchar_t greeting[100];
 	std::wfstream ifs(L"Game_Table.csv", std::ios::in);

@@ -23,11 +23,20 @@ bool KBitMap::create(const wchar_t* _Folder, const wchar_t* _Name)
 	KResource::sName = _Name;
 	KResource::sPath = _Folder;
 
-	MyDC = CreateCompatibleDC(KWindowManager::instance()->main_hdc());	
+	MyDC = CreateCompatibleDC(KWindowManager::instance()->main_hdc());
+	
+	if (L"KCore" != _Folder)
+	{
+		MyBitMap = (HBITMAP)LoadImage(NULL, KResource::sName.c_str(), IMAGE_BITMAP
+			, 0, 0, LR_CREATEDIBSECTION | LR_DEFAULTSIZE | LR_LOADFROMFILE);
+		OldBitmap = (HBITMAP)SelectObject(MyDC, MyBitMap);
+		GetObjectW(MyBitMap, sizeof(BITMAP), &BitMapData);
+	}
+
 	return true;
 }
 
-HDC& KBitMap::size(const KSize2& _Size)
+HDC& KBitMap::kwindow_size(const KSize2& _Size)
 {
 	MyBitMap = CreateCompatibleBitmap(KWindowManager::instance()->main_hdc(), _Size.ix, _Size.iy);
 	OldBitmap = (HBITMAP)SelectObject(MyDC, MyBitMap);
@@ -47,4 +56,9 @@ bool KBitMap::load()
 bool KBitMap::save()
 {
 	return true;
+}
+
+KPos2 KBitMap::size()
+{
+	return KPos2(BitMapData.bmWidth, BitMapData.bmHeight);
 }

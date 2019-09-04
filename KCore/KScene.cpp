@@ -121,3 +121,9 @@ bool KScene::delete_kone(const wchar_t* _Name)
 	MapKOne.erase(FIter);
 	return true;
 }
+
+
+bool KScene::insert_krender(KRenderer* _Render, const int& _Key /*= 0*/)
+{
+	return curKRenderMgr->insert_krenderer(_Render, _Key);
+}

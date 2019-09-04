@@ -16,6 +16,18 @@ private:
 	static KCore* pKCore;
 
 public:
+	class KCoreUpdater
+	{
+	public:
+		KCoreUpdater() {};
+		~KCoreUpdater() {};
+
+	public:
+		virtual void update() {};
+	};
+
+
+public:
 	static KCore* instance()
 	{
 		if (nullptr == pKCore)
@@ -27,7 +39,7 @@ public:
 	}
 
 private:
-	KUpdater* pUpdater;
+	KCore::KCoreUpdater* pUpdater;
 	bool looping;
 
 
@@ -82,6 +94,23 @@ public:
 		loop_updater();
 	}
 
+
+	template <typename UP, typename RELEASE>
+	void loop()
+	{
+		pUpdater = new UP;
+		if (nullptr == pUpdater)
+		{
+			return;
+		}
+
+		loop_updater();
+
+
+		RELEASE OneRelease;
+		OneRelease.release();
+	}
+
 	// 코어 업데이트를 실행할 경우 와 아닌경우...
 	void loop();
 	void loop_updater();
@@ -102,8 +131,11 @@ private:
 template<typename INIT>
 int core_launch(int argc, wchar_t* argv[])
 {
+#if _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
+#endif // _DEBUG
+
 	KCore::instance()->init<INIT>(argc, argv);
 	KCore::instance()->loop();
 	return 0;
@@ -113,12 +145,31 @@ int core_launch(int argc, wchar_t* argv[])
 template<typename INIT,  typename UP>
 int core_launch(int argc, wchar_t* argv[])
 {
+#if _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
+#endif // _DEBUG
+
 	KCore::instance()->init<INIT>(argc, argv);
 	KCore::instance()->loop<UP>();
 	return 0;
 }
+
+
+// 엔진 단계 하나 실행 및 최신화
+template<typename INIT, typename UP, typename RELEASE>
+int core_launch(int argc, wchar_t* argv[])
+{
+#if _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	new int;
+#endif // _DEBUG
+
+	KCore::instance()->init<INIT>(argc, argv);
+	KCore::instance()->loop<UP, RELEASE>();
+	return 0;
+}
+
 
 
 /******************** Window ********************/
@@ -128,10 +179,11 @@ int core_launch(
 	_In_ LPWSTR    _lpCmdLine,
 	_In_ int       _nCmdShow)
 {
-	// _CrtSetBreakAlloc(235);
-
+#if _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
+#endif // _DEBUG
+
 	KCore::instance()->init<INIT>(_hInstance, _lpCmdLine, _nCmdShow);
 	KCore::instance()->loop();
 	return 0;
@@ -144,9 +196,31 @@ int core_launch(
 	_In_ LPWSTR    _lpCmdLine,
 	_In_ int       _nCmdShow)
 {
+#if _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	new int;
+#endif // _DEBUG
+
 	KCore::instance()->init<INIT>(_hInstance, _lpCmdLine, _nCmdShow);
 	KCore::instance()->loop<UP>();
+	return 0;
+}
+
+
+// 엔진 단계 하나 실행 및 최신화
+template<typename INIT, typename UP, typename RELEASE>
+int core_launch(
+	_In_ HINSTANCE _hInstance,
+	_In_ LPWSTR    _lpCmdLine,
+	_In_ int       _nCmdShow)
+{
+
+#if _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	new int;
+#endif // _DEBUG
+
+	KCore::instance()->init<INIT>(_hInstance, _lpCmdLine, _nCmdShow);
+	KCore::instance()->loop<UP, RELEASE>();
 	return 0;
 }

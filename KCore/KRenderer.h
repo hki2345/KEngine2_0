@@ -18,7 +18,7 @@ public:
 
 
 
-private:
+protected:
 	KTransform* MyTrans;
 
 public:

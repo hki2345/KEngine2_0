@@ -1,24 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ComTest.cpp">
-      <Filter>00_TestClient</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTest.cpp">
-      <Filter>00_TestClient</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneTest2.cpp">
-      <Filter>00_TestClient</Filter>
-    </ClCompile>
-    <ClCompile Include="KEngineinitiator.cpp">
-      <Filter>00_TestClient\ClientCore</Filter>
-    </ClCompile>
-    <ClCompile Include="KEngineLauncher.cpp">
-      <Filter>00_TestClient\ClientCore</Filter>
-    </ClCompile>
-    <ClCompile Include="KEngineUpdater.cpp">
-      <Filter>00_TestClient\ClientCore</Filter>
-    </ClCompile>
     <ClCompile Include="KTimeManager.cpp">
       <Filter>01_Manager</Filter>
     </ClCompile>
@@ -40,22 +22,7 @@
     <ClCompile Include="KActor.cpp">
       <Filter>02_Progress</Filter>
     </ClCompile>
-    <ClCompile Include="Kinitiator.cpp">
-      <Filter>02_Progress</Filter>
-    </ClCompile>
     <ClCompile Include="KName.cpp">
-      <Filter>02_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KProgress.cpp">
-      <Filter>02_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KReleaser.cpp">
-      <Filter>02_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KRenderer.cpp">
-      <Filter>02_Progress</Filter>
-    </ClCompile>
-    <ClCompile Include="KUpdater.cpp">
       <Filter>02_Progress</Filter>
     </ClCompile>
     <ClCompile Include="KSceneManager.cpp">
@@ -88,23 +55,12 @@
     <ClCompile Include="KTransform.cpp">
       <Filter>05_Component\Child</Filter>
     </ClCompile>
+    <ClCompile Include="KRenderer.cpp">
+      <Filter>04_Render</Filter>
+    </ClCompile>
+    <ClCompile Include="KSprite_Render.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ComTest.h">
-      <Filter>00_TestClient</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTest.h">
-      <Filter>00_TestClient</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneTest2.h">
-      <Filter>00_TestClient</Filter>
-    </ClInclude>
-    <ClInclude Include="KEngineUpdater.h">
-      <Filter>00_TestClient\ClientCore</Filter>
-    </ClInclude>
-    <ClInclude Include="KEngineinitiator.h">
-      <Filter>00_TestClient\ClientCore</Filter>
-    </ClInclude>
     <ClInclude Include="KTimeManager.h">
       <Filter>01_Manager</Filter>
     </ClInclude>
@@ -138,22 +94,7 @@
     <ClInclude Include="KActor.h">
       <Filter>02_Progress</Filter>
     </ClInclude>
-    <ClInclude Include="KInitiator.h">
-      <Filter>02_Progress</Filter>
-    </ClInclude>
     <ClInclude Include="KName.h">
-      <Filter>02_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KProgress.h">
-      <Filter>02_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KReleaser.h">
-      <Filter>02_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KRenderer.h">
-      <Filter>02_Progress</Filter>
-    </ClInclude>
-    <ClInclude Include="KUpdater.h">
       <Filter>02_Progress</Filter>
     </ClInclude>
     <ClInclude Include="KScene.h">
@@ -186,6 +127,10 @@
     <ClInclude Include="KTransform.h">
       <Filter>05_Component\Child</Filter>
     </ClInclude>
+    <ClInclude Include="KRenderer.h">
+      <Filter>04_Render</Filter>
+    </ClInclude>
+    <ClInclude Include="KSprite_Render.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00_KCore">
@@ -232,6 +177,9 @@
     </Filter>
     <Filter Include="05_Component\Child">
       <UniqueIdentifier>{70ff25d3-fe0f-4d9b-88a1-c65783057b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_TestClient\Test">
+      <UniqueIdentifier>{5b67aa49-9b54-40e0-b50e-edadbde28af7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

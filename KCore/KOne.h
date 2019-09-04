@@ -1,18 +1,22 @@
 #pragma once
-#include "KProgress.h"
 #include "PtrOf_KWindow.h"
 #include "PtrOf_KScene.h"
 #include "KTransform.h"
+#include "KName.h"
+#include "KActor.h"
+
 
 #include <map>
+#include <KPathManager.h>
 
 
 class KState;
 class KComponent;
 class KOne : 
-	public KProgress,
 	public PtrOf_KWindow,
-	public PtrOf_KScene
+	public PtrOf_KScene,
+	public KName,
+	public KActor
 {
 public:
 	friend class KScene;
@@ -22,19 +26,19 @@ protected:
 	KOne(const KOne& _Core) = delete;
 	KOne(const KOne&& _Core) = delete;
 	void operator=(const KOne& _Core) = delete;
-	~KOne() override {};
+	~KOne()  {};
 
 
 private:
 	std::multimap<std::wstring, KComponent*> MapComponent;
 
-	KTransform* pTrans;
+	KTransform* MyTrans;
 
 
 protected:
-	virtual bool init() override;
-	virtual void update() override;
-	virtual void release() override;
+	bool init();
+	void update();
+	void release();
 
 
 public:
@@ -48,7 +52,10 @@ public:
 
 		for (; SIter != EIter; ++SIter)
 		{
-			
+			if (typeid(*(SIter->second)).hash_code() == typeid(T).hash_code())
+			{
+				return dynamic_cast<T*>(SIter->second);
+			}
 		}
 
 		return nullptr;
@@ -66,5 +73,11 @@ public:
 		MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
 		return NewCom;
 	}
+
+
+
+	void pos(const KVec2& _Pos);
+	void size(const KSize2& _Size);
+	void moving(const KSize2& _Value);
 };
 

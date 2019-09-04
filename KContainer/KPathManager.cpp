@@ -41,6 +41,14 @@ void KPathManager::release()
 }
 
 
+void KPathManager::char_towchar(wchar_t* _Target, char* _Source)
+{
+	size_t newsize = strlen(_Source) + 1;
+	size_t convertedChars = 0;
+	mbstowcs_s(&convertedChars, _Target, newsize, _Source, _TRUNCATE);
+}
+
+
 bool KPathManager::input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path)
 {
 	memset(_Target, 0, _Target_sizeof);

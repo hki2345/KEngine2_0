@@ -1,15 +1,19 @@
 #pragma once
 #include "PtrOf_KWindow.h"
-#include "KProgress.h"
+#include "KName.h"
+#include "KActor.h"
+
 #include <map>
 
 
 
 class KOne;
 class KRenderManager;
+class KRenderer;
 class KScene : 
 	public PtrOf_KWindow,
-	public KProgress
+	public KName,
+	public KActor
 {
 public:
 	friend class KSceneManager;
@@ -19,7 +23,7 @@ protected:
 	KScene(const KScene& _Core) = delete;
 	KScene(const KScene&& _Core) = delete;
 	void operator=(const KScene& _Core) = delete;
-	virtual ~KScene() override {}/* = 0*/;
+	virtual ~KScene() {}/* = 0*/;
 
 
 private:
@@ -28,10 +32,13 @@ private:
 
 	std::multimap<std::wstring, KOne*> MapKOne;
 	
+public:
+	bool insert_krender(KRenderer* _Render, const int& _Key = 0);
+
 protected:
-	virtual bool init() override;
-	virtual void update() override;
-	virtual void release() override;
+	virtual bool init() ;
+	virtual void update() ;
+	virtual void release();
 	virtual void render();
 
 	KOne* create_kone(const wchar_t* _Name = L"KOne");

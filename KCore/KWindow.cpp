@@ -26,8 +26,8 @@ void KWindow::init()
 {
 	if (nullptr == BackBitMap)
 	{
-		BackBitMap = KResourceManager<KBitMap>::instance()->create(L"", L"BackBuffer");
-		hBackDC = BackBitMap->size(vSize);
+		BackBitMap = KResourceManager<KBitMap>::instance()->create(L"KCore", L"BackBuffer");
+		hBackDC = BackBitMap->kwindow_size(vSize);
 	}
 
 	KSceneManager::instance()->kwindow(this);

@@ -65,6 +65,7 @@ public:
 	}
 
 	bool input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path);
+	void char_towchar(wchar_t* _Target, char* _Source);
 	std::vector<std::wstring> vec_loadline(const wchar_t* _Path);
 	std::vector<std::wstring> split_line(wchar_t* _Path, const std::wstring& _Split = L" ,\t\n");
 	std::vector<std::wstring> split_line(

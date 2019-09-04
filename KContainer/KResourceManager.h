@@ -117,6 +117,5 @@ public:
 	}
 };
 
-
 template <class ResT>
 KResourceManager<ResT>* KResourceManager<ResT>::pKResManager = nullptr;

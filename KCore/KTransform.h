@@ -18,6 +18,7 @@ public:
 
 private:
 	KVec2	mPos;
+	KSize2	mSize;
 
 public:
 	void moving(const KVec2& _Speed);
@@ -32,5 +33,15 @@ public:
 		return mPos;
 	}
 
+
+	inline void size(const KVec2& _Other)
+	{
+		mPos = _Other;
+	}
+
+	inline KVec2& size()
+	{
+		return mPos;
+	}
 };
 
