@@ -151,23 +151,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ComTest.h" />
+    <ClInclude Include="BackDeco.h" />
+    <ClInclude Include="ComPlayer.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="InGameScene.h" />
     <ClInclude Include="KEngineinitiator.h" />
     <ClInclude Include="KEngineReleaser.h" />
     <ClInclude Include="KEngineUpdater.h" />
-    <ClInclude Include="SceneTest.h" />
-    <ClInclude Include="SceneTest2.h" />
+    <ClInclude Include="Obstcle.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ComTest.cpp" />
+    <ClCompile Include="BackDeco.cpp" />
+    <ClCompile Include="ComPlayer.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="KEngineinitiator.cpp" />
     <ClCompile Include="KEngineLauncher.cpp" />
     <ClCompile Include="KEngineReleaser.cpp" />
     <ClCompile Include="KEngineUpdater.cpp" />
-    <ClCompile Include="SceneTest.cpp" />
-    <ClCompile Include="SceneTest2.cpp" />
+    <ClCompile Include="Obstcle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

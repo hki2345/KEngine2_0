@@ -50,8 +50,8 @@ void KWindow::update()
 void KWindow::render()
 {
 	KSceneManager::instance()->render();
-	BitBlt(hMainDC, 0, 0, vSize.ix, vSize.iy, hBackDC, 0, 0, SRCCOPY);
-	Rectangle(hBackDC, 0, 0, vSize.ix, vSize.iy);
+	BitBlt(hMainDC, 0, 0, (int)vSize.x, (int)vSize.y, hBackDC, 0, 0, SRCCOPY);
+	Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
 }
 
 void KWindow::release()
@@ -88,8 +88,8 @@ int KWindow::create()
 	RECT rc;
 	GetClientRect(hWnd, &rc);
 
-	vSize.ix = (int)rc.right;
-	vSize.iy = (int)rc.bottom;
+	vSize.x = (float)rc.right;
+	vSize.y = (float)rc.bottom;
 
 	hMainDC = GetDC(hWnd);
 	// hBackDC = ;
@@ -111,6 +111,20 @@ LRESULT CALLBACK KWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 {
 	switch (message)
 	{
+	case WM_CREATE:
+	{
+		MoveWindow(hWnd, 100, 100, 800, 600, TRUE);
+		break;
+	}
+	case WM_GETMINMAXINFO:
+	{
+		((MINMAXINFO*)lParam)->ptMaxTrackSize.x = 800;
+		((MINMAXINFO*)lParam)->ptMaxTrackSize.y = 600;
+		((MINMAXINFO*)lParam)->ptMinTrackSize.x = 800;
+		((MINMAXINFO*)lParam)->ptMinTrackSize.y = 600;
+
+		return FALSE;
+	}
 	case WM_DESTROY:
 		KCore::instance()->shut_down();
 		PostQuitMessage(0);

@@ -75,9 +75,12 @@ public:
 	}
 
 
-
 	void pos(const KVec2& _Pos);
 	void size(const KSize2& _Size);
 	void moving(const KSize2& _Value);
+
+
+	KPos2& pos();
+	KPos2& size();
 };
 

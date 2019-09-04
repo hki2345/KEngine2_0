@@ -20,6 +20,7 @@ public:
 		return pkGameManager;
 	}
 
+
 public:
 	void init();
 	void update();

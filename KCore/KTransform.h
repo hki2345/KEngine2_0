@@ -36,12 +36,12 @@ public:
 
 	inline void size(const KVec2& _Other)
 	{
-		mPos = _Other;
+		mSize = _Other;
 	}
 
 	inline KVec2& size()
 	{
-		return mPos;
+		return mSize;
 	}
 };
 

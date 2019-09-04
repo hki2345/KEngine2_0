@@ -15,7 +15,7 @@ private:
 
 
 public:
-	void set_bit(const wchar_t* _Name = L"NONE");
+	void set_bit(const wchar_t* _Name = L"NONE", const int& _Key = 0);
 
 	bool init() override;
 	void update() override;

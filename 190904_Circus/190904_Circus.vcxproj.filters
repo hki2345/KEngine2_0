@@ -1,22 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="SceneTest2.h" />
-    <ClInclude Include="ComTest.h" />
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="KEngineinitiator.h" />
-    <ClInclude Include="KEngineReleaser.h" />
-    <ClInclude Include="KEngineUpdater.h" />
-    <ClInclude Include="SceneTest.h" />
+    <ClInclude Include="KEngineUpdater.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="KEngineinitiator.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="KEngineReleaser.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ComPlayer.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="BackDeco.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstcle.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ComTest.cpp" />
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="KEngineinitiator.cpp" />
-    <ClCompile Include="KEngineLauncher.cpp" />
-    <ClCompile Include="KEngineReleaser.cpp" />
-    <ClCompile Include="KEngineUpdater.cpp" />
-    <ClCompile Include="SceneTest.cpp" />
-    <ClCompile Include="SceneTest2.cpp" />
+    <ClCompile Include="KEngineinitiator.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="KEngineLauncher.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="KEngineReleaser.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="KEngineUpdater.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>InGame</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameScene.cpp">
+      <Filter>InGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ComPlayer.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="BackDeco.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstcle.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{57d13651-090c-4f5f-baf3-4d041d96584f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame">
+      <UniqueIdentifier>{5fe67e82-b018-498b-b443-dac9055f9c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Component">
+      <UniqueIdentifier>{59113b12-159c-4d0a-b17a-7875eed07c0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

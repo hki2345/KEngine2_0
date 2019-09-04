@@ -78,3 +78,13 @@ void KOne::moving(const KSize2& _Value)
 {
 	MyTrans->moving(_Value);
 }
+
+
+KPos2& KOne::pos()
+{
+	return MyTrans->pos();
+}
+KPos2& KOne::size()
+{
+	return MyTrans->size();
+}

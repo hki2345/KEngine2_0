@@ -6,6 +6,12 @@
 class KVec2
 {
 public:
+
+	struct
+	{
+		float x;
+		float y;
+	};/*
 	union
 	{
 		float s[2];
@@ -29,15 +35,15 @@ public:
 		};
 
 		__int64 m_i64;
-	};
+	};*/
 
 
 public:
 	KVec2() : x(.0f), y(.0f) {}
-	KVec2(__int64 _Value) : m_i64(_Value) {}
+	/*KVec2(__int64 _Value) : m_i64(_Value) {}*/
 	KVec2(float _Value) : x(_Value), y(_Value) {}
 	KVec2(float _x, float _y) : x(_x), y(_y) {}
-	KVec2(int _x, int _y) : ix(_x), iy(_y) {}
+	/*KVec2(int _x, int _y) : ix(_x), iy(_y) {}*/
 	KVec2(const KVec2& _Other) 
 	{
 		x = _Other.x;
@@ -57,7 +63,7 @@ public:
 	float x_part() const { return x * .5f; }
 	float y_part() const { return y * .5f; }
 
-	KVec2 IntToFloat() const
+	/*KVec2 IntToFloat() const
 	{
 		return KVec2((float)ix, (float)iy);
 	}
@@ -66,7 +72,7 @@ public:
 	{
 		return KVec2(ix, iy);
 	}
-
+*/
 	KVec2 operator + (const KVec2& _Other)
 	{
 		return{ x + _Other.x, y + _Other.y };
@@ -179,12 +185,12 @@ public:
 	{
 		return (x < _Value.x && y < _Value.y);
 	}
-
+/*
 	operator __int64() const
 	{
 		return m_i64;
 	}
-
+*/
 
 	float length() const
 	{

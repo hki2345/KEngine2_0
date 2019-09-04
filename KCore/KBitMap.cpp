@@ -38,7 +38,7 @@ bool KBitMap::create(const wchar_t* _Folder, const wchar_t* _Name)
 
 HDC& KBitMap::kwindow_size(const KSize2& _Size)
 {
-	MyBitMap = CreateCompatibleBitmap(KWindowManager::instance()->main_hdc(), _Size.ix, _Size.iy);
+	MyBitMap = CreateCompatibleBitmap(KWindowManager::instance()->main_hdc(), (int)_Size.x, (int)_Size.y);
 	OldBitmap = (HBITMAP)SelectObject(MyDC, MyBitMap);
 	GetObjectW(MyBitMap, sizeof(BITMAP), &BitMapData);
 
@@ -60,5 +60,5 @@ bool KBitMap::save()
 
 KPos2 KBitMap::size()
 {
-	return KPos2(BitMapData.bmWidth, BitMapData.bmHeight);
+	return KPos2((float)BitMapData.bmWidth, (float)BitMapData.bmHeight);
 }

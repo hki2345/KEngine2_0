@@ -1,11 +1,11 @@
 #include "GameManager.h"
+
 #include "KSceneManager.h"
 #include "KInputManager.h"
 #include "KCore.h"
 
-#include "SceneTest.h"
-#include "SceneTest2.h"
 
+#include "InGameScene.h"
 
 GameManager* GameManager::pkGameManager = nullptr;
 
@@ -22,12 +22,10 @@ GameManager::~GameManager()
 
 void GameManager::init()
 {
-	SceneTest* NSCENE = new SceneTest();
-	SceneTest2* NSCENE2 = new SceneTest2();
+	InGameScene* GameScene = new InGameScene();
 
-	KSceneManager::instance()->create_scene(NSCENE, L"Test");
-	KSceneManager::instance()->create_scene(NSCENE2, L"Test2");
-	KSceneManager::instance()->change_scene(L"Test");
+	KSceneManager::instance()->create_scene(GameScene, L"Game");
+	KSceneManager::instance()->change_scene(L"Game");
 }
 void GameManager::update()
 {
@@ -40,6 +38,5 @@ void GameManager::update()
 }
 void GameManager::release()
 {
-	int a = 9;
 	delete pkGameManager;
 }
