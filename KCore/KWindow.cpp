@@ -51,7 +51,9 @@ void KWindow::render()
 {
 	KSceneManager::instance()->render();
 	BitBlt(hMainDC, 0, 0, (int)vSize.x, (int)vSize.y, hBackDC, 0, 0, SRCCOPY);
-	Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
+	InvalidateRect(mhWnd, NULL, FALSE);
+	
+	// Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
 }
 
 void KWindow::release()
@@ -78,7 +80,7 @@ int KWindow::create()
 
 	RegisterClass(&WndClass);
 
-	hWnd = CreateWindow(
+	mhWnd = CreateWindow(
 		KName::name().c_str(), KName::name().c_str(), WS_OVERLAPPEDWINDOW,
 		// 띄우는 위치 - 크기
 		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
@@ -86,12 +88,12 @@ int KWindow::create()
 
 
 	RECT rc;
-	GetClientRect(hWnd, &rc);
+	GetClientRect(mhWnd, &rc);
 
 	vSize.x = (float)rc.right;
 	vSize.y = (float)rc.bottom;
 
-	hMainDC = GetDC(hWnd);
+	hMainDC = GetDC(mhWnd);
 	// hBackDC = ;
 
 
@@ -102,7 +104,7 @@ int KWindow::create()
 
 BOOL KWindow::show_window()
 {
-	return ShowWindow(hWnd, KWindowManager::cmdshow());
+	return ShowWindow(mhWnd, KWindowManager::cmdshow());
 }
 
 

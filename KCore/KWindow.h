@@ -22,7 +22,7 @@ private:
 	HDC hMainDC;
 	HDC hBackDC;
 
-	HWND hWnd;
+	HWND mhWnd;
 	WNDCLASS WndClass;
 	KBitMap* BackBitMap;
 	
@@ -52,7 +52,7 @@ public:
 	}
 	inline HWND& hwnd()
 	{
-		return hWnd;
+		return mhWnd;
 	}
 };
 
