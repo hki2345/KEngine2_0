@@ -87,7 +87,7 @@ void IntroScene::create_circuschaley()
 	TOne->pos(KPos2(400, 160));
 
 	KText_Render* TREN = TOne->add_component<KText_Render>();
-	TREN->set_text(L"서커스 찰리", L"휴먼둥근헤드라인", 40, 10, RGB(97, 198, 233));
+	TREN->set_text(L"서커스 찰리", L"DungGeunMo", 40, 10, RGB(97, 198, 233));
 
 
 
@@ -95,5 +95,5 @@ void IntroScene::create_circuschaley()
 	TOne->pos(KPos2(400, 450));
 
 	TREN = TOne->add_component<KText_Render>();
-	TREN->set_text(L"게임 시작 - SPACE BAR", L"휴먼둥근헤드라인", 40, 10);
+	TREN->set_text(L"게임 시작 - SPACE BAR", L"DungGeunMo", 40, 10);
 }

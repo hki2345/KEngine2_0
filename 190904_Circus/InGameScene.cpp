@@ -238,7 +238,7 @@ void InGameScene::create_miter(ComPlayer* _Player)
 
 
 		KText_Render* TRE = TOne->add_component<KText_Render>();
-		TRE->set_text(std::to_wstring(40 - (i + 1) * 10).c_str(), L"ÈÞ¸ÕµÕ±ÙÇìµå¶óÀÎ", 15, 7);
+		TRE->set_text(std::to_wstring(40 - (i + 1) * 10).c_str(), L"DungGeunMo", 15, 7);
 		TRE->pivot(KPos2(50, 7));
 	}
 }

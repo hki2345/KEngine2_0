@@ -62,26 +62,26 @@ void KOne::release()
 
 	MapComponent.clear();
 }
-
-
-KComponent* KOne::set_component(KComponent* _Other)
-{
-	KComponent* NewCom = new KComponent();
-	NewCom->kone(this);
-	// NewCom->kwindow(kwindow());
-	NewCom->kscene(kscene());
-	NewCom->init();
-
-	if (false == NewCom->init())
-	{
-		delete NewCom;
-		return nullptr;
-	}
-
-	MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
-	return NewCom;
-	return nullptr;
-}
+//
+//
+//KComponent* KOne::set_component(KComponent* _Other)
+//{
+//	KComponent* NewCom = new KComponent();
+//	NewCom->kone(this);
+//	// NewCom->kwindow(kwindow());
+//	NewCom->kscene(kscene());
+//	NewCom->init();
+//
+//	if (false == NewCom->init())
+//	{
+//		delete NewCom;
+//		return nullptr;
+//	}
+//
+//	MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
+//	return NewCom;
+//	return nullptr;
+//}
 
 
 

@@ -33,7 +33,7 @@ void KTimeManager::KTimer::accumulate()
 	DeltaTime = ((float)(NextCount.QuadPart - CurCount.QuadPart)) / ((float)CpuFrequency.QuadPart);
 	CurCount.QuadPart = NextCount.QuadPart;
 
-
+	
 	// FPS 계산 1초당 프레임 수...
 	AccCal_Time += DeltaTime;
 	AccumulateTime += DeltaTime;

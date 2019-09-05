@@ -60,6 +60,8 @@ bool KEngineinitiator::init()
 	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\star2.bmp");
 
 	GameManager::instance()->init();
+
+	AddFontResourceA("Circus\\DungGeunMo.ttf");
 	return true;
 }
 

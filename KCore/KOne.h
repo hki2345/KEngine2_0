@@ -44,8 +44,6 @@ protected:
 
 
 public:
-	KComponent* set_component(KComponent* _Other);
-
 	template <typename T>
 	T* get_component()
 	{
