@@ -36,9 +36,11 @@ private:
 
 
 protected:
-	bool init();
-	void update();
-	void release();
+	virtual void create();
+	virtual bool init();
+	virtual void update();
+	virtual void out();
+	virtual void release();
 
 
 public:
@@ -68,7 +70,7 @@ public:
 		NewCom->kwindow(kwindow());
 		NewCom->kscene(kscene());
 		NewCom->kone(this);
-		NewCom->init();
+		NewCom->create();
 
 		MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
 		return NewCom;

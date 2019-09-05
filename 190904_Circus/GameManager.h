@@ -25,5 +25,7 @@ public:
 	void init();
 	void update();
 	void release();
+
+	void reset_game();
 };
 

@@ -85,6 +85,25 @@ public:
 		return *this;
 	}
 
+/*
+	KVec2 operator + (const KVec2& _Value1 , const KVec2& _Value2) 
+	{
+		return KVec2(_Value1.x + _Value2.x, _Value1.y + _Value2.y);
+	}
+	KVec2 operator * (const KVec2& _Value) const
+	{
+		return KVec2(x * _Value.x, y * _Value.y);
+	}
+	KVec2 operator - (const KVec2& _Value) const
+	{
+		return KVec2(x - _Value.x, y - _Value.y);
+	}
+	KVec2 operator / (const KVec2& _Value) const
+	{
+		return KVec2(x / _Value.x, y / _Value.y);
+	}
+
+*/
 
 	KVec2 operator + (const KVec2& _Value) const
 	{

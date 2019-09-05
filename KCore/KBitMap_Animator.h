@@ -21,7 +21,12 @@ private:
 	std::map<std::wstring, std::vector< KBitMap*>> MapVecBit;
 
 public:
-	void insert_animation(const wchar_t* _AniName, const std::vector<std::wstring>& _Source, const int& _Layer);
+	void insert_animation(
+		const wchar_t* _AniName, 
+		const std::vector<std::wstring>& _Source,
+		const int& _Layer = 0,
+		const float& _Speed = 0.1f, // 초당 약 10장
+		const int& _Start = 0);
 	void change_animation(const wchar_t* _AniName);
 
 	bool init() override;

@@ -5,6 +5,8 @@
 
 
 class KOne;
+class ComPlayer;
+class KBitMap_Animator;
 class InGameScene : public KScene
 {
 public:
@@ -18,7 +20,18 @@ private:
 	std::vector<KOne*> VecDeco;
 
 public:
-	bool init() override;
-	void update() override;
+	void create() override;
+
+
+private:
+	void create_backboard();
+	void create_player();
+	void create_wall(ComPlayer* _Player);
+	void create_obstacle(ComPlayer* _Player);
+	void create_miter(ComPlayer* _Player);
+
+	void create_fire(KOne* _KOne);
+	void create_pot(KOne* _KOne);
+	void create_winpan(KOne* _KOne);
 };
 

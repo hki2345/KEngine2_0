@@ -30,7 +30,6 @@ void KBitMap_Render::set_bit(const wchar_t* _Name /*= L"NONE"*/, const int& _Key
 bool KBitMap_Render::init()
 {
 	KRenderer::init();
-	MyBitMap = nullptr;
 	name(L"BitMap_Render");
 		
 	return true;

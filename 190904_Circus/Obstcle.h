@@ -1,20 +1,38 @@
 #pragma once
-#include <KComponent.h>
+#include "CircusObject.h"
 
-class Obstcle : public KComponent
+
+class Obstcle : public CircusObject
 {
 public:
 	Obstcle();
 	~Obstcle();
 
 private:
-	float fwalk_distance;
-	float fmax_distance;
+	enum OBSTACLE_TYPE
+	{
+		OT_FIRE = 0,
+		OT_POT,
+		OT_WINPAN,
+	};
 
-	float fSpeed;
+
+private:
+	KPos2 MyOriginPos;
+	OBSTACLE_TYPE eObType;
+	bool bFast;
 
 public:
+	void set_prop(const int& _Type, const bool& _Fast);
+
 	bool init() override;
 	void update() override;
+
+private:
+	void update_fire();
+	void update_pot();
+	void update_winpan();
+
+	void update_colide();
 };
 

@@ -64,6 +64,9 @@
     <ClCompile Include="KBitMap_Animator.cpp">
       <Filter>04_Render\Animator</Filter>
     </ClCompile>
+    <ClCompile Include="KText_Render.cpp">
+      <Filter>04_Render\Child</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KTimeManager.h">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="KBitMap_Animator.h">
       <Filter>04_Render\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="KText_Render.h">
+      <Filter>04_Render\Child</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

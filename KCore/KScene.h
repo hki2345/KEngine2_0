@@ -36,8 +36,10 @@ public:
 	bool insert_krender(KRenderer* _Render, const int& _Key = 0);
 
 protected:
+	virtual void create();
 	virtual bool init() ;
 	virtual void update() ;
+	virtual void out();
 	virtual void release();
 	virtual void render();
 

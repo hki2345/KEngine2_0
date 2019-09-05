@@ -9,6 +9,22 @@ KScene::KScene()
 {
 }
 
+void KScene::create()
+{
+	if (nullptr == curKRenderMgr)
+	{
+		curKRenderMgr = new KRenderManager();
+		curKRenderMgr->init();
+	}
+
+	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->create();
+	}
+}
 
 bool KScene::init()
 {
@@ -18,12 +34,6 @@ bool KScene::init()
 	for (; SIter != EIter; ++SIter)
 	{
 		SIter->second->init();
-	}
-
-	if (nullptr == curKRenderMgr)
-	{
-		curKRenderMgr = new KRenderManager();
-		curKRenderMgr->init();
 	}
 
 	return true;
@@ -37,6 +47,17 @@ void KScene::update()
 	for (; SIter != EIter; ++SIter)
 	{
 		SIter->second->update();
+	}
+}
+
+void KScene::out() 
+{
+	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->out();
 	}
 }
 
@@ -77,7 +98,7 @@ KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= "KOne"*/)
 
 	_Other->name(_Name);
 	_Other->kscene(this);
-
+	_Other->create();
 
 	MapKOne.insert(std::make_pair(_Name, _Other));
 	return _Other;
@@ -90,7 +111,7 @@ KOne* KScene::create_kone(const wchar_t* _Name/*= "KOne"*/)
 	Tmp->name(_Name);
 	Tmp->kwindow(kwindow());
 	Tmp->kscene(this);
-	Tmp->init();
+	Tmp->create();
 
 
 	MapKOne.insert(std::make_pair(_Name, Tmp));

@@ -22,7 +22,10 @@ void KRenderManager::render()
 
 	for (; SIter != EIter; ++SIter)
 	{
-		SIter->second->render();
+		if (true == SIter->second->active())
+		{
+			SIter->second->render();
+		}
 	}
 }
 

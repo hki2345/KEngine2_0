@@ -4,7 +4,7 @@
 
 
 
-KRenderer::KRenderer()
+KRenderer::KRenderer() : MyPivot (KPos2::Zero)
 {
 
 }
@@ -17,8 +17,11 @@ KRenderer::~KRenderer()
 
 bool KRenderer::init()
 {
-	MyTrans = kone()->get_component<KTransform>();
-
+	if (nullptr ==MyTrans)
+	{
+		MyTrans = kone()->get_component<KTransform>();
+	}
+	
 
 	return true;
 }

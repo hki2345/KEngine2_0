@@ -66,6 +66,7 @@ KScene* KSceneManager::create_scene(KScene* _Other, const wchar_t* _Name /*= "KS
 
 	_Other->name(_Name);
 	_Other->kwindow(kwindow());
+	_Other->create();
 	MapScene.insert(std::make_pair(_Name, _Other));
 	return _Other;
 }
@@ -75,6 +76,7 @@ KScene* KSceneManager::create_scene(const wchar_t* _Name/*= "KScene"*/)
 {
 	KScene* Tmp = new KScene();
 	Tmp->name(_Name);
+	Tmp->create();
 	MapScene.insert(std::make_pair(_Name, Tmp));
 	return Tmp;
 }
@@ -111,6 +113,11 @@ bool KSceneManager::delete_scene(const wchar_t* _Name)
 
 bool KSceneManager::change_scene(const wchar_t* _Name)
 {
+	if (nullptr != curscene)
+	{
+		curscene->out();
+	}
+
 	bCurInit = false;
 	KScene* Tmp = find_scene(_Name);
 	if (nullptr == Tmp)

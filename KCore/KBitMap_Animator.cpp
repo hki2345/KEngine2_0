@@ -23,10 +23,13 @@ KBitMap_Animator::~KBitMap_Animator()
 void KBitMap_Animator::insert_animation(
 	const wchar_t* _AniName,
 	const std::vector<std::wstring>& _Source,
-	const int& _Layer)
+	const int& _Layer /*= 0*/,
+	const float& _Speed /*= 0.02f*/,
+	const int& _Start /*= 0*/
+	)
 {
-	fSpeed = 10.0f;
-	iAniIdx = 0;
+	fSpeed = _Speed;
+	iAniIdx = _Start;
 
 	std::vector<KBitMap*> TmpVec;
 
@@ -52,9 +55,6 @@ void KBitMap_Animator::change_animation(const wchar_t* _AniName)
 	{
 		KASSERT;
 	}
-
-	iAniIdx = 0;
-	fAniTime = .0f;
 }
 
 
@@ -62,7 +62,6 @@ void KBitMap_Animator::change_animation(const wchar_t* _AniName)
 bool KBitMap_Animator::init()
 {
 	KRenderer::init();
-	MapVecBit.clear();
 
 	return true;
 }
@@ -70,23 +69,27 @@ bool KBitMap_Animator::init()
 
 void KBitMap_Animator::update()
 {
-	fAniTime += KTimeManager::instance()->deltatime() * fSpeed;
-	iAniIdx = (int)fAniTime;
+	fAniTime += KTimeManager::instance()->deltatime();
+
+	if (fAniTime > fSpeed)
+	{
+		iAniIdx += 1;
+		fAniTime = .0f;
+	}
 
 	if (CurAniIter->second.size() <= iAniIdx)
 	{
 		iAniIdx = 0;
-		fAniTime = .0f;
 	}
 }
 void KBitMap_Animator::render()
 {
 	TransparentBlt(
 		kwindow()->bhdc(),
-		MyTrans->pos().x,
-		MyTrans->pos().y,
-		MyTrans->size().x,
-		MyTrans->size().y,
+		MyTrans->pos().x + MyPivot.x,
+		MyTrans->pos().y + MyPivot.y,
+		MyTrans->size().x ,
+		MyTrans->size().y ,
 		CurAniIter->second[iAniIdx]->MyDC,
 		0,
 		0,

@@ -51,9 +51,9 @@ void KWindow::render()
 {
 	KSceneManager::instance()->render();
 	BitBlt(hMainDC, 0, 0, (int)vSize.x, (int)vSize.y, hBackDC, 0, 0, SRCCOPY);
-	InvalidateRect(mhWnd, NULL, FALSE);
+	// InvalidateRect(mhWnd, NULL, FALSE);
 	
-	// Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
+	Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
 }
 
 void KWindow::release()

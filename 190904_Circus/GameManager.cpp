@@ -6,6 +6,7 @@
 
 
 #include "InGameScene.h"
+#include "IntroScene.h"
 
 GameManager* GameManager::pkGameManager = nullptr;
 
@@ -22,10 +23,14 @@ GameManager::~GameManager()
 
 void GameManager::init()
 {
+	srand(GetTickCount());
+
 	InGameScene* GameScene = new InGameScene();
+	IntroScene* InScene = new IntroScene();
 
 	KSceneManager::instance()->create_scene(GameScene, L"Game");
-	KSceneManager::instance()->change_scene(L"Game");
+	KSceneManager::instance()->create_scene(InScene, L"Intro");
+	KSceneManager::instance()->change_scene(L"Intro");
 }
 void GameManager::update()
 {
@@ -39,4 +44,9 @@ void GameManager::update()
 void GameManager::release()
 {
 	delete pkGameManager;
+}
+
+void GameManager::reset_game()
+{
+	KSceneManager::instance()->change_scene(L"Game");
 }

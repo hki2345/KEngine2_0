@@ -1,28 +1,25 @@
 #pragma once
-#include <KComponent.h>
+#include "CircusObject.h"
 
 
 class ComPlayer;
-class BackDeco : public KComponent
+class BackDeco : public CircusObject
 {
 public:
 	BackDeco();
 	~BackDeco();
 
 private:
-	ComPlayer* pPlayer;
-	float fWallSpeed;
-
+	bool bActiveDeco;
 
 
 public:
 	bool init() override;
 	void update() override;
 
-	inline void set_player(ComPlayer* _Other)
+	inline void set_activedeco()
 	{
-		pPlayer = _Other;
+		bActiveDeco = true;
 	}
-
 };
 

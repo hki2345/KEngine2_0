@@ -9,12 +9,23 @@ KOne::KOne()
 {
 }
 
-
+void KOne::create()
+{
+	if (nullptr == MyTrans)
+	{
+		MyTrans = add_component<KTransform>();
+	}
+}
 
 bool KOne::init() 
 {
-	MyTrans =  add_component<KTransform>();
+	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
 
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->init();
+	}
 	return true;
 }
 
@@ -28,7 +39,16 @@ void KOne::update()
 		SIter->second->update();
 	}
 }
+void KOne::out()
+{
+	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
 
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->out();
+	}
+}
 void KOne::release()
 {
 	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();

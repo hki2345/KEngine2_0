@@ -1,5 +1,6 @@
 #pragma once
 #include "KComponent.h"
+#include "KVector.h"
 
 // 이번 버전 새로운 "이시에이터" 시스템
 // "이시니에이터"를 따로 만들어 클라나 에딧에서
@@ -20,6 +21,7 @@ public:
 
 protected:
 	KTransform* MyTrans;
+	KPos2 MyPivot;
 
 public:
 	virtual bool init() override;
@@ -27,5 +29,10 @@ public:
 
 	virtual void render() = 0;
 	virtual void release() override {};
+
+	inline void pivot(const KPos2& _Pivot)
+	{
+		MyPivot = _Pivot;
+	}
 };
 

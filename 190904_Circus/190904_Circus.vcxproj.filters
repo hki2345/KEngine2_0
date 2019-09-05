@@ -10,12 +10,6 @@
     <ClInclude Include="KEngineReleaser.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>InGame</Filter>
-    </ClInclude>
-    <ClInclude Include="InGameScene.h">
-      <Filter>InGame</Filter>
-    </ClInclude>
     <ClInclude Include="ComPlayer.h">
       <Filter>InGame\Component</Filter>
     </ClInclude>
@@ -24,6 +18,19 @@
     </ClInclude>
     <ClInclude Include="Obstcle.h">
       <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>InGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CircusObject.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Miter.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="IntroScene.h">
+      <Filter>Intro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -39,12 +46,6 @@
     <ClCompile Include="KEngineUpdater.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>InGame</Filter>
-    </ClCompile>
-    <ClCompile Include="InGameScene.cpp">
-      <Filter>InGame</Filter>
-    </ClCompile>
     <ClCompile Include="ComPlayer.cpp">
       <Filter>InGame\Component</Filter>
     </ClCompile>
@@ -53,6 +54,19 @@
     </ClCompile>
     <ClCompile Include="Obstcle.cpp">
       <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameScene.cpp">
+      <Filter>InGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CircusObject.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Miter.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Intro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +78,12 @@
     </Filter>
     <Filter Include="InGame\Component">
       <UniqueIdentifier>{59113b12-159c-4d0a-b17a-7875eed07c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Scene">
+      <UniqueIdentifier>{0cac9114-a520-4b69-a300-3f4fb8ae5ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intro">
+      <UniqueIdentifier>{65917a50-3557-4bd5-b9bd-afe8966d24b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
