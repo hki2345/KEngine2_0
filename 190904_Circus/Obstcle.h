@@ -31,7 +31,6 @@ public:
 private:
 	void update_fire();
 	void update_pot();
-	void update_winpan();
 
 	void update_colide();
 };

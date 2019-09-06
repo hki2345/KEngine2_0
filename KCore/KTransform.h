@@ -16,32 +16,12 @@ public:
 	void release() override;
 
 
-private:
-	KVec2	mPos;
-	KSize2	mSize;
-
 public:
-	void moving(const KVec2& _Speed);
-
-	inline void pos(const KVec2& _Other)
-	{
-		mPos = _Other;
-	}
-
-	inline KVec2& pos()
-	{
-		return mPos;
-	}
-
-
-	inline void size(const KVec2& _Other)
-	{
-		mSize = _Other;
-	}
-
-	inline KVec2& size()
-	{
-		return mSize;
-	}
+	KVec2	Pos;
+	KSize2	Size;
+	
+public:
+	void moving_pos(const KVec2& _Speed);
+	void moving_delta(const KVec2& _Speed);
 };
 

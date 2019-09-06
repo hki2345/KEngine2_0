@@ -1,5 +1,6 @@
 #include "KRenderManager.h"
 #include "KRenderer.h"
+#include "KOne.h"
 #include "KMacro.h"
 
 
@@ -15,7 +16,7 @@ void KRenderManager::init()
 	}
 }
 
-void KRenderManager::render()
+void KRenderManager::update_trans(const KPos2& _CameraPos)
 {
 	std::multimap<int, KRenderer*>::iterator SIter = MapKRenderer.begin();
 	std::multimap<int, KRenderer*>::iterator EIter = MapKRenderer.end();
@@ -23,6 +24,20 @@ void KRenderManager::render()
 	for (; SIter != EIter; ++SIter)
 	{
 		if (true == SIter->second->active())
+		{
+			SIter->second->update_trans(_CameraPos);
+		}
+	}
+}
+
+void KRenderManager::render()
+{
+	std::multimap<int, KRenderer*>::iterator SIter = MapKRenderer.begin();
+	std::multimap<int, KRenderer*>::iterator EIter = MapKRenderer.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		if (true == SIter->second->active() && true == SIter->second->kone()->active())
 		{
 			SIter->second->render();
 		}

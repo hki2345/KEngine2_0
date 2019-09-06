@@ -2,6 +2,7 @@
 #include "PtrOf_KWindow.h"
 #include "KName.h"
 #include "KActor.h"
+#include "KVector.h"
 
 #include <map>
 
@@ -25,15 +26,16 @@ protected:
 	void operator=(const KScene& _Core) = delete;
 	virtual ~KScene() {}/* = 0*/;
 
-
-private:
+public:
+	KPos2 SceneCamPos;
+protected:
 	KRenderManager* curKRenderMgr;
-
 
 	std::multimap<std::wstring, KOne*> MapKOne;
 	
 public:
 	bool insert_krender(KRenderer* _Render, const int& _Key = 0);
+	KPos2 outof_screen(KOne* _Target);
 
 protected:
 	virtual void create();
@@ -43,6 +45,7 @@ protected:
 	virtual void release();
 	virtual void render();
 
+public:
 	KOne* create_kone(const wchar_t* _Name = L"KOne");
 	KOne* create_kone(KOne* _Other, const wchar_t* _Name = L"KOne");
 	KOne* find_kone(const wchar_t* _Name);

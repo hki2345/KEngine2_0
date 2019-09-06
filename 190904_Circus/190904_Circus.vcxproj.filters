@@ -32,6 +32,15 @@
     <ClInclude Include="IntroScene.h">
       <Filter>Intro</Filter>
     </ClInclude>
+    <ClInclude Include="ObstacleManager.h">
+      <Filter>InGame\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>InGame\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>InGame\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KEngineinitiator.cpp">
@@ -68,6 +77,15 @@
     <ClCompile Include="IntroScene.cpp">
       <Filter>Intro</Filter>
     </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>InGame\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleManager.cpp">
+      <Filter>InGame\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>InGame\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -84,6 +102,9 @@
     </Filter>
     <Filter Include="Intro">
       <UniqueIdentifier>{65917a50-3557-4bd5-b9bd-afe8966d24b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Manager">
+      <UniqueIdentifier>{6839f535-d12f-40b1-abb7-9fc1514cd361}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

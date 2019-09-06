@@ -26,7 +26,6 @@ public:
 		const int& _Size = 20,
 		const int& _Key = 0, 
 		const DWORD& _Color = RGB(255, 255, 255));
-
 	void render() override;
 };
 

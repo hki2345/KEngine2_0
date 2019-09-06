@@ -29,16 +29,21 @@ void KText_Render::set_text(
 	kscene()->insert_krender(this, _Key);
 }
 
+
 void KText_Render::render()
 {
+	if (false == bRender)
+	{
+		return;
+	}
+
 	myFont = CreateFont(iMySize, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, sMyFont.c_str());
 	oldFont = (HFONT)SelectObject(kwindow()->bhdc(), myFont);
 	SetTextColor(kwindow()->bhdc(), MyColor);
 	SetBkMode(kwindow()->bhdc(), TRANSPARENT);
 	SetTextAlign(kwindow()->bhdc(), TA_CENTER);
 
-	KPos2 TPos = kone()->pos() + MyPivot;
-	TextOutW(kwindow()->bhdc(), TPos.x, TPos.y, sMyParse.c_str(), sMyParse.size());
+	TextOutW(kwindow()->bhdc(), RenderPos.x, RenderPos.y, sMyParse.c_str(), sMyParse.size());
 
 	SelectObject(kwindow()->bhdc(), oldFont);
 	DeleteObject(myFont);

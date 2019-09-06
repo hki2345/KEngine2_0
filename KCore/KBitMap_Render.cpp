@@ -34,20 +34,23 @@ bool KBitMap_Render::init()
 		
 	return true;
 }
-
 void KBitMap_Render::render()
 {
+	if (false == bRender)
+	{
+		return;
+	}
+
 	TransparentBlt(
 		kwindow()->bhdc(),
-		MyTrans->pos().x,
-		MyTrans->pos().y,
-		MyTrans->size().x,
-		MyTrans->size().y,
+		RenderPos.x,
+		RenderPos.y,
+		MyTrans->Size.x,
+		MyTrans->Size.y,
 		MyBitMap->MyDC, 
 		0,
 		0,
 		MyBitMap->size().x,
 		MyBitMap->size().y,
-		RGB(255, 0, 255));
-	
+		RGB(255, 0, 255));	
 }

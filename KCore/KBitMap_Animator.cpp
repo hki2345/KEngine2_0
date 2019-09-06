@@ -62,10 +62,15 @@ void KBitMap_Animator::change_animation(const wchar_t* _AniName)
 bool KBitMap_Animator::init()
 {
 	KRenderer::init();
+	
+	if (iAniIdx >= CurAniIter->second.size())
+	{
+		iAniIdx = 0;
+		fAniTime = .0f;
+	}
 
 	return true;
 }
-
 
 void KBitMap_Animator::update()
 {
@@ -84,12 +89,22 @@ void KBitMap_Animator::update()
 }
 void KBitMap_Animator::render()
 {
+	if (false == bRender)
+	{
+		return;
+	}
+
+	if (CurAniIter->second.size() <= iAniIdx)
+	{
+		iAniIdx = 0;
+	}
+
 	TransparentBlt(
 		kwindow()->bhdc(),
-		MyTrans->pos().x + MyPivot.x,
-		MyTrans->pos().y + MyPivot.y,
-		MyTrans->size().x ,
-		MyTrans->size().y ,
+		RenderPos.x,
+		RenderPos.y,
+		MyTrans->Size.x ,
+		MyTrans->Size.y ,
 		CurAniIter->second[iAniIdx]->MyDC,
 		0,
 		0,

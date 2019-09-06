@@ -29,8 +29,12 @@ void KTransform::release()
 
 }
 
-
-void KTransform::moving(const KVec2& _Speed)
+void KTransform::moving_pos(const KVec2& _Pos)
 {
-	mPos += _Speed * KTimeManager::instance()->deltatime();
+	Pos = _Pos;
+}
+
+void KTransform::moving_delta(const KVec2& _Speed)
+{
+	Pos += _Speed * KTimeManager::instance()->deltatime();
 }

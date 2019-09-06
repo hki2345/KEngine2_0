@@ -62,49 +62,37 @@ void KOne::release()
 
 	MapComponent.clear();
 }
-//
-//
-//KComponent* KOne::set_component(KComponent* _Other)
-//{
-//	KComponent* NewCom = new KComponent();
-//	NewCom->kone(this);
-//	// NewCom->kwindow(kwindow());
-//	NewCom->kscene(kscene());
-//	NewCom->init();
-//
-//	if (false == NewCom->init())
-//	{
-//		delete NewCom;
-//		return nullptr;
-//	}
-//
-//	MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
-//	return NewCom;
-//	return nullptr;
-//}
 
 
 
 void KOne::pos(const KVec2& _Pos)
 {
-	MyTrans->pos(_Pos);
+	MyTrans->Pos =_Pos;
 }
 void KOne::size(const KSize2& _Size)
 {
-	MyTrans->size(_Size);
+	MyTrans->Size = _Size;
 }
 
-void KOne::moving(const KSize2& _Value)
+
+
+void KOne::moving_pos(const KPos2& _Value)
 {
-	MyTrans->moving(_Value);
+	MyTrans->moving_pos(_Value);
 }
+
+void KOne::moving_delta(const KSize2& _Value)
+{
+	MyTrans->moving_delta(_Value);
+}
+
 
 
 KPos2& KOne::pos()
 {
-	return MyTrans->pos();
+	return MyTrans->Pos;
 }
 KPos2& KOne::size()
 {
-	return MyTrans->size();
+	return MyTrans->Size;
 }

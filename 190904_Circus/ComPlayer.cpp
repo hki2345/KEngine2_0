@@ -1,4 +1,5 @@
 #include "ComPlayer.h"
+#include <KScene.h>
 #include <KBitMap_Animator.h>
 #include "GameManager.h"
 
@@ -22,30 +23,56 @@ ComPlayer::~ComPlayer()
 
 void ComPlayer::create()
 {
+	pAnimator = kone()->add_component<KBitMap_Animator>();
+
+	kone()->pos(KPos2::Zero);
+	kone()->size(KPos2(80, 80));
+
+	std::vector<std::wstring> Tmp;
+	Tmp.push_back(L"Circus\\player0.bmp");
+	Tmp.push_back(L"Circus\\player1.bmp");
+	Tmp.push_back(L"Circus\\player2.bmp");
+	pAnimator->insert_animation(L"Run", Tmp, 10);
+
+	Tmp.clear();
+	Tmp.push_back(L"Circus\\player0.bmp");
+	pAnimator->insert_animation(L"Idle", Tmp, 10);
+
+	Tmp.clear();
+	Tmp.push_back(L"Circus\\player2.bmp");
+	pAnimator->insert_animation(L"Jump", Tmp, 10);
+
+
+	Tmp.clear();
+	Tmp.push_back(L"Circus\\die.bmp");
+	pAnimator->insert_animation(L"Die", Tmp, 10);
+
+
+	Tmp.clear();
+	Tmp.push_back(L"Circus\\win.bmp");
+	Tmp.push_back(L"Circus\\win2.bmp");
+	pAnimator->insert_animation(L"Win", Tmp, 10);
 }
 
 bool ComPlayer::init()
 {
-	if (nullptr == pAnimator) 
-	{
-		pAnimator = kone()->get_component<KBitMap_Animator>();
-	}
-
 	fDirWalk[0] = -1.0f;
 	fDirWalk[1] = 1.0f;
 	fDirWalk[2] = .0f;
 
 
-	fWalkSpeed = 100.0f;
+	fWalkSpeed = 150.0f;
 	fwalk_distance = .0f;
 	fmax_distance = 1000.0f;
 
 
 	kone()->pos(KPos2(100, 440));
+	kscene()->SceneCamPos = KPos2(kone()->pos().x - 100.0f, 0);
 	fbottom = 440.0f;
 	fJumpPower = 250.0f;
 
 	ePlayerAct = ComPlayer::IDLE;
+
 	return true;
 }
 
@@ -177,7 +204,7 @@ void ComPlayer::update_jump()
 	fJumpTime += KTimeManager::instance()->deltatime();
 	float T = cos(fJumpTime * 2);
 
-	kone()->moving({ .0f, (T * fJumpPower) * -1.0f });
+	kone()->moving_delta({ .0f, (T * fJumpPower) * -1.0f });
 
 	if (fbottom <= kone()->pos().y)
 	{
@@ -217,11 +244,11 @@ void ComPlayer::update_move()
 	{
 		fwalk_distance = fmax_distance;
 	}
+	   	
+	kone()->moving_delta({ fWalkSpeed * ePlayerDir, 0 });
 
-
-	if (fwalk_distance > fmax_distance - 300 &&
-		fwalk_distance <= fmax_distance)
+	if (kone()->pos().x - 100 > 0 && kone()->pos().x < fmax_distance)
 	{
-		kone()->moving({ fWalkSpeed * ePlayerDir, 0 });
+		kscene()->SceneCamPos = KPos2(kone()->pos().x - 100.0f, 0);
 	}
 }

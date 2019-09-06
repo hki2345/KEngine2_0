@@ -1,5 +1,7 @@
 #include "Obstcle.h"
 #include "ComPlayer.h"
+
+#include <KScene.h>
 #include <KOne.h>
 
 
@@ -30,11 +32,11 @@ bool Obstcle::init()
 
 	else if (true == bFast)
 	{
-		fObsSpeed = 80.0f;
+		fObsSpeed = 100.0f;
 	}
 	else
 	{
-		fObsSpeed = 50.0f;
+		fObsSpeed = 80.0f;
 	}
 	return true;
 }
@@ -50,7 +52,7 @@ void Obstcle::update()
 		update_pot();
 		break;
 	case Obstcle::OT_WINPAN:
-		update_winpan();
+		//update_winpan();
 		break;
 	default:
 		break;
@@ -62,31 +64,22 @@ void Obstcle::update()
 
 void Obstcle::update_fire()
 {
-	CircusObject::update();
-	kone()->moving(KPos2::Left * (fObsSpeed));
+	if (KPos2::Left == kscene()->outof_screen(kone()))
+	{
+		kone()->active(false);
+	}
+
+	kone()->moving_delta(KPos2::Left * (fObsSpeed));
+
+
 }
 void Obstcle::update_pot()
 {
-	CircusObject::update();
-}
-void Obstcle::update_winpan()
-{
-	if (nullptr == pPlayer)
+	if (KPos2::Left == kscene()->outof_screen(kone()))
 	{
-		return;
-	}
-
-	int Tmp = pPlayer->scroll_dir();
-	if (-1 == Tmp)
-	{
-		kone()->moving(KPos2::Right * (fBaseSpeed));
-	}
-	else if (1 == Tmp)
-	{
-		kone()->moving({ KPos2::Left * (fBaseSpeed) });
+		kone()->active(false);
 	}
 }
-
 
 void Obstcle::update_colide()
 {

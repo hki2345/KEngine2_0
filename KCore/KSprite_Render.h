@@ -18,7 +18,6 @@ public:
 	void set_bit(const wchar_t* _Name = L"NONE");
 
 	bool init() override;
-	void update() override;
 	void render() override;
 };
 

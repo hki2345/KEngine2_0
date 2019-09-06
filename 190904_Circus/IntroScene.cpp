@@ -25,7 +25,7 @@ void IntroScene::create()
 {
 	KScene::create();
 
-	create_backboard();
+	// create_backboard();
 	create_star();
 	create_circuschaley();
 }

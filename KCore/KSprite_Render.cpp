@@ -22,10 +22,6 @@ bool KSprite_Render::init()
 {
 	return true;
 }
-void KSprite_Render::update()
-{
-
-}
 void KSprite_Render::render()
 {
 

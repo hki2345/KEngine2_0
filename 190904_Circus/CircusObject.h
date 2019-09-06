@@ -28,11 +28,5 @@ public:
 	virtual bool init() override;
 	virtual void update() override;
 
-
-
-
-protected:
-	KPos2 out_ofscreen();
-
 };
 

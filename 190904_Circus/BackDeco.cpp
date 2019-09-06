@@ -23,6 +23,12 @@ BackDeco::~BackDeco()
 bool BackDeco::init()
 {
 	CircusObject::init();
+	KBitMap_Animator* TAni = kone()->get_component<KBitMap_Animator>();
+
+	if (nullptr != TAni)
+	{
+		TAni->change_animation(L"Idle");
+	}
 
 	return true;
 }

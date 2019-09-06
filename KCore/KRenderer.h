@@ -20,15 +20,29 @@ public:
 
 
 protected:
+	bool bHold;
+	bool bRender;
+
 	KTransform* MyTrans;
 	KPos2 MyPivot;
+	KPos2 RenderPos;
+
+
+protected:
+
 
 public:
 	virtual bool init() override;
 	virtual void update() override {};
 
+	virtual void update_trans(const KPos2& _CameraPos);
 	virtual void render() = 0;
 	virtual void release() override {};
+
+	inline void set_hold()
+	{
+		bHold = true;
+	}
 
 	inline void pivot(const KPos2& _Pivot)
 	{

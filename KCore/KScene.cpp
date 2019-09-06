@@ -4,7 +4,6 @@
 #include "KRenderManager.h"
 
 
-
 KScene::KScene()
 {
 }
@@ -15,6 +14,8 @@ void KScene::create()
 	{
 		curKRenderMgr = new KRenderManager();
 		curKRenderMgr->init();
+
+		SceneCamPos = KPos2::Zero;
 	}
 
 	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
@@ -46,7 +47,11 @@ void KScene::update()
 
 	for (; SIter != EIter; ++SIter)
 	{
-		SIter->second->update();
+		if (true == SIter->second->active())
+		{
+			SIter->second->update();
+			curKRenderMgr->update_trans(SceneCamPos);
+		}		
 	}
 }
 
@@ -147,4 +152,19 @@ bool KScene::delete_kone(const wchar_t* _Name)
 bool KScene::insert_krender(KRenderer* _Render, const int& _Key /*= 0*/)
 {
 	return curKRenderMgr->insert_krenderer(_Render, _Key);
+}
+
+
+KPos2 KScene::outof_screen(KOne* _Target)
+{
+	if (SceneCamPos.x > _Target->pos().x + _Target->size().x)
+	{
+		return KPos2::Left;
+	}
+	else if (SceneCamPos.x < (_Target->pos().x) - 800)
+	{
+		return KPos2::Right;
+	}
+
+	return KPos2::Zero;
 }

@@ -160,8 +160,11 @@
     <ClInclude Include="KEngineinitiator.h" />
     <ClInclude Include="KEngineReleaser.h" />
     <ClInclude Include="KEngineUpdater.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="Miter.h" />
+    <ClInclude Include="ObstacleManager.h" />
     <ClInclude Include="Obstcle.h" />
+    <ClInclude Include="UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackDeco.cpp" />
@@ -174,8 +177,11 @@
     <ClCompile Include="KEngineLauncher.cpp" />
     <ClCompile Include="KEngineReleaser.cpp" />
     <ClCompile Include="KEngineUpdater.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Miter.cpp" />
+    <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="Obstcle.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

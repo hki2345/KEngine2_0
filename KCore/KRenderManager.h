@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-
+#include "KVector.h"
 
 
 
@@ -19,6 +19,7 @@ private:
 
 private:
 	void init();
+	void update_trans(const KPos2& _CameraPos);
 	void render();
 	void release();
 
