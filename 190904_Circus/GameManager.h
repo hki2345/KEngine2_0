@@ -27,5 +27,6 @@ public:
 	void release();
 
 	void reset_game();
+	void end_game();
 };
 

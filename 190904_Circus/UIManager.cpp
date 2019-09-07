@@ -123,6 +123,11 @@ void UIManager::set_wait()
 		VecGame[i]->active(false);
 	}
 
+	for (int i = 0; i < LifeImage.size(); i++)
+	{
+		LifeImage[i]->active(false);
+	}
+
 	BonusScore = 5000;
 	MinusBonus = .5f;
 	MinusBonusScoreDelta = .0f;;
@@ -148,7 +153,7 @@ void UIManager::set_game()
 	{
 		VecGame[i]->active(true);
 	}
-	for (int i = 0; i < LifeImage.size(); i++)
+	for (int i = 0; i < pPlayer->score_info().Life; i++)
 	{
 		LifeImage[i]->active(true);
 	}

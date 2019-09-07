@@ -103,3 +103,7 @@ void GameManager::reset_game()
 {
 	KSceneManager::instance()->change_scene(L"Game");
 }
+void GameManager::end_game()
+{
+	KSceneManager::instance()->change_scene(L"Intro");
+}

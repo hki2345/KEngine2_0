@@ -24,6 +24,7 @@ ComPlayer::~ComPlayer()
 void ComPlayer::create()
 {
 	pAnimator = kone()->add_component<KBitMap_Animator>();
+	sScoreInfo.Life = 3;
 
 	kone()->pos(KPos2::Zero);
 	kone()->size(KPos2(80, 80));
@@ -73,7 +74,12 @@ bool ComPlayer::init()
 
 	ePlayerAct = ComPlayer::WAIT;
 	
-	sScoreInfo.Life = 3;
+	if (0 > sScoreInfo.Life)
+	{
+		sScoreInfo.Life = 3;
+	}
+	
+
 	sScoreInfo.Score = 0;
 
 	return true;
@@ -176,10 +182,7 @@ void ComPlayer::set_win()
 void ComPlayer::set_failed()
 {
 	ePlayerAct = ACT_STATE::DIE;
-	if (true == KInputManager::instance()->is_press(VK_SPACE))
-	{
-		GameManager::instance()->reset_game();
-	}
+
 }
 
 void ComPlayer::set_item()
@@ -262,10 +265,18 @@ void ComPlayer::update_win()
 }
 void ComPlayer::update_die()
 {
-	pAnimator->change_animation(L"Die"); 
+	pAnimator->change_animation(L"Die");
 	if (true == KInputManager::instance()->is_press(VK_SPACE))
 	{
-		GameManager::instance()->reset_game();
+		sScoreInfo.Life -= 1;
+		if (sScoreInfo.Life < 0)
+		{
+			GameManager::instance()->end_game();
+		}
+		else
+		{
+			GameManager::instance()->reset_game();
+		}
 	}
 }
 
