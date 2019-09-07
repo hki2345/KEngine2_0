@@ -42,10 +42,28 @@ bool InGameScene::init()
 {
 	KScene::init();
 
+	bStart = false;
+	fWaitTime = .0f;
+	fStartTime = 3.0f;
+
 	fFireTime = .0f; 
-	fFireSpwanTime = 2.0f;
+	fFireSpawnTime = 3.0f;
 
 
+	fFastFireTime = .0f;
+	fFastFireSpawnTime = 6.0f;
+
+
+	fItemFireTime = .0f;
+	fItemFireSpawnTime = 10.0f;
+
+
+	iPotMiter = 400.0f;
+	fPotDistance = .0f;
+	fPotSpawnDistance = 200.0f;
+
+
+	pUIManager->set_wait();
 	pObsManager->init_fire();
 	return true;
 }
@@ -54,9 +72,30 @@ bool InGameScene::init()
 void InGameScene::update()
 {
 	KScene::update();
+	
+	if (false == bStart)
+	{
+		pUIManager->set_wait();
+		update_wait();
+		return;
+	}
+	pUIManager->set_game();
+
+
 	spwan_fire();
+	spwan_pot();
+	// spwan_itemfire();
+	spwan_fastfire();
+}
 
-
+void InGameScene::update_wait()
+{
+	fWaitTime += KTimeManager::instance()->deltatime();
+	if (fWaitTime >= fStartTime)
+	{
+		bStart = true;
+		pPlayer->set_play();
+	}
 }
 
 
@@ -64,13 +103,44 @@ void InGameScene::update()
 void InGameScene::spwan_fire()
 {
 	fFireTime += KTimeManager::instance()->deltatime();
-	if (fFireTime >= fFireSpwanTime)
+	if (fFireTime >= fFireSpawnTime)
 	{
 		pObsManager->init_fire();
 		fFireTime = .0f;
 	}
 }
 
+void InGameScene::spwan_fastfire()
+{
+	fItemFireTime += KTimeManager::instance()->deltatime();
+	if (fItemFireTime >= fItemFireSpawnTime)
+	{
+		pObsManager->init_fastfire();
+		fItemFireTime = .0f;
+	}
+}
+
+
+void InGameScene::spwan_itemfire()
+{
+	fFastFireTime += KTimeManager::instance()->deltatime();
+	if (fFastFireTime >= fFastFireSpawnTime)
+	{
+		pObsManager->init_itemfire();
+		fFastFireTime = .0f;
+	}
+}
+
+void InGameScene::spwan_pot()
+{
+	fPotDistance = pPlayer->kone()->pos().x;
+
+	if (fPotDistance >= fPotSpawnDistance)
+	{
+		pObsManager->init_pot();
+		fPotSpawnDistance += iPotMiter;
+	}
+}
 
 void InGameScene::update_game()
 {

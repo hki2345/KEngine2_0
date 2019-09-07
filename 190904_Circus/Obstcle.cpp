@@ -16,23 +16,24 @@ Obstcle::~Obstcle()
 }
 
 
-void Obstcle::set_prop(const int& _Type, const bool& _Fast)
+void Obstcle::set_prop(const OBSTACLE_TYPE& _Type, const bool& _Fast)
 {
-	eObType = (OBSTACLE_TYPE)_Type;
+	eObType = _Type;
 	bFast = _Fast;	
 }
 
 bool Obstcle::init()
 {
 	CircusObject::init();
-	if (eObType != OBSTACLE_TYPE::OT_FIRE)
+	if (eObType != OBSTACLE_TYPE::OT_FIRE &&
+		eObType != OBSTACLE_TYPE::OT_ITEMFIRE)
 	{
 		fObsSpeed = .0f;
 	}
 
 	else if (true == bFast)
 	{
-		fObsSpeed = 100.0f;
+		fObsSpeed = 120.0f;
 	}
 	else
 	{
@@ -43,9 +44,16 @@ bool Obstcle::init()
 
 void Obstcle::update()
 {
+	if (false == pPlayer->check_acting())
+	{
+		return;
+	}
+
+
 	switch (eObType)
 	{
 	case Obstcle::OT_FIRE:
+	case Obstcle::OT_ITEMFIRE:
 		update_fire();
 		break;
 	case Obstcle::OT_POT:
@@ -85,21 +93,55 @@ void Obstcle::update_colide()
 {
 	float colsize = 30.0f;
 
-	if (pPlayer->kone()->pos().y > 370 && 
+	switch (eObType)
+	{
+	case Obstcle::OT_ITEMFIRE:
+		pPlayer->set_item();
+		break;
+	case Obstcle::OT_FIRE:
+		if (true == collide_sub(600.0f, 370.0f))
+		{
+			pPlayer->set_failed();
+		}
+		else if(true == collide_sub(370.0f, 170.0f))
+		{
+			pPlayer->set_score();
+		}
+
+
+	case Obstcle::OT_POT:
+		if (true == collide_sub(600.0f, 370.0f))
+		{
+			pPlayer->set_failed();
+		}
+		else if (true == collide_sub(370.0f, 170.0f))
+		{
+			pPlayer->set_score();
+		}
+
+		break;
+	case Obstcle::OT_WINPAN:
+		if (true == collide_sub(800.0f, 370.0f))
+		{
+			pPlayer->set_win();
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+bool Obstcle::collide_sub(const float& _YPos1, const float& _YPos2)
+{
+	float YPos = pPlayer->kone()->pos().y;
+	float colsize = 30.0f;
+	if (YPos < _YPos1 &&
+		YPos > _YPos2 &&
 		kone()->pos().x - colsize < pPlayer->kone()->pos().x &&
 		kone()->pos().x + colsize > pPlayer->kone()->pos().x)
 	{
-		switch (eObType)
-		{
-		case Obstcle::OT_FIRE:
-		case Obstcle::OT_POT:
-			pPlayer->set_failed();
-			break;
-		case Obstcle::OT_WINPAN:
-			pPlayer->set_win();
-			break;
-		default:
-			break;
-		}
+		return true;
 	}
+
+	return false;
 }

@@ -8,14 +8,14 @@ public:
 	Obstcle();
 	~Obstcle();
 
-private:
+public:
 	enum OBSTACLE_TYPE
 	{
 		OT_FIRE = 0,
+		OT_ITEMFIRE,
 		OT_POT,
 		OT_WINPAN,
 	};
-
 
 private:
 	KPos2 MyOriginPos;
@@ -23,7 +23,7 @@ private:
 	bool bFast;
 
 public:
-	void set_prop(const int& _Type, const bool& _Fast);
+	void set_prop(const OBSTACLE_TYPE& _Type, const bool& _Fast);
 
 	bool init() override;
 	void update() override;
@@ -33,5 +33,7 @@ private:
 	void update_pot();
 
 	void update_colide();
+
+	bool collide_sub(const float& _YPos1, const float& _YPos2);
 };
 

@@ -63,7 +63,7 @@ bool ComPlayer::init()
 
 	fWalkSpeed = 150.0f;
 	fwalk_distance = .0f;
-	fmax_distance = 1000.0f;
+	fmax_distance = 4500.0f;
 
 
 	kone()->pos(KPos2(100, 440));
@@ -71,7 +71,10 @@ bool ComPlayer::init()
 	fbottom = 440.0f;
 	fJumpPower = 250.0f;
 
-	ePlayerAct = ComPlayer::IDLE;
+	ePlayerAct = ComPlayer::WAIT;
+	
+	sScoreInfo.Life = 3;
+	sScoreInfo.Score = 0;
 
 	return true;
 }
@@ -82,6 +85,10 @@ void ComPlayer::update()
 	update_input();
 	switch (ePlayerAct)
 	{
+	case ComPlayer::WAIT:
+		update_wait();
+		break;
+
 	case ComPlayer::IDLE:
 		update_idle();
 		break;
@@ -123,8 +130,7 @@ int ComPlayer::scroll_dir()
 
 void ComPlayer::update_input()
 {
-	if (ACT_STATE::DIE == ePlayerAct || 
-		ACT_STATE::WIN == ePlayerAct)
+	if (false == check_acting())
 	{
 		return;
 	}
@@ -153,7 +159,10 @@ void ComPlayer::update_input()
 }
 
 
-
+void ComPlayer::set_play()
+{
+	ePlayerAct = ACT_STATE::IDLE;
+}
 
 void ComPlayer::set_win()
 {
@@ -173,6 +182,16 @@ void ComPlayer::set_failed()
 	}
 }
 
+void ComPlayer::set_item()
+{
+	sScoreInfo.Score += 500;
+}
+void ComPlayer::set_score()
+{
+	sScoreInfo.Score += 50;
+}
+
+
 bool ComPlayer::check_win()
 {
 	if (ePlayerAct == ACT_STATE::WIN)
@@ -183,6 +202,23 @@ bool ComPlayer::check_win()
 	return false;
 }
 
+bool ComPlayer::check_acting()
+{
+	if (ePlayerAct == ACT_STATE::WIN ||
+		ePlayerAct == ACT_STATE::DIE ||
+		ePlayerAct == ACT_STATE::WAIT)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
+void ComPlayer::update_wait()
+{
+	pAnimator->change_animation(L"Idle");
+}
 void ComPlayer::update_idle()
 {
 	pAnimator->change_animation(L"Idle");

@@ -74,7 +74,7 @@ void MapManager::create(KScene* _Scene, ComPlayer* _Player)
 
 
 
-	for (size_t i = 0; i < 4; i++)
+	for (size_t i = 0; i < 14; i++)
 	{
 		KOne* TOne = _Scene->create_kone(L"Miter");
 		TOne->size({ 100.0f, 30.0f });
@@ -87,9 +87,8 @@ void MapManager::create(KScene* _Scene, ComPlayer* _Player)
 		KBitMap_Render* BRE = TOne->add_component<KBitMap_Render>();
 		BRE->set_bit(L"Circus\\miter.bmp", 6);
 
-
 		KText_Render* TRE = TOne->add_component<KText_Render>();
-		TRE->set_text(std::to_wstring(40 - (i + 1) * 10).c_str(), L"DungGeunMo", 15, 7);
+		TRE->set_text(std::to_wstring(490 - (i + 1) * 10).c_str(), L"DungGeunMo", 15, 7);
 		TRE->pivot(KPos2(50, 7));
 	}
 }

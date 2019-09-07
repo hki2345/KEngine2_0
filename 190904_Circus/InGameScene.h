@@ -19,8 +19,24 @@ private:
 	ObstacleManager* pObsManager;
 	UIManager* pUIManager;
 
+
+	bool bStart;
+	float fWaitTime;
+	float fStartTime;
+
 	float fFireTime;
-	float fFireSpwanTime;
+	float fFireSpawnTime;
+
+	float fFastFireTime;
+	float fFastFireSpawnTime;
+
+	float fItemFireTime;
+	float fItemFireSpawnTime;
+
+
+	float fPotDistance;
+	float fPotSpawnDistance;
+	float iPotMiter;
 
 public:
 	void create() override;
@@ -29,7 +45,14 @@ public:
 	void release() override;
 
 private:
+	void update_wait();
+
+	void spwan_itemfire();
+	void spwan_fastfire();
 	void spwan_fire();
+	void spwan_pot();
+
+
 	void update_game();
 };
 

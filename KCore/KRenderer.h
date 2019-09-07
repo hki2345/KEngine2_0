@@ -39,7 +39,7 @@ public:
 	virtual void render() = 0;
 	virtual void release() override {};
 
-	inline void set_hold()
+	void set_hold()
 	{
 		bHold = true;
 	}
