@@ -4,6 +4,8 @@
 #include "KRenderManager.h"
 
 
+#include "KCore.h"
+
 KScene::KScene()
 {
 }
@@ -91,6 +93,8 @@ void KScene::release()
 void KScene::render() 
 {
 	curKRenderMgr->render();
+
+	KCore::instance()->klog.render();
 }
 
 

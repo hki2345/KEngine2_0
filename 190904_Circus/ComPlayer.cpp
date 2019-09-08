@@ -174,7 +174,7 @@ void ComPlayer::set_win()
 {
 	ePlayerAct = ACT_STATE::WIN;
 	kone()->pos(KPos2(kone()->pos().x, 400));
-	if (true == KInputManager::instance()->is_press(VK_SPACE))
+	if (true == KInputManager::instance()->is_down(VK_SPACE))
 	{
 		GameManager::instance()->reset_game();
 	}
@@ -231,7 +231,7 @@ void ComPlayer::update_run()
 {
 	pAnimator->change_animation(L"Run");
 	update_move();
-	if (true == KInputManager::instance()->is_press(VK_SPACE))
+	if (true == KInputManager::instance()->is_down(VK_SPACE))
 	{
 		ePlayerAct = ACT_STATE::JUMP;
 	}

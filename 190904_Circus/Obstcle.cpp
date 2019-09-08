@@ -60,7 +60,7 @@ void Obstcle::update()
 		update_pot();
 		break;
 	case Obstcle::OT_WINPAN:
-		//update_winpan();
+		// update_winpan();
 		break;
 	default:
 		break;

@@ -11,6 +11,7 @@
 #include "KInputManager.h"
 #include "KSceneManager.h"
 #include "KTimeManager.h"
+#include "KDebugManager.h"
 
 #include "KBitMap.h"
 
@@ -42,6 +43,7 @@ void KCore::init()
 	KSceneManager::instance()->init();
 	KPathManager::instance()->init();
 	KTimeManager::instance()->init();
+	klog.init();
 }
 
 void KCore::init(

@@ -26,7 +26,7 @@ void UIManager::create(KScene* _Scene, ComPlayer* _Player)
 	create_game(_Scene);
 	create_life(_Scene);
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < VecWait.size(); i++)
 	{
 		VecWait[i]->active(false);
 	}

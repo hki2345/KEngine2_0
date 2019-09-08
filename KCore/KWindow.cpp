@@ -52,7 +52,8 @@ void KWindow::render()
 	KSceneManager::instance()->render();
 	BitBlt(hMainDC, 0, 0, (int)vSize.x, (int)vSize.y, hBackDC, 0, 0, SRCCOPY);
 	// InvalidateRect(mhWnd, NULL, FALSE);
-
+	
+	// Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
 
 	// 검은색 색칠
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);

@@ -35,8 +35,6 @@ bool BackDeco::init()
 
 void BackDeco::update()
 {
-	CircusObject::update();
-
 	if (true == pPlayer->check_win() && true == bActiveDeco)
 	{
 		kone()->get_component<KBitMap_Animator>()->change_animation(L"Win");

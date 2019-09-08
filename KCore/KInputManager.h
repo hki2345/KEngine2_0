@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <map>
 #include "KMacro.h"
 
 
@@ -29,9 +30,12 @@ public:
 		return pKInputManager;
 	}
 
+
 public:
-	void update(const int& _Value);
+	bool is_down(const int& _Value);
 	bool is_press(const int& _Value);
+	bool is_up(const int& _Value);
+	bool is_unpress(const int& _Value);
 
 	void release();
 };

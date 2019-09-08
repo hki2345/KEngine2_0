@@ -2,6 +2,8 @@
 
 
 #include <KResourceManager.h>
+#include <KTimeManager.h>
+#include <KDebugManager.h>
 #include "KBitMap.h"
 
 
@@ -87,12 +89,16 @@ void GameManager::init()
 }
 void GameManager::update()
 {
-	bool Value = KInputManager::instance()->is_press(0x58);
+	bool Value = KInputManager::instance()->is_down(0x58);
 
 	if (true == Value)
 	{
 		KCore::instance()->shut_down();
 	}
+
+
+	KCore::instance()->klog << (int)KTimeManager::instance()->fps();
+	KCore::instance()->klog << KTimeManager::instance()->deltatime();
 }
 void GameManager::release()
 {

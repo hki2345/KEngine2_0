@@ -49,11 +49,17 @@ void KBitMap_Animator::insert_animation(
 
 void KBitMap_Animator::change_animation(const wchar_t* _AniName)
 {
-	CurAniIter = MapVecBit.find(_AniName);
+	std::map<std::wstring, std::vector< KBitMap*>>::iterator FIter = MapVecBit.find(_AniName);
 
-	if (MapVecBit.end() == CurAniIter)
+	if (MapVecBit.end() == FIter)
 	{
 		KASSERT;
+	}
+
+	if (CurAniIter != FIter)
+	{
+		iAniIdx = 0;
+		CurAniIter = MapVecBit.find(_AniName);
 	}
 }
 

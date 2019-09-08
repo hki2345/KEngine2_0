@@ -23,6 +23,7 @@ MapManager::~MapManager()
 
 void MapManager::create(KScene* _Scene, ComPlayer* _Player)
 {
+	int DecoSize = 12;
 	int BackSize = 12;
 
 	std::vector<KOne*> VecBackGround;

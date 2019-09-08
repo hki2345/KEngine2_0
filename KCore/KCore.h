@@ -1,6 +1,8 @@
 #pragma once
 #include <crtdbg.h>
 #include <Windows.h>
+#include "KDebugManager.h"
+
 
 class KUpdater;
 class KCore
@@ -14,6 +16,9 @@ private:
 	~KCore() {};
 
 	static KCore* pKCore;
+
+public:
+	KDebugManager klog;
 
 public:
 	class KCoreUpdater

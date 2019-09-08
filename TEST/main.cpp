@@ -5,6 +5,8 @@
 #include <sstream>
 #include <locale>
 #include <vector>
+#include <Windows.h>
+
 
 class AAA
 {
@@ -91,5 +93,20 @@ int main()
 
 	std::wstring Tmp = greeting;
 	std::wcout << L"greeting file: " << Tmp.c_str();
+
+
+	while (true)
+	{
+		std::wcout << std::endl << std::endl;
+		SHORT X = GetAsyncKeyState(VK_LBUTTON);
+		SHORT XX = 1;
+
+		if (X == XX)
+		{
+			int a = 0;
+		}
+		std::wcout << X << std::endl;
+	}
+
 	return 0;
 }

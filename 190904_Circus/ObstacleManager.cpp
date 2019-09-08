@@ -85,37 +85,37 @@ void ObstacleManager::init_pot()
 
 void ObstacleManager::create_obstacle(KScene* _Scene, ComPlayer* _Player)
 {
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 5; i++)
 	{
 		VecFire.push_back(create_fire(_Scene, _Player, false));
 		VecPot.push_back(create_pot(_Scene, _Player));
 	}
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 5; i++)
 	{
 		VecFire[i]->active(false);
 		VecPot[i]->active(false);
 	}
 
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < 3; i++)
 	{
 		VecFastFire.push_back(create_fire(_Scene, _Player, false, true));
 	}
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < 3; i++)
 	{
 		VecFastFire[i]->active(false);
 	}
 
 
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < 3; i++)
 	{
 		VecItemFire.push_back(create_fire(_Scene, _Player, true));
 	}
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < 3; i++)
 	{
 		VecItemFire[i]->active(false);
 	}

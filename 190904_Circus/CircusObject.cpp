@@ -30,14 +30,3 @@ bool CircusObject::init()
 
 	return true;
 }
-void CircusObject::update()
-{
-	if (KPos2::Left == kscene()->outof_screen(kone()))
-	{
-		kone()->pos(KPos2(kscene()->SceneCamPos.x + 800, kone()->pos().y));
-	}
-	else if (KPos2::Right == kscene()->outof_screen(kone()))
-	{
-		kone()->pos(KPos2(kscene()->SceneCamPos.x - kone()->size().x, kone()->pos().y));
-	}
-}

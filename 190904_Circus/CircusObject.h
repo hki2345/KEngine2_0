@@ -26,7 +26,5 @@ public:
 
 	virtual void create() override;
 	virtual bool init() override;
-	virtual void update() override;
-
 };
 

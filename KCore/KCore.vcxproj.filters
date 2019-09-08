@@ -67,6 +67,9 @@
     <ClCompile Include="KText_Render.cpp">
       <Filter>04_Render\Child</Filter>
     </ClCompile>
+    <ClCompile Include="KDebugManager.cpp">
+      <Filter>01_Manager\DebugManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KTimeManager.h">
@@ -147,6 +150,9 @@
     <ClInclude Include="KText_Render.h">
       <Filter>04_Render\Child</Filter>
     </ClInclude>
+    <ClInclude Include="KDebugManager.h">
+      <Filter>01_Manager\DebugManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00_KCore">
@@ -199,6 +205,9 @@
     </Filter>
     <Filter Include="04_Render\Animator">
       <UniqueIdentifier>{375af6da-6956-4fa7-a0af-ffb934ef5a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Manager\DebugManager">
+      <UniqueIdentifier>{a8b96635-a382-48fe-bc02-7fb0b2e0c2e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

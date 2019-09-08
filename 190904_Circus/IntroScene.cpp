@@ -33,7 +33,7 @@ void IntroScene::create()
 void IntroScene::update() 
 {
 	KScene::update();
-	if (true == KInputManager::instance()->is_press(VK_SPACE))
+	if (true == KInputManager::instance()->is_up(VK_SPACE))
 	{
 		GameManager::instance()->reset_game();
 	}
