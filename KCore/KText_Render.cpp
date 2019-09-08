@@ -17,9 +17,9 @@ KText_Render::~KText_Render()
 
 void KText_Render::set_text(
 	const wchar_t* _Text,
-	const wchar_t* _Font/* = L"±Ã¼­"*/,
-	const int& _Size/* = 20*/,
+	const int& _Size,
 	const int& _Key/* = 0*/,
+	const wchar_t* _Font/* = L"±Ã¼­"*/,
 	const DWORD& _Color /*= RGB(255, 255, 255)*/)
 {
 	iMySize = _Size;
@@ -29,6 +29,10 @@ void KText_Render::set_text(
 	kscene()->insert_krender(this, _Key);
 }
 
+void KText_Render::set_text(const wchar_t* _Text)
+{
+	sMyParse = _Text;
+}
 
 void KText_Render::render()
 {

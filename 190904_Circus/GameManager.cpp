@@ -80,8 +80,8 @@ void GameManager::init()
 
 
 
-	InGameScene* GameScene = new InGameScene();
-	IntroScene* InScene = new IntroScene();
+	GameScene = new InGameScene();
+	InScene = new IntroScene();
 
 	KSceneManager::instance()->create_scene(GameScene, L"Game");
 	KSceneManager::instance()->create_scene(InScene, L"Intro");
@@ -97,8 +97,9 @@ void GameManager::update()
 	}
 
 
-	KCore::instance()->klog << (int)KTimeManager::instance()->fps();
+	KCore::instance()->klog << KTimeManager::instance()->fps();
 	KCore::instance()->klog << KTimeManager::instance()->deltatime();
+	KCore::instance()->klog << GameScene->SceneCamPos.x;
 }
 void GameManager::release()
 {

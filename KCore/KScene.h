@@ -28,6 +28,8 @@ protected:
 
 public:
 	KPos2 SceneCamPos;
+
+
 protected:
 	KRenderManager* curKRenderMgr;
 

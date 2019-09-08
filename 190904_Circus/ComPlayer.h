@@ -48,6 +48,7 @@ public:
 
 	// -1 왼쪽 0 정지 1 오른쪽
 	int scroll_dir();
+
 	void set_play();
 	void set_win();
 	void set_failed();

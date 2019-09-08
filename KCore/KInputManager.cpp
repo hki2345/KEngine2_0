@@ -23,7 +23,7 @@ bool KInputManager::is_down(const int& _Value)
 bool KInputManager::is_press(const int& _Value)
 {
 	SHORT X = GetAsyncKeyState(_Value);
-	if (0 != X)
+	if (-32768 == X || -32767 == X)
 	{
 		return true;
 	}

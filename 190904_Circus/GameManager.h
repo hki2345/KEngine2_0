@@ -1,4 +1,7 @@
 #pragma once
+
+class InGameScene;
+class IntroScene;
 class GameManager
 {
 private:
@@ -20,6 +23,10 @@ public:
 		return pkGameManager;
 	}
 
+
+private:
+	InGameScene* GameScene;
+	IntroScene* InScene;
 
 public:
 	void init();

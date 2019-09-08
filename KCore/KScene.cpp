@@ -161,11 +161,13 @@ bool KScene::insert_krender(KRenderer* _Render, const int& _Key /*= 0*/)
 
 KPos2 KScene::outof_screen(KOne* _Target)
 {
-	if (SceneCamPos.x > _Target->pos().x + _Target->size().x)
+	float TmpSize = 200.0f;
+
+	if (SceneCamPos.x > _Target->pos().x + TmpSize + _Target->size().x )
 	{
 		return KPos2::Left;
 	}
-	else if (SceneCamPos.x < (_Target->pos().x) - 800)
+	else if (SceneCamPos.x + 800 < (_Target->pos().x + TmpSize * -1.0f) + (_Target->size().x))
 	{
 		return KPos2::Right;
 	}

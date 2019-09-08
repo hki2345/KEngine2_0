@@ -32,6 +32,5 @@ private:
 
 	KOne* create_fire(KScene* _Scene, ComPlayer* _Player, const bool& _Item, const bool& _Fast = false);
 	KOne* create_pot(KScene* _Scene, ComPlayer* _Player);
-
 };
 

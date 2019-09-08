@@ -27,11 +27,11 @@ void InGameScene::create()
 	KOne* OnePlayer = create_kone(L"Player");
 	pPlayer = OnePlayer->add_component<ComPlayer>();
 
-	MapManager MManager;
-	MManager.create(this, pPlayer);
+	pMapManager = new MapManager();
+	pMapManager->create(this, pPlayer);
 
-	pObsManager = new ObstacleManager();
-	pObsManager->create(this, pPlayer);
+	/*pObsManager = new ObstacleManager();
+	pObsManager->create(this, pPlayer);*/
 
 	pUIManager = new UIManager();
 	pUIManager->create(this, pPlayer);
@@ -64,7 +64,7 @@ bool InGameScene::init()
 
 
 	pUIManager->set_wait();
-	pObsManager->init_fire();
+	// pObsManager->init_fire();
 	return true;
 }
 
@@ -79,13 +79,14 @@ void InGameScene::update()
 		update_wait();
 		return;
 	}
-	pUIManager->set_game();
 
 
-	spwan_fire();
-	spwan_pot();
-	// spwan_itemfire();
-	spwan_fastfire();
+	pMapManager->update();
+
+	//spwan_fire();
+	//spwan_pot();
+	//// spwan_itemfire();
+	//spwan_fastfire();
 }
 
 void InGameScene::update_wait()
@@ -95,6 +96,7 @@ void InGameScene::update_wait()
 	{
 		bStart = true;
 		pPlayer->set_play();
+		pUIManager->set_game();
 	}
 }
 
@@ -150,6 +152,7 @@ void InGameScene::update_game()
 
 void InGameScene::release()
 {
+	RELEASE_PTR(pMapManager);
 	RELEASE_PTR(pUIManager);
 	RELEASE_PTR(pObsManager);
 	KScene::release();

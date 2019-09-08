@@ -21,8 +21,12 @@ KBitMap_Render::~KBitMap_Render()
 }
 
 
-void KBitMap_Render::set_bit(const wchar_t* _Name /*= L"NONE"*/, const int& _Key /*= 0*/)
+void KBitMap_Render::set_bit(
+	const wchar_t* _Name /*= L"NONE"*/,
+	const int& _Key /*= 0*/, 
+	const bool& _bBitRender)
 {
+	bBitRender = _bBitRender;
 	MyBitMap = KResourceManager<KBitMap>::instance()->find(_Name);
 	kscene()->insert_krender(this, _Key);
 }
@@ -41,16 +45,34 @@ void KBitMap_Render::render()
 		return;
 	}
 
-	TransparentBlt(
-		kwindow()->bhdc(),
-		RenderPos.x,
-		RenderPos.y,
-		MyTrans->Size.x,
-		MyTrans->Size.y,
-		MyBitMap->MyDC, 
-		0,
-		0,
-		MyBitMap->size().x,
-		MyBitMap->size().y,
-		RGB(255, 0, 255));	
+
+	if (true == bBitRender)
+	{
+		BitBlt(
+			kwindow()->bhdc(),
+			RenderPos.x,
+			RenderPos.y,
+			MyTrans->Size.x,
+			MyTrans->Size.y,
+			MyBitMap->MyDC,
+			0,
+			0,
+			SRCCOPY);
+	}
+
+	if (false == bBitRender)
+	{
+		TransparentBlt(
+			kwindow()->bhdc(),
+			RenderPos.x,
+			RenderPos.y,
+			MyTrans->Size.x,
+			MyTrans->Size.y,
+			MyBitMap->MyDC,
+			0,
+			0,
+			MyBitMap->size().x,
+			MyBitMap->size().y,
+			RGB(255, 0, 255));
+	}
 }

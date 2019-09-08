@@ -3,7 +3,7 @@
 #include <vector>
 
 
-
+class MapManager;
 class ObstacleManager;
 class UIManager;
 class ComPlayer;
@@ -16,6 +16,7 @@ public:
 
 private:
 	ComPlayer* pPlayer;
+	MapManager* pMapManager;
 	ObstacleManager* pObsManager;
 	UIManager* pUIManager;
 

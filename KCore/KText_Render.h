@@ -22,10 +22,12 @@ private:
 public:
 	void set_text(
 		const wchar_t* _Text,
-		const wchar_t* _Font = L"±Ã¼­",
-		const int& _Size = 20,
+		const int& _Size,
 		const int& _Key = 0, 
+		const wchar_t* _Font = L"±Ã¼­",
 		const DWORD& _Color = RGB(255, 255, 255));
+
+	void set_text(const wchar_t* _Text);
 	void render() override;
 };
 

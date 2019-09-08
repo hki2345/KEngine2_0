@@ -15,6 +15,7 @@ public:
 private:
 	float fSpeed;
 	float fAniTime;
+	bool bBitRender;
 	int iAniIdx;
 
 	std::map<std::wstring, std::vector< KBitMap*>>::iterator CurAniIter;
@@ -26,7 +27,8 @@ public:
 		const std::vector<std::wstring>& _Source,
 		const int& _Layer = 0,
 		const float& _Speed = 0.1f, // 초당 약 10장
-		const int& _Start = 0);
+		const int& _Start = 0,
+		const bool& _BitRender = false);
 	void change_animation(const wchar_t* _AniName);
 
 	bool init() override;

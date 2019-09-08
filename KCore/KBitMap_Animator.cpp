@@ -25,9 +25,11 @@ void KBitMap_Animator::insert_animation(
 	const std::vector<std::wstring>& _Source,
 	const int& _Layer /*= 0*/,
 	const float& _Speed /*= 0.02f*/,
-	const int& _Start /*= 0*/
+	const int& _Start /*= 0*/,
+	const bool& _BitRender /*= false*/
 	)
 {
+	bBitRender = _BitRender;
 	fSpeed = _Speed;
 	iAniIdx = _Start;
 
@@ -105,19 +107,36 @@ void KBitMap_Animator::render()
 		iAniIdx = 0;
 	}
 
-	TransparentBlt(
-		kwindow()->bhdc(),
-		RenderPos.x,
-		RenderPos.y,
-		MyTrans->Size.x ,
-		MyTrans->Size.y ,
-		CurAniIter->second[iAniIdx]->MyDC,
-		0,
-		0,
-		CurAniIter->second[iAniIdx]->size().x,
-		CurAniIter->second[iAniIdx]->size().y,
-		RGB(255, 0, 255));
-	
+
+	if (true == bBitRender)
+	{
+		BitBlt(
+			kwindow()->bhdc(),
+			RenderPos.x,
+			RenderPos.y,
+			MyTrans->Size.x,
+			MyTrans->Size.y,
+			CurAniIter->second[iAniIdx]->MyDC,
+			0,
+			0,
+			SRCCOPY);
+	}
+
+	if (false == bBitRender)
+	{
+		TransparentBlt(
+			kwindow()->bhdc(),
+			RenderPos.x,
+			RenderPos.y,
+			MyTrans->Size.x,
+			MyTrans->Size.y,
+			CurAniIter->second[iAniIdx]->MyDC,
+			0,
+			0,
+			CurAniIter->second[iAniIdx]->size().x,
+			CurAniIter->second[iAniIdx]->size().y,
+			RGB(255, 0, 255));
+	}	
 }
 void KBitMap_Animator::release()
 {
