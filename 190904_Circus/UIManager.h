@@ -36,7 +36,7 @@ public:
 	void set_game();
 	
 
-	void update_game();
+	void update_gameUI();
 
 private:
 	void create_wait(KScene* _Scene);

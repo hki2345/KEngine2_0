@@ -68,12 +68,12 @@ void MapManager::create(KScene* _Scene, ComPlayer* _Player)
 			KBitMap_Animator* DRE = VecDeco[i]->add_component<KBitMap_Animator>();
 			std::vector<std::wstring> Tmp;
 			Tmp.push_back(L"Circus\\back_normal.bmp");
-			DRE->insert_animation(L"Idle", Tmp, 6, true);
+			DRE->insert_animation(L"Idle", Tmp, 6, .1f, 0, true);
 
 			Tmp.clear();
 			Tmp.push_back(L"Circus\\back_normal.bmp");
 			Tmp.push_back(L"Circus\\back_normal2.bmp");
-			DRE->insert_animation(L"Win", Tmp, 6, true);
+			DRE->insert_animation(L"Win", Tmp, 6, .1f, 0, true);
 		}
 	}
 
@@ -93,7 +93,7 @@ void MapManager::create(KScene* _Scene, ComPlayer* _Player)
 		BRE->set_bit(L"Circus\\miter.bmp", 6, true);
 
 		KText_Render* TRE = TOne->add_component<KText_Render>();
-		TRE->set_text(std::to_wstring(5000 - (i + 1) * 100).c_str(), 15, 7, L"DungGeunMo");
+		TRE->set_text(std::to_wstring(500 - (i + 1) * 100).c_str(), 15, 7, L"DungGeunMo");
 		TRE->pivot(KPos2(45.0f, 7.0f));
 	}
 }
@@ -108,12 +108,13 @@ void MapManager::update_deco()
 {
 	for (int i = 0; i < VecDeco.size(); i++)
 	{
-		if (1 == pPlayer->scroll_dir() &&
+		if (KPos2::Right == pPlayer->scroll_dir() &&
 			KPos2::Left == pScene->outof_screen(VecDeco[i]))
 		{
 			VecDeco[i]->pos(check_maxdeco());
 		}
-		else if (-1 == pPlayer->scroll_dir() && 
+		else if (
+			KPos2::Left == pPlayer->scroll_dir() &&
 			KPos2::Right == pScene->outof_screen(VecDeco[i]))
 		{
 			VecDeco[i]->pos(check_mindeco());
@@ -123,14 +124,14 @@ void MapManager::update_deco()
 
 KPos2 MapManager::check_mindeco()
 {
-	float MinX = 800.0f;
+	float MinX = 800.0f + VecDeco[0]->kscene()->SceneCamPos.x;
 	KOne* MinOne = nullptr;
 
 	for (int i = 0; i < VecDeco.size(); i++)
 	{
 		float Tmp = VecDeco[i]->pos().x;
 
-		if (MinX > Tmp)
+		if (MinX >= Tmp)
 		{
 			MinX = Tmp;
 			MinOne = VecDeco[i];

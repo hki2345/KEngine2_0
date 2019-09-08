@@ -1,5 +1,6 @@
 #pragma once
 #include <KComponent.h>
+#include <KVector.h>
 
 struct SCORE_INFO
 {
@@ -27,10 +28,10 @@ private:
 
 private:
 	KBitMap_Animator* pAnimator;
-	float ePlayerDir;
+	KPos2 ePlayerDir;
 	ACT_STATE ePlayerAct;
 
-	float fDirWalk[3];
+	KPos2 fDirWalk[3];
 	float fWalkSpeed;
 	float fwalk_distance;
 	float fmax_distance;
@@ -47,13 +48,13 @@ public:
 	void update() override;
 
 	// -1 왼쪽 0 정지 1 오른쪽
-	int scroll_dir();
+	KPos2 scroll_dir();
 
 	void set_play();
 	void set_win();
 	void set_failed();
 	void set_item();
-	void set_score();
+	void plus_score();
 	bool check_win();
 	bool check_acting();
 

@@ -39,6 +39,8 @@ bool Obstcle::init()
 	{
 		fObsSpeed = 80.0f;
 	}
+
+	bCollider = false;
 	return true;
 }
 
@@ -83,7 +85,7 @@ void Obstcle::update_fire()
 }
 void Obstcle::update_pot()
 {
-	if (KPos2::Left == kscene()->outof_screen(kone()))
+	if (KPos2::Left == kscene()->outof_screen(kone()) || 2000.0f < kone()->pos().x)
 	{
 		kone()->active(false);
 	}
@@ -103,9 +105,10 @@ void Obstcle::update_colide()
 		{
 			pPlayer->set_failed();
 		}
-		else if(true == collide_sub(370.0f, 170.0f))
+		else if(false == bCollider && true == collide_sub(370.0f, 170.0f))
 		{
-			pPlayer->set_score();
+			pPlayer->plus_score();
+			bCollider = true;
 		}
 
 
@@ -114,9 +117,10 @@ void Obstcle::update_colide()
 		{
 			pPlayer->set_failed();
 		}
-		else if (true == collide_sub(370.0f, 170.0f))
+		else if (false == bCollider && true == collide_sub(370.0f, 170.0f))
 		{
-			pPlayer->set_score();
+			pPlayer->plus_score();
+			bCollider = true;
 		}
 
 		break;

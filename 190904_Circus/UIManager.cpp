@@ -133,6 +133,7 @@ void UIManager::set_wait()
 	MinusBonus = .5f;
 	MinusBonusScoreDelta = .0f;
 }
+
 void UIManager::set_game()
 {
 	if (bSetGame == false)
@@ -140,16 +141,10 @@ void UIManager::set_game()
 		bSetGame = true;
 	}
 
-	//if (false == pPlayer->check_acting())
-	//{
-	//	return;
-	//}
-
 	for (int i = 0; i < VecWait.size(); i++)
 	{
 		VecWait[i]->active(false);
 	}
-
 	for (int i = 0; i < VecGame.size(); i++)
 	{
 		VecGame[i]->active(true);
@@ -157,6 +152,14 @@ void UIManager::set_game()
 	for (int i = 0; i < pPlayer->score_info().Life; i++)
 	{
 		LifeImage[i]->active(true);
+	}
+}
+
+void UIManager::update_gameUI()
+{
+	if (false == pPlayer->check_acting())
+	{
+		return;
 	}
 
 	MinusBonusScoreDelta += KTimeManager::instance()->deltatime();
@@ -169,17 +172,11 @@ void UIManager::set_game()
 
 	int FontSize = 25;
 
-	std::wstring Tmp = L"1P-00";		
+	std::wstring Tmp = L"1P-00";
 	Tmp += std::to_wstring(pPlayer->score_info().Score);
 	pScore->set_text(Tmp.c_str());
 
 	Tmp.clear();
 	Tmp = std::to_wstring(BonusScore);
 	pBonus->set_text(Tmp.c_str());
-
-}
-
-void UIManager::update_game()
-{
-
 }

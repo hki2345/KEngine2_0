@@ -199,7 +199,7 @@ void ObstacleManager::create_winpan(KScene* _Scene, ComPlayer* _Player)
 {
 	KOne* TOne = _Scene->create_kone(L"WinPan");
 	TOne->size({ 120.0f, 70.0f });
-	TOne->pos({ 5000.0f, 460.0f });
+	TOne->pos({ 2000.0f, 460.0f });
 
 	Obstcle* ComTmp = TOne->add_component<Obstcle>();
 	ComTmp->set_player(_Player);

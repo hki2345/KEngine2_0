@@ -57,14 +57,14 @@ void ComPlayer::create()
 
 bool ComPlayer::init()
 {
-	fDirWalk[0] = -1.0f;
-	fDirWalk[1] = 1.0f;
-	fDirWalk[2] = .0f;
+	fDirWalk[0] = KPos2::Left;
+	fDirWalk[1] = KPos2::Right;
+	fDirWalk[2] = KPos2::Zero;
 
 
 	fWalkSpeed = 150.0f;
 	fwalk_distance = .0f;
-	fmax_distance = 4500.0f;
+	fmax_distance = 1500.0f;
 
 
 	kone()->pos(KPos2(100, 440));
@@ -116,21 +116,21 @@ void ComPlayer::update()
 }
 
 
-int ComPlayer::scroll_dir()
+KPos2 ComPlayer::scroll_dir()
 {
 	if (ACT_STATE::DIE == ePlayerAct ||
 		ACT_STATE::WIN == ePlayerAct)
 	{
-		return 0 ;
+		return KPos2::Zero;
 	}
 
-	if (fwalk_distance > fmax_distance - 300 &&
-		fwalk_distance < fmax_distance + 300)
+	if (fwalk_distance > fmax_distance - 100 &&
+		fwalk_distance < fmax_distance + 100)
 	{
-		return 0;
+		return KPos2::Zero;
 	}
 
-	return (int)ePlayerDir;
+	return ePlayerDir;
 }
 
 
@@ -189,7 +189,7 @@ void ComPlayer::set_item()
 {
 	sScoreInfo.Score += 500;
 }
-void ComPlayer::set_score()
+void ComPlayer::plus_score()
 {
 	sScoreInfo.Score += 50;
 }
@@ -259,7 +259,8 @@ void ComPlayer::update_win()
 	pAnimator->change_animation(L"Win");
 	if (true == KInputManager::instance()->is_press(VK_SPACE))
 	{
-		GameManager::instance()->reset_game();
+		sScoreInfo.Life = 3;
+		GameManager::instance()->end_game();
 	}
 
 }
@@ -284,7 +285,7 @@ void ComPlayer::update_move()
 {
 	if (fwalk_distance < fmax_distance)
 	{
-		fwalk_distance += fWalkSpeed * ePlayerDir * KTimeManager::instance()->deltatime();
+		fwalk_distance += fWalkSpeed * ePlayerDir.x * KTimeManager::instance()->deltatime();
 	}
 
 	else
@@ -292,7 +293,7 @@ void ComPlayer::update_move()
 		fwalk_distance = fmax_distance;
 	}
 	   	
-	kone()->moving_delta({ fWalkSpeed * ePlayerDir, 0 });
+	kone()->moving_delta({ fWalkSpeed * ePlayerDir.x, 0 });
 
 	if (kone()->pos().x - 100 > 0 && kone()->pos().x < fmax_distance)
 	{

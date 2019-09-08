@@ -30,8 +30,8 @@ void InGameScene::create()
 	pMapManager = new MapManager();
 	pMapManager->create(this, pPlayer);
 
-	/*pObsManager = new ObstacleManager();
-	pObsManager->create(this, pPlayer);*/
+	pObsManager = new ObstacleManager();
+	pObsManager->create(this, pPlayer);
 
 	pUIManager = new UIManager();
 	pUIManager->create(this, pPlayer);
@@ -64,7 +64,7 @@ bool InGameScene::init()
 
 
 	pUIManager->set_wait();
-	// pObsManager->init_fire();
+	pObsManager->init_fire();
 	return true;
 }
 
@@ -82,11 +82,12 @@ void InGameScene::update()
 
 
 	pMapManager->update();
+	pUIManager->update_gameUI();
 
-	//spwan_fire();
-	//spwan_pot();
-	//// spwan_itemfire();
-	//spwan_fastfire();
+	spwan_fire();
+	spwan_pot();
+	// spwan_itemfire();
+	spwan_fastfire();
 }
 
 void InGameScene::update_wait()
@@ -144,10 +145,6 @@ void InGameScene::spwan_pot()
 	}
 }
 
-void InGameScene::update_game()
-{
-
-}
 
 
 void InGameScene::release()

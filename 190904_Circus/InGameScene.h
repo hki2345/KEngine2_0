@@ -52,8 +52,5 @@ private:
 	void spwan_fastfire();
 	void spwan_fire();
 	void spwan_pot();
-
-
-	void update_game();
 };
 

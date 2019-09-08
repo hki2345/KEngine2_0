@@ -21,6 +21,7 @@ private:
 	KPos2 MyOriginPos;
 	OBSTACLE_TYPE eObType;
 	bool bFast;
+	bool bCollider;
 
 public:
 	void set_prop(const OBSTACLE_TYPE& _Type, const bool& _Fast);
