@@ -73,7 +73,7 @@ int main()
 		while(tok != NULL)
 		{
 			// While there are tokens in "string"
-			std::wcout << tok;
+			std::wcout << L"TEST" << tok;
 
 			// Get next token:
 			tok = wcstok_s(NULL, seps, &ntok);

@@ -33,6 +33,11 @@ public:
 		VectorLog.push_back(std::to_wstring(_Log));
 	}
 
+	wchar_t* operator<<(const wchar_t* _Parse, const float& _Log)
+	{
+		VectorLog.push_back(std::to_wstring(_Log));
+	}
+
 public:
 	void init();
 
