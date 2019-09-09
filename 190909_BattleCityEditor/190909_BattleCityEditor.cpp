@@ -67,9 +67,10 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 
 
-void CreateMap();
-void ReleaseMap();
+void create_map();
+void release_map();
 void input_key();
+void reset_render();
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -108,7 +109,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	KResourceManager<KBitMap>::instance()->load_forder(L"BattleCity");
 	// AddFontResourceA("Circus\\DungGeunMo.ttf");
 
-	CreateMap();
+	create_map();
 
 	hMainDC = GetDC(hWnd);
 	hBackDC = CreateCompatibleDC(hMainDC); 
@@ -290,7 +291,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		InvalidateRect(hWnd, NULL, false);
 		break;
     case WM_DESTROY:
-		ReleaseMap();
+		release_map();
+		KFileStream::instance()->release();
 		KPathManager::instance()->release();
 		KWindowManager::instance()->release();
 		KInputManager::instance()->release();
@@ -303,12 +305,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void RenderMap()
-{
 
-}
-
-void CreateMap()
+void create_map()
 {
 	for (size_t y = 0; y < YSize; y++)
 	{
@@ -332,7 +330,7 @@ void CreateMap()
 	}
 }
 
-void ReleaseMap()
+void release_map()
 {
 	for (size_t i = 0; i < VectorOneMap.size(); i++)
 	{
@@ -376,79 +374,73 @@ void input_key()
 	else if (true == KInputManager::instance()->is_down(VK_SPACE))
 	{
 		VectorTank[CurPos.x + XSize * CurPos.y].Idx = eCurTile;
+		reset_render();
+	}
+	else if (true == KInputManager::instance()->is_down(VK_ESCAPE))
+	{
+		KFileStream::instance()->write_file(L"Test.btd", VectorTank);
+		reset_render();
+	}
+	else if (true == KInputManager::instance()->is_down(VK_BACK))
+	{
+		KFileStream::instance()->read_file(L"Test.btd", VectorTank);
+		reset_render();
+	}
+}
 
-		switch (eCurTile)
+
+void reset_render()
+{
+	for (size_t i = 0; i < VectorTank.size(); i++)
+	{
+		switch (VectorTank[i].Idx)
 		{
 		case BROWN_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block00.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block00.bmp");
 			break;
 		case BROWN_BLOCK01:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block01.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block01.bmp");
 			break;
 		case BROWN_BLOCK02:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block02.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block02.bmp");
 			break;
 		case BROWN_BLOCK03:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block03.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block03.bmp");
 			break;
 		case BROWN_BLOCK04:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block04.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block04.bmp");
 			break;
 		case METAL_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block05.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block05.bmp");
 			break;
 		case WOOD_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block06.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block06.bmp");
 			break;
 		case WATER_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block07.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block07.bmp");
 			break;
 		case STONE_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block09.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block09.bmp");
 			break;
 		case STONE_BLOCK01:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block10.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block10.bmp");
 			break;
 		case STONE_BLOCK02:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block11.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block11.bmp");
 			break;
 		case STONE_BLOCK03:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block12.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block12.bmp");
 			break;
 		case PHOENIX_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\block13.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\block13.bmp");
 			break;
 		case SPAWN_BLOCK00:
-			VectorBitMap[CurPos.x + XSize * CurPos.y]->set_noscenebit(L"BattleCity\\shield_00.bmp");
+			VectorBitMap[i]->set_noscenebit(L"BattleCity\\shield_00.bmp");
 			break;
 		case BC_BLOCKNUM:
 			break;
 		default:
 			break;
 		}
-	}
-	else if (true == KInputManager::instance()->is_down(VK_ESCAPE))
-	{
-		FILE* TFILE;
-		_wfopen_s(&TFILE, L"Test.btd", L"w");
-		int Size = VectorTank.size();
-		fwrite(&Size, sizeof(Size), 1, TFILE);
-		for (int i = 0; i < Size; i++)
-		{
-			fwrite(&VectorTank[i], sizeof(VectorTank[i]), 1, TFILE);
-		}
-		fclose(TFILE);
-	}
-	else if (true == KInputManager::instance()->is_down(VK_BACK))
-	{
-		FILE* TFILE;
-		_wfopen_s(&TFILE, L"Test.btd", L"r");
-		int Size = VectorTank.size();
-		fread_s(&Size, sizeof(Size), sizeof(Size), 1, TFILE);
-		for (int i = 0; i < Size; i++)
-		{
-			fread_s(&VectorTank[i], sizeof(&VectorTank[i]), sizeof(&VectorTank[i]), 1, TFILE);
-		}
-		fclose(TFILE);
 	}
 }
