@@ -4,6 +4,7 @@
 #include "header.h"
 #include "190909_BattleCityEditor.h"
 #include <BattleTile.h>
+#include "afxdialogex.h"
 
 #include <KResourceManager.h>
 #include <KFileStream.h>
@@ -107,7 +108,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	KWindowManager::instance()->create_window(hWnd);
 	KResourceManager<KBitMap>::instance()->init();
 	KResourceManager<KBitMap>::instance()->load_forder(L"BattleCity");
-	// AddFontResourceA("Circus\\DungGeunMo.ttf");
 
 	create_map();
 
@@ -249,6 +249,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		case 0:
 		{
+			//TCHAR BASED_CODE szFilter[] = _T("STATE 파일(*.State) | *.STATE;*.state; |모든파일(*.*)|*.*||");
+
+			//CFileDialog dlg(TRUE, _T("*.STATE"), _T("*.state"), OFN_HIDEREADONLY, szFilter, this);
+
+			//if (IDOK == dlg.DoModal())
+			//{
+			//	// 한번에 불러오려는 포스 ->
+			//	// 이 좌표 다음이 바로 다음 선택한 파일의 패스를 나타냄
+			//	CString pathName = dlg.GetFileTitle();
+			//}
+			//else
+			//{
+			//	return;
+			//}
+
 			wchar_t arr[256];
 			HANDLE hHandle = CreateFile(L"로드창", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, 0);
 			memset(arr, 0, sizeof(arr));
