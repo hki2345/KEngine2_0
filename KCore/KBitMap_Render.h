@@ -1,6 +1,6 @@
 #pragma once
 #include "KRenderer.h"
-
+#include <Windows.h>
 
 class KBitMap;
 class KTransform;
@@ -17,8 +17,10 @@ private:
 
 public:
 	void set_bit(const wchar_t* _Name = L"NONE", const int& _Key = 0, const bool& _bBitRender = false);
+	void set_noscenebit(const wchar_t* _Name = L"NONE", const bool& _bBitRender = false);
 
 	bool init() override;
 	void render() override;
+	void render(HDC _Hdc);
 };
 

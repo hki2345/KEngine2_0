@@ -43,6 +43,8 @@ private:
 		_In_ int       _nCmdShow);
 	void init();
 	void update();
+
+public:
 	void release();
 
 	
@@ -50,6 +52,7 @@ private:
 
 public:
 	int create_window(const wchar_t* _Name);
+	int create_window(HWND _Name);
 
 	static inline HINSTANCE& hinstance()
 	{

@@ -31,6 +31,18 @@ void KBitMap_Render::set_bit(
 	kscene()->insert_krender(this, _Key);
 }
 
+void KBitMap_Render::set_noscenebit(const wchar_t* _Name/* = L"NONE"*/, const bool& _bBitRender /*= false*/)
+{
+	bBitRender = _bBitRender;
+	MyBitMap = KResourceManager<KBitMap>::instance()->find(_Name);
+
+	if (nullptr == MyBitMap)
+	{
+		int a = 0;
+	}
+	bRender = true;
+}
+
 bool KBitMap_Render::init()
 {
 	KRenderer::init();
@@ -66,6 +78,45 @@ void KBitMap_Render::render()
 			kwindow()->bhdc(),
 			RenderPos.x,
 			RenderPos.y,
+			MyTrans->Size.x,
+			MyTrans->Size.y,
+			MyBitMap->MyDC,
+			0,
+			0,
+			MyBitMap->size().x,
+			MyBitMap->size().y,
+			RGB(255, 0, 255));
+	}
+}
+
+void KBitMap_Render::render(HDC _Hdc)
+{
+	if (false == bRender)
+	{
+		return;
+	}
+
+
+	if (true == bBitRender)
+	{
+		BitBlt(
+			_Hdc,
+			MyTrans->Pos.x,
+			MyTrans->Pos.y,
+			MyTrans->Size.x,
+			MyTrans->Size.y,
+			MyBitMap->MyDC,
+			0,
+			0,
+			SRCCOPY);
+	}
+
+	if (false == bBitRender)
+	{
+		TransparentBlt(
+			_Hdc,
+			MyTrans->Pos.x,
+			MyTrans->Pos.y,
 			MyTrans->Size.x,
 			MyTrans->Size.y,
 			MyBitMap->MyDC,

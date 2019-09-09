@@ -76,7 +76,16 @@ int KWindowManager::create_window(const wchar_t* _Name)
 	return true;
 }
 
+int KWindowManager::create_window(HWND _Name)
+{
+	KWindow* NewWindow = new KWindow();
+	NewWindow->hMainDC = GetDC(_Name);
+	NewWindow->hBackDC = NewWindow->hMainDC;
+	NewWindow->mhWnd = _Name;
+	MapWindow.insert(std::make_pair(L"Custom", NewWindow));
 
+	return 0;
+}
 
 HDC& KWindowManager::back_hdc()
 {

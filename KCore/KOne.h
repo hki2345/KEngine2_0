@@ -21,7 +21,7 @@ class KOne :
 public:
 	friend class KScene;
 
-protected:
+public:
 	KOne();
 	KOne(const KOne& _Core) = delete;
 	KOne(const KOne&& _Core) = delete;
@@ -34,13 +34,14 @@ private:
 
 	KTransform* MyTrans;
 
+public:
+	virtual void create();
+	virtual void release();
 
 protected:
-	virtual void create();
 	virtual bool init();
 	virtual void update();
 	virtual void out();
-	virtual void release();
 
 
 public:

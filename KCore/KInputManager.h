@@ -13,9 +13,9 @@ public:
 private:
 	// 본체에서는 해야하니까
 	KInputManager() {} /* = delete*/;
-	KInputManager(const KInputManager& _Core) = delete;
-	KInputManager(const KInputManager&& _Core) = delete;
-	void operator=(const KInputManager& _Core) = delete;
+	KInputManager(const KInputManager& _Other) = delete;
+	KInputManager(const KInputManager&& _Other) = delete;
+	void operator=(const KInputManager& _Other) = delete;
 	~KInputManager() {};
 	static KInputManager* pKInputManager;
 

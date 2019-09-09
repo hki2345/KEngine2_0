@@ -46,7 +46,7 @@ private:
 	std::wstring mFileName;
 	std::wstring mExtension;
 
-private:
+public:
 	void init();
 	void release();
 
