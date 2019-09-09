@@ -15,7 +15,7 @@ KText_Render::~KText_Render()
 
 
 
-void KText_Render::set_text(
+void KText_Render::set_font(
 	const wchar_t* _Text,
 	const int& _Size,
 	const int& _Key/* = 0*/,
@@ -47,7 +47,7 @@ void KText_Render::render()
 	SetBkMode(kwindow()->bhdc(), TRANSPARENT);
 	SetTextAlign(kwindow()->bhdc(), TA_CENTER);
 
-	TextOutW(kwindow()->bhdc(), RenderPos.x, RenderPos.y, sMyParse.c_str(), sMyParse.size());
+	TextOutW(kwindow()->bhdc(), RenderPos.x, RenderPos.y, sMyParse.c_str(), (int)sMyParse.size());
 
 	SelectObject(kwindow()->bhdc(), oldFont);
 	DeleteObject(myFont);

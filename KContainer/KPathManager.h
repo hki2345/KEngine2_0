@@ -2,6 +2,14 @@
 #include <vector>
 #include <string>
 
+
+struct KResourcePath
+{
+	std::wstring sFolder;
+	std::wstring sFile;
+};
+
+
 class KPathManager
 {
 public:
@@ -36,7 +44,7 @@ private:
 	std::wstring mDrive;
 	std::wstring mDirectory;
 	std::wstring mFileName;
-	std::wstring mExe;
+	std::wstring mExtension;
 
 private:
 	void init();
@@ -61,9 +69,11 @@ public:
 	}
 	inline std::wstring& exe()
 	{
-		return mExe;
+		return mExtension;
 	}
 
+
+	std::vector<KResourcePath> load_totargetfolder(const wchar_t* _Folder, const wchar_t* _Extension);
 	bool input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path);
 	void char_towchar(wchar_t* _Target, char* _Source);
 	std::vector<std::wstring> vec_loadline(const wchar_t* _Path);

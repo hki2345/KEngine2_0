@@ -43,7 +43,7 @@ void KCore::init()
 	KSceneManager::instance()->init();
 	KPathManager::instance()->init();
 	KTimeManager::instance()->init();
-	klog.init();
+	KDebugManager::instance()->init();
 }
 
 void KCore::init(
@@ -51,13 +51,15 @@ void KCore::init(
 	_In_ LPWSTR    _lpCmdLine,
 	_In_ int       _nCmdShow)
 {
+	KResourceManager<KBitMap>::instance()->init();
+
 	KWindowManager::instance()->init(_hInstance, _lpCmdLine, _nCmdShow);
 
 	KPathManager::instance()->init();
 	KTimeManager::instance()->init();
-
 	KWindowManager::instance()->create_window(L"Main");
 	KWindowManager::instance()->init();
+	KDebugManager::instance()->init();
 }
 
 
@@ -99,7 +101,7 @@ void KCore::release()
 {
 	KResourceManager<KBitMap>::instance()->release();
 
-
+	KDebugManager::instance()->release();
 	KPathManager::instance()->release();
 	KTimeManager::instance()->release();
 	KInputManager::instance()->release();

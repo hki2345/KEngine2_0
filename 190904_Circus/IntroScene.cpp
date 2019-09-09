@@ -1,7 +1,7 @@
 #include "IntroScene.h"
 #include "GameManager.h"
 
-
+#include <KWindow.h>
 #include <KText_Render.h>
 #include <KBitMap_Render.h>
 #include <KBitMap_Animator.h>
@@ -42,7 +42,7 @@ void IntroScene::update()
 void IntroScene::create_backboard()
 {
 	KOne* TOne = create_kone(L"BackBoard");
-	TOne->size(KPos2(800, 600));
+	TOne->size(kwindow()->size());
 
 	KBitMap_Render* BITREN = TOne->add_component<KBitMap_Render>();
 	BITREN->set_bit(L"Circus\\BackBoard.bmp", 0);
@@ -87,7 +87,7 @@ void IntroScene::create_circuschaley()
 	TOne->pos(KPos2(400, 160));
 
 	KText_Render* TREN = TOne->add_component<KText_Render>();
-	TREN->set_text(L"서커스 찰리", 40, 10, L"DungGeunMo", RGB(97, 198, 233));
+	TREN->set_font(L"서커스 찰리", 40, 10, L"DungGeunMo", RGB(97, 198, 233));
 
 
 
@@ -95,5 +95,5 @@ void IntroScene::create_circuschaley()
 	TOne->pos(KPos2(400, 450));
 
 	TREN = TOne->add_component<KText_Render>();
-	TREN->set_text(L"게임 시작 - SPACE BAR", 40, 10, L"DungGeunMo");
+	TREN->set_font(L"게임 시작 - SPACE BAR", 40, 10, L"DungGeunMo");
 }

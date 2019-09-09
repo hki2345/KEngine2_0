@@ -17,7 +17,7 @@ public:
 
 
 private:
-	KVec2 vSize;
+	KVec2 MyWinSize;
 	MSG Message;
 	HDC hMainDC;
 	HDC hBackDC;
@@ -42,6 +42,11 @@ private:
 
 
 public:
+	inline KSize2& size()
+	{
+		return MyWinSize;
+	}
+
 	inline HDC& bhdc()
 	{
 		return hBackDC;

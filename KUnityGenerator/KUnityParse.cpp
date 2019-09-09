@@ -59,6 +59,7 @@ void KUnityParse::update()
 
 void KUnityParse::load_cpp()
 {
+	std::wcout << "Load Target To... " << std::endl;
 	std::wcin >> sTarget;
 	std::wstring TargetPath = KPathManager::instance()->directory();
 
@@ -89,6 +90,7 @@ void KUnityParse::load_cpp()
 
 void KUnityParse::save_cpp()
 {
+	std::wcout << "Save Target To... " << std::endl;
 	std::wcin >> sTarget;
 	std::wstring TargetPath = KPathManager::instance()->directory();
 

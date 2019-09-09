@@ -26,8 +26,8 @@ void KWindow::init()
 {
 	if (nullptr == BackBitMap)
 	{
-		BackBitMap = KResourceManager<KBitMap>::instance()->create(L"KCore", L"BackBuffer");
-		hBackDC = BackBitMap->kwindow_size(vSize);
+		BackBitMap = KResourceManager<KBitMap>::instance()->load(L"KCore", L"BackBuffer");
+		hBackDC = BackBitMap->kwindow_size(MyWinSize);
 	}
 
 	KSceneManager::instance()->kwindow(this);
@@ -50,16 +50,16 @@ void KWindow::update()
 void KWindow::render()
 {
 	KSceneManager::instance()->render();
-	BitBlt(hMainDC, 0, 0, (int)vSize.x, (int)vSize.y, hBackDC, 0, 0, SRCCOPY);
+	BitBlt(hMainDC, 0, 0, (int)MyWinSize.x, (int)MyWinSize.y, hBackDC, 0, 0, SRCCOPY);
 	// InvalidateRect(mhWnd, NULL, FALSE);
 	
-	// Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
+	// Rectangle(hBackDC, 0, 0, (int)MyWinSize.x, (int)MyWinSize.y);
 
 	// °ËÀº»ö »öÄ¥
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	myBrush = CreateSolidBrush(RGB(0, 0, 0));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hBackDC, myBrush);
-	Rectangle(hBackDC, 0, 0, (int)vSize.x, (int)vSize.y);
+	Rectangle(hBackDC, 0, 0, (int)MyWinSize.x, (int)MyWinSize.y);
 	SelectObject(hBackDC, oldBrush);
 	DeleteObject(myBrush);
 }
@@ -98,8 +98,8 @@ int KWindow::create()
 	RECT rc;
 	GetClientRect(mhWnd, &rc);
 
-	vSize.x = (float)rc.right;
-	vSize.y = (float)rc.bottom;
+	MyWinSize.x = (float)rc.right;
+	MyWinSize.y = (float)rc.bottom;
 
 	hMainDC = GetDC(mhWnd);
 	// hBackDC = ;

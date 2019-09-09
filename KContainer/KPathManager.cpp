@@ -2,6 +2,7 @@
 #include <direct.h>
 #include <stdlib.h>
 #include <iostream>
+#include <io.h>
 #include <fstream>
 
 #include "KMacro.h"
@@ -26,7 +27,7 @@ void KPathManager::init()
 	mDrive = tmpDrive;
 	mDirectory = tmpDirectory;
 	mFileName = tmpFileName;
-	mExe = tmpExe;
+	mExtension = tmpExe;
 }
 
 void KPathManager::release()
@@ -35,7 +36,7 @@ void KPathManager::release()
 	mDrive.clear();
 	mDirectory.clear();
 	mFileName.clear();
-	mExe.clear();
+	mExtension.clear();
 
 	RELEASE_PTR(pKPathManager);
 }
@@ -46,6 +47,53 @@ void KPathManager::char_towchar(wchar_t* _Target, char* _Source)
 	size_t newsize = strlen(_Source) + 1;
 	size_t convertedChars = 0;
 	mbstowcs_s(&convertedChars, _Target, newsize, _Source, _TRUNCATE);
+}
+
+
+std::vector<KResourcePath> KPathManager::load_totargetfolder(
+	const wchar_t* _Folder, 
+	const wchar_t* _Extension)
+{
+	std::wstring TargetPath = KPathManager::instance()->all_path();
+	TargetPath += L'\\';
+	TargetPath += _Folder;
+
+
+	std::wstring FolderPath = _Folder;
+
+
+	std::vector< KResourcePath> PathVecTmp;
+
+
+	struct _wfinddata_t FD;
+	intptr_t Handle;
+
+	TargetPath += L'\\';
+	TargetPath += L"*.*";
+
+	Handle = _wfindfirst(TargetPath.c_str(), &FD);
+
+
+	while (0 == _wfindnext(Handle, &FD))
+	{
+		std::wstring Name = FD.name;
+		// 폴더 경로를 정확히 정해야 쓸 수 있게 합세 ㅇㅇㅇㅇㅇ
+		/*if (-1 == (int)Name.find(L"."))
+		{
+			FolderPath += L"\\";
+			FolderPath += Name;
+			continue;
+		}*/
+
+		if (-1 != (int)Name.find(_Extension))
+		{
+			PathVecTmp.push_back(KResourcePath({ FolderPath, Name }));
+		}
+	}
+
+	_findclose(Handle);
+
+	return PathVecTmp;
 }
 
 

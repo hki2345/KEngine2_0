@@ -18,6 +18,7 @@ private:
 	std::vector<KOne*> VecItemFire;
 	std::vector<KOne*> VecPot;
 
+	KScene* ThisScene;
 
 public:
 	void create(KScene* _Scene, ComPlayer* _Player);

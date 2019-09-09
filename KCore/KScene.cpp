@@ -1,4 +1,6 @@
 #include "KScene.h"
+#include "KWindow.h"
+
 #include "KOne.h"
 #include "KMacro.h"
 #include "KRenderManager.h"
@@ -94,7 +96,7 @@ void KScene::render()
 {
 	curKRenderMgr->render();
 
-	KCore::instance()->klog.render();
+	KDebugManager::instance()->render();
 }
 
 
@@ -167,7 +169,7 @@ KPos2 KScene::outof_screen(KOne* _Target)
 	{
 		return KPos2::Left;
 	}
-	else if (SceneCamPos.x + 800 < (_Target->pos().x + TmpSize * -1.0f) + (_Target->size().x))
+	else if (SceneCamPos.x + kwindow()->size().x < (_Target->pos().x + TmpSize * -1.0f) + (_Target->size().x))
 	{
 		return KPos2::Right;
 	}

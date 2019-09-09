@@ -16,20 +16,13 @@ class AAA
 class BBB
 {
 public:
-	BBB();
-	~BBB();
+	BBB() {};
+	~BBB() {};
 
 private:
 
-};
+}; 
 
-BBB::BBB()
-{
-}
-
-BBB::~BBB()
-{
-}
 
 int main()
 {

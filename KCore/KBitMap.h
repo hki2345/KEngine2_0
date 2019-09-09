@@ -23,9 +23,8 @@ private:
 
 public:
 	// 이 이후 작업 kwindow_size 요망
-	bool create(const wchar_t* _Folder, const wchar_t* _Name) override;
-	bool save() override;
 	bool load() override;
+	bool save() override;
 
 	HDC& kwindow_size(const KSize2& _Size = KVec2( 100, 100 ));
 	KPos2 size();

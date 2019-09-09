@@ -18,9 +18,6 @@ private:
 	static KCore* pKCore;
 
 public:
-	KDebugManager klog;
-
-public:
 	class KCoreUpdater
 	{
 	public:

@@ -1,8 +1,8 @@
 #include "KResource.h"
+#include "KPathManager.h"
 
 
-
-KResource::KResource()
+KResource::KResource() : sPath(KPathManager::instance()->all_path())
 {
 }
 

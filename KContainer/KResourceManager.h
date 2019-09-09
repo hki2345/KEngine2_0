@@ -1,7 +1,12 @@
 #pragma once
 #include <map>
+#include <vector>
 #include <string>
+
+
 #include "KMacro.h"
+#include "KPathManager.h"
+
 
 //
 //vector<T>::iterator i; // bad, vector<T>::iterator might not be a type
@@ -69,12 +74,33 @@ public:
 		return nullptr;
 	}
 
-	ResT* create(const wchar_t* _Folder, const wchar_t* _Name)
+	ResT* load(const wchar_t* _Folder, const wchar_t* _Name)
 	{
 		ResT* NewRes = new ResT();
-		NewRes->create(_Folder, _Name);
+		NewRes->sFolder =_Folder;
+		NewRes->sName = _Name;
 
-		MapRes.insert(std::make_pair(_Name, NewRes));
+		const char* ComTmp = typeid(ResT).name(); // -> 클래스명 판독코드
+		if (0 == strcmp("class KBitMap", ComTmp)) // -> 클래스명으로 확장자 결정
+		{
+			NewRes->sExtension = L".bmp";
+		}
+
+		NewRes->sPath += L"\\";
+		NewRes->sPath += NewRes->sFolder;
+		NewRes->sPath += L"\\";
+		NewRes->sPath += NewRes->sName;
+		// NewRes->sFile += NewRes->sExtension;
+
+		NewRes->load();
+
+		std::wstring KeyStr;
+		KeyStr += NewRes->sFolder;
+		KeyStr += L"\\";
+		KeyStr += NewRes->sName;
+		// KeyStr += NewRes->sExtension;
+
+		MapRes.insert(std::make_pair(KeyStr, NewRes));
 		return NewRes;
 	}
 
@@ -91,18 +117,6 @@ public:
 
 		return false;
 	}
-
-	bool load(const wchar_t* _Name)
-	{
-		typename std::map<std::wstring, ResT*>::iterator FIter = MapRes.find(_Name);
-
-		if (MapRes.end() != FIter)
-		{
-			return FIter->load();
-		}
-
-		return true;
-	}
 	
 	bool save(const wchar_t* _Name)
 	{
@@ -111,6 +125,26 @@ public:
 		if (MapRes.end() != FIter)
 		{
 			return FIter->save();
+		}
+
+		return true;
+	}
+
+	bool load_forder(const wchar_t* _Target)
+	{
+		std::wstring Extension;
+		const char* ComTmp = typeid(ResT).name(); // -> 클래스명 판독코드
+		if (0 == strcmp("class KBitMap", ComTmp)) // -> 클래스명으로 확장자 결정
+		{
+			Extension = L".bmp";
+		}
+
+		std::vector<KResourcePath> PathVec = 
+			KPathManager::instance()->load_totargetfolder(_Target, Extension.c_str());
+
+		for (size_t i = 0; i < PathVec.size(); i++)
+		{
+			load(PathVec[i].sFolder.c_str(), PathVec[i].sFile.c_str());
 		}
 
 		return true;

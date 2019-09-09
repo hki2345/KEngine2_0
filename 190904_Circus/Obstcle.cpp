@@ -1,6 +1,7 @@
 #include "Obstcle.h"
 #include "ComPlayer.h"
 
+#include <KWindow.h>
 #include <KScene.h>
 #include <KOne.h>
 
@@ -101,7 +102,7 @@ void Obstcle::update_colide()
 		pPlayer->set_item();
 		break;
 	case Obstcle::OT_FIRE:
-		if (true == collide_sub(600.0f, 370.0f))
+		if (true == collide_sub(kwindow()->size().y, 370.0f))
 		{
 			pPlayer->set_failed();
 		}
@@ -113,7 +114,7 @@ void Obstcle::update_colide()
 
 
 	case Obstcle::OT_POT:
-		if (true == collide_sub(600.0f, 370.0f))
+		if (true == collide_sub(kwindow()->size().y, 370.0f))
 		{
 			pPlayer->set_failed();
 		}
@@ -125,7 +126,7 @@ void Obstcle::update_colide()
 
 		break;
 	case Obstcle::OT_WINPAN:
-		if (true == collide_sub(800.0f, 370.0f))
+		if (true == collide_sub(kwindow()->size().y, 370.0f))
 		{
 			pPlayer->set_win();
 		}

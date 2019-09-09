@@ -149,7 +149,6 @@
     <ClCompile Include="KComponent.cpp" />
     <ClCompile Include="KConsole_Render.cpp" />
     <ClCompile Include="KCore.cpp" />
-    <ClCompile Include="KCore_Pointer.cpp" />
     <ClCompile Include="KDebugManager.cpp" />
     <ClCompile Include="KInputManager.cpp" />
     <ClCompile Include="KName.cpp" />
@@ -174,7 +173,6 @@
     <ClInclude Include="KComponent.h" />
     <ClInclude Include="KConsole_Render.h" />
     <ClInclude Include="KCore.h" />
-    <ClInclude Include="KCore_Pointer.h" />
     <ClInclude Include="KDebugManager.h" />
     <ClInclude Include="KInputManager.h" />
     <ClInclude Include="KName.h" />

@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 
+
 class KDebugManager
 {
 public:
@@ -14,8 +15,21 @@ private:
 	void operator=(const KDebugManager& _Other) = delete;
 	~KDebugManager() {};
 
+	static KDebugManager* pKDebugManager;
+
+public:
+	static KDebugManager* instance()
+	{
+		if (nullptr == pKDebugManager)
+		{
+			pKDebugManager = new KDebugManager();
+		}
+
+		return pKDebugManager;
+	}
 
 private:
+	bool bDebug;
 	std::vector<std::wstring> VectorLog;
 
 
@@ -33,14 +47,14 @@ public:
 		VectorLog.push_back(std::to_wstring(_Log));
 	}
 
-	wchar_t* operator<<(const wchar_t* _Parse, const float& _Log)
-	{
-		VectorLog.push_back(std::to_wstring(_Log));
-	}
+	void insert_log(const wchar_t* const _Str, ...);
+
+
+
+private:
+	void init();
+	void release();
 
 public:
-	void init();
-
 	void render();
-	void release();
 };

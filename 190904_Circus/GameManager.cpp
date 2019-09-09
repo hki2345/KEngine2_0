@@ -35,50 +35,8 @@ void GameManager::init()
 	srand(GetTickCount());
 
 	KResourceManager<KBitMap>::instance()->init();
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\player0.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\player1.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\player2.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\win.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\win2.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\die.bmp");
-
-
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back_normal.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back_normal2.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\back_deco.bmp");
-
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\enemy_1b.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\enemy_1f.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\enemy_b.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\enemy_f.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\enemy_l_b.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\enemy_l_f.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\front.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\front2.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\end.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\miter.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\cash.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\icon.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\star.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\star1.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\star2.bmp");
-
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\BackBoard.bmp");
-	KResourceManager<KBitMap>::instance()->create(L"", L"Circus\\ScoreBoard.bmp");
-
+	KResourceManager<KBitMap>::instance()->load_forder(L"Circus");
 	AddFontResourceA("Circus\\DungGeunMo.ttf");
-
-
 
 	GameScene = new InGameScene();
 	InScene = new IntroScene();
@@ -97,9 +55,9 @@ void GameManager::update()
 	}
 
 
-	KCore::instance()->klog << KTimeManager::instance()->fps();
-	KCore::instance()->klog << KTimeManager::instance()->deltatime();
-	KCore::instance()->klog << GameScene->SceneCamPos.x;
+	KDebugManager::instance()->insert_log(L"FPS: %f", KTimeManager::instance()->fps());
+	KDebugManager::instance()->insert_log(L"DeltaTime: %f", KTimeManager::instance()->deltatime());
+	KDebugManager::instance()->insert_log(L"Cam X Pos: %f", GameScene->SceneCamPos.x);
 }
 void GameManager::release()
 {

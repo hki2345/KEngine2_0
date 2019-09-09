@@ -11,12 +11,14 @@ protected:
 	void operator=(const KResource& _Other) = delete;
 	virtual ~KResource() = 0;
 
-protected:
-	std::wstring sName;
+public:
 	std::wstring sPath;
 
+	std::wstring sName;
+	std::wstring sFolder;
+	std::wstring sExtension;
+
 protected:
-	virtual bool create(const wchar_t* _Folder, const wchar_t* _Name) = 0;
 	virtual bool load() = 0;
 	virtual bool save() = 0;
 

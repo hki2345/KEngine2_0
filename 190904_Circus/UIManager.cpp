@@ -3,6 +3,7 @@
 
 #include <KTimeManager.h>
 
+#include <KWindow.h>
 #include <KScene.h>
 #include <KOne.h>
 
@@ -47,7 +48,7 @@ void UIManager::create(KScene* _Scene, ComPlayer* _Player)
 void UIManager::create_wait(KScene* _Scene)
 {
 	VecWait.push_back(_Scene->create_kone(L"Stage Back"));
-	VecWait[0]->size({ 800.0f, 600.0f });
+	VecWait[0]->size(pPlayer->kscene()->kwindow()->size());
 
 	KBitMap_Render* TBR = VecWait[0]->add_component<KBitMap_Render>();
 	TBR->set_bit(L"Circus\\BackBoard.bmp", 100, true);
@@ -56,7 +57,7 @@ void UIManager::create_wait(KScene* _Scene)
 	VecWait[1]->pos({ 400.0f, 270.0f });
 
 	KText_Render* TXR = VecWait[1]->add_component<KText_Render>();
-	TXR->set_text(L"Stage 1", 20, 101, L"DungGeunMo");
+	TXR->set_font(L"Stage 1", 20, 101, L"DungGeunMo");
 }
 
 
@@ -73,26 +74,26 @@ void UIManager::create_game(KScene* _Scene)
 	VecGame.push_back(_Scene->create_kone(L"Score Letter"));
 	VecGame[1]->pos({ 200.0f, 20.0f });
 	pScore = VecGame[1]->add_component<KText_Render>();
-	pScore->set_text(L"1P-008450", FontSize, 101, L"DungGeunMo");
+	pScore->set_font(L"1P-008450", FontSize, 101, L"DungGeunMo");
 	pScore->set_hold();
 
 	VecGame.push_back(_Scene->create_kone(L"Stage Letter"));
 	VecGame[2]->pos({ 600.0f, 20.0f });
 	KText_Render* TXR = VecGame[2]->add_component<KText_Render>();
-	TXR->set_text(L"STAGE-01", FontSize, 101, L"DungGeunMo");
+	TXR->set_font(L"STAGE-01", FontSize, 101, L"DungGeunMo");
 	TXR->set_hold();
 
 	VecGame.push_back(_Scene->create_kone(L"BONUS Letter"));
 	VecGame[3]->pos({ 380.0f, 20.0f });
 	TXR = VecGame[3]->add_component<KText_Render>();
-	TXR->set_text(L"BONUS", FontSize, 101, L"DungGeunMo", RGB(139,35,53));
+	TXR->set_font(L"BONUS", FontSize, 101, L"DungGeunMo", RGB(139,35,53));
 	TXR->set_hold();
 
 
 	VecGame.push_back(_Scene->create_kone(L"BONUS Letter"));
 	VecGame[4]->pos({ 450.0f, 20.0f });
 	pBonus = VecGame[4]->add_component<KText_Render>();
-	pBonus->set_text(L"1234", FontSize, 101, L"DungGeunMo");
+	pBonus->set_font(L"1234", FontSize, 101, L"DungGeunMo");
 	pBonus->set_hold();
 }
 

@@ -1,4 +1,6 @@
 #include "KRenderer.h"
+#include "KWindow.h"
+
 #include "KScene.h"
 
 #include "KTransform.h"
@@ -39,7 +41,7 @@ void KRenderer::update_trans(const KPos2& _CameraPos)
 		{
 			bRender = false;
 		}
-		else if (_CameraPos.x < (MyTrans->Pos.x) - 800)
+		else if (_CameraPos.x < (MyTrans->Pos.x) - kwindow()->size().x)
 		{
 			bRender = false;
 		}

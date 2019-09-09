@@ -43,9 +43,6 @@
     <ClCompile Include="KBitMap_Render.cpp">
       <Filter>04_Render\Child</Filter>
     </ClCompile>
-    <ClCompile Include="KCore_Pointer.cpp">
-      <Filter>01_Ptr</Filter>
-    </ClCompile>
     <ClCompile Include="KBitMap.cpp">
       <Filter>00_Resource</Filter>
     </ClCompile>
@@ -125,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="KBitMap_Render.h">
       <Filter>04_Render\Child</Filter>
-    </ClInclude>
-    <ClInclude Include="KCore_Pointer.h">
-      <Filter>01_Ptr</Filter>
     </ClInclude>
     <ClInclude Include="KBitMap.h">
       <Filter>00_Resource</Filter>

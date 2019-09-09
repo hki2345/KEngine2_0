@@ -1,6 +1,7 @@
 #include "ObstacleManager.h"
 #include <KOne.h>
 #include <KScene.h>
+#include <KWindow.h>
 #include "Obstcle.h"
 
 
@@ -22,6 +23,7 @@ ObstacleManager::~ObstacleManager()
 
 void ObstacleManager::create(KScene* _Scene, ComPlayer* _Player)
 {
+	ThisScene = _Scene;
 	create_obstacle(_Scene, _Player);
 	create_winpan(_Scene, _Player);
 }
@@ -35,7 +37,7 @@ void ObstacleManager::init_fastfire()
 	{
 		if (false == VecFastFire[i]->active())
 		{
-			VecFastFire[i]->pos({ 800.0f + VecFastFire[i]->kscene()->SceneCamPos.x, 290.0f });
+			VecFastFire[i]->pos({ ThisScene->kwindow()->size().x + VecFastFire[i]->kscene()->SceneCamPos.x, 290.0f });
 			VecFastFire[i]->active(true);
 			return;
 		}
@@ -48,7 +50,9 @@ void ObstacleManager::init_fire()
 	{
 		if (false == VecFire[i]->active())
 		{
-			VecFire[i]->pos({ 800.0f + VecFire[i]->kscene()->SceneCamPos.x, 290.0f });
+			VecFire[i]->pos({ 
+				ThisScene->kwindow()->size().x + VecFire[i]->kscene()->SceneCamPos.x,
+				290.0f });
 			VecFire[i]->active(true);
 			return;
 		}
@@ -62,7 +66,9 @@ void ObstacleManager::init_itemfire()
 	{
 		if (false == VecItemFire[i]->active())
 		{
-			VecItemFire[i]->pos({ 800.0f + VecFire[i]->kscene()->SceneCamPos.x, 290.0f });
+			VecItemFire[i]->pos({
+				ThisScene->kwindow()->size().x + VecFire[i]->kscene()->SceneCamPos.x,
+				290.0f });
 			VecItemFire[i]->active(true);
 			return;
 		}
@@ -75,7 +81,9 @@ void ObstacleManager::init_pot()
 	{
 		if (false == VecPot[i]->active())
 		{
-			VecPot[i]->pos({ 800.0f + VecFire[i]->kscene()->SceneCamPos.x, 450.0f });
+			VecPot[i]->pos({ 
+				ThisScene->kwindow()->size().x + VecFire[i]->kscene()->SceneCamPos.x,
+				450.0f });
 			VecPot[i]->active(true);
 			return;
 		}

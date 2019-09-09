@@ -7,6 +7,7 @@
 #include <KScene.h>
 #include <KOne.h>
 #include <KScene.h>
+#include <KWindow.h>
 
 #include <KText_Render.h>
 #include <KBitMap_Render.h>
@@ -93,7 +94,7 @@ void MapManager::create(KScene* _Scene, ComPlayer* _Player)
 		BRE->set_bit(L"Circus\\miter.bmp", 6, true);
 
 		KText_Render* TRE = TOne->add_component<KText_Render>();
-		TRE->set_text(std::to_wstring(500 - (i + 1) * 100).c_str(), 15, 7, L"DungGeunMo");
+		TRE->set_font(std::to_wstring(500 - (i + 1) * 100).c_str(), 15, 7, L"DungGeunMo");
 		TRE->pivot(KPos2(45.0f, 7.0f));
 	}
 }
@@ -124,7 +125,7 @@ void MapManager::update_deco()
 
 KPos2 MapManager::check_mindeco()
 {
-	float MinX = 800.0f + VecDeco[0]->kscene()->SceneCamPos.x;
+	float MinX = pScene->kwindow()->size().x + VecDeco[0]->kscene()->SceneCamPos.x;
 	KOne* MinOne = nullptr;
 
 	for (int i = 0; i < VecDeco.size(); i++)
