@@ -41,6 +41,7 @@ public:
 public:
 	KVec2() : x(.0f), y(.0f) {}
 	/*KVec2(__int64 _Value) : m_i64(_Value) {}*/
+	KVec2(int _Value) : x((float)_Value), y((float)_Value) {}
 	KVec2(float _Value) : x(_Value), y(_Value) {}
 	KVec2(float _x, float _y) : x(_x), y(_y) {}
 	/*KVec2(int _x, int _y) : ix(_x), iy(_y) {}*/

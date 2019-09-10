@@ -131,7 +131,7 @@ public:
 	}
 
 	// 확장자 추론 자동에 해당 폴더를 다 긁어오신다.ㅎㅎ
-	bool load_forder(const wchar_t* _Target)
+	std::vector<KResourcePath> load_forder(const wchar_t* _Target)
 	{
 		std::wstring Extension;
 		const char* ComTmp = typeid(ResT).name(); // -> 클래스명 판독코드
@@ -148,7 +148,7 @@ public:
 			load(PathVec[i].sFolder.c_str(), PathVec[i].sFile.c_str());
 		}
 
-		return true;
+		return PathVec;
 	}
 };
 
