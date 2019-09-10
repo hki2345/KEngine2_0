@@ -1,6 +1,7 @@
 #pragma once
 #include <crtdbg.h>
 #include <Windows.h>
+#include "KVector.h"
 #include "KDebugManager.h"
 
 
@@ -83,6 +84,9 @@ public:
 		INIT OneInit;
 		OneInit.init();
 	}
+
+	// 윈도우용 실행자
+	void init(HWND _hWnd, const KSize2& _Size = KSize2::Zero);
 
 	template <typename UP>
 	void loop()

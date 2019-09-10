@@ -21,7 +21,7 @@ class KOne :
 public:
 	friend class KScene;
 
-public:
+private:
 	KOne();
 	KOne(const KOne& _Core) = delete;
 	KOne(const KOne&& _Core) = delete;

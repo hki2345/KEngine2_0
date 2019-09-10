@@ -5,11 +5,14 @@
 #include "190909_BattleCityEditor.h"
 #include <BattleTile.h>
 
+#include <KCore.h>
 #include <KResourceManager.h>
 #include <KFileStream.h>
 #include <KWindowManager.h>
-#include <KInputManager.h>
+#include <KSceneManager.h>
+#include <KScene.h>
 
+#include <KInputManager.h>
 #include <KBitMap_Render.h>
 #include <KOne.h>
 #include <KBitMap.h>
@@ -47,6 +50,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 
 
 
+KScene* EditScene;
+
 std::vector<std::wstring> VectorPath;
 std::vector<BATTLETILE_INFO> VectorTank;
 std::vector<KOne*> VectorOneMap;
@@ -57,8 +62,6 @@ std::vector<KBitMap_Render*> VectorButtonBitMap;
 std::deque<BATTLETILE_INFO> DequeRedoTank;
 std::deque<BATTLETILE_INFO> DequeUndoTank;
 
-
-
 KOne* CurOneMap;
 KBitMap_Render* CurBitMap;
 
@@ -68,7 +71,7 @@ KPos2 CurPos = KPos2::Zero;
 
 const int XSize = 13;
 const int YSize = 13;
-const int ReservationSize = 5;
+const int ReservationSize = 25;
 const int TileSize = 40;
 const int StrSize = 512;
 
@@ -129,19 +132,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
 	KPathManager::instance()->init();
-	KWindowManager::instance()->create_window(hWnd);
+
+	float ScreenSize = 275.0f;
+	KCore::instance()->init(hWnd, { (float)WinXSize - ScreenSize, (float)WinYSize - ScreenSize });
 	KResourceManager<KBitMap>::instance()->init();
 	KResourceManager<KBitMap>::instance()->load_forder(L"BattleCity");
 
 	create_map();
 
-	hMainDC = GetDC(hWnd);
-	hBackDC = CreateCompatibleDC(hMainDC); 
-	
-	HBITMAP MyBitMap = CreateCompatibleBitmap(hMainDC, 800, 600);
-	HBITMAP OldBitmap = (HBITMAP)SelectObject(hBackDC, MyBitMap);
-	BITMAP	BitMapData;
-	GetObjectW(MyBitMap, sizeof(BITMAP), &BitMapData);
+	hMainDC = KWindowManager::instance()->main_hdc();
+	hBackDC = KWindowManager::instance()->back_hdc();
+
+
 
     // 기본 메시지 루프입니다:
     while (GetMessage(&msg, nullptr, 0, 0))
@@ -245,7 +247,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		int Start = 20;
 		int Size = 45;
 		int idx = -1;
-		int ButtonIdx = 3;
+		long long ButtonIdx = 3;
 
 		CreateWindow(TEXT("button"), TEXT("None Block00"), WS_CHILD | WS_VISIBLE |
 			BS_PUSHBUTTON, MaxX2, Start + Size * ++idx, 100, 25, hWnd, (HMENU)ButtonIdx, hInst, NULL);
@@ -370,36 +372,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		reset_render();
 
-		for (size_t i = 0; i < VectorBitMap.size(); i++)
-		{
-			VectorBitMap[i]->render(hBackDC);
-		}
+		wchar_t Text[64] = L"Current Tile: ";
+		TextOutW(hMainDC, CurOneMap->pos().x - 100, CurOneMap->pos().y + 10, Text, lstrlenW(Text));
+
+		KWindowManager::instance()->update();
+		
 		for (size_t i = 0; i < VectorButtonBitMap.size(); i++)
 		{
 			VectorButtonBitMap[i]->render(hMainDC);
 		}
-		CurBitMap->render(hBackDC);
 
-		wchar_t Text[64] = L"Current Tile: ";
-		TextOutW(hBackDC, CurOneMap->pos().x - 100, CurOneMap->pos().y + 10, Text, lstrlenW(Text));
+		Rectangle(hMainDC,
+			CurBitMap->kone()->pos().x,
+			CurBitMap->kone()->pos().y,
+			CurBitMap->kone()->pos().x + CurBitMap->kone()->size().x,
+			CurBitMap->kone()->pos().y + CurBitMap->kone()->size().y);
+		CurBitMap->render(hMainDC);
 
-		BitBlt(hMainDC, 0, 0, TileSize * XSize, TileSize * YSize + 200, hBackDC, 0, 0, SRCCOPY);
-		// 검은색 색칠
-		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		myBrush = CreateSolidBrush(RGB(0, 0, 0));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hBackDC, myBrush);
-		Rectangle(hBackDC, 0, 0, TileSize * XSize, TileSize * YSize + 200);
-		SelectObject(hBackDC, oldBrush);
-		DeleteObject(myBrush);
 		break;
 	}
 	case WM_DESTROY:
 		release_map();
 		KFileStream::instance()->release();
 		KPathManager::instance()->release();
-		KWindowManager::instance()->release();
-		KInputManager::instance()->release();
 		KResourceManager<KBitMap>::instance()->release();
+
+		KCore::instance()->release();
         PostQuitMessage(0);
         break;
     default:
@@ -420,6 +418,7 @@ void create_map()
 	VectorPath.push_back(L"BattleCity\\block05.bmp");
 	VectorPath.push_back(L"BattleCity\\block06.bmp");
 	VectorPath.push_back(L"BattleCity\\block07.bmp");
+	VectorPath.push_back(L"BattleCity\\block08.bmp");
 	VectorPath.push_back(L"BattleCity\\block09.bmp");
 	VectorPath.push_back(L"BattleCity\\block10.bmp");
 	VectorPath.push_back(L"BattleCity\\block11.bmp");
@@ -427,6 +426,9 @@ void create_map()
 	VectorPath.push_back(L"BattleCity\\block13.bmp");
 	VectorPath.push_back(L"BattleCity\\tank_up_01.bmp");
 
+
+	EditScene = KSceneManager::instance()->create_scene(L"EditScene");
+	KSceneManager::instance()->change_scene(L"EditScene");
 
 	for (size_t y = 0; y < YSize; y++)
 	{
@@ -437,36 +439,50 @@ void create_map()
 			Tmp.y = y;
 			VectorTank.push_back(Tmp);
 
-			VectorOneMap.push_back(new KOne());
+			VectorOneMap.push_back(EditScene->create_kone(L"Tile"));
 			VectorOneMap[x + (y * XSize)]->create();
 			VectorOneMap[x + (y * XSize)]->pos({ x * (float)TileSize, y * (float)TileSize });
 			VectorOneMap[x + (y * XSize)]->size(TileSize);
 
 			VectorBitMap.push_back(VectorOneMap[x + (y * XSize)]->add_component<KBitMap_Render>());
 			VectorBitMap[x + (y * XSize)]->init();
+			VectorBitMap[x + (y * XSize)]->set_bit(VectorPath[0].c_str());
 		}
 	}
 
+
+	int XPos = 0;
+	int YPos = 0;
+	int YSplit = 20;
 	for (int i = 0; i < (int)BATTLECITY_TILE::BC_BLOCKNUM; i++)
 	{
-		VectorButtonOneMap.push_back(new KOne());
+		VectorButtonOneMap.push_back(EditScene->create_kone(L"Button Tile"));
 		VectorButtonOneMap[i]->create();
-		VectorButtonOneMap[i]->pos({550.0f, i * ((float)TileSize + 5.0f) + 20.0f});
+		VectorButtonOneMap[i]->pos({550.0f + XPos * 100.0f, YPos * ((float)TileSize + 5.0f) + 20.0f});
 		VectorButtonOneMap[i]->size(TileSize);
 
 		VectorButtonBitMap.push_back(VectorButtonOneMap[i]->add_component<KBitMap_Render>());
 		VectorButtonBitMap[i]->init();
-		VectorButtonBitMap[i]->set_noscenebit(VectorPath[i].c_str());
+		VectorButtonBitMap[i]->set_bit(VectorPath[i].c_str());
+		EditScene->insert_krender(VectorButtonBitMap[i]);
+
+		YPos += 1;
+
+		if (i != 0 && 0 == i % YSplit)
+		{
+			YPos = 0;
+			XPos += 1;
+		}
 	}
 
-	CurOneMap = new KOne();
+	CurOneMap = EditScene->create_kone(L"Current Tile");
 	CurOneMap->create();
 	CurOneMap->pos({ 300, 550.0f });
 	CurOneMap->size(TileSize);
 
 	CurBitMap = CurOneMap->add_component<KBitMap_Render>();
 	CurBitMap->init();
-	CurBitMap->set_noscenebit(VectorPath[0].c_str());
+	CurBitMap->set_bit(VectorPath[0].c_str());
 
 	DequeUndoTank.clear();
 	DequeRedoTank.clear();
@@ -476,21 +492,6 @@ void create_map()
 
 void release_map()
 {
-	for (size_t i = 0; i < VectorOneMap.size(); i++)
-	{
-		VectorOneMap[i]->release();
-		delete VectorOneMap[i];
-	}
-
-	for (size_t i = 0; i < VectorButtonOneMap.size(); i++)
-	{
-		VectorButtonOneMap[i]->release();
-		delete VectorButtonOneMap[i];
-	}
-
-	CurOneMap->release();
-	delete CurOneMap;
-
 	DequeRedoTank.clear();
 	DequeUndoTank.clear();
 	VectorTank.clear();
@@ -540,6 +541,20 @@ void input_key()
 		}
 		VectorTank[CurPos.x + XSize * CurPos.y].Idx = CurTileIdx;
 	}
+	else if (true == KInputManager::instance()->is_press(VK_DELETE))
+	{
+		if (ReservationSize <= DequeUndoTank.size())
+		{
+			DequeUndoTank.pop_front();
+			DequeUndoTank.push_back(VectorTank[CurPos.x + XSize * CurPos.y]);
+		}
+		else
+		{
+			DequeUndoTank.push_back(VectorTank[CurPos.x + XSize * CurPos.y]);
+		}
+		CurTileIdx = BATTLECITY_TILE::NONE_BLOCK00;
+		VectorTank[CurPos.x + XSize * CurPos.y].Idx = CurTileIdx;
+	}
 
 	
 
@@ -556,11 +571,6 @@ void input_key()
 		{
 			CurTileIdx = (BATTLECITY_TILE)((int)CurTileIdx + 1);
 		}
-	}
-	else if (true == KInputManager::instance()->is_press(VK_DELETE))
-	{
-		CurTileIdx = BATTLECITY_TILE::NONE_BLOCK00;
-		VectorTank[CurPos.x + XSize * CurPos.y].Idx = CurTileIdx;
 	}
 	else if (
 		true == KInputManager::instance()->is_press(VK_LCONTROL) &&
@@ -627,16 +637,16 @@ void reset_render()
 	{
 		if (CurPos.x == VectorTank[i].x && CurPos.y == VectorTank[i].y)
 		{
-			VectorBitMap[i]->set_noscenebit(L"BattleCity\\e_up_00.bmp");
+			VectorBitMap[i]->change_bit(L"BattleCity\\e_up_00.bmp");
 		}
 		else
 		{
-			VectorBitMap[i]->set_noscenebit(VectorPath[(int)VectorTank[i].Idx].c_str());
+			VectorBitMap[i]->change_bit(VectorPath[(int)VectorTank[i].Idx].c_str());
 		}
 	}
 
 
-	CurBitMap->set_noscenebit(VectorPath[(int)CurTileIdx].c_str());
+	CurBitMap->change_bit(VectorPath[(int)CurTileIdx].c_str());
 }
 
 

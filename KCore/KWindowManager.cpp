@@ -21,6 +21,7 @@ bool KWindowManager::init(
 	return true;
 }
 
+
 void KWindowManager::init()
 {
 	std::map<std::wstring, KWindow*>::iterator SIter = MapWindow.begin();
@@ -76,16 +77,32 @@ int KWindowManager::create_window(const wchar_t* _Name)
 	return true;
 }
 
-int KWindowManager::create_window(HWND _Name)
+int KWindowManager::create_window(HWND _Name, const KSize2& _Size /*= KSize2::Zero*/)
 {
+
 	KWindow* NewWindow = new KWindow();
+	NewWindow->name(L"Custom");
 	NewWindow->hMainDC = GetDC(_Name);
-	NewWindow->hBackDC = NewWindow->hMainDC;
 	NewWindow->mhWnd = _Name;
+
+	if (_Size == KSize2::Zero)
+	{
+		RECT rc;
+		GetClientRect(_Name, &rc);
+		NewWindow->MyWinSize.x = (float)rc.right;
+		NewWindow->MyWinSize.y = (float)rc.bottom;
+	}
+	else
+	{
+		NewWindow->MyWinSize = _Size;
+	}
+	
 	MapWindow.insert(std::make_pair(L"Custom", NewWindow));
 
 	return 0;
 }
+
+
 
 HDC& KWindowManager::back_hdc()
 {

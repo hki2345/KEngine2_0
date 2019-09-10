@@ -31,16 +31,13 @@ void KBitMap_Render::set_bit(
 	kscene()->insert_krender(this, _Key);
 }
 
-void KBitMap_Render::set_noscenebit(const wchar_t* _Name/* = L"NONE"*/, const bool& _bBitRender /*= false*/)
+
+void KBitMap_Render::change_bit(
+	const wchar_t* _Name /*= L"NONE"*/, 
+	const bool& _bBitRender /*= false*/)
 {
 	bBitRender = _bBitRender;
 	MyBitMap = KResourceManager<KBitMap>::instance()->find(_Name);
-
-	if (nullptr == MyBitMap)
-	{
-		int a = 0;
-	}
-	bRender = true;
 }
 
 bool KBitMap_Render::init()
@@ -91,12 +88,6 @@ void KBitMap_Render::render()
 
 void KBitMap_Render::render(HDC _Hdc)
 {
-	if (false == bRender)
-	{
-		return;
-	}
-
-
 	if (true == bBitRender)
 	{
 		BitBlt(

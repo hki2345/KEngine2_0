@@ -76,6 +76,7 @@ KScene* KSceneManager::create_scene(const wchar_t* _Name/*= "KScene"*/)
 {
 	KScene* Tmp = new KScene();
 	Tmp->name(_Name);
+	Tmp->kwindow(kwindow());
 	Tmp->create();
 	MapScene.insert(std::make_pair(_Name, Tmp));
 	return Tmp;

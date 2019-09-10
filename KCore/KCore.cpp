@@ -62,6 +62,16 @@ void KCore::init(
 	KDebugManager::instance()->init();
 }
 
+void KCore::init(HWND _hWnd, const KSize2& _Size /*= KSize2::Zero*/)
+{
+	KResourceManager<KBitMap>::instance()->init();
+
+	KPathManager::instance()->init();
+	KTimeManager::instance()->init();
+	KWindowManager::instance()->create_window(_hWnd, _Size);
+	KWindowManager::instance()->init();
+	KDebugManager::instance()->init();
+}
 
 void KCore::loop()
 {

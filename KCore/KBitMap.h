@@ -9,6 +9,7 @@ class KBitMap  final : public KResource
 {
 public:
 	friend class KBitMap_Render;
+	friend class KSprite_Render;
 	friend class KBitMap_Animator;
 
 public:
