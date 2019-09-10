@@ -15,6 +15,8 @@
 #include <KBitMap.h>
 #include <crtdbg.h>
 #include <vector>
+#include <deque>
+
 #include <CommDlg.h>
 
 
@@ -52,6 +54,10 @@ std::vector<KBitMap_Render*> VectorBitMap;
 
 std::vector<KOne*> VectorButtonOneMap;
 std::vector<KBitMap_Render*> VectorButtonBitMap;
+std::deque<BATTLETILE_INFO> DequeRedoTank;
+std::deque<BATTLETILE_INFO> DequeUndoTank;
+
+
 
 KOne* CurOneMap;
 KBitMap_Render* CurBitMap;
@@ -62,6 +68,7 @@ KPos2 CurPos = KPos2::Zero;
 
 const int XSize = 13;
 const int YSize = 13;
+const int ReservationSize = 5;
 const int TileSize = 40;
 const int StrSize = 512;
 
@@ -461,6 +468,9 @@ void create_map()
 	CurBitMap->init();
 	CurBitMap->set_noscenebit(VectorPath[0].c_str());
 
+	DequeUndoTank.clear();
+	DequeRedoTank.clear();
+
 	reset_tile();
 }
 
@@ -481,6 +491,8 @@ void release_map()
 	CurOneMap->release();
 	delete CurOneMap;
 
+	DequeRedoTank.clear();
+	DequeUndoTank.clear();
 	VectorTank.clear();
 	VectorBitMap.clear();
 }
@@ -515,8 +527,17 @@ void input_key()
 			CurPos.y += 1;
 		}
 	}
-	else if (true == KInputManager::instance()->is_press(VK_SPACE))
+	else if (true == KInputManager::instance()->is_down(VK_SPACE))
 	{
+		if (ReservationSize <= DequeUndoTank.size())
+		{
+			DequeUndoTank.pop_front();
+			DequeUndoTank.push_back(VectorTank[CurPos.x + XSize * CurPos.y]);
+		}
+		else
+		{
+			DequeUndoTank.push_back(VectorTank[CurPos.x + XSize * CurPos.y]);
+		}
 		VectorTank[CurPos.x + XSize * CurPos.y].Idx = CurTileIdx;
 	}
 
@@ -536,7 +557,11 @@ void input_key()
 			CurTileIdx = (BATTLECITY_TILE)((int)CurTileIdx + 1);
 		}
 	}
-
+	else if (true == KInputManager::instance()->is_press(VK_DELETE))
+	{
+		CurTileIdx = BATTLECITY_TILE::NONE_BLOCK00;
+		VectorTank[CurPos.x + XSize * CurPos.y].Idx = CurTileIdx;
+	}
 	else if (
 		true == KInputManager::instance()->is_press(VK_LCONTROL) &&
 		true == KInputManager::instance()->is_down(0x4c))
@@ -557,6 +582,42 @@ void input_key()
 	{
 		SendMessage(hWnd, WM_COMMAND, LOWORD(2), LOWORD(0));
 	}
+
+
+	// 앞으로가기
+	else if (
+		true == KInputManager::instance()->is_press(VK_LCONTROL) &&
+		true == KInputManager::instance()->is_press(VK_LSHIFT) &&
+		true == KInputManager::instance()->is_down(0x5A))
+	{
+		if (0 == DequeRedoTank.size())
+		{
+			return;
+		}
+		VectorTank[DequeRedoTank.back().x + XSize * DequeRedoTank.back().y].Idx =
+			DequeRedoTank.back().Idx;
+
+		DequeUndoTank.push_back(DequeRedoTank.back());
+		DequeRedoTank.pop_back();
+	}
+	// 뒤로가기
+	else if (
+		true == KInputManager::instance()->is_press(VK_LCONTROL) &&
+		true == KInputManager::instance()->is_down(0x5A))
+	{
+		if (0 == DequeUndoTank.size())
+		{
+			return;
+		}	
+
+
+		DequeRedoTank.push_back(VectorTank[DequeUndoTank.back().x + XSize * DequeUndoTank.back().y]);
+		VectorTank[DequeUndoTank.back().x + XSize * DequeUndoTank.back().y].Idx =
+			DequeUndoTank.back().Idx;
+		DequeUndoTank.pop_back();
+	}
+
+	
 }
 
 

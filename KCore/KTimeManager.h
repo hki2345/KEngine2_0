@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <map>
+#include <chrono>
 
 #include "KName.h"
 
@@ -48,9 +49,8 @@ private:
 		void accumulate();
 
 	private:
-		LARGE_INTEGER CpuFrequency;
-		LARGE_INTEGER CurCount;
-		LARGE_INTEGER NextCount;
+		std::chrono::system_clock::time_point m_LastTime;
+		std::chrono::system_clock::time_point m_CurTime;
 
 		float DeltaTime;
 		float AccumulateTime;

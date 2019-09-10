@@ -1,5 +1,6 @@
 #include "KTimeManager.h"
 #include "KMacro.h"
+#include <chrono>
 
 KTimeManager* KTimeManager::pKTimeManager = nullptr;
 KTimeManager::KTimer::KTimer()
@@ -15,10 +16,7 @@ KTimeManager::KTimer::~KTimer()
 
 void KTimeManager::KTimer::start()
 {
-	QueryPerformanceFrequency(&CpuFrequency);
-
-	// 누적타임 
-	QueryPerformanceCounter(&CurCount);
+	m_LastTime = std::chrono::system_clock::now();
 
 	AccumulateTime = .0f;
 	AccCal_Time = .0f;
@@ -27,12 +25,15 @@ void KTimeManager::KTimer::start()
 
 void KTimeManager::KTimer::accumulate()
 {
+	m_CurTime = std::chrono::system_clock::now();
+
 	// 델타타임을 구한다.
-	QueryPerformanceCounter(&NextCount);
-
-	DeltaTime = ((float)(NextCount.QuadPart - CurCount.QuadPart)) / ((float)CpuFrequency.QuadPart);
-	CurCount.QuadPart = NextCount.QuadPart;
-
+	// 받는 형이 정해져야 하드라 ㅋㅋㅋ 걍 받으면 더블로 처리되는듯
+	std::chrono::duration<float> sec = m_CurTime - m_LastTime;
+	DeltaTime = sec.count();
+	
+	
+	m_LastTime = m_CurTime;
 	
 	// FPS 계산 1초당 프레임 수...
 	AccCal_Time += DeltaTime;

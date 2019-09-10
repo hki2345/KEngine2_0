@@ -42,8 +42,11 @@ void KWindow::update()
 		DispatchMessage(&Message);
 	}
 
-	KTimeManager::instance()->update();
-	KSceneManager::instance()->update();
+	else
+	{
+		KTimeManager::instance()->update();
+		KSceneManager::instance()->update();
+	}
 }
 
 
