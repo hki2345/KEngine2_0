@@ -88,6 +88,7 @@ void create_map();
 void release_map();
 void input_key();
 void reset_render();
+void reset_tile();
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -339,10 +340,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case 2:
 		{
-			for (size_t i = 0; i < VectorTank.size(); i++)
-			{
-				VectorTank[i].Idx = BATTLECITY_TILE::NONE_BLOCK00;
-			}
+			reset_tile();
 		}
 			break;
 
@@ -430,7 +428,6 @@ void create_map()
 			BATTLETILE_INFO Tmp;
 			Tmp.x = x;	
 			Tmp.y = y;
-			Tmp.Idx = BATTLECITY_TILE::NONE_BLOCK00;
 			VectorTank.push_back(Tmp);
 
 			VectorOneMap.push_back(new KOne());
@@ -463,6 +460,8 @@ void create_map()
 	CurBitMap = CurOneMap->add_component<KBitMap_Render>();
 	CurBitMap->init();
 	CurBitMap->set_noscenebit(VectorPath[0].c_str());
+
+	reset_tile();
 }
 
 void release_map()
@@ -577,4 +576,18 @@ void reset_render()
 
 
 	CurBitMap->set_noscenebit(VectorPath[(int)CurTileIdx].c_str());
+}
+
+
+void reset_tile()
+{
+	for (size_t i = 0; i < VectorTank.size(); i++)
+	{
+		VectorTank[i].Idx = BATTLECITY_TILE::NONE_BLOCK00;
+	}
+
+	VectorTank[6 + (YSize - 2) * XSize].Idx = BATTLECITY_TILE::BROWN_BLOCK03;
+	VectorTank[5 + (YSize - 1) * XSize].Idx = BATTLECITY_TILE::BROWN_BLOCK04;
+	VectorTank[6 + (YSize - 1) * XSize].Idx = BATTLECITY_TILE::PHOENIX_BLOCK00;
+	VectorTank[7 + (YSize - 1) * XSize].Idx = BATTLECITY_TILE::BROWN_BLOCK02;
 }
