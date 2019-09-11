@@ -1,8 +1,11 @@
 #include "Tank.h"
 #include <KOne.h>
+#include <KScene.h>
+
 #include <KSprite_Animator.h>
 #include <KTimeManager.h>
 
+#include "Bullet.h"
 #include "TileManager.h"
 #include "BattleTile.h"
 
@@ -31,30 +34,53 @@ void Tank::create()
 	MyAnimator->change_animation(L"Idle");
 
 	fSpeed = 100.0f;
+
+
+	for (size_t i = 0; i < 2; i++)
+	{
+		KOne* NewBullet = kscene()->create_kone(L"Bullet");
+		VectorMyBullet.push_back(NewBullet->add_component<Bullet>());
+	}
 }
+
+bool Tank::init()
+{
+	vDir = KPos2::Up;
+	vPrevDir = KPos2::Up;
+
+	return true;
+}
+
 
 void Tank::update() 
 {
-	if (vDir == KPos2::Zero)
+	if (vPrevDir == KPos2::Zero)
 	{
 		MyAnimator->change_animation(L"Idle");
 	}
-	else if (vDir == KPos2::Left)
+	else if (vPrevDir == KPos2::Left)
 	{
 		MyAnimator->change_animation(L"Left");
 	}
-	else if (vDir == KPos2::Right)
+	else if (vPrevDir == KPos2::Right)
 	{
 		MyAnimator->change_animation(L"Right");
 	}
-	else if (vDir == KPos2::Down)
+	else if (vPrevDir == KPos2::Down)
 	{
 		MyAnimator->change_animation(L"Up");
 	}
-	else if (vDir == KPos2::Up)
+	else if (vPrevDir == KPos2::Up)
 	{
 		MyAnimator->change_animation(L"Down");
 	}
+
+	update_checkingpos();
+}
+
+
+void Tank::update_checkingpos()
+{
 
 	if (vDir != vPrevDir)
 	{
@@ -86,14 +112,18 @@ void Tank::update()
 
 			if (TILEXSIZE / 2 > Nam)
 			{
-				kone()->pos(KPos2(Mok * TILEXSIZE , Tmp.y));
+				kone()->pos(KPos2(Mok * TILEXSIZE, Tmp.y));
 			}
 			else
 			{
 				kone()->pos(KPos2(Mok * TILEXSIZE + (TILEXSIZE), Tmp.y));
 			}
 		}
-		vPrevDir = vDir;
+
+		if (vDir != KPos2::Zero)
+		{
+			vPrevDir = vDir;
+		}
 	}
 }
 

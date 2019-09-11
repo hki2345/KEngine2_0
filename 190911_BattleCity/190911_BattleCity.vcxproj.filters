@@ -48,6 +48,9 @@
     <ClCompile Include="Tank.cpp">
       <Filter>InGame\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityInitiator.h">
@@ -75,6 +78,9 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Tank.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
       <Filter>InGame\Component</Filter>
     </ClInclude>
   </ItemGroup>

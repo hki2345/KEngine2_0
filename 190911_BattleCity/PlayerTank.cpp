@@ -10,6 +10,9 @@
 #include <KOne.h>
 
 
+#include "Bullet.h"
+
+
 
 PlayerTank::PlayerTank()
 {
@@ -29,6 +32,8 @@ void PlayerTank::create()
 
 bool PlayerTank::init()
 {
+	Tank::init();
+
 	kone()->pos({ 220.0f, 500.0f });
 	kone()->size({ 40.0f, 40.0f });
 
@@ -61,6 +66,20 @@ void PlayerTank::update_input()
 	else if (true == KInputManager::instance()->is_press(VK_RIGHT))
 	{
 		vDir = KPos2::Right;
+	}
+
+
+	else if (true == KInputManager::instance()->is_down(VK_SPACE))
+	{
+		if (vPrevDir == KPos2::Left || vPrevDir == KPos2::Right)
+		{
+			VectorMyBullet[0]->set_bullet(kone()->pos() + kone()->size() * .5f * vPrevDir, vPrevDir);
+		}
+		else if (vPrevDir == KPos2::Up || vPrevDir == KPos2::Down)
+		{
+			VectorMyBullet[0]->set_bullet(
+				kone()->pos() + kone()->size() * .5f * vPrevDir + KPos2(kone()->size().x * .2f, .0f), vPrevDir);
+		}
 	}
 }
 

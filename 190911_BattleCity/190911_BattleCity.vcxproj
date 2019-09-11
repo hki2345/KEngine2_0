@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="BattleCityInitiator.cpp" />
     <ClCompile Include="BattleCityUpdater.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyTank.cpp" />
     <ClCompile Include="EngineLauncher.cpp" />
@@ -165,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="BattleCityInitiator.h" />
     <ClInclude Include="BattleCityUpdater.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemyTank.h" />
     <ClInclude Include="InGameScene.h" />
