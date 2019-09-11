@@ -6,6 +6,7 @@
 #include "KScene.h"
 #include "KBitMap.h"
 
+#pragma comment(lib, "msimg32.lib")
 
 
 KSprite_Render::KSprite_Render()
@@ -38,21 +39,37 @@ void KSprite_Render::set_split(const int& _X, const int& _Y)
 	SplitY = _Y;
 
 	VectorMySplit.clear();
-	int SplitSizeX = ((int)MyBitMap->size().x / _X);
-	int SplitSizeY = ((int)MyBitMap->size().y / _Y);
+	int SplitSizeX = ((int)MyBitMap->size().x / SplitX);
+	int SplitSizeY = ((int)MyBitMap->size().y / SplitY);
 
-	for (int i = 0; i < _Y; i++)
+	for (int i = 0; i < SplitY; i++)
 	{
-		for (int j = 0; j < _X; j++)
+		for (int j = 0; j < SplitX; j++)
 		{
 			VectorMySplit.push_back(
-				{ KPos2(j * SplitSizeX, i * SplitSizeY), KPos2((j + 1) * SplitSizeX , (i + 1) * SplitSizeY) });
+				{ KPos2(j * SplitSizeX, i * SplitSizeY), KPos2(SplitSizeX , SplitSizeY) });
 		}
 	}
 }
 void KSprite_Render::set_idx(const int& _X, const int& _Y)
 {
 	idx = _X + SplitX * _Y;
+}
+
+void KSprite_Render::set_idx(const int& _Idx)
+{
+	if (0 > _Idx)
+	{
+		idx = 0;
+	}
+	else if(VectorMySplit.size() <= _Idx)
+	{
+		idx = VectorMySplit.size() - 1;
+	}
+	else
+	{
+		idx = _Idx;
+	}
 }
 
 
@@ -74,10 +91,10 @@ void KSprite_Render::render()
 		MyTrans->Size.x,
 		MyTrans->Size.y,
 		MyBitMap->MyDC,
-		VectorMySplit[idx].Start.x,
-		VectorMySplit[idx].Start.y,
-		VectorMySplit[idx].End.x,
-		VectorMySplit[idx].End.y,
+		(int)VectorMySplit[idx].Pos.x,
+		(int)VectorMySplit[idx].Pos.y,
+		(int)VectorMySplit[idx].Size.x,
+		(int)VectorMySplit[idx].Size.y,
 		RGB(255, 0, 255));
 }
 void KSprite_Render::render(HDC _Hdc)
@@ -89,9 +106,9 @@ void KSprite_Render::render(HDC _Hdc)
 		MyTrans->Size.x,
 		MyTrans->Size.y,
 		MyBitMap->MyDC,
-		VectorMySplit[idx].Start.x,
-		VectorMySplit[idx].Start.y,
-		VectorMySplit[idx].End.x,
-		VectorMySplit[idx].End.y,
+		(int)VectorMySplit[idx].Pos.x,
+		(int)VectorMySplit[idx].Pos.y,
+		(int)VectorMySplit[idx].Size.x,
+		(int)VectorMySplit[idx].Size.y,
 		RGB(255, 0, 255));
 }

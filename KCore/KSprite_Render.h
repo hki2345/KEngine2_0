@@ -14,8 +14,8 @@ public:
 private:
 	struct KSplit
 	{
-		KPos2 Start;
-		KPos2 End;
+		KPos2 Pos;
+		KPos2 Size;
 	};
 
 private:
@@ -30,6 +30,7 @@ public:
 	void change_bit(const wchar_t* _Name = L"NONE");
 	void set_split(const int& _X, const int& _Y);
 	void set_idx(const int& _X, const int& _Y);
+	void set_idx(const int& _Idx);
 
 	bool init() override;
 	void render() override;

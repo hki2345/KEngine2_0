@@ -67,6 +67,9 @@
     <ClCompile Include="KDebugManager.cpp">
       <Filter>01_Manager\DebugManager</Filter>
     </ClCompile>
+    <ClCompile Include="KSprite_Animator.cpp">
+      <Filter>04_Render\Animator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KTimeManager.h">
@@ -146,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="KDebugManager.h">
       <Filter>01_Manager\DebugManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KSprite_Animator.h">
+      <Filter>04_Render\Animator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

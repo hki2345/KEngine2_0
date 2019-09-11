@@ -157,6 +157,7 @@
     <ClCompile Include="KRenderManager.cpp" />
     <ClCompile Include="KScene.cpp" />
     <ClCompile Include="KSceneManager.cpp" />
+    <ClCompile Include="KSprite_Animator.cpp" />
     <ClCompile Include="KSprite_Render.cpp" />
     <ClCompile Include="KText_Render.cpp" />
     <ClCompile Include="KTimeManager.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="KRenderManager.h" />
     <ClInclude Include="KScene.h" />
     <ClInclude Include="KSceneManager.h" />
+    <ClInclude Include="KSprite_Animator.h" />
     <ClInclude Include="KSprite_Render.h" />
     <ClInclude Include="KText_Render.h" />
     <ClInclude Include="KTimeManager.h" />
