@@ -34,8 +34,11 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 		switch (_Other->MyFigure)
 		{
 		case K2DCollider::RECT:
-			if (fabsf(MyTrans->Pos.x - _Other->MyTrans->Pos.x) <= MyTrans->Size.x + _Other->MyTrans->Size.x &&
-				fabsf(MyTrans->Pos.y - _Other->MyTrans->Pos.y) <= MyTrans->Size.y + _Other->MyTrans->Size.y)
+			if ((MyTrans->Pos.x + MyTrans->Size.x >= _Other->MyTrans->Pos.x &&
+				MyTrans->Pos.y + MyTrans->Size.y >= _Other->MyTrans->Pos.y  ) && 
+				(
+				_Other->MyTrans->Pos.x + _Other->MyTrans->Size.x >= MyTrans->Pos.x &&
+				_Other->MyTrans->Pos.y + _Other->MyTrans->Size.y >= MyTrans->Pos.y))
 			{
 				Check =  true;
 			}
@@ -77,12 +80,10 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 	default:
 		break;
 	}
-
+/*
 	update_enter(_Other, Check);
 	update_stay(_Other, Check);
-	update_exit(_Other, Check);
-
-	return Check;
+	update_exit(_Other, Check);*/
 }
 
 

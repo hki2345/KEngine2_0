@@ -2,11 +2,13 @@
 #include <vector>
 #include <BattleTile.h>
 #include <KVector.h>
+#include <Windows.h>
 
 
 
 class KScene;
 class Tile;
+class KBitMap;
 class TileManager
 {
 private:
@@ -31,6 +33,10 @@ public:
 
 
 private:
+	std::vector<Tile*> VectorTile;
+
+	HDC MapHdc;
+	KBitMap* MapBit;
 	KScene* MomScene;
 	
 	int XSize;
@@ -39,6 +45,10 @@ private:
 public:
 	void create(KScene* _Scene);
 	bool init(const wchar_t* _Name);
+
+	void update_alltile();
+	void update_tile(Tile* _Tile);
+	void render();
 	void release();
 
 	inline KRect tilemap_size()

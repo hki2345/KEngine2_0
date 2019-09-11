@@ -107,8 +107,6 @@ int KWindow::create()
 	MyWinSize.y = (float)rc.bottom;
 
 	hMainDC = GetDC(mhWnd);
-	// hBackDC = ;
-
 
 	return (int)Message.wParam;
 }

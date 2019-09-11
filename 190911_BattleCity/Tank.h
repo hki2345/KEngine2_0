@@ -5,6 +5,7 @@
 
 
 class KSprite_Animator;
+class KRect_Collision;
 class Bullet;
 class Tank : public KComponent
 {
@@ -15,6 +16,7 @@ public:
 protected:
 	std::vector<Bullet*> VectorMyBullet;
 	KSprite_Animator* MyAnimator;
+	KRect_Collision* MyCollider;
 
 	KPos2 vPrevDir;
 	KPos2 vDir;

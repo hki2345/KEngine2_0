@@ -45,6 +45,11 @@ void K2DColliderManager::update_link(const int& _Key1, const int& _Key2)
 				break;
 			}
 
+			if (SCI1->second == SCI2->second)
+			{
+				continue;
+			}
+
 			SCI1->second->update_collision(SCI2->second);
 		}
 	}
@@ -65,5 +70,6 @@ void K2DColliderManager::link(const int& _Key1, const int& _Key2)
 
 bool K2DColliderManager::insert_kcollider(K2DCollider* _Other, const int& _Key/* = 0*/)
 {
+	MapK2DCollider.insert(std::make_pair(_Key, _Other));
 	return true;
 }

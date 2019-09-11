@@ -3,6 +3,7 @@
 #include <KScene.h>
 
 #include <KSprite_Animator.h>
+#include <KRect_Collision.h>
 #include <KTimeManager.h>
 
 #include "Bullet.h"
@@ -35,6 +36,8 @@ void Tank::create()
 
 	fSpeed = 100.0f;
 
+	MyCollider = kone()->add_component<KRect_Collision>();
+	MyCollider->set_rect(0);
 
 	for (size_t i = 0; i < 2; i++)
 	{

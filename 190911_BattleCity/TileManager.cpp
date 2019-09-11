@@ -1,12 +1,13 @@
 #include "TileManager.h"
 #include "Tile.h"
 
-
+#include <KWindow.h>
 #include <KMacro.h>
 #include <KFileStream.h>
+#include <KResourceManager.h>
 #include <KScene.h>
 #include <KOne.h>
-
+#include <KBitMap.h>
 
 
 
@@ -17,6 +18,20 @@ void TileManager::create(KScene* _Scene)
 	XSize = 13 * 2;
 	YSize = 13 * 2;
 	MomScene = _Scene;
+
+
+	if (nullptr == MapBit)
+	{
+		MapBit = KResourceManager<KBitMap>::instance()->load(L"KCore", L"MapBuffer");
+		MapHdc = MapBit->kwindow_size({ XSize * 2.0f * TILEXSIZE, YSize * 2.0f * TILEYSIZE });
+	}
+
+	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	myBrush = CreateSolidBrush(RGB(0,0,0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(MapHdc, myBrush);
+	Rectangle(MapHdc, 0, 0, XSize * (TILEXSIZE), XSize * (TILEXSIZE));
+	SelectObject(MapHdc, oldBrush);
+	DeleteObject(myBrush);
 }
 
 bool TileManager::init(const wchar_t* _Name)
@@ -198,12 +213,47 @@ bool TileManager::init(const wchar_t* _Name)
 
 	for (int i = 0; i < XSize * YSize; i++)
 	{
+		if (BATTLECITY_GAMETILE::BG_NONE == VectorTileInfo[i])
+		{
+			continue;
+		}
+
 		KOne* TOne = MomScene->create_kone(L"Tile");
 		Tile* NewTile = TOne->add_component<Tile>();
 		NewTile->set_tile({ (float)(i % XSize) * TILEXSIZE, (float)(i / XSize) * TILEYSIZE }, VectorTileInfo[i]);
+		VectorTile.push_back(NewTile);
 	}
+	// render();
 	return 0;
 }
+
+void TileManager::update_alltile()
+{
+	for (size_t i = 0; i < VectorTile.size(); i++)
+	{
+		VectorTile[i]->update_trans();
+		VectorTile[i]->render(MapHdc);
+	}
+}
+
+void TileManager::update_tile(Tile* _Tile)
+{
+	_Tile->render(MapHdc);
+}
+void TileManager::render()
+{
+	BitBlt(
+		MomScene->kwindow()->bhdc(),
+		STARTXPOS,
+		STARTYPOS, 
+		XSize * (TILEXSIZE), 
+		XSize * (TILEXSIZE),
+		MapHdc,
+		0,
+		0, 
+		SRCCOPY);
+}
+
 
 
 void TileManager::release()

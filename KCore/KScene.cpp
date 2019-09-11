@@ -97,6 +97,12 @@ void KScene::release()
 		curKRenderMgr->release();
 	}
 	RELEASE_PTR(curKRenderMgr);
+
+	if (nullptr != curK2DColliderMgr)
+	{
+		curK2DColliderMgr->release();
+	}
+	RELEASE_PTR(curK2DColliderMgr);
 }
 
 
@@ -169,9 +175,9 @@ bool KScene::insert_krender(KRenderer* _Render, const int& _Key /*= 0*/)
 }
 
 
-bool KScene::insert_k2dCollider(K2DCollider* _Collider, const int& _Key = 0)
+bool KScene::insert_k2dCollider(K2DCollider* _Collider, const int& _Key /*= 0*/)
 {
-	curK2DColliderMgr->insert_kcollider(_Collider, _Key);
+	return  curK2DColliderMgr->insert_kcollider(_Collider, _Key);
 }
 
 

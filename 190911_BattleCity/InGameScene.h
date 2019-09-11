@@ -17,6 +17,7 @@ private:
 public:
 	void create() override;
 	bool init() override;
+	void render() override;
 	void update() override;
 	void release() override;
 };
