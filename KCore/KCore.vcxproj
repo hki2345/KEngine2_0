@@ -142,10 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="K2DColliderManager.cpp" />
     <ClCompile Include="KActor.cpp" />
     <ClCompile Include="KBitMap.cpp" />
     <ClCompile Include="KBitMap_Animator.cpp" />
     <ClCompile Include="KBitMap_Render.cpp" />
+    <ClCompile Include="K2DCollider.cpp" />
     <ClCompile Include="KComponent.cpp" />
     <ClCompile Include="KConsole_Render.cpp" />
     <ClCompile Include="KCore.cpp" />
@@ -153,6 +155,7 @@
     <ClCompile Include="KInputManager.cpp" />
     <ClCompile Include="KName.cpp" />
     <ClCompile Include="KOne.cpp" />
+    <ClCompile Include="KRect_Collision.cpp" />
     <ClCompile Include="KRenderer.cpp" />
     <ClCompile Include="KRenderManager.cpp" />
     <ClCompile Include="KScene.cpp" />
@@ -167,10 +170,12 @@
     <ClCompile Include="KWindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="K2DColliderManager.h" />
     <ClInclude Include="KActor.h" />
     <ClInclude Include="KBitMap.h" />
     <ClInclude Include="KBitMap_Animator.h" />
     <ClInclude Include="KBitMap_Render.h" />
+    <ClInclude Include="K2DCollider.h" />
     <ClInclude Include="KComponent.h" />
     <ClInclude Include="KConsole_Render.h" />
     <ClInclude Include="KCore.h" />
@@ -178,6 +183,7 @@
     <ClInclude Include="KInputManager.h" />
     <ClInclude Include="KName.h" />
     <ClInclude Include="KOne.h" />
+    <ClInclude Include="KRect_Collision.h" />
     <ClInclude Include="KRenderer.h" />
     <ClInclude Include="KRenderManager.h" />
     <ClInclude Include="KScene.h" />

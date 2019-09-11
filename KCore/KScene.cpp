@@ -4,6 +4,7 @@
 #include "KOne.h"
 #include "KMacro.h"
 #include "KRenderManager.h"
+#include "K2DColliderManager.h"
 
 
 #include "KCore.h"
@@ -20,6 +21,12 @@ void KScene::create()
 		curKRenderMgr->init();
 
 		SceneCamPos = KPos2::Zero;
+	}
+
+	if (nullptr == curK2DColliderMgr)
+	{
+		curK2DColliderMgr = new K2DColliderManager();
+		curK2DColliderMgr->init();
 	}
 
 	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
@@ -47,6 +54,7 @@ bool KScene::init()
 void KScene::update()
 {
 	curKRenderMgr->update_trans(SceneCamPos);
+	curK2DColliderMgr->update();
 	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
 	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
@@ -158,6 +166,18 @@ bool KScene::delete_kone(const wchar_t* _Name)
 bool KScene::insert_krender(KRenderer* _Render, const int& _Key /*= 0*/)
 {
 	return curKRenderMgr->insert_krenderer(_Render, _Key);
+}
+
+
+bool KScene::insert_k2dCollider(K2DCollider* _Collider, const int& _Key = 0)
+{
+	curK2DColliderMgr->insert_kcollider(_Collider, _Key);
+}
+
+
+void KScene::link_k2dCollider(const int& _Key1, const int& _Key2)
+{
+	curK2DColliderMgr->link(_Key1, _Key2);
 }
 
 

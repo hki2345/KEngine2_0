@@ -10,7 +10,9 @@
 
 class KOne;
 class KRenderManager;
+class K2DColliderManager;
 class KRenderer;
+class K2DCollider;
 class KScene : 
 	public PtrOf_KWindow,
 	public KName,
@@ -32,11 +34,17 @@ public:
 
 protected:
 	KRenderManager* curKRenderMgr;
+	K2DColliderManager* curK2DColliderMgr;
 
 	std::multimap<std::wstring, KOne*> MapKOne;
 	
 public:
 	bool insert_krender(KRenderer* _Render, const int& _Key = 0);
+	bool insert_k2dCollider(K2DCollider* _Collider, const int& _Key = 0);
+
+
+	void link_k2dCollider(const int& _Key1, const int& _Key2);
+
 	KPos2 outof_screen(KOne* _Target);
 
 protected:

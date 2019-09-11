@@ -37,6 +37,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "190911_BattleCity", "190911
 		{5A5DB68C-459F-4A8F-9E80-D7F2FFE2E1F9} = {5A5DB68C-459F-4A8F-9E80-D7F2FFE2E1F9}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STLTEST", "STLTEST\STLTEST.vcxproj", "{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -117,6 +119,14 @@ Global
 		{A8EB727B-70DC-4113-917C-67145FC7A404}.Release|x64.Build.0 = Release|x64
 		{A8EB727B-70DC-4113-917C-67145FC7A404}.Release|x86.ActiveCfg = Release|Win32
 		{A8EB727B-70DC-4113-917C-67145FC7A404}.Release|x86.Build.0 = Release|Win32
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Debug|x64.ActiveCfg = Debug|x64
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Debug|x64.Build.0 = Debug|x64
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Debug|x86.ActiveCfg = Debug|Win32
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Debug|x86.Build.0 = Debug|Win32
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Release|x64.ActiveCfg = Release|x64
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Release|x64.Build.0 = Release|x64
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Release|x86.ActiveCfg = Release|Win32
+		{F6704666-CCB7-4B36-AF31-1D5A32ED5AF3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

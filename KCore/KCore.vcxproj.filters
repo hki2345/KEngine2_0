@@ -70,6 +70,15 @@
     <ClCompile Include="KSprite_Animator.cpp">
       <Filter>04_Render\Animator</Filter>
     </ClCompile>
+    <ClCompile Include="K2DColliderManager.cpp">
+      <Filter>04_Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="KRect_Collision.cpp">
+      <Filter>04_Collider\Child</Filter>
+    </ClCompile>
+    <ClCompile Include="K2DCollider.cpp">
+      <Filter>04_Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KTimeManager.h">
@@ -153,6 +162,15 @@
     <ClInclude Include="KSprite_Animator.h">
       <Filter>04_Render\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="K2DColliderManager.h">
+      <Filter>04_Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="KRect_Collision.h">
+      <Filter>04_Collider\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="K2DCollider.h">
+      <Filter>04_Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00_KCore">
@@ -211,6 +229,9 @@
     </Filter>
     <Filter Include="04_Collider">
       <UniqueIdentifier>{d2254df2-8db4-4b7d-943f-eb1eeb1862ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04_Collider\Child">
+      <UniqueIdentifier>{accf7f6e-1859-4bea-a2fe-9778d0317384}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
