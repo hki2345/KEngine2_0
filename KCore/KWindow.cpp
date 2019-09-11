@@ -32,6 +32,8 @@ void KWindow::init()
 
 	KSceneManager::instance()->kwindow(this);
 	KSceneManager::instance()->init();
+
+	BackColor = RGB(0, 0, 0);
 }
 
 void KWindow::update()
@@ -60,7 +62,7 @@ void KWindow::render()
 
 	// 검은색 색칠
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	myBrush = CreateSolidBrush(RGB(0, 0, 0));
+	myBrush = CreateSolidBrush(BackColor);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hBackDC, myBrush);
 	Rectangle(hBackDC, 0, 0, (int)MyWinSize.x, (int)MyWinSize.y);
 	SelectObject(hBackDC, oldBrush);

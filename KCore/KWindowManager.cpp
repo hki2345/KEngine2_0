@@ -64,6 +64,17 @@ void KWindowManager::release()
 	RELEASE_PTR(pKWindowManager);
 }
 
+void KWindowManager::backcolor(const COLORREF& _Color)
+{
+	std::map<std::wstring, KWindow*>::iterator SIter = MapWindow.begin();
+	std::map<std::wstring, KWindow*>::iterator EIter = MapWindow.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->BackColor = _Color;
+	}
+}
+
 
 
 int KWindowManager::create_window(const wchar_t* _Name)

@@ -46,6 +46,7 @@ bool KScene::init()
 
 void KScene::update()
 {
+	curKRenderMgr->update_trans(SceneCamPos);
 	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
 	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
@@ -54,7 +55,6 @@ void KScene::update()
 		if (true == SIter->second->active())
 		{
 			SIter->second->update();
-			curKRenderMgr->update_trans(SceneCamPos);
 		}		
 	}
 }

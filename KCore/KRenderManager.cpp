@@ -23,10 +23,7 @@ void KRenderManager::update_trans(const KPos2& _CameraPos)
 
 	for (; SIter != EIter; ++SIter)
 	{
-		if (true == SIter->second->active())
-		{
-			SIter->second->update_trans(_CameraPos);
-		}
+		SIter->second->update_trans(_CameraPos);
 	}
 }
 

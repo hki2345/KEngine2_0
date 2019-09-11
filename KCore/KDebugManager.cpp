@@ -18,7 +18,7 @@ void KDebugManager::render()
 {
 	SetTextAlign(KWindowManager::instance()->back_hdc(), TA_LEFT);
 
-	for (size_t i = 0; i < VectorLog.size(); i++)
+	for (int i = 0; i < (int)VectorLog.size(); i++)
 	{
 		TextOutW(KWindowManager::instance()->back_hdc(), 20, 20 + (20 * i), VectorLog[i].c_str(), (int)VectorLog[i].size());
 	}

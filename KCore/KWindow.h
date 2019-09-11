@@ -26,6 +26,7 @@ private:
 	WNDCLASS WndClass;
 	KBitMap* BackBitMap;
 	
+	COLORREF BackColor;
 
 private:
 	void init();

@@ -1,0 +1,76 @@
+#include "PlayerTank.h"
+
+
+#include <KInputManager.h>
+#include <KTimeManager.h>
+
+#include <KDebugManager.h>
+
+#include <KSprite_Animator.h>
+#include <KOne.h>
+
+
+
+PlayerTank::PlayerTank()
+{
+}
+
+
+PlayerTank::~PlayerTank()
+{
+}
+
+void PlayerTank::create()
+{
+	Tank::create();
+
+	MyAnimator->set_bit(L"res\\YellowTank.bmp", 10);
+}
+
+bool PlayerTank::init()
+{
+	kone()->pos({ 220.0f, 500.0f });
+	kone()->size({ 40.0f, 40.0f });
+
+	return true;
+}
+
+void PlayerTank::update()
+{
+	update_input();
+	Tank::update();
+	update_move();	
+}
+
+
+void PlayerTank::update_input()
+{
+	vDir = KPos2::Zero;
+	if (true == KInputManager::instance()->is_press(VK_UP))
+	{
+		vDir = KPos2::Down;
+	}
+	else if (true == KInputManager::instance()->is_press(VK_DOWN))
+	{
+		vDir = KPos2::Up;
+	}
+	else if (true == KInputManager::instance()->is_press(VK_LEFT))
+	{
+		vDir = KPos2::Left;
+	}
+	else if (true == KInputManager::instance()->is_press(VK_RIGHT))
+	{
+		vDir = KPos2::Right;
+	}
+}
+
+void PlayerTank::update_move()
+{
+	Tank::update_move();
+
+
+
+	KDebugManager::instance()->insert_log(L"Cur Dir: %f, %f", vDir.x, vDir.y);
+	KDebugManager::instance()->insert_log(L"Prev Dir: %f, %f", vPrevDir.x, vPrevDir.y);
+	KDebugManager::instance()->insert_log(L"Pos: %f, %f", kone()->pos().x, kone()->pos().y);
+}

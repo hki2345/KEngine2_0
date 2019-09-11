@@ -65,9 +65,9 @@ std::deque<BATTLETILE_INFO> DequeUndoTank;
 
 KOne* CurOneMap;
 KSprite_Render* CurBitMap;
-//
-//KOne* CurSorOne;
-//KSprite_Animator* CurSorAnimator;
+
+KOne* CurSorOne;
+KSprite_Animator* CurSorAnimator;
 
 
 BATTLECITY_TILE CurTileIdx = BATTLECITY_TILE::BROWN_BLOCK00; 
@@ -369,19 +369,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		wchar_t Text[64] = L"Current Tile: ";
 		TextOutW(hMainDC, CurOneMap->pos().x - 100, CurOneMap->pos().y + 10, Text, lstrlenW(Text));
 
-		// KWindowManager::instance()->update();
+		KWindowManager::instance()->update();
 		
-		/*for (int i = 0; i < (int)VectorButtonBitMap.size(); i++)
+		for (int i = 0; i < (int)VectorButtonBitMap.size(); i++)
 		{
 			VectorButtonBitMap[i]->render(hMainDC);
-		}*/
+		}
 
 		Rectangle(hMainDC,
 			CurBitMap->kone()->pos().x,
 			CurBitMap->kone()->pos().y,
 			CurBitMap->kone()->pos().x + CurBitMap->kone()->size().x,
 			CurBitMap->kone()->pos().y + CurBitMap->kone()->size().y);
-		// CurBitMap->render(hMainDC);
+		CurBitMap->render(hMainDC);
 
 		break;
 	}
@@ -457,21 +457,23 @@ void create_map()
 	CurOneMap->size(TileSize);
 
 	CurBitMap = CurOneMap->add_component<KSprite_Render>();
+	CurBitMap->init();
 	CurBitMap->set_bit(TilePath);
 	CurBitMap->set_split(5, 5);
 	CurBitMap->set_idx(0);
 
 
-	/*CurSorOne = EditScene->create_kone(L"Cursor Tile");
+	CurSorOne = EditScene->create_kone(L"Cursor Tile");
 	CurSorOne->pos({ .0f, 0.0f });
 	CurSorOne->size(TileSize);
 
 
 	CurSorAnimator = CurSorOne->add_component<KSprite_Animator>();
+	CurSorAnimator->init();
 	CurSorAnimator->set_bit(L"BattleCity\\WhiteTank.bmp");
 	CurSorAnimator->set_split(8, 8);
 	CurSorAnimator->insert_animation(L"Idle", 0, 1);
-	CurSorAnimator->change_animation(L"Idle");*/
+	CurSorAnimator->change_animation(L"Idle");
 
 	DequeUndoTank.clear();
 	DequeRedoTank.clear();

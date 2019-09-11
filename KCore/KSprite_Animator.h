@@ -48,10 +48,10 @@ public:
 	void change_bit(const wchar_t* _Name = L"NONE");
 	void set_split(const int& _X, const int& _Y);
 
+	bool init() override;
 	void create() override;
 	void update() override;
 	void render() override;
 	void render(HDC _Hdc);
-	void release() override;
 };
 

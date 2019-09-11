@@ -28,16 +28,19 @@ void KSprite_Animator::insert_animation(
 	NewClip.Start = _Start;
 	NewClip.End = _End;
 	NewClip.fAniTime = .0f;
+	NewClip.iAniIdx = 0;
 
 	MapClip.insert(std::make_pair(_AniName, NewClip));
+	CurClip = MapClip.begin();
 }
 void KSprite_Animator::change_animation(const wchar_t* _AniName)
 {
 	std::map<std::wstring, Clip>::iterator FIter = MapClip.find(_AniName);
 
-	if (MapClip.end() != FIter)
+	if (MapClip.end() != FIter && CurClip != FIter)
 	{
 		CurClip = FIter;
+		CurClip->second.iAniIdx = CurClip->second.Start;
 	}
 }
 
@@ -60,6 +63,17 @@ void KSprite_Animator::create()
 
 	pSprite = kone()->add_component<KSprite_Render>();
 }
+
+bool KSprite_Animator::init()
+{
+	KRenderer::init();
+	// idx = 0;
+	name(L"KSprite_Animator");
+
+	pSprite->init();
+	
+	return true;
+}
 void KSprite_Animator::update()
 {
 	CurClip->second.fAniTime += KTimeManager::instance()->deltatime();
@@ -70,7 +84,7 @@ void KSprite_Animator::update()
 		CurClip->second.fAniTime = .0f;
 	}
 
-	if (CurClip->second.End <= CurClip->second.iAniIdx)
+	if (CurClip->second.End + 1 <= CurClip->second.iAniIdx)
 	{
 		CurClip->second.iAniIdx = CurClip->second.Start;
 	}
@@ -85,8 +99,4 @@ void KSprite_Animator::render()
 void KSprite_Animator::render(HDC _Hdc)
 {
 	pSprite->render(_Hdc);
-}
-void KSprite_Animator::release()
-{
-	RELEASE_PTR(pSprite);
 }

@@ -52,6 +52,7 @@ void KCore::init(
 	_In_ int       _nCmdShow)
 {
 	KResourceManager<KBitMap>::instance()->init();
+	KFileStream::instance();
 
 	KWindowManager::instance()->init(_hInstance, _lpCmdLine, _nCmdShow);
 
@@ -65,6 +66,7 @@ void KCore::init(
 void KCore::init(HWND _hWnd, const KSize2& _Size /*= KSize2::Zero*/)
 {
 	KResourceManager<KBitMap>::instance()->init();
+	KFileStream::instance();
 
 	KPathManager::instance()->init();
 	KTimeManager::instance()->init();

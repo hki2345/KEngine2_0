@@ -209,5 +209,8 @@
     <Filter Include="01_Manager\DebugManager">
       <UniqueIdentifier>{a8b96635-a382-48fe-bc02-7fb0b2e0c2e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04_Collider">
+      <UniqueIdentifier>{d2254df2-8db4-4b7d-943f-eb1eeb1862ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

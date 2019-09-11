@@ -48,7 +48,7 @@ private:
 public:
 	void update();
 	void release();
-
+	void backcolor(const COLORREF& _Color);
 	
 
 

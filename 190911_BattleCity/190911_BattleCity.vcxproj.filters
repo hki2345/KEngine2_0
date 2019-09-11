@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="InGame">
+      <UniqueIdentifier>{184ce63b-1dba-41b6-9b88-952ab711eb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intro">
+      <UniqueIdentifier>{029ab016-d289-4fc1-adc5-d9d9edf81ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{aec814ad-a0e0-44ac-87e9-d511d00e5e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Component">
+      <UniqueIdentifier>{280be81f-ed9e-414e-b6a8-1c884431a96a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Manager">
+      <UniqueIdentifier>{e81a8882-0d25-4a05-8ba4-490052c10441}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EngineLauncher.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleCityInitiator.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameScene.cpp">
+      <Filter>InGame</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTank.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>InGame\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTank.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="TileManager.cpp">
+      <Filter>InGame\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleCityUpdater.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>InGame\Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BattleCityInitiator.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTank.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>InGame\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTank.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="TileManager.h">
+      <Filter>InGame\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleCityUpdater.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>InGame\Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
