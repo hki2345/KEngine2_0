@@ -24,6 +24,8 @@ bool K2DCollider::init()
 	{
 		MyTrans = kone()->get_component<KTransform>();
 	}
+
+	ListCollision.clear();
 	return true;
 }
 
@@ -34,7 +36,6 @@ void K2DCollider::update()
 
 void K2DCollider::update_collision(K2DCollider* _Other)
 {
-
 	KPos2 ColPos = MyTrans->Pos + MyPivot;
 
 	switch (MyFigure)
@@ -58,29 +59,15 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 
 			if (TRUE == IntersectRect(&Tmp, &R1, &R2))
 			{
-				ColCheck = true;
-				_Other->ColCheck = true;
-				KDebugManager::instance()->insert_log(L"Col to R2: %d %d %d %d", R2.left, R2.right, R2.top, R2.bottom );
+				update_enterorstay(_Other);
+				_Other->update_enterorstay(this);
 			}
 			else
 			{
-				ColCheck = false;
-				_Other->ColCheck = false;
+				update_exit(_Other);
+				_Other->update_exit(this);
 			}
 
-			//if ((MyTrans->Pos.x + MyTrans->Size.x >= _Other->MyTrans->Pos.x &&
-			//	MyTrans->Pos.y + MyTrans->Size.y >= _Other->MyTrans->Pos.y  ) &&
-			//	(
-			//	_Other->MyTrans->Pos.x + _Other->MyTrans->Size.x >= MyTrans->Pos.x &&
-			//	_Other->MyTrans->Pos.y + _Other->MyTrans->Size.y >= MyTrans->Pos.y))
-			//{
-			//	KDebugManager::instance()->insert_log(L"Col to: %d %d %d %d", 
-			//		_Other->MyTrans->Pos.x,
-			//		_Other->MyTrans->Pos.y,
-			//		_Other->MyTrans->Size.x,
-			//		_Other->MyTrans->Size.y);
-			//	Check = true;
-			//}
 		break;
 		}
 		case K2DCollider::COL2D_CIRCLE:
@@ -120,103 +107,87 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 	default:
 		break;
 	}
-/*
-	update_enter(_Other, Check);
-	update_stay(_Other, Check);
-	update_exit(_Other, Check);*/
+}
+
+
+void K2DCollider::update_enterorstay(K2DCollider* _Other)
+{
+	std::list<K2DCollider*>::iterator Fiter = find_listcol(_Other);
+
+	if (ListCollision.end() == Fiter)
+	{
+		// Enter
+		ListCollision.push_back(_Other);
+
+		update_enterfunc(_Other->kone());
+	}
+	else
+	{
+		// Stay
+		update_stayfunc(_Other->kone());
+	}
+}
+void K2DCollider::update_exit(K2DCollider* _Other)
+{
+	std::list<K2DCollider*>::iterator Fiter = find_listcol(_Other);
+
+	if (ListCollision.end() != Fiter)
+	{
+		// Exit
+		ListCollision.erase(Fiter);
+
+		update_exitfunc(_Other->kone());
+	}
 }
 
 
 
-void K2DCollider::update_enter(K2DCollider* _Other, const bool& _Col)
+std::list<K2DCollider*>::iterator K2DCollider::find_listcol(K2DCollider* _Other)
 {
-	std::list<K2DCollider*>::iterator SIter = ListEnter.begin();
-	std::list<K2DCollider*>::iterator EIter = ListEnter.end();
+	std::list<K2DCollider*>::iterator FIter = ListCollision.begin();
+	std::list<K2DCollider*>::iterator EIter = ListCollision.end();
 
-	for (; SIter != EIter; ++SIter)
+	for (; FIter != EIter; ++FIter)
 	{
-		if ((*SIter) == _Other && true == _Col)
+		if ((*FIter) == _Other)
 		{
-			ListEnter.erase(SIter);
-			return;
-		}
-	}
-
-	if (ListEnter.end() == SIter && true == _Col && false == is_stay(_Other))
-	{
-		ListEnter.push_back(_Other);
-	}
-}
-void K2DCollider::update_stay(K2DCollider* _Other, const bool& _Col)
-{
-	std::list<K2DCollider*>::iterator SIter = ListStay.begin();
-	std::list<K2DCollider*>::iterator EIter = ListStay.end();
-
-	for (; SIter != EIter; ++SIter)
-	{
-		if ((*SIter) == _Other && false == _Col)
-		{
-			ListStay.erase(SIter);
-			ListExit.push_back(_Other);
 			break;
 		}
 	}
-}
-void K2DCollider::update_exit(K2DCollider* _Other, const bool& _Col)
-{
-	std::list<K2DCollider*>::iterator SIter = ListExit.begin();
-	std::list<K2DCollider*>::iterator EIter = ListExit.end();
 
-	for (; SIter != EIter; ++SIter)
-	{
-		if ((*SIter) == _Other && false == _Col)
-		{
-			ListExit.erase(SIter);
-		}
-	}
+	return FIter;
 }
 
 
 
-bool K2DCollider::is_enter(K2DCollider* _Other)
-{
-	std::list<K2DCollider*>::iterator SIter = ListEnter.begin();
-	std::list<K2DCollider*>::iterator EIter = ListEnter.end();
 
-	for (; SIter != EIter; ++SIter)
+void K2DCollider::update_enterfunc(KOne* _Other)
+{
+	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator SIter = ListEnterFunc.begin();
+	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator EIter = ListEnterFunc.end();
+
+	for (; SIter != EIter; SIter++)
 	{
-		if ((*SIter) == _Other)
-		{
-			return true;
-		}
+		SIter->second(_Other);
 	}
-	return false;
 }
-bool K2DCollider::is_stay(K2DCollider* _Other)
+void K2DCollider::update_stayfunc(KOne* _Other)
 {
-	std::list<K2DCollider*>::iterator SIter = ListStay.begin();
-	std::list<K2DCollider*>::iterator EIter = ListStay.end();
+	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator SIter = ListStayFunc.begin();
+	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator EIter = ListStayFunc.end();
 
-	for (; SIter != EIter; ++SIter)
+	for (; SIter != EIter; SIter++)
 	{
-		if ((*SIter) == _Other)
-		{
-			return true;
-		}
+		SIter->second(_Other);
 	}
-	return false;
 }
-bool K2DCollider::is_exit(K2DCollider* _Other)
+void K2DCollider::update_exitfunc(KOne* _Other)
 {
-	std::list<K2DCollider*>::iterator SIter = ListExit.begin();
-	std::list<K2DCollider*>::iterator EIter = ListExit.end();
+	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator SIter = ListExitFunc.begin();
+	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator EIter = ListExitFunc.end();
 
-	for (; SIter != EIter; ++SIter)
+	for (; SIter != EIter; SIter++)
 	{
-		if ((*SIter) == _Other)
-		{
-			return true;
-		}
+		SIter->second(_Other);
 	}
-	return false;
 }

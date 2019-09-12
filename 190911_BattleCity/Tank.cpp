@@ -23,6 +23,8 @@ Tank::~Tank()
 
 void Tank::create()
 {
+	sName = L"Tank";
+
 	MyAnimator = kone()->add_component<KSprite_Animator>();
 	MyAnimator->init();
 	MyAnimator->set_bit(L"res\\WhiteTank.bmp", 10);

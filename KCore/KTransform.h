@@ -11,6 +11,7 @@ public:
 	~KTransform();
 
 public:
+	void create() override;
 	bool init() override;
 	void update() override;
 	void release() override;

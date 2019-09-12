@@ -20,6 +20,7 @@ private:
 	HFONT oldFont;
 
 public:
+	void create() override;
 	void set_font(
 		const wchar_t* _Text,
 		const int& _Size,

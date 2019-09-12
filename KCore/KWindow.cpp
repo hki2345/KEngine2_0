@@ -87,14 +87,14 @@ int KWindow::create()
 	WndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION); // 왼쪽 귀퉁이 아이콘
 	WndClass.hInstance = KWindowManager::hinstance(); // 인스턴스
 	WndClass.lpfnWndProc = this->WndProc; // 프로시져 함수 포인터
-	WndClass.lpszClassName = KName::name().c_str(); // 윈도우 이름
+	WndClass.lpszClassName = KName::sName.c_str(); // 윈도우 이름
 	WndClass.lpszMenuName = NULL; // 메뉴 있게 할 거냐
 	WndClass.style = CS_HREDRAW | CS_VREDRAW; // 창크기 변할때 그릴거냐
 
 	RegisterClass(&WndClass);
 
 	mhWnd = CreateWindow(
-		KName::name().c_str(), KName::name().c_str(), WS_OVERLAPPEDWINDOW,
+		KName::sName.c_str(), KName::sName.c_str(), WS_OVERLAPPEDWINDOW,
 		// 띄우는 위치 - 크기
 		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 		NULL, (HMENU)NULL, KWindowManager::hinstance(), NULL);

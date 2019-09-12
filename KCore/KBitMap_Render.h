@@ -16,6 +16,7 @@ private:
 	KBitMap* MyBitMap;
 
 public:
+	void create() override;
 	void set_bit(const wchar_t* _Name = L"NONE", const int& _Key = 0, const bool& _bBitRender = false);
 	void change_bit(const wchar_t* _Name = L"NONE", const bool& _bBitRender = false);
 

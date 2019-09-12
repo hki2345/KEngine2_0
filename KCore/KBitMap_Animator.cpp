@@ -19,6 +19,10 @@ KBitMap_Animator::~KBitMap_Animator()
 }
 
 
+void KBitMap_Animator::create()
+{
+	sName = L"KBitMap_Animator";
+}
 
 void KBitMap_Animator::insert_animation(
 	const wchar_t* _AniName,

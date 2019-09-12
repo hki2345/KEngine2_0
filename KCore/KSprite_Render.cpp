@@ -18,7 +18,10 @@ KSprite_Render::~KSprite_Render()
 {
 }
 
-
+void KSprite_Render::create()
+{
+	sName = L"KSprite_Render";
+}
 
 void KSprite_Render::set_bit(
 	const wchar_t* _Name /*= L"NONE"*/,
@@ -77,7 +80,6 @@ bool KSprite_Render::init()
 {
 	KRenderer::init();
 	idx = 0;
-	name(L"KSprite_Render");
 
 	return true;
 }

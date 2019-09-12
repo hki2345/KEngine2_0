@@ -11,6 +11,7 @@ KOne::KOne()
 
 void KOne::create()
 {
+	sName = L"KOne";
 	if (nullptr == MyTrans)
 	{
 		MyTrans = add_component<KTransform>();

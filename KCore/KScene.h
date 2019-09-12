@@ -60,5 +60,6 @@ public:
 	KOne* create_kone(KOne* _Other, const wchar_t* _Name = L"KOne");
 	KOne* find_kone(const wchar_t* _Name);
 	bool delete_kone(const wchar_t* _Name);
+	bool delete_kone(KOne* _Other);
 };
 

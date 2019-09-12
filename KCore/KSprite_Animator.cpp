@@ -15,7 +15,6 @@ KSprite_Animator::~KSprite_Animator()
 {
 }
 
-
 void KSprite_Animator::insert_animation(
 	const wchar_t* _AniName,
 	const int& _Start,
@@ -61,6 +60,7 @@ void KSprite_Animator::create()
 {
 	KComponent::create();
 
+	sName = L"KSprite_Animator";
 	pSprite = kone()->add_component<KSprite_Render>();
 }
 
@@ -68,7 +68,6 @@ bool KSprite_Animator::init()
 {
 	KRenderer::init();
 	// idx = 0;
-	name(L"KSprite_Animator");
 
 	pSprite->init();
 	

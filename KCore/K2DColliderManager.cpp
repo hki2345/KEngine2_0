@@ -1,6 +1,6 @@
 #include "K2DColliderManager.h"
 #include "K2DCollider.h"
-
+#include "KOne.h"
 
 
 void K2DColliderManager::init()
@@ -30,28 +30,38 @@ void K2DColliderManager::update()
 void K2DColliderManager::update_link(const int& _Key1, const int& _Key2)
 {
 	std::multimap<int, K2DCollider*>::iterator SCI1 = MapK2DCollider.find(_Key1);
-	std::multimap<int, K2DCollider*>::iterator SCI2 = MapK2DCollider.find(_Key2);
-
-	for (; SCI1 != MapK2DCollider.end(); ++SCI1)
+	for (; SCI1 != MapK2DCollider.end();)
 	{
 		if (_Key1 != SCI1->first)
 		{
 			break;
+		} 
+		if(	false == SCI1->second->kone()->active() || false == SCI1->second->active())
+		{
+			++SCI1;
+			continue;
 		}
-		for (; SCI2 != MapK2DCollider.end(); ++SCI2)
+
+		std::multimap<int, K2DCollider*>::iterator SCI2 = MapK2DCollider.find(_Key2);
+		for (; SCI2 != MapK2DCollider.end();)
 		{
 			if (_Key2 != SCI2->first)
 			{
 				break;
 			}
 
-			if (SCI1->second == SCI2->second)
+			if (false == SCI2->second->kone()->active() ||
+				false == SCI2->second->active() ||
+				SCI1->second == SCI2->second)
 			{
+				++SCI2;
 				continue;
 			}
 
-			SCI1->second->update_collision(SCI2->second);
+			SCI1->second->update_collision(SCI2->second); 
+			++SCI2;
 		}
+		++SCI1;
 	}
 }
 

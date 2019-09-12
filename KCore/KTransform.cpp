@@ -14,10 +14,13 @@ KTransform::~KTransform()
 }
 
 
+void KTransform::create()
+{
+	sName = L"KTransform";
+}
 
 bool KTransform::init()
 {
-	name(L"KTransform");
 	return true;
 }
 void KTransform::update()

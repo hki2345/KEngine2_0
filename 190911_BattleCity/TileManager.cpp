@@ -241,17 +241,25 @@ void TileManager::update_alltile()
 
 void TileManager::update_tile(Tile* _Tile)
 {
+	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	myBrush = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(MapHdc, myBrush);
+	Rectangle(MapHdc, 
+		_Tile->kone()->pos().x, 
+		_Tile->kone()->pos().y,
+		_Tile->kone()->pos().x + _Tile->kone()->size().x,
+		_Tile->kone()->pos().y + _Tile->kone()->size().y);
+	SelectObject(MapHdc, oldBrush);
+	DeleteObject(myBrush);
+
+	if (false == _Tile->kone()->active())
+	{
+		return;
+	}
 	_Tile->render(MapHdc);
 }
 void TileManager::render()
 {
-	for (size_t i = 0; i < VectorTile.size(); i++)
-	{
-		if (true == VectorTile[i]->col_check())
-		{
-			KDebugManager::instance()->insert_log(L"Col to R2: %d", VectorTile[i]->tile_type());
-		}
-	}
 	BitBlt(
 		MomScene->kwindow()->bhdc(),
 		STARTXPOS,

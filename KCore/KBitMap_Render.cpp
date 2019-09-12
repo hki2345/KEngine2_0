@@ -20,6 +20,10 @@ KBitMap_Render::~KBitMap_Render()
 {
 }
 
+void KBitMap_Render::create()
+{
+	sName = L"KBitMap_Render";
+}
 
 void KBitMap_Render::set_bit(
 	const wchar_t* _Name /*= L"NONE"*/,
@@ -43,7 +47,6 @@ void KBitMap_Render::change_bit(
 bool KBitMap_Render::init()
 {
 	KRenderer::init();
-	name(L"BitMap_Render");
 		
 	return true;
 }

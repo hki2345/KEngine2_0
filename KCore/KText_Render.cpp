@@ -14,6 +14,10 @@ KText_Render::~KText_Render()
 }
 
 
+void KText_Render::create()
+{
+	sName = L"KText_Render";
+}
 
 void KText_Render::set_font(
 	const wchar_t* _Text,

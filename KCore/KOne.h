@@ -71,7 +71,7 @@ public:
 		NewCom->kone(this);
 		NewCom->create();
 
-		MapComponent.insert(std::make_pair(NewCom->name(), NewCom));
+		MapComponent.insert(std::make_pair(NewCom->sName, NewCom));
 		return NewCom;
 	}
 

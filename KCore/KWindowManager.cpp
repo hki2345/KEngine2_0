@@ -80,7 +80,7 @@ void KWindowManager::backcolor(const COLORREF& _Color)
 int KWindowManager::create_window(const wchar_t* _Name)
 {
 	KWindow* NewWindow = new KWindow();
-	NewWindow->name(_Name);
+	NewWindow->sName = _Name;
 	NewWindow->create();
 	NewWindow->show_window();
 	MapWindow.insert(std::make_pair(_Name, NewWindow));
@@ -92,7 +92,7 @@ int KWindowManager::create_window(HWND _Name, const KSize2& _Size /*= KSize2::Ze
 {
 
 	KWindow* NewWindow = new KWindow();
-	NewWindow->name(L"Custom");
+	NewWindow->sName = L"Custom";
 	NewWindow->hMainDC = GetDC(_Name);
 	NewWindow->mhWnd = _Name;
 

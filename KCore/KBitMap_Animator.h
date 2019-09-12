@@ -22,6 +22,8 @@ private:
 	std::map<std::wstring, std::vector< KBitMap*>> MapVecBit;
 
 public:
+	void create() override;
+
 	void insert_animation(
 		const wchar_t* _AniName, 
 		const std::vector<std::wstring>& _Source,

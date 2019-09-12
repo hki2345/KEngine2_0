@@ -6,6 +6,7 @@
 #include "KRenderManager.h"
 #include "K2DColliderManager.h"
 
+#include <KMacro.h>
 
 #include "KCore.h"
 
@@ -121,7 +122,7 @@ KOne* KScene::create_kone(KOne* _Other, const wchar_t* _Name /*= "KOne"*/)
 		return nullptr;
 	}
 
-	_Other->name(_Name);
+	_Other->sName = _Name;
 	_Other->kscene(this);
 	_Other->create();
 
@@ -133,7 +134,7 @@ KOne* KScene::create_kone(const wchar_t* _Name/*= "KOne"*/)
 {
 	KOne* Tmp =  new KOne();
 
-	Tmp->name(_Name);
+	Tmp->sName = _Name;
 	Tmp->kwindow(kwindow());
 	Tmp->kscene(this);
 	Tmp->create();
@@ -167,6 +168,28 @@ bool KScene::delete_kone(const wchar_t* _Name)
 	MapKOne.erase(FIter);
 	return true;
 }
+
+
+bool KScene::delete_kone(KOne* _Other)
+{
+	std::multimap<std::wstring, KOne*>::iterator FIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
+
+
+	for (; FIter != EIter; FIter++)
+	{
+		if (FIter->second = _Other)
+		{
+			FIter->second->release();
+			RELEASE_PTR(FIter->second);		
+			MapKOne.erase(FIter);
+			return true;
+		}
+	}
+
+	return false;
+}
+
 
 
 bool KScene::insert_krender(KRenderer* _Render, const int& _Key /*= 0*/)

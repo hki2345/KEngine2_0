@@ -13,6 +13,11 @@ KRect_Collision::~KRect_Collision()
 }
 
 
+void KRect_Collision::create()
+{
+	sName = L"KRect_Collision";
+}
+
 void KRect_Collision::set_rect(const int& _Key)
 {
 	kscene()->insert_k2dCollider(this, _Key);

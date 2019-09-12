@@ -26,6 +26,7 @@ private:
 	int idx;
 
 public:
+	void create() override;
 	void set_bit(const wchar_t* _Name = L"NONE", const int& _Key = 0);
 	void change_bit(const wchar_t* _Name = L"NONE");
 	void set_split(const int& _X, const int& _Y);

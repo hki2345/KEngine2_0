@@ -11,6 +11,7 @@ public:
 	~KConsole_Render() override;
 
 public:
+	void create() override;
 	bool init() override;
 	void render() override;
 };

@@ -7,6 +7,8 @@
 #include <vector>
 #include <Windows.h>
 
+#include <functional>
+
 
 class AAA
 {

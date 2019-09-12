@@ -9,6 +9,7 @@ public:
 	~KRect_Collision();
 
 public:
+	void create() override;
 	void set_rect(const int& _Key);
 };
 

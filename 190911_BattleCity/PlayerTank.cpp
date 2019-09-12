@@ -69,7 +69,7 @@ void PlayerTank::update_input()
 	}
 
 
-	else if (true == KInputManager::instance()->is_down(VK_SPACE))
+	if (true == KInputManager::instance()->is_down(VK_SPACE))
 	{
 		if (vPrevDir == KPos2::Left || vPrevDir == KPos2::Right)
 		{
