@@ -1,6 +1,10 @@
 #include "K2DCollider.h"
 #include "KTransform.h"
 #include "KOne.h"
+#include "KDebugManager.h"
+#include "KWindow.h"
+
+#include <Windows.h>
 
 #include <math.h>
 
@@ -20,58 +24,94 @@ bool K2DCollider::init()
 	{
 		MyTrans = kone()->get_component<KTransform>();
 	}
-
 	return true;
+}
+
+void K2DCollider::update()
+{
+	KComponent::update();
 }
 
 void K2DCollider::update_collision(K2DCollider* _Other)
 {
-	bool Check;
+
+	KPos2 ColPos = MyTrans->Pos + MyPivot;
 
 	switch (MyFigure)
 	{
-	case K2DCollider::RECT:
+	case K2DCollider::COL2D_RECT:
 		switch (_Other->MyFigure)
 		{
-		case K2DCollider::RECT:
-			if ((MyTrans->Pos.x + MyTrans->Size.x >= _Other->MyTrans->Pos.x &&
-				MyTrans->Pos.y + MyTrans->Size.y >= _Other->MyTrans->Pos.y  ) && 
-				(
-				_Other->MyTrans->Pos.x + _Other->MyTrans->Size.x >= MyTrans->Pos.x &&
-				_Other->MyTrans->Pos.y + _Other->MyTrans->Size.y >= MyTrans->Pos.y))
+		case K2DCollider::COL2D_RECT:
+		{
+			RECT R1 = {
+				ColPos.x,
+				ColPos.y,
+				ColPos.x + MyTrans->Size.x ,
+				ColPos.y + MyTrans->Size.y };
+			RECT R2 = {
+				_Other->MyTrans->Pos.x,
+				_Other->MyTrans->Pos.y,
+				_Other->MyTrans->Pos.x + _Other->MyTrans->Size.x ,
+				_Other->MyTrans->Pos.y + _Other->MyTrans->Size.y };;
+			RECT Tmp;
+
+			if (TRUE == IntersectRect(&Tmp, &R1, &R2))
 			{
-				Check =  true;
+				ColCheck = true;
+				_Other->ColCheck = true;
+				KDebugManager::instance()->insert_log(L"Col to R2: %d %d %d %d", R2.left, R2.right, R2.top, R2.bottom );
 			}
+			else
+			{
+				ColCheck = false;
+				_Other->ColCheck = false;
+			}
+
+			//if ((MyTrans->Pos.x + MyTrans->Size.x >= _Other->MyTrans->Pos.x &&
+			//	MyTrans->Pos.y + MyTrans->Size.y >= _Other->MyTrans->Pos.y  ) &&
+			//	(
+			//	_Other->MyTrans->Pos.x + _Other->MyTrans->Size.x >= MyTrans->Pos.x &&
+			//	_Other->MyTrans->Pos.y + _Other->MyTrans->Size.y >= MyTrans->Pos.y))
+			//{
+			//	KDebugManager::instance()->insert_log(L"Col to: %d %d %d %d", 
+			//		_Other->MyTrans->Pos.x,
+			//		_Other->MyTrans->Pos.y,
+			//		_Other->MyTrans->Size.x,
+			//		_Other->MyTrans->Size.y);
+			//	Check = true;
+			//}
+		break;
+		}
+		case K2DCollider::COL2D_CIRCLE:
 			break;
-		case K2DCollider::CIRCLE:
-			break;
-		case K2DCollider::POINT:
+		case K2DCollider::COL2D_POINT:
 			break;
 		default:
 			break;
 		}
 		break;
-	case K2DCollider::CIRCLE:	
+	case K2DCollider::COL2D_CIRCLE:	
 		switch (_Other->MyFigure)
 		{
-		case K2DCollider::RECT:
+		case K2DCollider::COL2D_RECT:
 			break;
-		case K2DCollider::CIRCLE:
+		case K2DCollider::COL2D_CIRCLE:
 			break;
-		case K2DCollider::POINT:
+		case K2DCollider::COL2D_POINT:
 			break;
 		default:
 			break;
 		}
 		break;
-	case K2DCollider::POINT:
+	case K2DCollider::COL2D_POINT:
 		switch (_Other->MyFigure)
 		{
-		case K2DCollider::RECT:
+		case K2DCollider::COL2D_RECT:
 			break;
-		case K2DCollider::CIRCLE:
+		case K2DCollider::COL2D_CIRCLE:
 			break;
-		case K2DCollider::POINT:
+		case K2DCollider::COL2D_POINT:
 			break;
 		default:
 			break;

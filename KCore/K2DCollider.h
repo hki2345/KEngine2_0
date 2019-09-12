@@ -4,7 +4,6 @@
 
 #include <list>
 
-
 class KTransform;
 class K2DCollider : public KComponent
 {
@@ -15,13 +14,14 @@ public:
 protected:
 	enum COL_FIGURE
 	{
-		RECT = 0,
-		CIRCLE,
-		POINT,
+		COL2D_RECT = 0,
+		COL2D_CIRCLE,
+		COL2D_POINT,
 	};
 
 
 protected:
+	bool ColCheck;
 	COL_FIGURE MyFigure;
 
 	KTransform* MyTrans;
@@ -33,14 +33,26 @@ protected:
 
 public:
 	bool init() override;
+	void update() override;
 	void update_collision(K2DCollider* _Other);
 
 	void update_enter(K2DCollider* _Other, const bool& _Col);
 	void update_stay(K2DCollider* _Other, const bool& _Col);
 	void update_exit(K2DCollider* _Other, const bool& _Col);
 
+	
 
 	bool is_enter(K2DCollider* _Other);
 	bool is_stay(K2DCollider* _Other);
 	bool is_exit(K2DCollider* _Other);
+
+	inline bool& is_col()
+	{
+		return ColCheck;
+	}
+
+	inline void pivot(const KPos2& _Pivot)
+	{
+		MyPivot = _Pivot;
+	}
 };

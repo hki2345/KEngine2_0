@@ -34,10 +34,12 @@ void Tank::create()
 	MyAnimator->insert_animation(L"Right", 6, 7);
 	MyAnimator->change_animation(L"Idle");
 
+
 	fSpeed = 100.0f;
 
 	MyCollider = kone()->add_component<KRect_Collision>();
 	MyCollider->set_rect(0);
+	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
 	for (size_t i = 0; i < 2; i++)
 	{
@@ -132,6 +134,7 @@ void Tank::update_checkingpos()
 
 void Tank::update_move()
 {
+	// kone()->moving_pos(KPos2(STARTXPOS, STARTYPOS));
 	KPos2 Tmp = kone()->pos() + vDir * fSpeed * KTimeManager::instance()->deltatime();
 	if (Tmp.x >= TileManager::instance()->tilemap_size().Start.x &&
 		Tmp.x <= TileManager::instance()->tilemap_size().Size.x &&

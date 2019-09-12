@@ -21,11 +21,20 @@ private:
 	KRect_Collision* MyCollider;
 	KPos2 ScreenPos;
 
+	BATTLECITY_GAMETILE eTileType;
+
 public:
 	void create();
 	void set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info);
 
 	void update_trans();
 	void render(HDC _Hdc);
+
+	inline BATTLECITY_GAMETILE& tile_type()
+	{
+		return eTileType;
+	}
+
+	bool& col_check();
 };
 

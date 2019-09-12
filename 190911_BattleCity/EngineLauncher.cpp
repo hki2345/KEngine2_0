@@ -31,5 +31,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	core_launch<BattleCityInitiator, BattleCityUpdater>(hInstance, lpCmdLine, nCmdShow);
+	return core_launch<BattleCityInitiator, BattleCityUpdater>(hInstance, lpCmdLine, nCmdShow);
 }

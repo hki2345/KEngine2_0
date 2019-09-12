@@ -1,6 +1,7 @@
 #include "TileManager.h"
 #include "Tile.h"
 
+#include <KDebugManager.h>
 #include <KWindow.h>
 #include <KMacro.h>
 #include <KFileStream.h>
@@ -29,7 +30,7 @@ void TileManager::create(KScene* _Scene)
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	myBrush = CreateSolidBrush(RGB(0,0,0));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(MapHdc, myBrush);
-	Rectangle(MapHdc, 0, 0, XSize * (TILEXSIZE), XSize * (TILEXSIZE));
+	Rectangle(MapHdc, STARTXPOS, STARTYPOS, XSize * (TILEXSIZE), XSize * (TILEXSIZE));
 	SelectObject(MapHdc, oldBrush);
 	DeleteObject(myBrush);
 }
@@ -220,7 +221,9 @@ bool TileManager::init(const wchar_t* _Name)
 
 		KOne* TOne = MomScene->create_kone(L"Tile");
 		Tile* NewTile = TOne->add_component<Tile>();
-		NewTile->set_tile({ (float)(i % XSize) * TILEXSIZE, (float)(i / XSize) * TILEYSIZE }, VectorTileInfo[i]);
+		NewTile->set_tile({ 
+			(float)(i % XSize) * TILEXSIZE, 
+			(float)(i / XSize) * TILEYSIZE }, VectorTileInfo[i]);
 		VectorTile.push_back(NewTile);
 	}
 	// render();
@@ -242,6 +245,13 @@ void TileManager::update_tile(Tile* _Tile)
 }
 void TileManager::render()
 {
+	for (size_t i = 0; i < VectorTile.size(); i++)
+	{
+		if (true == VectorTile[i]->col_check())
+		{
+			KDebugManager::instance()->insert_log(L"Col to R2: %d", VectorTile[i]->tile_type());
+		}
+	}
 	BitBlt(
 		MomScene->kwindow()->bhdc(),
 		STARTXPOS,

@@ -19,7 +19,6 @@ Tile::~Tile()
 
 void Tile::create()
 {
-	ScreenPos = { STARTXPOS , STARTYPOS };
 	kone()->size({ TILEXSIZE, TILEYSIZE });
 	MyRenderer = kone()->add_component<KSprite_Render>();
 	MyRenderer->init();
@@ -36,6 +35,8 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 	MyRenderer->set_idx((int)_Info);
 
 	MyCollider->set_rect(1);
+
+	eTileType = _Info;
 }
 
 void Tile::update_trans()
@@ -46,4 +47,9 @@ void Tile::update_trans()
 void Tile::render(HDC _Hdc)
 {
 	MyRenderer->render(_Hdc);
+}
+
+bool& Tile::col_check()
+{
+	return MyCollider->is_col();
 }
