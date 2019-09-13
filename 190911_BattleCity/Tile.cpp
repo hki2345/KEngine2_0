@@ -36,6 +36,9 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 
 	if (BATTLECITY_GAMETILE::BG_WOOD_BLOCK == _Info)
 	{
+		MyRenderer->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));
+		MyRenderer->active(true);
+		MyCollider->active(false);
 		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 11);
 	}
 	else
@@ -58,8 +61,6 @@ void Tile::update_trans()
 void Tile::render(HDC _Hdc)
 {
 	MyRenderer->render(_Hdc);
-
-	MyRenderer->set_idx(0, 5);
 }
 
 

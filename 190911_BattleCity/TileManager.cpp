@@ -226,7 +226,6 @@ bool TileManager::init(const wchar_t* _Name)
 			(float)(i / XSize) * TILEYSIZE }, VectorTileInfo[i]);
 		VectorTile.push_back(NewTile);
 	}
-	// render();
 	return 0;
 }
 
@@ -234,8 +233,11 @@ void TileManager::update_alltile()
 {
 	for (size_t i = 0; i < VectorTile.size(); i++)
 	{
-		VectorTile[i]->update_trans();
-		VectorTile[i]->render(MapHdc);
+		if (BATTLECITY_GAMETILE::BG_WOOD_BLOCK != VectorTile[i]->tile_type())
+		{
+			VectorTile[i]->update_trans();
+			VectorTile[i]->render(MapHdc);
+		}
 	}
 }
 
