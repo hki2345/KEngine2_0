@@ -163,31 +163,31 @@ std::list<K2DCollider*>::iterator K2DCollider::find_listcol(K2DCollider* _Other)
 
 void K2DCollider::update_enterfunc(KOne* _Other)
 {
-	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator SIter = ListEnterFunc.begin();
-	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator EIter = ListEnterFunc.end();
+	std::list<std::function<void(KOne*)>>::iterator SIter = ListEnterFunc.begin();
+	std::list<std::function<void(KOne*)>>::iterator EIter = ListEnterFunc.end();
 
 	for (; SIter != EIter; SIter++)
 	{
-		SIter->second(_Other);
+		(*SIter)(_Other);
 	}
 }
 void K2DCollider::update_stayfunc(KOne* _Other)
 {
-	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator SIter = ListStayFunc.begin();
-	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator EIter = ListStayFunc.end();
+	std::list<std::function<void(KOne*)>>::iterator SIter = ListStayFunc.begin();
+	std::list<std::function<void(KOne*)>>::iterator EIter = ListStayFunc.end();
 
 	for (; SIter != EIter; SIter++)
 	{
-		SIter->second(_Other);
+		(*SIter)(_Other);
 	}
 }
 void K2DCollider::update_exitfunc(KOne* _Other)
 {
-	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator SIter = ListExitFunc.begin();
-	std::multimap<std::wstring, std::function<void(KOne*)>>::iterator EIter = ListExitFunc.end();
+	std::list<std::function<void(KOne*)>>::iterator SIter = ListExitFunc.begin();
+	std::list<std::function<void(KOne*)>>::iterator EIter = ListExitFunc.end();
 
 	for (; SIter != EIter; SIter++)
 	{
-		SIter->second(_Other);
+		(*SIter)(_Other);
 	}
 }

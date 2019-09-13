@@ -34,7 +34,14 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 {
 	kone()->pos(_Pos);
 
-	MyRenderer->set_bit(L"res\\TileSpriteSub.bmp");
+	if (BATTLECITY_GAMETILE::BG_WOOD_BLOCK == _Info)
+	{
+		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 11);
+	}
+	else
+	{
+		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 9);
+	}
 	MyRenderer->set_split(3, 8);
 	MyRenderer->set_idx((int)_Info);
 
@@ -60,6 +67,9 @@ bool Tile::collision_bullet(const KPos2& _Dir)
 {
 	switch (eTileType)
 	{
+	case BG_STONE_BLOCK:
+		return true;
+
 	case BG_BROWN_BLOCK:
 		if (KPos2::Down == _Dir)
 		{

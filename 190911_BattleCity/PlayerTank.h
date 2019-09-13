@@ -3,6 +3,7 @@
 #include "Tank.h"
 
 
+class KOne;
 class PlayerTank : public Tank
 {
 public:
@@ -19,5 +20,6 @@ public:
 private:
 	void update_input();
 	void update_move();
+	void update_collisiontile();
 };
 

@@ -27,6 +27,8 @@ public:
 	void update() override;
 
 private:
+	void update_outofgame();
+
 	void Enter(KOne* _Collider);
 	void Stay(KOne* _Collider);
 	void Exit(KOne* _Collider);

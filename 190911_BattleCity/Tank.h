@@ -7,6 +7,7 @@
 class KSprite_Animator;
 class KRect_Collision;
 class Bullet;
+class Tile;
 class Tank : public KComponent
 {
 public:
@@ -20,8 +21,12 @@ protected:
 
 	KPos2 vPrevDir;
 	KPos2 vDir;
+	KPos2 vPrevChecPos;
 	float fSpeed;
 
+	bool bTileCol;
+
+	Tile* PrevColTile;
 
 public:
 	virtual bool init() override;
@@ -29,7 +34,13 @@ public:
 	virtual void update() override;
 
 protected:
+	void update_coltile();
 	void update_checkingpos();
 	virtual void update_move();
+
+
+
+	void stay_tile(KOne* _Tile);
+	void exit_tile(KOne* _Tile);
 };
 

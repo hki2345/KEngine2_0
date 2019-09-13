@@ -30,6 +30,9 @@ public:
 	void update_trans();
 	void render(HDC _Hdc);
 	bool collision_bullet(const KPos2& _Dir);
-
+	inline BATTLECITY_GAMETILE& tile_type()
+	{
+		return eTileType;
+	}
 };
 

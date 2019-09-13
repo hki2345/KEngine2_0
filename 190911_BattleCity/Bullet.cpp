@@ -6,6 +6,7 @@
 #include <K2DCollider.h>
 #include <KOne.h>
 
+#include "TileManager.h"
 #include "Tile.h"
 
 
@@ -17,6 +18,7 @@ Bullet::Bullet()
 Bullet::~Bullet()
 {
 }
+
 
 
 void Bullet::create()
@@ -34,9 +36,11 @@ void Bullet::create()
 	MyCollider->set_rect(0);
 	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
-	MyCollider->insert_enterfunc<Bullet>(L"Bullet Enter", this, &Bullet::Enter);
-	MyCollider->insert_stayfunc<Bullet>(L"Bullet Stay", this, &Bullet::Stay);
-	MyCollider->insert_exitfunc<Bullet>(L"Bullet Exit", this, &Bullet::Exit);
+	MyCollider->insert_enterfunc<Bullet>(this, &Bullet::Enter);
+	MyCollider->insert_stayfunc<Bullet>(this, &Bullet::Stay);
+	MyCollider->insert_exitfunc<Bullet>(this, &Bullet::Exit);
+
+	kone()->active(false);
 }
 
 
@@ -73,8 +77,24 @@ void Bullet::update()
 	KComponent::update();
 
 	kone()->moving_delta(vDir * fSpeed);
+	update_outofgame();
+}
 
+
+
+void Bullet::update_outofgame()
+{
 	if (true == Explosion)
+	{
+		kone()->active(false);
+		return;
+	}
+
+	KPos2 Tmp = kone()->pos();
+	if (Tmp.x <= TileManager::instance()->tilemap_size().Start.x ||
+		Tmp.x >= TileManager::instance()->tilemap_size().Size.x + kone()->size().x ||
+		Tmp.y <= TileManager::instance()->tilemap_size().Start.y ||
+		Tmp.y >= TileManager::instance()->tilemap_size().Size.y + kone()->size().x)
 	{
 		kone()->active(false);
 	}
@@ -83,18 +103,20 @@ void Bullet::update()
 
 void Bullet::Enter(KOne* _Collider)
 {
-	if (true == _Collider->get_component<Tile>()->collision_bullet(vDir))
-	{
-		Explosion = true;
-	}
+
 }
 void Bullet::Stay(KOne* _Collider)
 {
-	this;
-	int a = 0;
+	Tile* CurTile = _Collider->get_component<Tile>();
+	if (nullptr != CurTile && true == CurTile->collision_bullet(vDir))
+	{
+		Explosion = true;
+	}
 }
 void Bullet::Exit(KOne* _Collider)
 {
 	this;
 	int a = 0;
 }
+
+
