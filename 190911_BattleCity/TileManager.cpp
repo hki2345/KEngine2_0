@@ -211,7 +211,7 @@ bool TileManager::init(const wchar_t* _Name)
 
 
 
-
+	PhoenixTile.reserve(4);
 	for (int i = 0; i < XSize * YSize; i++)
 	{
 		if (BATTLECITY_GAMETILE::BG_NONE == VectorTileInfo[i])
@@ -225,8 +225,27 @@ bool TileManager::init(const wchar_t* _Name)
 			(float)(i % XSize) * TILEXSIZE, 
 			(float)(i / XSize) * TILEYSIZE }, VectorTileInfo[i]);
 		VectorTile.push_back(NewTile);
+
+
+		if (BATTLECITY_GAMETILE::BG_PHOENIX01 == VectorTileInfo[i] ||
+			BATTLECITY_GAMETILE::BG_PHOENIX02 == VectorTileInfo[i] ||
+			BATTLECITY_GAMETILE::BG_PHOENIX03 == VectorTileInfo[i] || 
+			BATTLECITY_GAMETILE::BG_PHOENIX04 == VectorTileInfo[i] )
+		{
+			PhoenixTile.push_back(NewTile);
+		}
 	}
 	return 0;
+}
+
+
+void TileManager::update_broken()
+{
+	for (int i = 0; i < (int)PhoenixTile.size(); i++)
+	{
+		PhoenixTile[i]->set_tile((BATTLECITY_GAMETILE)((int)BATTLECITY_GAMETILE::BG_BROKEN01 + i));
+		update_tile(PhoenixTile[i]);
+	}
 }
 
 void TileManager::update_alltile()

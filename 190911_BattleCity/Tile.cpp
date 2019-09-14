@@ -30,6 +30,13 @@ void Tile::create()
 	MyCollider = kone()->add_component<KRect_Collision>();
 	MyCollider->init();
 }
+
+void Tile::set_tile(const BATTLECITY_GAMETILE& _Info)
+{
+	MyRenderer->set_idx((int)_Info);
+	eTileType = _Info;
+}
+
 void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 {
 	kone()->pos(_Pos);
@@ -95,11 +102,6 @@ bool Tile::collision_bullet(const KPos2& _Dir)
 		TileManager::instance()->update_tile(this);
 
 		return true;
-	case BG_PHOENIX01:
-	case BG_PHOENIX02:
-	case BG_PHOENIX03:
-	case BG_PHOENIX04:
-		break;
 
 	case BG_RECTBROWN01:
 		if (KPos2::Down == _Dir)
@@ -195,6 +197,14 @@ bool Tile::collision_bullet(const KPos2& _Dir)
 		kone()->active(false);
 		TileManager::instance()->update_tile(this);
 		break;
+
+	case BG_PHOENIX01:
+	case BG_PHOENIX02:
+	case BG_PHOENIX03:
+	case BG_PHOENIX04:
+		TileManager::instance()->update_broken();
+		return true;
+
 	case BG_BLOCKNUM:
 		break;
 	default:

@@ -38,7 +38,6 @@ void Bullet::create()
 	MyCollider = kone()->add_component<KRect_Collision>();
 	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
-	MyCollider->insert_enterfunc<Bullet>(this, &Bullet::Enter);
 	MyCollider->insert_stayfunc<Bullet>(this, &Bullet::Stay);
 	MyCollider->insert_exitfunc<Bullet>(this, &Bullet::Exit);
 
@@ -112,11 +111,6 @@ void Bullet::update_outofgame()
 	}
 }
 
-
-void Bullet::Enter(KOne* _Collider)
-{
-
-}
 void Bullet::Stay(KOne* _Collider)
 {
 	Tile* CurTile = _Collider->get_component<Tile>();

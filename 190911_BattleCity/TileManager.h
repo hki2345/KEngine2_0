@@ -34,6 +34,7 @@ public:
 
 private:
 	std::vector<Tile*> VectorTile;
+	std::vector<Tile*> PhoenixTile;
 
 	HDC MapHdc;
 	KBitMap* MapBit;
@@ -46,6 +47,7 @@ public:
 	void create(KScene* _Scene);
 	bool init(const wchar_t* _Name);
 
+	void update_broken();
 	void update_alltile();
 	void update_tile(Tile* _Tile);
 	void render();

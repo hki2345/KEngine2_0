@@ -25,6 +25,7 @@ private:
 
 public:
 	void create();
+	void set_tile(const BATTLECITY_GAMETILE& _Info);
 	void set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info);
 
 	void update_trans();
