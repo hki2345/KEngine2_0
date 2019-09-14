@@ -39,7 +39,6 @@ void Bullet::create()
 	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
 	MyCollider->insert_stayfunc<Bullet>(this, &Bullet::Stay);
-	MyCollider->insert_exitfunc<Bullet>(this, &Bullet::Exit);
 
 	MyEffect = kscene()->create_kone(L"Expolsion")->add_component<Explosion_Effect>();
 
@@ -80,6 +79,12 @@ void Bullet::set_bullet(const KPos2& _Pos, const KPos2& _Dir)
 	bExplosion = false;
 }
 
+
+void Bullet::set_bomb()
+{
+	kone()->active(false);
+}
+
 void Bullet::update()
 {
 	KComponent::update();
@@ -94,7 +99,7 @@ void Bullet::update_outofgame()
 {
 	if (true == bExplosion)
 	{
-		kone()->active(false);
+		set_bomb();
 		MyEffect->set_bulletexplosion(kone()->pos());
 
 		return;
@@ -106,7 +111,7 @@ void Bullet::update_outofgame()
 		Tmp.y <= TileManager::instance()->tilemap_size().Start.y - kone()->size().x ||
 		Tmp.y >= TileManager::instance()->tilemap_size().End.y + kone()->size().x)
 	{
-		kone()->active(false);
+		set_bomb();
 		MyEffect->set_bulletexplosion(kone()->pos());
 	}
 }
@@ -119,10 +124,3 @@ void Bullet::Stay(KOne* _Collider)
 		bExplosion = true;
 	}
 }
-void Bullet::Exit(KOne* _Collider)
-{
-	this;
-	int a = 0;
-}
-
-

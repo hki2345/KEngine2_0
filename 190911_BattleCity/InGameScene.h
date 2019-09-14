@@ -2,7 +2,6 @@
 #include <KScene.h>
 
 
-class TileManager;
 class PlayerTank;
 class InGameScene : public KScene
 {

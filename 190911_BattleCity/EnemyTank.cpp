@@ -147,14 +147,28 @@ void EnemyTank::stay_tile(KOne* _Other)
 		bTankCol = true;
 		PrevColTank = CurTank;
 	}
+
+	EnemyTank* ETank = _Other->get_component<EnemyTank>();
+	if (nullptr != ETank)
+	{
+		bTankCol = true;
+		PrevColTank = CurTank;
+	}
 }
 
 void EnemyTank::exit_tile(KOne* _Other)
 {
 	Tank::exit_tile(_Other);
 
-	PlayerTank* CurTank = _Other->get_component<PlayerTank>();
-	if (nullptr != CurTank)
+	PlayerTank* PTank = _Other->get_component<PlayerTank>();
+	if (nullptr != PTank)
+	{
+		PrevColTank = nullptr;
+		bTankCol = false;
+	}
+
+	EnemyTank* ETank = _Other->get_component<EnemyTank>();
+	if (nullptr != ETank)
 	{
 		PrevColTank = nullptr;
 		bTankCol = false;

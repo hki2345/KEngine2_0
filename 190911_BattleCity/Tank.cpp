@@ -78,6 +78,7 @@ void Tank::set_tank(const KPos2& _StartPos)
 	kone()->active(true);
 	kone()->pos(_StartPos);
 
+	vDir = KPos2::Up;
 	eCurState = TANK_STATUS::TS_RESPAWN;
 }
 
@@ -259,6 +260,7 @@ void Tank::stay_tile(KOne* _Other)
 	Bullet* CurBullet = _Other->get_component<Bullet>();
 	if (nullptr != CurBullet)
 	{
+		CurBullet->set_bomb();
 		MyEffect->set_tankexplosion(kone()->pos());
 		eCurState = TANK_STATUS::TS_DIE;
 	}
@@ -272,7 +274,5 @@ void Tank::exit_tile(KOne* _Other)
 	{
 		PrevColTile = nullptr;
 		bTileCol = false;
-	}
-
-	
+	}	
 }

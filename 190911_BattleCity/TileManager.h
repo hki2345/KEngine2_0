@@ -34,6 +34,7 @@ public:
 
 private:
 	std::vector<Tile*> VectorTile;
+	std::vector<KPos2> VectorRespawn;
 	std::vector<Tile*> PhoenixTile;
 
 	HDC MapHdc;
@@ -63,6 +64,11 @@ public:
 		Tmp.End.y = YSize * ((float)TILEYSIZE - 1.5f) + Tmp.Start.y;
 
 		return Tmp;
+	}
+
+	inline std::vector<KPos2>* vector_respawnpos()
+	{
+		return &VectorRespawn;
 	}
 };
 

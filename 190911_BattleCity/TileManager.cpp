@@ -61,7 +61,12 @@ bool TileManager::init(const wchar_t* _Name)
 				continue;
 			}
 
-			if (BATTLECITY_TILE::BROWN_BLOCK00 == TmpVec[x / 2 + ((XSize / 2) * (y / 2))].Idx)
+			else if (BATTLECITY_TILE::SPAWN_BLOCK00 == TmpVec[x / 2 + ((XSize / 2) * (y / 2))].Idx)
+			{
+				VectorRespawn.push_back(KPos2(x * TILEXSIZE, y * TILEYSIZE ) + KPos2( STARTXPOS, STARTYPOS ));
+			}
+
+			else if (BATTLECITY_TILE::BROWN_BLOCK00 == TmpVec[x / 2 + ((XSize / 2) * (y / 2))].Idx)
 			{
 				VectorTileInfo[(x + 0) + (y + 0) * XSize] = BATTLECITY_GAMETILE::BG_BROWN_BLOCK;
 				VectorTileInfo[(x + 1) + (y + 0) * XSize] = BATTLECITY_GAMETILE::BG_BROWN_BLOCK;

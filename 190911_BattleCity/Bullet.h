@@ -26,13 +26,12 @@ public:
 	void create() override;
 	void set_tank(const int& _Layer);
 	void set_bullet(const KPos2& _Pos, const KPos2& _Dir);
+	void set_bomb();
 	void update() override;
 
 private:
 	void update_outofgame();
 
-	void Enter(KOne* _Collider);
 	void Stay(KOne* _Collider);
-	void Exit(KOne* _Collider);
 };
 
