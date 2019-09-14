@@ -10,7 +10,7 @@
 #include "Bullet.h"
 #include "TileManager.h"
 #include "BattleTile.h"
-
+#include <KDebugManager.h>
 
 Tank::Tank()
 {
@@ -41,10 +41,7 @@ void Tank::create()
 	fSpeed = 100.0f;
 
 	MyCollider = kone()->add_component<KRect_Collision>();
-	MyCollider->set_rect(0);
 	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
-	MyCollider->insert_stayfunc<Tank>(this, &Tank::stay_tile);
-	MyCollider->insert_exitfunc<Tank>(this, &Tank::exit_tile);
 
 
 	for (size_t i = 0; i < 2; i++)
@@ -61,6 +58,7 @@ bool Tank::init()
 	bTileCol = false;
 
 	PrevColTile = nullptr;
+	PrevColTank = nullptr;
 
 	return true;
 }
@@ -99,6 +97,12 @@ void Tank::update_coltile()
 	{
 		PrevColTile = nullptr;
 		bTileCol = false;
+	}
+
+	if (nullptr != PrevColTank && false == PrevColTank->kone()->active())
+	{
+		PrevColTank = nullptr;
+		bTankCol = false;
 	}
 }
 
@@ -154,12 +158,20 @@ void Tank::update_move()
 	vPrevChecPos = kone()->pos();
 	KPos2 Tmp = kone()->pos() + vDir * fSpeed * KTimeManager::instance()->deltatime();
 	if (Tmp.x >= TileManager::instance()->tilemap_size().Start.x &&
-		Tmp.x <= TileManager::instance()->tilemap_size().Size.x &&
+		Tmp.x <= TileManager::instance()->tilemap_size().End.x &&
 		Tmp.y >= TileManager::instance()->tilemap_size().Start.y &&
-		Tmp.y <= TileManager::instance()->tilemap_size().Size.y)
+		Tmp.y <= TileManager::instance()->tilemap_size().End.y)
 	{
 		kone()->moving_pos(Tmp);
 	}
+
+
+
+
+	KDebugManager::instance()->insert_log(L"Tile Col: %b", bTileCol);
+	KDebugManager::instance()->insert_log(L"Tank Col: %b", bTankCol);
+	KDebugManager::instance()->insert_log(L"Pos: %f, %f", kone()->pos().x, kone()->pos().y);
+	KDebugManager::instance()->insert_log(L"Check Pos: %f, %f", vPrevChecPos.x, vPrevChecPos.y);
 }
 
 

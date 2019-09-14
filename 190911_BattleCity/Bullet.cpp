@@ -92,9 +92,9 @@ void Bullet::update_outofgame()
 
 	KPos2 Tmp = kone()->pos();
 	if (Tmp.x <= TileManager::instance()->tilemap_size().Start.x ||
-		Tmp.x >= TileManager::instance()->tilemap_size().Size.x + kone()->size().x ||
+		Tmp.x >= TileManager::instance()->tilemap_size().End.x + kone()->size().x ||
 		Tmp.y <= TileManager::instance()->tilemap_size().Start.y ||
-		Tmp.y >= TileManager::instance()->tilemap_size().Size.y + kone()->size().x)
+		Tmp.y >= TileManager::instance()->tilemap_size().End.y + kone()->size().x)
 	{
 		kone()->active(false);
 	}

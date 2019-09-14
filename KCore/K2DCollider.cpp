@@ -37,6 +37,7 @@ void K2DCollider::update()
 void K2DCollider::update_collision(K2DCollider* _Other)
 {
 	KPos2 ColPos = MyTrans->Pos + MyPivot;
+	KPos2 OtherColPos = _Other->MyTrans->Pos + _Other->MyPivot;
 
 	switch (MyFigure)
 	{
@@ -45,19 +46,24 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 		{
 		case K2DCollider::COL2D_RECT:
 		{
-			RECT R1 = {
-				ColPos.x,
-				ColPos.y,
-				ColPos.x + MyTrans->Size.x ,
-				ColPos.y + MyTrans->Size.y };
-			RECT R2 = {
-				_Other->MyTrans->Pos.x,
-				_Other->MyTrans->Pos.y,
-				_Other->MyTrans->Pos.x + _Other->MyTrans->Size.x ,
-				_Other->MyTrans->Pos.y + _Other->MyTrans->Size.y };;
-			RECT Tmp;
+			KRect R1 = {
+				ColPos,
+				ColPos + MyTrans->Size};
+			KRect R2 = {
+				OtherColPos,
+				OtherColPos + _Other->MyTrans->Size };
 
-			if (TRUE == IntersectRect(&Tmp, &R1, &R2))
+
+			if (true ==  (
+				(R1.End.x > R2.Start.x) &&
+				(R2.End.x > R1.Start.x) &&
+				(R1.End.y > R2.Start.y) &&
+				(R2.End.y > R1.Start.y))
+				||
+				(R2.End.x > R1.Start.x) &&
+				(R1.End.x > R2.Start.x) &&
+				(R2.End.y > R1.Start.y) &&
+				(R1.End.y > R2.Start.y))
 			{
 				update_enterorstay(_Other);
 				_Other->update_enterorstay(this);
@@ -163,28 +169,21 @@ std::list<K2DCollider*>::iterator K2DCollider::find_listcol(K2DCollider* _Other)
 
 void K2DCollider::update_enterfunc(KOne* _Other)
 {
-	std::list<std::function<void(KOne*)>>::iterator SIter = ListEnterFunc.begin();
-	std::list<std::function<void(KOne*)>>::iterator EIter = ListEnterFunc.end();
-
-	for (; SIter != EIter; SIter++)
-	{
-		(*SIter)(_Other);
-	}
+	udpate_list(ListEnterFunc, _Other);
 }
 void K2DCollider::update_stayfunc(KOne* _Other)
 {
-	std::list<std::function<void(KOne*)>>::iterator SIter = ListStayFunc.begin();
-	std::list<std::function<void(KOne*)>>::iterator EIter = ListStayFunc.end();
-
-	for (; SIter != EIter; SIter++)
-	{
-		(*SIter)(_Other);
-	}
+	udpate_list(ListStayFunc, _Other);
 }
 void K2DCollider::update_exitfunc(KOne* _Other)
 {
-	std::list<std::function<void(KOne*)>>::iterator SIter = ListExitFunc.begin();
-	std::list<std::function<void(KOne*)>>::iterator EIter = ListExitFunc.end();
+	udpate_list(ListExitFunc, _Other);
+}
+
+void K2DCollider::udpate_list(std::list<std::function<void(KOne*)>>& _List, KOne* _Other)
+{
+	std::list<std::function<void(KOne*)>>::iterator SIter = _List.begin();
+	std::list<std::function<void(KOne*)>>::iterator EIter = _List.end();
 
 	for (; SIter != EIter; SIter++)
 	{

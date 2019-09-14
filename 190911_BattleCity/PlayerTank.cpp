@@ -12,7 +12,7 @@
 
 
 #include "Bullet.h"
-
+#include "EnemyTank.h"
 
 
 PlayerTank::PlayerTank()
@@ -27,8 +27,13 @@ PlayerTank::~PlayerTank()
 void PlayerTank::create()
 {
 	Tank::create();
-
+	
+	MyCollider->set_rect(0);
 	MyAnimator->set_bit(L"res\\YellowTank.bmp", 10);
+
+
+	MyCollider->insert_stayfunc<PlayerTank>(this, &PlayerTank::stay_tile);
+	MyCollider->insert_exitfunc<PlayerTank>(this, &PlayerTank::exit_tile);
 }
 
 bool PlayerTank::init()
@@ -43,10 +48,10 @@ bool PlayerTank::init()
 
 void PlayerTank::update()
 {
+	update_collisiontile();
 	update_input();
 	Tank::update();
 	update_move();	
-	update_collisiontile();
 }
 
 
@@ -93,17 +98,37 @@ void PlayerTank::update_input()
 void PlayerTank::update_move()
 {
 	Tank::update_move();
-	   
-	KDebugManager::instance()->insert_log(L"Cur Dir: %f, %f", vDir.x, vDir.y);
-	KDebugManager::instance()->insert_log(L"Prev Dir: %f, %f", vPrevDir.x, vPrevDir.y);
-	KDebugManager::instance()->insert_log(L"Pos: %f, %f", kone()->pos().x, kone()->pos().y);
-	KDebugManager::instance()->insert_log(L"Check Pos: %f, %f", vPrevChecPos.x, vPrevChecPos.y);
 }
 
 void PlayerTank::update_collisiontile()
 {
-	if (true == bTileCol)
+	if (true == bTileCol || true == bTankCol)
 	{
 		kone()->pos(vPrevChecPos);
+	}
+}
+
+
+void PlayerTank::stay_tile(KOne* _Other)
+{
+	Tank::stay_tile(_Other);
+	   
+	EnemyTank* CurTank = _Other->get_component<EnemyTank>();
+	if (nullptr != CurTank)
+	{
+		bTankCol = true;
+		PrevColTank = CurTank;
+	}
+}
+
+void PlayerTank::exit_tile(KOne* _Other)
+{
+	Tank::exit_tile(_Other);
+
+	EnemyTank* CurTank = _Other->get_component<EnemyTank>();
+	if (nullptr != CurTank)
+	{
+		PrevColTank = nullptr;
+		bTankCol = false;
 	}
 }

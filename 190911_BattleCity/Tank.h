@@ -25,8 +25,10 @@ protected:
 	float fSpeed;
 
 	bool bTileCol;
+	bool bTankCol;
 
 	Tile* PrevColTile;
+	Tank* PrevColTank;
 
 public:
 	virtual bool init() override;
@@ -36,11 +38,13 @@ public:
 protected:
 	void update_coltile();
 	void update_checkingpos();
+
+	void calculate_checkpos();
 	virtual void update_move();
 
 
 
-	void stay_tile(KOne* _Tile);
-	void exit_tile(KOne* _Tile);
+	virtual void stay_tile(KOne* _Tile);
+	virtual void exit_tile(KOne* _Tile);
 };
 

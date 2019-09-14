@@ -268,5 +268,5 @@ class KRect
 {
 public:
 	KPos2 Start;
-	KPos2 Size;
+	KPos2 End;
 };

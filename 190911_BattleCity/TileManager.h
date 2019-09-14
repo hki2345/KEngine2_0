@@ -57,8 +57,8 @@ public:
 		Tmp.Start.x = STARTXPOS;
 		Tmp.Start.y = STARTYPOS;
 
-		Tmp.Size.x = XSize * ((float)TILEXSIZE - 1.5f) + Tmp.Start.x;
-		Tmp.Size.y = YSize * ((float)TILEYSIZE - 1.5f) + Tmp.Start.y;
+		Tmp.End.x = XSize * ((float)TILEXSIZE - 1.5f) + Tmp.Start.x;
+		Tmp.End.y = YSize * ((float)TILEYSIZE - 1.5f) + Tmp.Start.y;
 
 		return Tmp;
 	}
