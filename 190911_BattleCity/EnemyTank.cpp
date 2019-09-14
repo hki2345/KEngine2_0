@@ -21,18 +21,21 @@ void EnemyTank::create()
 {
 	Tank::create();
 
-	MyCollider->set_rect(0);
+	MyCollider->set_rect(2);
 	MyAnimator->set_bit(L"res\\WhiteTank.bmp", 10);
 
 	MyCollider->insert_stayfunc<EnemyTank>(this, &EnemyTank::stay_tile);
 	MyCollider->insert_exitfunc<EnemyTank>(this, &EnemyTank::exit_tile);
+
+	for (size_t i = 0; i < VectorMyBullet.size(); i++)
+	{
+		VectorMyBullet[i]->set_tank(4);
+	}
 }
 
 bool EnemyTank::init()
 {
 	Tank::init();
-
-	kone()->pos({ 220.0f, 300.0f });
 	kone()->size({ 40.0f, 40.0f });
 
 	fDirChangeCurTime = .0f;
@@ -46,10 +49,17 @@ bool EnemyTank::init()
 
 void EnemyTank::update()
 {
-	update_collisiontile();
-	update_AI();
-	Tank::update();
-	update_move();
+	if (Tank::TS_PLAY == eCurState)
+	{
+		update_collisiontile();
+		update_AI();
+		Tank::update();
+		update_move();
+	}
+	else
+	{
+		Tank::update();
+	}
 }
 
 
@@ -104,16 +114,7 @@ void EnemyTank::update_AI()
 			{
 				return;
 			}
-
-			if (vPrevDir == KPos2::Left || vPrevDir == KPos2::Right)
-			{
-				VectorMyBullet[0]->set_bullet(kone()->pos() + kone()->size() * .5f * vPrevDir, vPrevDir);
-			}
-			else if (vPrevDir == KPos2::Up || vPrevDir == KPos2::Down)
-			{
-				VectorMyBullet[0]->set_bullet(
-					kone()->pos() + kone()->size() * .5f * vPrevDir + KPos2(kone()->size().x * .2f, .0f), vPrevDir);
-			}
+			shoot_bullet();
 		}
 	}
 

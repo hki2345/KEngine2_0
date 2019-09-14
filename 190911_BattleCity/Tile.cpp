@@ -48,7 +48,7 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 	MyRenderer->set_split(3, 8);
 	MyRenderer->set_idx((int)_Info);
 
-	MyCollider->set_rect(1);
+	MyCollider->set_rect(0);
 
 	eTileType = _Info;
 }
@@ -200,4 +200,6 @@ bool Tile::collision_bullet(const KPos2& _Dir)
 	default:
 		break;
 	}
+
+	return false;
 }

@@ -44,6 +44,8 @@ public:
 
 
 	void link_k2dCollider(const int& _Key1, const int& _Key2);
+	void passlink_k2dCollider(const int& _Key1, const int& _Key2);
+	void clearpasslink();
 
 	KPos2 outof_screen(KOne* _Target);
 

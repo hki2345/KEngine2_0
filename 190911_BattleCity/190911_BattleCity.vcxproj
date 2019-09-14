@@ -157,8 +157,10 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyTank.cpp" />
     <ClCompile Include="EngineLauncher.cpp" />
+    <ClCompile Include="Explosion_Effect.cpp" />
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="PlayerTank.cpp" />
+    <ClCompile Include="Shield_Effect.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
@@ -169,8 +171,10 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemyTank.h" />
+    <ClInclude Include="Explosion_Effect.h" />
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="PlayerTank.h" />
+    <ClInclude Include="Shield_Effect.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />

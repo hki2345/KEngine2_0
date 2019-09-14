@@ -22,10 +22,33 @@ void K2DColliderManager::update()
 
 	for (; SLI != ELI; ++SLI)
 	{
-		update_link((*SLI).Key1, (*SLI).Key2);
+		update_passlink((*SLI).Key1, (*SLI).Key2);
 	}
 }
 
+
+void K2DColliderManager::update_passlink(const int& _Key1, const int& _Key2)
+{
+	if (0 == ListPassLink.size())
+	{
+		update_link(_Key1, _Key2);
+		return;
+	}
+
+
+	std::list <Link>::iterator SPLI = ListPassLink.begin();
+	std::list <Link>::iterator EPLI = ListPassLink.end();
+
+	for (; SPLI != EPLI; SPLI++)
+	{
+		if ((*SPLI).Key1 == _Key1 && (*SPLI).Key2 == _Key2)
+		{
+			return;
+		}
+	}
+
+	update_link(_Key1, _Key2);
+}
 
 void K2DColliderManager::update_link(const int& _Key1, const int& _Key2)
 {
@@ -82,4 +105,13 @@ bool K2DColliderManager::insert_kcollider(K2DCollider* _Other, const int& _Key/*
 {
 	MapK2DCollider.insert(std::make_pair(_Key, _Other));
 	return true;
+}
+
+void K2DColliderManager::set_passlink(const int& _Key1, const int& _Key2)
+{
+	ListPassLink.push_back({ _Key1, _Key2 });
+}
+void K2DColliderManager::clear_passlink()
+{
+	ListPassLink.clear();
 }

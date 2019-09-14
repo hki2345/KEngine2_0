@@ -4,7 +4,10 @@
 #include <KSprite_Render.h>
 #include <KRect_Collision.h>
 #include <K2DCollider.h>
+#include <KScene.h>
 #include <KOne.h>
+
+#include "Explosion_Effect.h"
 
 #include "TileManager.h"
 #include "Tile.h"
@@ -33,14 +36,20 @@ void Bullet::create()
 	fSpeed = 300.0f;
 
 	MyCollider = kone()->add_component<KRect_Collision>();
-	MyCollider->set_rect(0);
 	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
 	MyCollider->insert_enterfunc<Bullet>(this, &Bullet::Enter);
 	MyCollider->insert_stayfunc<Bullet>(this, &Bullet::Stay);
 	MyCollider->insert_exitfunc<Bullet>(this, &Bullet::Exit);
 
+	MyEffect = kscene()->create_kone(L"Expolsion")->add_component<Explosion_Effect>();
+
 	kone()->active(false);
+}
+
+void Bullet::set_tank(const int& _Layer)
+{
+	MyCollider->set_rect(_Layer);
 }
 
 
@@ -69,7 +78,7 @@ void Bullet::set_bullet(const KPos2& _Pos, const KPos2& _Dir)
 		MySprite->set_idx(0);
 	}
 
-	Explosion = false;
+	bExplosion = false;
 }
 
 void Bullet::update()
@@ -84,19 +93,22 @@ void Bullet::update()
 
 void Bullet::update_outofgame()
 {
-	if (true == Explosion)
+	if (true == bExplosion)
 	{
 		kone()->active(false);
+		MyEffect->set_bulletexplosion(kone()->pos());
+
 		return;
 	}
 
 	KPos2 Tmp = kone()->pos();
-	if (Tmp.x <= TileManager::instance()->tilemap_size().Start.x ||
+	if (Tmp.x <= TileManager::instance()->tilemap_size().Start.x - kone()->size().x ||
 		Tmp.x >= TileManager::instance()->tilemap_size().End.x + kone()->size().x ||
-		Tmp.y <= TileManager::instance()->tilemap_size().Start.y ||
+		Tmp.y <= TileManager::instance()->tilemap_size().Start.y - kone()->size().x ||
 		Tmp.y >= TileManager::instance()->tilemap_size().End.y + kone()->size().x)
 	{
 		kone()->active(false);
+		MyEffect->set_bulletexplosion(kone()->pos());
 	}
 }
 
@@ -110,7 +122,7 @@ void Bullet::Stay(KOne* _Collider)
 	Tile* CurTile = _Collider->get_component<Tile>();
 	if (nullptr != CurTile && true == CurTile->collision_bullet(vDir))
 	{
-		Explosion = true;
+		bExplosion = true;
 	}
 }
 void Bullet::Exit(KOne* _Collider)

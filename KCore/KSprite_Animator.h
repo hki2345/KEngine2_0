@@ -47,11 +47,14 @@ public:
 	void set_bit(const wchar_t* _Name = L"NONE", const int& _Key = 0);
 	void change_bit(const wchar_t* _Name = L"NONE");
 	void set_split(const int& _X, const int& _Y);
+	void reset_animate();
 
 	void create() override;
 	bool init() override;
 	void update() override;
 	void render() override;
 	void render(HDC _Hdc);
+
+	bool isover_animate();
 };
 

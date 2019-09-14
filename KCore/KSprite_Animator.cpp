@@ -56,6 +56,11 @@ void KSprite_Animator::set_split(const int& _X, const int& _Y)
 	pSprite->set_split(_X, _Y);
 }
 
+void KSprite_Animator::reset_animate()
+{
+	CurClip->second.iAniIdx = CurClip->second.Start;
+}
+
 void KSprite_Animator::create()
 {
 	KComponent::create();
@@ -98,4 +103,14 @@ void KSprite_Animator::render()
 void KSprite_Animator::render(HDC _Hdc)
 {
 	pSprite->render(_Hdc);
+}
+
+bool KSprite_Animator::isover_animate()
+{
+	if (CurClip->second.End <= CurClip->second.iAniIdx)
+	{
+		return true;
+	}
+
+	return false;
 }

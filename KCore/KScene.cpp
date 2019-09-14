@@ -209,6 +209,15 @@ void KScene::link_k2dCollider(const int& _Key1, const int& _Key2)
 	curK2DColliderMgr->link(_Key1, _Key2);
 }
 
+void KScene::passlink_k2dCollider(const int& _Key1, const int& _Key2)
+{
+	curK2DColliderMgr->set_passlink(_Key1, _Key2);
+}
+
+void KScene::clearpasslink()
+{
+	curK2DColliderMgr->clear_passlink();
+}
 
 KPos2 KScene::outof_screen(KOne* _Target)
 {

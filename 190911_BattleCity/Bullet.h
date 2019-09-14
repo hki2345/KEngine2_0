@@ -3,7 +3,7 @@
 #include <KVector.h>
 
 
-
+class Explosion_Effect;
 class KSprite_Render;
 class KRect_Collision;
 class K2DCollider;
@@ -14,15 +14,17 @@ public:
 	~Bullet();
 
 private:
+	Explosion_Effect* MyEffect;
 	KSprite_Render* MySprite;
 	KRect_Collision* MyCollider;
 	KPos2 vDir;
 	float fSpeed;
 
-	bool Explosion;
+	bool bExplosion;
 
 public:
 	void create() override;
+	void set_tank(const int& _Layer);
 	void set_bullet(const KPos2& _Pos, const KPos2& _Dir);
 	void update() override;
 

@@ -4,6 +4,7 @@
 #include <vector>
 
 
+class Explosion_Effect;
 class KSprite_Animator;
 class KRect_Collision;
 class Bullet;
@@ -15,7 +16,18 @@ public:
 	~Tank();
 
 protected:
+	enum TANK_STATUS
+	{
+		TS_RESPAWN = 0,
+		TS_PLAY,
+		TS_DIE,
+	};
+
+protected:
+	TANK_STATUS eCurState;
+
 	std::vector<Bullet*> VectorMyBullet;
+	Explosion_Effect* MyEffect;
 	KSprite_Animator* MyAnimator;
 	KRect_Collision* MyCollider;
 
@@ -30,16 +42,24 @@ protected:
 	Tile* PrevColTile;
 	Tank* PrevColTank;
 
+	float fRespawnCurTime;
+	float fRespawnTime;
 public:
-	virtual bool init() override;
+
 	virtual void create() override;
+	virtual bool init() override;
+	void set_tank(const KPos2& _StartPos);
 	virtual void update() override;
 
 protected:
+	virtual void update_respawn();
+	virtual void update_play();
+	virtual void update_die();
+
 	void update_coltile();
 	void update_checkingpos();
+	void shoot_bullet();
 
-	void calculate_checkpos();
 	virtual void update_move();
 
 

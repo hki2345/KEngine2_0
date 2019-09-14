@@ -16,6 +16,9 @@
     <Filter Include="InGame\Manager">
       <UniqueIdentifier>{e81a8882-0d25-4a05-8ba4-490052c10441}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InGame\Component\Effect">
+      <UniqueIdentifier>{54b6df86-135c-495c-8027-20a51bf242b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineLauncher.cpp">
@@ -51,6 +54,12 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>InGame\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Explosion_Effect.cpp">
+      <Filter>InGame\Component\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield_Effect.cpp">
+      <Filter>InGame\Component\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityInitiator.h">
@@ -82,6 +91,12 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>InGame\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion_Effect.h">
+      <Filter>InGame\Component\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield_Effect.h">
+      <Filter>InGame\Component\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

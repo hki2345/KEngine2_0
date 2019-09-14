@@ -33,13 +33,19 @@ private:
 
 private:
 	void update_link(const int& _Key1, const int& _Key2);
+	void update_passlink(const int& _Key1, const int& _Key2);
 
 private:
 	std::multimap<int, K2DCollider*> MapK2DCollider;
 	std::list <Link> ListLink;
+	std::list <Link> ListPassLink;
 
 private:
 	void link(const int& _Key1, const int& _Key2);
 	bool insert_kcollider(K2DCollider* _Other, const int& _Key = 0);
+
+
+	void set_passlink(const int& _Key1, const int& _Key2);
+	void clear_passlink();
 };
 

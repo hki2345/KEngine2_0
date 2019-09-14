@@ -2,11 +2,19 @@
 #include "Tank.h"
 
 
+class Shield_Effect;
 class PlayerTank : public Tank
 {
 public:
 	PlayerTank();
 	~PlayerTank();
+
+private:
+	int iLife;
+	Shield_Effect* MyShieldEffect;
+
+	float fShieldCurTime;
+	float fShieldTime;
 
 public:
 	void create() override;
@@ -14,6 +22,8 @@ public:
 	void update() override;
 
 private:
+	void update_respawn() override;
+	void update_shield();
 	void update_input();
 	void update_move();
 	void update_collisiontile();

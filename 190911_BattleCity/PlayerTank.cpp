@@ -8,11 +8,13 @@
 
 #include <KSprite_Animator.h>
 #include <KRect_Collision.h>
+#include <KScene.h>
 #include <KOne.h>
 
 
 #include "Bullet.h"
 #include "EnemyTank.h"
+#include "Shield_Effect.h"
 
 
 PlayerTank::PlayerTank()
@@ -28,32 +30,76 @@ void PlayerTank::create()
 {
 	Tank::create();
 	
-	MyCollider->set_rect(0);
+	MyCollider->set_rect(1);
 	MyAnimator->set_bit(L"res\\YellowTank.bmp", 10);
 
 
 	MyCollider->insert_stayfunc<PlayerTank>(this, &PlayerTank::stay_tile);
 	MyCollider->insert_exitfunc<PlayerTank>(this, &PlayerTank::exit_tile);
+
+	for (size_t i = 0; i < VectorMyBullet.size(); i++)
+	{
+		VectorMyBullet[i]->set_tank(3);
+	}
+
+
+	MyShieldEffect = kscene()->create_kone(L"Shield")->add_component<Shield_Effect>();
+	MyShieldEffect->kone()->active(false);
+	MyShieldEffect->set_shield(kone());
 }
 
 bool PlayerTank::init()
 {
 	Tank::init();
-
-	kone()->pos({ 220.0f, 500.0f });
 	kone()->size({ 40.0f, 40.0f });
+
+
+	fShieldCurTime = .0f; 
+	fShieldTime = 5.0f;
 
 	return true;
 }
 
 void PlayerTank::update()
 {
-	update_collisiontile();
-	update_input();
-	Tank::update();
-	update_move();	
+	if (Tank::TS_PLAY == eCurState)
+	{
+		update_shield();
+		update_collisiontile();
+		update_input();
+		Tank::update();
+		update_move();
+	}
+	else
+	{
+		Tank::update();
+	}
 }
 
+void PlayerTank::update_respawn()
+{
+	MyAnimator->change_animation(L"Respawn");
+	fRespawnCurTime += KTimeManager::instance()->deltatime();
+	if (fRespawnCurTime >= fRespawnTime)
+	{
+		fRespawnCurTime = .0f;
+		eCurState = TANK_STATUS::TS_PLAY;
+		fShieldCurTime = .0f;
+		MyShieldEffect->kone()->active(true);
+		kscene()->passlink_k2dCollider(1, 2);
+		kscene()->passlink_k2dCollider(1, 4);
+	}
+}
+
+void PlayerTank::update_shield()
+{
+	fShieldCurTime += KTimeManager::instance()->deltatime();
+	if (fShieldCurTime >= fShieldTime)
+	{
+		MyShieldEffect->kone()->active(false);
+		kscene()->clearpasslink();
+	}
+}
 
 void PlayerTank::update_input()
 {
@@ -82,16 +128,7 @@ void PlayerTank::update_input()
 		{
 			return;
 		}
-
-		if (vPrevDir == KPos2::Left || vPrevDir == KPos2::Right)
-		{
-			VectorMyBullet[0]->set_bullet(kone()->pos() + kone()->size() * .5f * vPrevDir, vPrevDir);
-		}
-		else if (vPrevDir == KPos2::Up || vPrevDir == KPos2::Down)
-		{
-			VectorMyBullet[0]->set_bullet(
-				kone()->pos() + kone()->size() * .5f * vPrevDir + KPos2(kone()->size().x * .2f, .0f), vPrevDir);
-		}
+		shoot_bullet();
 	}
 }
 
