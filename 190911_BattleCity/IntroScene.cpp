@@ -8,6 +8,8 @@
 #include <KText_Render.h>
 #include <KOne.h>
 
+#include "PlayerManager.h"
+
 IntroScene::IntroScene()
 {
 }
@@ -33,7 +35,7 @@ void IntroScene::create()
 	BattleSprite->set_bit(L"res\\BattleLogo.bmp", 10);
 
 	KText_Render* Text1 = VectorUI[1]->add_component<KText_Render>();
-	Text1->set_font(L"나의 점수 - 00 최대 점수 - 20000", 20, 10, L"DungGeunMo", RGB(255, 255, 255));
+	Text1->set_font(L"점수판...", 20, 10, L"DungGeunMo", RGB(255, 255, 255));
 	KText_Render* Text2 = VectorUI[2]->add_component<KText_Render>();
 	Text2->set_font(L"1 플레이어", 20, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
 	KText_Render* Text3 = VectorUI[3]->add_component<KText_Render>();
@@ -75,6 +77,15 @@ bool IntroScene::init()
 
 	VectorUI[8]->size({ 20.0f, 20.0f });
 	VectorUI[8]->active(false);
+
+
+	std::wstring Tmp = L"현재 점수 - ";
+	Tmp += std::to_wstring(PlayerManager::instance()->iScore);
+	Tmp += L" 최고 점수 - ";
+	Tmp += std::to_wstring(PlayerManager::instance()->iHighScore);
+
+	KText_Render* Text1 = VectorUI[1]->get_component<KText_Render>();
+	Text1->set_text(Tmp.c_str());
 
 
 	for (size_t i = 0; i < VectorUI.size(); i++)

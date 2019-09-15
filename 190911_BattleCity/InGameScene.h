@@ -2,7 +2,6 @@
 #include <KScene.h>
 
 
-class PlayerTank;
 class InGameScene : public KScene
 {
 public:
@@ -18,7 +17,6 @@ private:
 	};
 
 private:
-	PlayerTank* MyPlayer;
 	GAMESCENE_STATE eGSState;
 
 public:

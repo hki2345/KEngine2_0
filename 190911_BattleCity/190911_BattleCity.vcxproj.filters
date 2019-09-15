@@ -67,6 +67,9 @@
     <ClCompile Include="IntroScene.cpp">
       <Filter>Intro</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>InGame\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityInitiator.h">
@@ -108,6 +111,9 @@
     <ClInclude Include="EndingScene.h" />
     <ClInclude Include="IntroScene.h">
       <Filter>Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>InGame\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

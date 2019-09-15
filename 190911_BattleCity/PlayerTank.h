@@ -10,7 +10,6 @@ public:
 	~PlayerTank();
 
 private:
-	int iLife;
 	Shield_Effect* MyShieldEffect;
 
 	float fShieldCurTime;

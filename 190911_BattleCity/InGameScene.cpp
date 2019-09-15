@@ -4,8 +4,8 @@
 #include <KWindowManager.h>
 #include <KMacro.h>
 
-#include "PlayerTank.h"
 #include "EnemyTank.h"
+#include "PlayerManager.h"
 #include "TileManager.h"
 #include "EnemyManager.h"
 
@@ -26,12 +26,9 @@ void InGameScene::create()
 {
 	KScene::create();
 
-	KOne* CurSorOne = create_kone(L"PlayerTank");
-	MyPlayer = CurSorOne->add_component<PlayerTank>();
-	MyPlayer->set_tank({ 220.0f, 500.0f });
-
 	TileManager::instance()->create(this);
 	EnemyManager::instance()->create(this);
+	PlayerManager::instance()->create(this);
 
 	// 0 타일
 	// 1 플레이어 탱크
@@ -60,6 +57,7 @@ bool InGameScene::init()
 	TileManager::instance()->update_alltile();
 
 	EnemyManager::instance()->init(20);
+	PlayerManager::instance()->init();
 	return true;
 }
 void InGameScene::update()
@@ -94,6 +92,7 @@ void InGameScene::release()
 	KScene::release();
 	TileManager::instance()->release();
 	EnemyManager::instance()->release();
+	PlayerManager::instance()->release();
 }
 
 
