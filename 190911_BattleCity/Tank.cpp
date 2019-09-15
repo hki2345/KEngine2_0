@@ -40,7 +40,7 @@ void Tank::create()
 	MyAnimator->insert_animation(L"Left", 2, 3);
 	MyAnimator->insert_animation(L"Down", 4, 5);
 	MyAnimator->insert_animation(L"Right", 6, 7);
-	MyAnimator->insert_animation(L"Respawn", 64, 70);
+	MyAnimator->insert_animation(L"Respawn", 64, 70, .05f);
 	MyAnimator->change_animation(L"UpIdle");
 
 
@@ -68,7 +68,7 @@ bool Tank::init()
 	PrevColTile = nullptr;
 	PrevColTank = nullptr;
 	fRespawnCurTime = .0f;
-	fRespawnTime = 3.0f;
+	fRespawnTime = 1.5f;
 	return true;
 }
 
@@ -94,6 +94,9 @@ void Tank::update()
 		break;
 	case Tank::TS_DIE:
 		update_die();
+		break;
+	case Tank::TS_WAIT:
+		update_wait();
 		break;
 	default:
 		break;
@@ -157,6 +160,12 @@ void Tank::update_play()
 void Tank::update_die()
 {
 	kone()->active(false);
+	eCurState = TANK_STATUS::TS_WAIT;
+}
+
+void Tank::update_wait()
+{
+
 }
 
 void Tank::shoot_bullet()

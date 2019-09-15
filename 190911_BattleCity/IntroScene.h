@@ -1,5 +1,6 @@
 #pragma once
 #include <KScene.h>
+#include <KVector.h>
 #include <vector>
 
 
@@ -15,17 +16,30 @@ private:
 	{
 		IS_WAIT,
 		IS_PLAY,
+		IS_OUT,
 	};
 
 private:
 	std::vector<KOne*> VectorUI;
+	KOne* GrayBackBoard[2];
+
+
+	KSize2 vSize;
 	INTRO_STATE eIntroState;
 	int UISize;
 	float MaxYPos;
+
+	float fOutCurTime;
+	float fOutTime;
 
 public:
 	void create() override;
 	bool init() override;
 	void update() override;
+
+private:
+	void update_wait();
+	void update_play();
+	void update_out();
 };
 

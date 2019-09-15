@@ -32,10 +32,18 @@ public:
 	int iLife;
 	int iScore;
 	int iHighScore;
+	int iStage;
+	int iKill;
+	int iWin;
+
+	float fRespawnCurDelay;
+	float fRespawnDelay;
 
 	void create(KScene* _GameScene);
 	void init();
 	void update();
+	void update_playerdie();
+
 	void load_highscore();
 	void save_highscore();
 };

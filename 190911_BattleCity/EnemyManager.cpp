@@ -1,4 +1,5 @@
 #include "EnemyManager.h"
+#include "PlayerManager.h"
 
 #include <KTimeManager.h>
 #include <KScene.h>
@@ -30,9 +31,14 @@ bool EnemyManager::init(const int& _EnemyNum)
 {
 	fRespawnCurTime = .0f;
 	fRespawnTime = 5.0f;
-	EnemyRespawnCnt = _EnemyNum;
+	EnemyMaxCnt = _EnemyNum;
 
 	VectorRespawnPos = *TileManager::instance()->vector_respawnpos();
+	for (int i = 0; i < 50; i++)
+	{
+		VectorEnemy[i]->kone()->active(false);
+	}
+	
 	set_enemy();
 
 	return true;
@@ -42,12 +48,13 @@ void EnemyManager::update()
 {
 	update_respawn();
 	update_resetpos();
+	update_playerwin();
 }
 
 
 void EnemyManager::update_respawn()
 {
-	if (EnemyRespawnCnt == VectorEnemy.size())
+	if (EnemyRespawnCnt == EnemyMaxCnt)
 	{
 		return;
 	}
@@ -62,7 +69,7 @@ void EnemyManager::update_respawn()
 
 void EnemyManager::update_resetpos()
 {
-	for (int i = 0; i < EnemyRespawnCnt; i++)
+	for (int i = 0; i < EnemyMaxCnt; i++)
 	{
 		if (10.0f >= VectorEnemy[i]->kone()->pos().x)
 		{
@@ -72,6 +79,19 @@ void EnemyManager::update_resetpos()
 			VectorEnemy[i]->kone()->pos(VectorRespawnPos[XXX]);
 		}
 	}
+}
+
+void EnemyManager::update_playerwin()
+{
+	if (PlayerManager::instance()->iKill == EnemyMaxCnt)
+	{
+		PlayerManager::instance()->iWin = 1;
+	}
+}
+
+int EnemyManager::calculate_remain()
+{
+	return EnemyMaxCnt - EnemyRespawnCnt;
 }
 
 void EnemyManager::set_enemy()

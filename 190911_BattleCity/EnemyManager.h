@@ -36,6 +36,7 @@ private:
 	std::vector<KPos2> VectorRespawnPos;
 	KScene* MomScene;
 	int EnemyRespawnCnt;
+	int EnemyMaxCnt;
 
 	float fRespawnCurTime;
 	float fRespawnTime;
@@ -45,9 +46,13 @@ public:
 	bool init(const int& _EnemyNum);
 	void update();
 
+	int calculate_remain();
+
 private:
 	void update_respawn();
 	void update_resetpos();
+	void update_playerwin();
+
 	void set_enemy();
 };
 

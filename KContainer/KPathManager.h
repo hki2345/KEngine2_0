@@ -73,6 +73,16 @@ public:
 	}
 
 
+	template<typename T> 
+	std::wstring bind_wcharnum(const wchar_t* _Path, const T& _Target_sizeof)
+	{
+		std::wstring Tmp;
+		Tmp = _Path;
+		Tmp += std::to_wstring<T>(_Target_sizeof);
+		return Tmp;
+	}
+
+
 	std::vector<KResourcePath> load_totargetfolder(const wchar_t* _Folder, const wchar_t* _Extension);
 	bool input_wchar(wchar_t* _Target, const int& _Target_sizeof, const wchar_t* _Path);
 	void char_towchar(wchar_t* _Target, char* _Source);

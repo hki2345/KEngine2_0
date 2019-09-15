@@ -22,6 +22,9 @@
     <Filter Include="InGame\Component\Enemy">
       <UniqueIdentifier>{c3649efd-b43c-4ba0-a4ed-cb1b942c3a22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Outro">
+      <UniqueIdentifier>{fb57130b-fa6c-41a3-aafb-26cbf219615f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineLauncher.cpp">
@@ -63,12 +66,14 @@
     <ClCompile Include="EnemyTank.cpp">
       <Filter>InGame\Component\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="IntroScene.cpp">
       <Filter>Intro</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
       <Filter>InGame\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="OutroScene.cpp">
+      <Filter>Outro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,12 +113,14 @@
     <ClInclude Include="EnemyTank.h">
       <Filter>InGame\Component\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="IntroScene.h">
       <Filter>Intro</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
       <Filter>InGame\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="OutroScene.h">
+      <Filter>Outro</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

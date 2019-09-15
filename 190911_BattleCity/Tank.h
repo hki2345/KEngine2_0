@@ -21,6 +21,7 @@ protected:
 		TS_RESPAWN = 0,
 		TS_PLAY,
 		TS_DIE,
+		TS_WAIT,
 	};
 
 protected:
@@ -55,6 +56,7 @@ protected:
 	virtual void update_respawn();
 	virtual void update_play();
 	virtual void update_die();
+	virtual void update_wait();
 
 	void update_coltile();
 	void update_checkingpos();

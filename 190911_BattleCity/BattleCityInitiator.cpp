@@ -9,6 +9,7 @@
 
 #include "InGameScene.h"
 #include "IntroScene.h"
+#include "OutroScene.h"
 
 
 BattleCityInitiator::BattleCityInitiator()
@@ -31,9 +32,11 @@ bool BattleCityInitiator::init()
 
 	IntroScene*  NewIntroScene = new IntroScene();
 	InGameScene*  NewGameScene = new InGameScene();
+	OutroScene* NewOutroScene = new OutroScene();
 
 	KSceneManager::instance()->create_scene(NewIntroScene, L"Intro");
 	KSceneManager::instance()->create_scene(NewGameScene, L"Game");
+	KSceneManager::instance()->create_scene(NewOutroScene, L"Outro");
 	KSceneManager::instance()->change_scene(L"Intro");
 	return true;
 }

@@ -1,6 +1,6 @@
 #include "Tile.h"
 #include "TileManager.h"
-
+#include "PlayerManager.h"
 
 #include <KSprite_Render.h>
 #include <KRect_Collision.h>
@@ -202,7 +202,9 @@ bool Tile::collision_bullet(const KPos2& _Dir)
 	case BG_PHOENIX02:
 	case BG_PHOENIX03:
 	case BG_PHOENIX04:
+		PlayerManager::instance()->iWin = -1;
 		TileManager::instance()->update_broken();
+		
 		return true;
 
 	case BG_BLOCKNUM:

@@ -5,6 +5,7 @@
 #include <KRect_Collision.h>
 #include <KOne.h>
 #include "Bullet.h"
+#include "PlayerManager.h"
 #include "PlayerTank.h"
 
 
@@ -56,6 +57,12 @@ void EnemyTank::update()
 		Tank::update();
 		update_move();
 	}
+	else if (Tank::TS_DIE == eCurState)
+	{
+		PlayerManager::instance()->iKill += 1;
+		Tank::update();
+	}
+
 	else
 	{
 		Tank::update();

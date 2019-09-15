@@ -3,7 +3,6 @@
 
 #include <KInputManager.h>
 #include <KTimeManager.h>
-
 #include <KDebugManager.h>
 
 #include <KSprite_Animator.h>
@@ -12,6 +11,7 @@
 #include <KOne.h>
 
 
+#include "PlayerManager.h"
 #include "Bullet.h"
 #include "EnemyTank.h"
 #include "Shield_Effect.h"
@@ -64,12 +64,24 @@ void PlayerTank::update()
 {
 	if (Tank::TS_PLAY == eCurState)
 	{
+		if (-1 == PlayerManager::instance()->iWin)
+		{
+			return;
+		}
+
 		update_shield();
 		update_collisiontile();
 		update_input();
 		Tank::update();
 		update_move();
 	}
+
+	else if (Tank::TS_DIE == eCurState)
+	{
+		PlayerManager::instance()->update_playerdie();
+		Tank::update();
+	}
+
 	else
 	{
 		Tank::update();
