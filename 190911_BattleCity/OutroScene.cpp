@@ -7,6 +7,8 @@
 #include <KInputManager.h>
 #include <KTimeManager.h>
 
+#include "PlayerManager.h"
+
 
 OutroScene::OutroScene()
 {
@@ -31,30 +33,30 @@ void OutroScene::create()
 	KText_Render* Text1 = VectorUI[0]->add_component< KText_Render>();
 	Text1->set_font(L"최고 점수", FSize, 10, L"DungGeunMo", RGB(255, 94, 0));
 
-	Text1 = VectorUI[1]->add_component< KText_Render>();
-	Text1->set_font(L"점수", FSize, 10, L"DungGeunMo", RGB(255, 187, 0));
+	ActionText.push_back(VectorUI[1]->add_component< KText_Render>());
+	ActionText[0]->set_font(L"점수", FSize, 10, L"DungGeunMo", RGB(255, 187, 0));
 
-	Text1 = VectorUI[2]->add_component< KText_Render>();
-	Text1->set_font(L"스테이지 ", FSize, 10, L"DungGeunMo", RGB(255, 255, 255));
+	ActionText.push_back(VectorUI[2]->add_component< KText_Render>());
+	ActionText[1]->set_font(L"스테이지 ", FSize, 10, L"DungGeunMo", RGB(255, 255, 255));
 
 	Text1 = VectorUI[3]->add_component< KText_Render>();
 	Text1->set_font(L"플레이어1 ", FSize, 10, L"DungGeunMo", RGB(255, 94, 0), TA_RIGHT);
 
-	Text1 = VectorUI[4]->add_component< KText_Render>();
-	Text1->set_font(L"현재 점수", FSize, 10, L"DungGeunMo", RGB(255, 187, 0), TA_RIGHT);
+	ActionText.push_back(VectorUI[4]->add_component< KText_Render>());
+	ActionText[2]->set_font(L"현재 점수", FSize, 10, L"DungGeunMo", RGB(255, 187, 0), TA_RIGHT);
 
 
 
-	Text1 = VectorUI[5]->add_component< KText_Render>();
-	Text1->set_font(L"1456 점", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_RIGHT);
-	Text1 = VectorUI[6]->add_component< KText_Render>();
-	Text1->set_font(L"14 킬", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
+	ActionText.push_back(VectorUI[5]->add_component< KText_Render>());
+	ActionText[3]->set_font(L"1456 점", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_RIGHT);
+	ActionText.push_back(VectorUI[6]->add_component< KText_Render>());
+	ActionText[4]->set_font(L"14 킬", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
 
 
 	Text1 = VectorUI[7]->add_component< KText_Render>();
 	Text1->set_font(L"합계 ", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_RIGHT);
-	Text1 = VectorUI[8]->add_component< KText_Render>();
-	Text1->set_font(L"123455", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
+	ActionText.push_back(VectorUI[8]->add_component< KText_Render>());
+	ActionText[5]->set_font(L"123455", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
 }
 bool OutroScene::init()
 {
@@ -78,6 +80,35 @@ bool OutroScene::init()
 
 	fOutCurTime = .0f;
 	fOutTime = 20.0f;
+
+	ActionText[0]->set_text(std::to_wstring(PlayerManager::instance()->iHighScore).c_str());
+
+
+	std::wstring Tmp = L"";
+
+	Tmp = L"스테이지 ";
+	Tmp += std::to_wstring(PlayerManager::instance()->iStage).c_str();
+	ActionText[1]->set_text(Tmp.c_str());
+
+	Tmp = std::to_wstring(PlayerManager::instance()->iScore).c_str();
+	Tmp += L"";
+	ActionText[2]->set_text(Tmp.c_str());
+
+
+	Tmp = std::to_wstring(PlayerManager::instance()->iScore).c_str();
+	Tmp += L" 점";
+	ActionText[3]->set_text(Tmp.c_str());
+
+
+	Tmp = std::to_wstring(PlayerManager::instance()->iKill).c_str();
+	Tmp += L" 킬";
+	ActionText[4]->set_text(Tmp.c_str());
+
+
+	Tmp = std::to_wstring(PlayerManager::instance()->iKill).c_str();
+	Tmp += L" 킬";
+	ActionText[5]->set_text(Tmp.c_str());
+
 
 	return true;
 }

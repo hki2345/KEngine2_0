@@ -37,6 +37,8 @@ private:
 	std::vector<KPos2> VectorRespawn;
 	std::vector<Tile*> PhoenixTile;
 
+	std::vector<BATTLECITY_GAMETILE> VectorTileInfo;
+
 	HDC MapHdc;
 	KBitMap* MapBit;
 	KScene* MomScene;
@@ -70,5 +72,11 @@ public:
 	{
 		return &VectorRespawn;
 	}
+
+private:
+	void read_file(const wchar_t* _Name);
+
+	void create_map();
+	void init_map();
 };
 

@@ -5,6 +5,7 @@
 
 
 class KOne;
+class KText_Render;
 class OutroScene : public KScene
 {
 public:
@@ -14,6 +15,7 @@ public:
 
 private:
 	std::vector<KOne*> VectorUI;
+	std::vector< KText_Render*> ActionText;
 
 	float fOutCurTime;
 	float fOutTime;

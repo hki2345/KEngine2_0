@@ -32,6 +32,7 @@ bool EnemyManager::init(const int& _EnemyNum)
 	fRespawnCurTime = .0f;
 	fRespawnTime = 5.0f;
 	EnemyMaxCnt = _EnemyNum;
+	EnemyRespawnCnt = 0;
 
 	VectorRespawnPos = *TileManager::instance()->vector_respawnpos();
 	for (int i = 0; i < 50; i++)

@@ -35,14 +35,13 @@ void TileManager::create(KScene* _Scene)
 	DeleteObject(myBrush);
 }
 
-bool TileManager::init(const wchar_t* _Name)
+
+void TileManager::read_file(const wchar_t* _Name)
 {
 	std::vector<BATTLETILE_INFO> TmpVec;
-
 	KFileStream::instance()->read_file(_Name, TmpVec);
 
-
-	std::vector<BATTLECITY_GAMETILE> VectorTileInfo;
+	VectorTileInfo.clear();
 	VectorTileInfo.reserve(13 * 13 * 2 * 2);
 	for (int i = 0; i < 13 * 13 * 2 * 2; i++)
 	{
@@ -63,7 +62,7 @@ bool TileManager::init(const wchar_t* _Name)
 
 			else if (BATTLECITY_TILE::SPAWN_BLOCK00 == TmpVec[x / 2 + ((XSize / 2) * (y / 2))].Idx)
 			{
-				VectorRespawn.push_back(KPos2(x * TILEXSIZE, y * TILEYSIZE ) + KPos2( STARTXPOS, STARTYPOS ));
+				VectorRespawn.push_back(KPos2(x * TILEXSIZE, y * TILEYSIZE) + KPos2(STARTXPOS, STARTYPOS));
 			}
 
 			else if (BATTLECITY_TILE::BROWN_BLOCK00 == TmpVec[x / 2 + ((XSize / 2) * (y / 2))].Idx)
@@ -213,9 +212,27 @@ bool TileManager::init(const wchar_t* _Name)
 			TmpVec[x / 2 + ((XSize / 2) * (y / 2))].Idx = BATTLECITY_TILE::NONE_BLOCK00;
 		}
 	}
+}
 
 
+bool TileManager::init(const wchar_t* _Name)
+{
+	read_file(_Name);
+	if (0 == VectorTile.size())
+	{
+		create_map();
+	}
+	else if (0 < VectorTile.size())
+	{
+		init_map();
+	}
 
+	return 0;
+}
+
+
+void TileManager::create_map()
+{
 	PhoenixTile.reserve(4);
 	for (int i = 0; i < XSize * YSize; i++)
 	{
@@ -226,21 +243,40 @@ bool TileManager::init(const wchar_t* _Name)
 
 		KOne* TOne = MomScene->create_kone(L"Tile");
 		Tile* NewTile = TOne->add_component<Tile>();
-		NewTile->set_tile({ 
-			(float)(i % XSize) * TILEXSIZE, 
+		NewTile->set_tile({
+			(float)(i % XSize) * TILEXSIZE,
 			(float)(i / XSize) * TILEYSIZE }, VectorTileInfo[i]);
 		VectorTile.push_back(NewTile);
 
 
 		if (BATTLECITY_GAMETILE::BG_PHOENIX01 == VectorTileInfo[i] ||
 			BATTLECITY_GAMETILE::BG_PHOENIX02 == VectorTileInfo[i] ||
-			BATTLECITY_GAMETILE::BG_PHOENIX03 == VectorTileInfo[i] || 
-			BATTLECITY_GAMETILE::BG_PHOENIX04 == VectorTileInfo[i] )
+			BATTLECITY_GAMETILE::BG_PHOENIX03 == VectorTileInfo[i] ||
+			BATTLECITY_GAMETILE::BG_PHOENIX04 == VectorTileInfo[i])
 		{
 			PhoenixTile.push_back(NewTile);
 		}
 	}
-	return 0;
+}
+
+void TileManager::init_map()
+{
+	int PhoenixCnt = 0;
+	int TileCnt = 0;
+
+	for (int i = 0; i < XSize * YSize; i++)
+	{
+		if (BATTLECITY_GAMETILE::BG_NONE == VectorTileInfo[i])
+		{
+			continue;
+		}
+
+		VectorTile[TileCnt]->set_tile(VectorTileInfo[i]);
+		VectorTile[TileCnt]->kone()->active(true);
+		++TileCnt;
+	}
+
+	update_alltile();
 }
 
 
@@ -255,6 +291,13 @@ void TileManager::update_broken()
 
 void TileManager::update_alltile()
 {
+	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	myBrush = CreateSolidBrush(RGB(0, 0, 0));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(MapHdc, myBrush);
+	Rectangle(MapHdc, STARTXPOS, STARTYPOS, XSize * (TILEXSIZE), XSize * (TILEXSIZE));
+	SelectObject(MapHdc, oldBrush);
+	DeleteObject(myBrush);
+
 	for (size_t i = 0; i < VectorTile.size(); i++)
 	{
 		if (BATTLECITY_GAMETILE::BG_WOOD_BLOCK != VectorTile[i]->tile_type())
