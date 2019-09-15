@@ -32,6 +32,11 @@ void KTransform::release()
 
 }
 
+void KTransform::moving_pluspos(const KVec2& _Speed)
+{
+	Pos += _Speed;
+}
+
 void KTransform::moving_pos(const KVec2& _Pos)
 {
 	Pos = _Pos;

@@ -76,6 +76,10 @@ void KOne::size(const KSize2& _Size)
 }
 
 
+void KOne::moving_pluspos(const KPos2& _Value)
+{
+	MyTrans->moving_pluspos(_Value);
+}
 
 void KOne::moving_pos(const KPos2& _Value)
 {

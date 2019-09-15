@@ -16,6 +16,7 @@ private:
 	std::wstring sMyParse;
 	std::wstring sMyFont;
 	DWORD MyColor;
+	DWORD MyAlign;
 	HFONT myFont;
 	HFONT oldFont;
 
@@ -26,7 +27,8 @@ public:
 		const int& _Size,
 		const int& _Key = 0, 
 		const wchar_t* _Font = L"±Ã¼­",
-		const DWORD& _Color = RGB(255, 255, 255));
+		const DWORD& _Color = RGB(255, 255, 255),
+		const DWORD& _Align = TA_CENTER);
 
 	void set_text(const wchar_t* _Text);
 	void render() override;

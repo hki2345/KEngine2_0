@@ -24,12 +24,14 @@ void KText_Render::set_font(
 	const int& _Size,
 	const int& _Key/* = 0*/,
 	const wchar_t* _Font/* = L"±Ã¼­"*/,
-	const DWORD& _Color /*= RGB(255, 255, 255)*/)
+	const DWORD& _Color /*= RGB(255, 255, 255)*/,
+	const DWORD& _Align /*TA_CENTER*/)
 {
 	iMySize = _Size;
 	MyColor = _Color;
 	sMyParse = _Text;
 	sMyFont = _Font;
+	MyAlign = _Align;
 	kscene()->insert_krender(this, _Key);
 }
 
@@ -49,9 +51,9 @@ void KText_Render::render()
 	oldFont = (HFONT)SelectObject(kwindow()->bhdc(), myFont);
 	SetTextColor(kwindow()->bhdc(), MyColor);
 	SetBkMode(kwindow()->bhdc(), TRANSPARENT);
-	SetTextAlign(kwindow()->bhdc(), TA_CENTER);
+	SetTextAlign(kwindow()->bhdc(), MyAlign);
 
-	TextOutW(kwindow()->bhdc(), RenderPos.x, RenderPos.y, sMyParse.c_str(), (int)sMyParse.size());
+	TextOutW(kwindow()->bhdc(), (int)RenderPos.x, (int)RenderPos.y, sMyParse.c_str(), (int)sMyParse.size());
 
 	SelectObject(kwindow()->bhdc(), oldFont);
 	DeleteObject(myFont);

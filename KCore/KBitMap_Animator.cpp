@@ -116,10 +116,10 @@ void KBitMap_Animator::render()
 	{
 		BitBlt(
 			kwindow()->bhdc(),
-			RenderPos.x,
-			RenderPos.y,
-			MyTrans->Size.x,
-			MyTrans->Size.y,
+			(int)RenderPos.x,
+			(int)RenderPos.y,
+			(int)MyTrans->Size.x,
+			(int)MyTrans->Size.y,
 			CurAniIter->second[iAniIdx]->MyDC,
 			0,
 			0,
@@ -130,15 +130,15 @@ void KBitMap_Animator::render()
 	{
 		TransparentBlt(
 			kwindow()->bhdc(),
-			RenderPos.x,
-			RenderPos.y,
-			MyTrans->Size.x,
-			MyTrans->Size.y,
+			(int)RenderPos.x,
+			(int)RenderPos.y,
+			(int)MyTrans->Size.x,
+			(int)MyTrans->Size.y,
 			CurAniIter->second[iAniIdx]->MyDC,
 			0,
 			0,
-			CurAniIter->second[iAniIdx]->size().x,
-			CurAniIter->second[iAniIdx]->size().y,
+			(int)CurAniIter->second[iAniIdx]->size().x,
+			(int)CurAniIter->second[iAniIdx]->size().y,
 			RGB(255, 0, 255));
 	}	
 }

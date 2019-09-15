@@ -76,6 +76,7 @@ public:
 	}
 
 
+	void moving_pluspos(const KPos2& _Value);
 	void moving_pos(const KPos2& _Value);
 	void moving_delta(const KPos2& _Value);
 

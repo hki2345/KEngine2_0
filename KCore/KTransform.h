@@ -22,6 +22,7 @@ public:
 	KSize2	Size;
 	
 public:
+	void moving_pluspos(const KVec2& _Speed);
 	void moving_pos(const KVec2& _Speed);
 	void moving_delta(const KVec2& _Speed);
 };

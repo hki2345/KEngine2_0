@@ -1,7 +1,7 @@
 #include "InGameScene.h"
 #include <KOne.h>
 #include <KSprite_Animator.h>
-#include <KRenderManager.h>
+#include <KWindowManager.h>
 #include <KMacro.h>
 
 #include "PlayerTank.h"
@@ -47,12 +47,15 @@ void InGameScene::create()
 	link_k2dCollider(1, 4);
 	link_k2dCollider(2, 2);
 	link_k2dCollider(2, 3);
+
 }
 
 
 bool InGameScene::init()
 {
 	KScene::init();
+
+	KWindowManager::instance()->backcolor(RGB(128, 128, 128));
 	TileManager::instance()->init(L"res\\Test2.btd");
 	TileManager::instance()->update_alltile();
 
@@ -62,6 +65,21 @@ bool InGameScene::init()
 void InGameScene::update()
 {
 	KScene::update();
+
+	switch (eGSState)
+	{
+	case InGameScene::GSS_WAIT:
+		update_wait();
+		break;
+	case InGameScene::GSS_PLAY:
+		update_play();
+		break;
+	case InGameScene::GSS_OVER:
+		update_over();
+		break;
+	default:
+		break;
+	}
 	EnemyManager::instance()->update();
 }
 
@@ -76,4 +94,19 @@ void InGameScene::release()
 	KScene::release();
 	TileManager::instance()->release();
 	EnemyManager::instance()->release();
+}
+
+
+
+void InGameScene::update_wait()
+{
+}
+
+void InGameScene::update_play()
+{
+
+}
+void InGameScene::update_over()
+{
+
 }

@@ -76,15 +76,15 @@ void KBitMap_Render::render()
 	{
 		TransparentBlt(
 			kwindow()->bhdc(),
-			RenderPos.x,
-			RenderPos.y,
-			MyTrans->Size.x,
-			MyTrans->Size.y,
+			(int)RenderPos.x,
+			(int)RenderPos.y,
+			(int)MyTrans->Size.x,
+			(int)MyTrans->Size.y,
 			MyBitMap->MyDC,
 			0,
 			0,
-			MyBitMap->size().x,
-			MyBitMap->size().y,
+			(int)MyBitMap->size().x,
+			(int)MyBitMap->size().y,
 			RGB(255, 0, 255));
 	}
 }
@@ -95,10 +95,10 @@ void KBitMap_Render::render(HDC _Hdc)
 	{
 		BitBlt(
 			_Hdc,
-			MyTrans->Pos.x,
-			MyTrans->Pos.y,
-			MyTrans->Size.x,
-			MyTrans->Size.y,
+			(int)MyTrans->Pos.x,
+			(int)MyTrans->Pos.y,
+			(int)MyTrans->Size.x,
+			(int)MyTrans->Size.y,
 			MyBitMap->MyDC,
 			0,
 			0,
@@ -109,15 +109,15 @@ void KBitMap_Render::render(HDC _Hdc)
 	{
 		TransparentBlt(
 			_Hdc,
-			MyTrans->Pos.x,
-			MyTrans->Pos.y,
-			MyTrans->Size.x,
-			MyTrans->Size.y,
+			(int)MyTrans->Pos.x,
+			(int)MyTrans->Pos.y,
+			(int)MyTrans->Size.x,
+			(int)MyTrans->Size.y,
 			MyBitMap->MyDC,
 			0,
 			0,
-			MyBitMap->size().x,
-			MyBitMap->size().y,
+			(int)MyBitMap->size().x,
+			(int)MyBitMap->size().y,
 			RGB(255, 0, 255));
 	}
 }

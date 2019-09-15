@@ -127,3 +127,7 @@ HWND& KWindowManager::main_hwnd()
 {
 	return MapWindow.begin()->second->hwnd();
 }
+KSize2& KWindowManager::main_size()
+{
+	return MapWindow.begin()->second->MyWinSize;
+}

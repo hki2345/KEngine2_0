@@ -102,10 +102,12 @@ void Tank::update()
 
 void Tank::update_respawn()
 {
+	MyCollider->active(false);
 	MyAnimator->change_animation(L"Respawn");
 	fRespawnCurTime += KTimeManager::instance()->deltatime();
 	if (fRespawnCurTime >= fRespawnTime)
 	{
+		MyCollider->active(true);
 		fRespawnCurTime = .0f;
 		eCurState = TANK_STATUS::TS_PLAY;
 	}

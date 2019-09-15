@@ -68,5 +68,6 @@ public:
 	HDC& back_hdc();
 	HDC& main_hdc();
 	HWND& main_hwnd();
+	KSize2& main_size();
 };
 

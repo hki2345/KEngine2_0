@@ -19,6 +19,9 @@
     <Filter Include="InGame\Component\Effect">
       <UniqueIdentifier>{54b6df86-135c-495c-8027-20a51bf242b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InGame\Component\Enemy">
+      <UniqueIdentifier>{c3649efd-b43c-4ba0-a4ed-cb1b942c3a22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineLauncher.cpp">
@@ -39,9 +42,6 @@
     <ClCompile Include="Tile.cpp">
       <Filter>InGame\Component</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyTank.cpp">
-      <Filter>InGame\Component</Filter>
-    </ClCompile>
     <ClCompile Include="TileManager.cpp">
       <Filter>InGame\Manager</Filter>
     </ClCompile>
@@ -60,6 +60,13 @@
     <ClCompile Include="Shield_Effect.cpp">
       <Filter>InGame\Component\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyTank.cpp">
+      <Filter>InGame\Component\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingScene.cpp" />
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Intro</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleCityInitiator.h">
@@ -75,9 +82,6 @@
       <Filter>InGame\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>InGame\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyTank.h">
       <Filter>InGame\Component</Filter>
     </ClInclude>
     <ClInclude Include="TileManager.h">
@@ -97,6 +101,13 @@
     </ClInclude>
     <ClInclude Include="Shield_Effect.h">
       <Filter>InGame\Component\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTank.h">
+      <Filter>InGame\Component\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingScene.h" />
+    <ClInclude Include="IntroScene.h">
+      <Filter>Intro</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
