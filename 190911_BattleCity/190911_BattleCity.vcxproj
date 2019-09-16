@@ -73,18 +73,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;..\lib;</LibraryPath>
+    <OutDir>..\EXE\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;..\lib;</LibraryPath>
+    <OutDir>..\EXE\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;..\lib;</LibraryPath>
+    <OutDir>..\EXE\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;..\lib;</LibraryPath>
+    <OutDir>..\EXE\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -163,6 +167,7 @@
     <ClCompile Include="OutroScene.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerTank.cpp" />
+    <ClCompile Include="Score_Effect.cpp" />
     <ClCompile Include="Shield_Effect.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -180,6 +185,7 @@
     <ClInclude Include="OutroScene.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerTank.h" />
+    <ClInclude Include="Score_Effect.h" />
     <ClInclude Include="Shield_Effect.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="Tile.h" />

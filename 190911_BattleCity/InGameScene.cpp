@@ -45,10 +45,10 @@ void InGameScene::create()
 	// 2 적 탱크
 	// 3 플레이어 총
 	// 4 적 총
-	link_k2dCollider(0, 1);
-	link_k2dCollider(0, 2);
-	link_k2dCollider(0, 3);
-	link_k2dCollider(0, 4);
+	link_k2dCollider(1, 0);
+	link_k2dCollider(2, 0);
+	link_k2dCollider(3, 0);
+	link_k2dCollider(4, 0);
 
 	link_k2dCollider(1, 2);
 	link_k2dCollider(1, 4);
@@ -76,9 +76,9 @@ void InGameScene::create_startUI()
 
 	Cover = CoverUI[1]->add_component<KBitMap_Render>();
 	Cover->set_bit(L"res\\GrayBackBoard.bmp", 100);
-
-	KText_Render* CoverTExt = CoverUI[2]->add_component<KText_Render>();
-	CoverTExt->set_font(L"Stage", 20, 101, L"DungGeunMo", RGB(255, 255, 255));
+	 
+	 KText_Render* CoverTExt = CoverUI[2]->add_component<KText_Render>();
+	CoverTExt->set_font(L"Stage", 40, 101, L"DungGeunMo", RGB(0, 0, 0));
 }
 void InGameScene::create_gameUI() 
 {
@@ -101,7 +101,7 @@ void InGameScene::create_gameUI()
 	KBitMap_Render* UserInfo = GameUI[0]->add_component<KBitMap_Render>();
 	UserInfo->set_bit(L"res\\LifeInfoUI.bmp", 100);
 	GameUI[0]->size({ 20.0f, 20.0f });
-	GameUI[0]->pos({ XUI, 300.0f });
+	GameUI[0]->pos({ XUI - 50.0f, 300.0f });
 
 	UserInfo = GameUI[1]->add_component<KBitMap_Render>();
 	UserInfo->set_bit(L"res\\StageInfoUI.bmp", 100);
@@ -114,12 +114,12 @@ void InGameScene::create_gameUI()
 		GameTextUI.push_back(create_kone(L"UserInfo"));
 	}
 	KText_Render* TextInfo = GameTextUI[0]->add_component<KText_Render>();
-	TextInfo->set_font(L"1P", 20, 100, L"DungGeunMo", RGB(0, 0, 0));
-	GameTextUI[0]->pos({ XUI + 10.0f, 280.0f });
+	TextInfo->set_font(L"플레이어 1", 20, 100, L"DungGeunMo", RGB(0, 0, 0), TA_RIGHT);
+	GameTextUI[0]->pos({ XUI + 50.0f, 280.0f });
 
 	pLifeUI = GameTextUI[1]->add_component<KText_Render>();
-	pLifeUI->set_font(L"1", 20, 100, L"DungGeunMo", RGB(0, 0, 0));
-	GameTextUI[1]->pos({ XUI + 30.0f, 300.0f });
+	pLifeUI->set_font(L"1", 20, 100, L"DungGeunMo", RGB(0, 0, 0), TA_RIGHT);
+	GameTextUI[1]->pos({ XUI - 10.0f, 300.0f });
 
 	pStageUI = GameTextUI[2]->add_component<KText_Render>();
 	pStageUI->set_font(L"1", 20, 100, L"DungGeunMo", RGB(0, 0, 0));
@@ -230,7 +230,7 @@ void InGameScene::update_start()
 		CoverUI[0]->pos(KPos2::Zero);
 		CoverUI[1]->pos(WSize * KPos2::Up * .5f);
 
-		std::wstring Tmp = L"Stage ";
+		std::wstring Tmp = L"스테이지 ";
 		Tmp += std::to_wstring(Stage);
 		CoverUI[2]->get_component<KText_Render>()->set_text(Tmp.c_str());
 		CoverUI[2]->pos( WSize * .5f );

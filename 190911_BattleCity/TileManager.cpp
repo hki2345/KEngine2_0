@@ -327,6 +327,7 @@ void TileManager::update_tile(Tile* _Tile)
 	}
 	_Tile->render(MapHdc);
 }
+
 void TileManager::render()
 {
 	BitBlt(

@@ -59,7 +59,8 @@ void K2DColliderManager::update_link(const int& _Key1, const int& _Key2)
 		{
 			break;
 		} 
-		if(	false == SCI1->second->kone()->active() || false == SCI1->second->active())
+		if(	false == SCI1->second->kone()->active() ||
+			false == SCI1->second->active())
 		{
 			++SCI1;
 			continue;

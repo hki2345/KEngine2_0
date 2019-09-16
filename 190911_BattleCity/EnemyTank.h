@@ -1,6 +1,7 @@
 #pragma once
 #include "Tank.h"
 
+class Score_Effect;
 class EnemyTank : public Tank
 {
 public:
@@ -9,6 +10,8 @@ public:
 
 
 private:
+	Score_Effect* MyScoreEffect;
+
 	float fDirChangeCurTime;
 	float fDirChangeTime;
 

@@ -93,6 +93,10 @@ bool IntroScene::init()
 	VectorUI[2]->pos({ 350.0f, 375.0f });
 	VectorUI[3]->pos({ 350.0f, 400.0f });
 	VectorUI[4]->pos({ 350.0f, 425.0f });
+	
+	VectorUI[3]->active(false);
+	VectorUI[4]->active(false);
+	
 	VectorUI[5]->pos({ vSize.x / 2, 475.0f });
 	VectorUI[6]->pos({ vSize.x / 2, 500.0f });
 	VectorUI[7]->pos({ vSize.x / 2, 525.0f });

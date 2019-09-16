@@ -2,7 +2,7 @@
 
 
 
-KActor::KActor() : bActing(true), bDeath(false)
+KActor::KActor() : bActing(true), bNextActing(true), bDeath(false)
 {
 
 }

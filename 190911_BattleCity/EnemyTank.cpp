@@ -3,7 +3,10 @@
 
 #include <KSprite_Animator.h>
 #include <KRect_Collision.h>
+#include <KScene.h>
 #include <KOne.h>
+
+#include "Score_Effect.h"
 #include "Bullet.h"
 #include "PlayerManager.h"
 #include "PlayerTank.h"
@@ -32,6 +35,9 @@ void EnemyTank::create()
 	{
 		VectorMyBullet[i]->set_tank(4);
 	}
+
+	KOne* NewScore = kscene()->create_kone(L"Score Effect");
+	MyScoreEffect = NewScore->add_component<Score_Effect>();
 }
 
 bool EnemyTank::init()
@@ -60,6 +66,8 @@ void EnemyTank::update()
 	else if (Tank::TS_DIE == eCurState)
 	{
 		PlayerManager::instance()->iKill += 1;
+		PlayerManager::instance()->iScore += 500;
+		MyScoreEffect->set_score(kone()->pos(), 500);
 		Tank::update();
 	}
 

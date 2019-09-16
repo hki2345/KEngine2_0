@@ -63,9 +63,11 @@ bool OutroScene::init()
 	KScene::init();
 	KWindowManager::instance()->backcolor(RGB(0, 0, 0));
 
+	iBaseTankCnt = 0;
+
 
 	VectorUI[0]->pos({ 300.0f, 50.0f });
-	VectorUI[1]->pos({ 550.0f, 50.0f });
+	VectorUI[1]->pos({ 450.0f, 50.0f });
 	VectorUI[2]->pos({ 400.0f, 100.0f });
 
 	VectorUI[3]->pos({ 280.0f, 150.0f });
@@ -81,9 +83,80 @@ bool OutroScene::init()
 	fOutCurTime = .0f;
 	fOutTime = 20.0f;
 
+
+	fTankCalcCurTime = .0f;
+	fTankCalcTime = .5f;
+
+	iBaseTankScore = 100;
+
 	ActionText[0]->set_text(std::to_wstring(PlayerManager::instance()->iHighScore).c_str());
+	update_actiontext();
+
+	eOState = OUTRO_STATE::CALC;
 
 
+	return true;
+}
+void OutroScene::update()
+{
+	KScene::update();
+
+	switch (eOState)
+	{
+	case OutroScene::CALC:
+		update_calc();
+		break;
+	case OutroScene::WAIT:
+		update_wait();
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+
+void OutroScene::update_calc()
+{
+	if (iBaseTankCnt == PlayerManager::instance()->iKill)
+	{
+		eOState = OUTRO_STATE::WAIT;
+		return;
+	}
+
+	fTankCalcCurTime += KTimeManager::instance()->deltatime();
+	if (fTankCalcCurTime >= fTankCalcTime)
+	{
+		fTankCalcCurTime = .0f;
+		iBaseTankCnt += 1;
+
+		PlayerManager::instance()->iScore += iBaseTankScore;
+	}
+
+	update_actiontext();
+}
+
+
+
+void OutroScene::update_wait()
+{
+	fOutCurTime += KTimeManager::instance()->deltatime();
+	if (
+		fOutCurTime >= fOutTime ||
+		true == KInputManager::instance()->is_down(VK_SPACE))
+	{
+		fOutCurTime = .0f;
+		
+		PlayerManager::instance()->set_highscore();
+		PlayerManager::instance()->iScore = 0;
+		KSceneManager::instance()->change_scene(L"Intro");
+	}
+}
+
+
+void OutroScene::update_actiontext()
+{
 	std::wstring Tmp = L"";
 
 	Tmp = L"스테이지 ";
@@ -95,32 +168,18 @@ bool OutroScene::init()
 	ActionText[2]->set_text(Tmp.c_str());
 
 
-	Tmp = std::to_wstring(PlayerManager::instance()->iScore).c_str();
+	Tmp = std::to_wstring(iBaseTankCnt * iBaseTankScore).c_str();
 	Tmp += L" 점";
 	ActionText[3]->set_text(Tmp.c_str());
 
 
-	Tmp = std::to_wstring(PlayerManager::instance()->iKill).c_str();
+	Tmp = std::to_wstring(iBaseTankCnt).c_str();
 	Tmp += L" 킬";
 	ActionText[4]->set_text(Tmp.c_str());
 
 
-	Tmp = std::to_wstring(PlayerManager::instance()->iKill).c_str();
+	Tmp = std::to_wstring(iBaseTankCnt).c_str();
 	Tmp += L" 킬";
 	ActionText[5]->set_text(Tmp.c_str());
 
-
-	return true;
-}
-void OutroScene::update()
-{
-	KScene::update();
-	fOutCurTime += KTimeManager::instance()->deltatime();
-	if (
-		fOutCurTime >= fOutTime ||
-		true == KInputManager::instance()->is_down(VK_EXECUTE))
-	{
-		fOutCurTime = .0f;
-		KSceneManager::instance()->change_scene(L"Intro");
-	}
 }

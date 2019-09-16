@@ -46,5 +46,6 @@ public:
 
 	void load_highscore();
 	void save_highscore();
+	void set_highscore();
 };
 

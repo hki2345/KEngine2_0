@@ -65,3 +65,12 @@ void PlayerManager::save_highscore()
 {
 	KFileStream::instance()->write_file(L"res\\highscore.btscore", iHighScore);
 }
+
+void PlayerManager::set_highscore()
+{
+	if (iScore > iHighScore)
+	{
+		iHighScore = iScore;
+		save_highscore();
+	}
+}

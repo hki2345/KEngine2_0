@@ -496,6 +496,7 @@ void input_key()
 		if (CurPos.x - 1 >= 0)
 		{
 			CurPos.x -= 1;
+			CurSorOne->moving_pluspos(KPos2::Left * 40.0f);
 		}
 	}
 	else if (true == KInputManager::instance()->is_down(VK_RIGHT))
@@ -503,6 +504,7 @@ void input_key()
 		if (CurPos.x + 1 <= XSize - 1)
 		{
 			CurPos.x += 1;
+			CurSorOne->moving_pluspos(KPos2::Right * 40.0f);
 		}
 	}
 	else if (true == KInputManager::instance()->is_down(VK_UP))
@@ -510,6 +512,7 @@ void input_key()
 		if (CurPos.y - 1 >= 0)
 		{
 			CurPos.y -= 1;
+			CurSorOne->moving_pluspos(KPos2::Down * 40.0f);
 		}
 	}
 	else if (true == KInputManager::instance()->is_down(VK_DOWN))
@@ -517,6 +520,7 @@ void input_key()
 		if (CurPos.y + 1 <= YSize - 1)
 		{
 			CurPos.y += 1;
+			CurSorOne->moving_pluspos(KPos2::Up * 40.0f);
 		}
 	}
 	else if (true == KInputManager::instance()->is_down(VK_SPACE))

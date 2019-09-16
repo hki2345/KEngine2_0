@@ -54,17 +54,21 @@ bool KScene::init()
 
 void KScene::update()
 {
-	curKRenderMgr->update_trans(SceneCamPos);
 	curK2DColliderMgr->update();
 	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
 	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
 	for (; SIter != EIter; ++SIter)
 	{
-		if (true == SIter->second->active())
+		if (SIter->second->bActing != SIter->second->bNextActing)
+		{
+			SIter->second->bActing = SIter->second->bNextActing;
+		}
+
+		if (true == SIter->second->bActing)
 		{
 			SIter->second->update();
-		}		
+		}
 	}
 }
 
@@ -109,6 +113,7 @@ void KScene::release()
 
 void KScene::render() 
 {
+	curKRenderMgr->update_trans(SceneCamPos);
 	curKRenderMgr->render();
 
 	KDebugManager::instance()->render();

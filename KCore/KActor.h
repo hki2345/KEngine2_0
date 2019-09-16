@@ -2,8 +2,12 @@
 #include "KName.h"
 
 
+class KScene;
 class KActor
 {
+public:
+	friend KScene;
+
 public:
 	KActor();
 	KActor(const KActor& _Core) = delete;
@@ -14,24 +18,23 @@ public:
 private:
 	bool bActing;
 	bool bDeath;
+	bool bNextActing;
 
-public:
-	bool& active()
+public:	
+	inline bool active()
 	{
-		return bActing;
+		return bActing & bNextActing;
+	}
+	inline void active(const bool& _Value)
+	{
+		bNextActing = _Value;
 	}
 
-	bool& death()
+	inline bool& death()
 	{
 		return bDeath;
 	}
-
-	void active(const bool& _Value)
-	{
-		bActing = _Value;
-	}
-
-	void death(const bool& _Value)
+	inline void death(const bool& _Value)
 	{
 		bDeath = _Value;
 	}
