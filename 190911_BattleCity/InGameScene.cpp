@@ -46,16 +46,17 @@ void InGameScene::create()
 	// 3 วรทนภฬพ๎ รั
 	// 4 ภ๛ รั
 	link_k2dCollider(1, 0);
-	link_k2dCollider(2, 0);
-	link_k2dCollider(3, 0);
-	link_k2dCollider(4, 0);
-
 	link_k2dCollider(1, 2);
 	link_k2dCollider(1, 4);
+	
+	link_k2dCollider(2, 0);
 	link_k2dCollider(2, 2);
-	link_k2dCollider(2, 3);
 
+	link_k2dCollider(3, 0);
+	link_k2dCollider(3, 2);
+	link_k2dCollider(3, 4);
 
+	link_k2dCollider(4, 0);
 	create_startUI();
 	create_gameUI();
 	create_overUI();	

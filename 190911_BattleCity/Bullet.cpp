@@ -118,6 +118,12 @@ void Bullet::update_outofgame()
 
 void Bullet::Stay(KOne* _Collider)
 {
+	Bullet* CurBullet = _Collider->get_component<Bullet>();
+	if (nullptr != CurBullet)
+	{
+		kone()->active(false);
+	}
+
 	Tile* CurTile = _Collider->get_component<Tile>();
 	if (nullptr != CurTile && true == CurTile->collision_bullet(vDir))
 	{
