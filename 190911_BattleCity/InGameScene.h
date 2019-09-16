@@ -58,5 +58,6 @@ private:
 	void update_over();
 
 	void active_vector(const std::vector<KOne*>& _Vector, const bool& _Value);
+	void change_scene();
 };
 

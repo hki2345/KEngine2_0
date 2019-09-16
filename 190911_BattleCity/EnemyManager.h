@@ -47,6 +47,7 @@ public:
 	void update();
 
 	int calculate_remain();
+	void shutdown_enemy();
 
 private:
 	void update_respawn();

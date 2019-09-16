@@ -35,11 +35,7 @@ bool EnemyManager::init(const int& _EnemyNum)
 	EnemyRespawnCnt = 0;
 
 	VectorRespawnPos = *TileManager::instance()->vector_respawnpos();
-	for (int i = 0; i < 50; i++)
-	{
-		VectorEnemy[i]->kone()->active(false);
-	}
-	
+	shutdown_enemy();
 	set_enemy();
 
 	return true;
@@ -103,4 +99,12 @@ void EnemyManager::set_enemy()
 
 	VectorEnemy[EnemyRespawnCnt]->set_tank(VectorRespawnPos[XXX]);
 	EnemyRespawnCnt += 1;
+}
+
+void EnemyManager::shutdown_enemy()
+{
+	for (int i = 0; i < 50; i++)
+	{
+		VectorEnemy[i]->kone()->active(false);
+	}
 }

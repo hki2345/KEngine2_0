@@ -267,7 +267,7 @@ void InGameScene::update_over()
 	fOverUICurTime += KTimeManager::instance()->deltatime();
 	if (fOverUICurTime >= fOverUITime)
 	{
-		KSceneManager::instance()->change_scene(L"Outro");
+		change_scene();
 	}
 
 	if (OverTextUI[0]->pos().y > kwindow()->size().y * .5f)
@@ -289,7 +289,7 @@ void InGameScene::update_playUI()
 
 	if (1 == PlayerManager::instance()->iWin)
 	{
-		KSceneManager::instance()->change_scene(L"Outro");
+		change_scene();
 	}
 	else if (
 		-1 == PlayerManager::instance()->iWin ||
@@ -309,4 +309,11 @@ void InGameScene::active_vector(const std::vector<KOne*>& _Vector, const bool& _
 	{
 		_Vector[i]->active(_Value);
 	}
+}
+
+
+void InGameScene::change_scene() 
+{
+	EnemyManager::instance()->shutdown_enemy();
+	KSceneManager::instance()->change_scene(L"Outro");
 }
