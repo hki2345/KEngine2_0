@@ -3,6 +3,7 @@
 #include "KOne.h"
 #include "KDebugManager.h"
 #include "KWindow.h"
+#include "KScene.h"
 
 #include <Windows.h>
 
@@ -32,6 +33,11 @@ bool K2DCollider::init()
 void K2DCollider::update()
 {
 	KComponent::update();
+}
+
+void K2DCollider::release()
+{
+	kscene()->delete_k2dcollider(this);
 }
 
 void K2DCollider::update_collision(K2DCollider* _Other)

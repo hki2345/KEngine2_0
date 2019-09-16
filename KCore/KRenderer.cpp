@@ -58,3 +58,9 @@ void KRenderer::update_trans(const KPos2& _CameraPos)
 		RenderPos = MyTrans->Pos + MyPivot;
 	}
 }
+
+
+void KRenderer::release()
+{
+	kscene()->delete_krenderer(this);
+}

@@ -183,7 +183,7 @@ bool KScene::delete_kone(KOne* _Other)
 
 	for (; FIter != EIter; FIter++)
 	{
-		if (FIter->second = _Other)
+		if (_Other == FIter->second)
 		{
 			FIter->second->release();
 			RELEASE_PTR(FIter->second);		
@@ -238,4 +238,17 @@ KPos2 KScene::outof_screen(KOne* _Target)
 	}
 
 	return KPos2::Zero;
+}
+
+
+
+bool KScene::delete_krenderer(KRenderer* _Renderer)
+{
+	curKRenderMgr->delete_renderer(_Renderer);
+	return true;
+}
+bool KScene::delete_k2dcollider(K2DCollider* _Collider)
+{
+	curK2DColliderMgr->delete_k2dcollider(_Collider);
+	return true;
 }

@@ -61,6 +61,8 @@ void Tank::create()
 
 bool Tank::init()
 {
+	kone()->size({ 39.0f, 39.0f });
+
 	vDir = KPos2::Up;
 	vPrevDir = KPos2::Up;
 	bTileCol = false;
@@ -201,7 +203,7 @@ void Tank::update_checkingpos()
 {
 	if (vDir != vPrevDir)
 	{
-		if ((vDir == KPos2::Right || vDir == KPos2::Left || vDir == KPos2::Zero) &&
+		if ((vDir == KPos2::Right || vDir == KPos2::Left /*|| vDir == KPos2::Zero*/) &&
 			(vPrevDir == KPos2::Up || vPrevDir == KPos2::Down))
 		{
 			KPos2 Tmp = kone()->pos();
@@ -219,7 +221,7 @@ void Tank::update_checkingpos()
 			}
 		}
 
-		else if ((vDir == KPos2::Up || vDir == KPos2::Down || vDir == KPos2::Zero) &&
+		else if ((vDir == KPos2::Up || vDir == KPos2::Down /*|| vDir == KPos2::Zero*/) &&
 			(vPrevDir == KPos2::Left || vPrevDir == KPos2::Right))
 		{
 			KPos2 Tmp = kone()->pos();

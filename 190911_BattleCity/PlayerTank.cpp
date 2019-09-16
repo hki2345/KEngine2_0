@@ -51,8 +51,6 @@ void PlayerTank::create()
 bool PlayerTank::init()
 {
 	Tank::init();
-	kone()->size({ 40.0f, 40.0f });
-
 
 	fShieldCurTime = .0f; 
 	fShieldTime = 5.0f;

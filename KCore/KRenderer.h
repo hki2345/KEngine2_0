@@ -37,7 +37,7 @@ public:
 
 	virtual void update_trans(const KPos2& _CameraPos);
 	virtual void render() = 0;
-	virtual void release() override {};
+	virtual void release() override;
 
 	void set_hold()
 	{

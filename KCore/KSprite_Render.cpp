@@ -65,7 +65,7 @@ void KSprite_Render::set_idx(const int& _Idx)
 	{
 		idx = 0;
 	}
-	else if(VectorMySplit.size() <= _Idx)
+	else if((int)VectorMySplit.size() <= _Idx)
 	{
 		idx = VectorMySplit.size() - 1;
 	}
@@ -88,10 +88,10 @@ void KSprite_Render::render()
 {
 	TransparentBlt(
 		kwindow()->bhdc(),
-		RenderPos.x,
-		RenderPos.y,
-		MyTrans->Size.x,
-		MyTrans->Size.y,
+		(int)RenderPos.x,
+		(int)RenderPos.y,
+		(int)MyTrans->Size.x,
+		(int)MyTrans->Size.y,
 		MyBitMap->MyDC,
 		(int)VectorMySplit[idx].Pos.x,
 		(int)VectorMySplit[idx].Pos.y,
@@ -103,10 +103,10 @@ void KSprite_Render::render(HDC _Hdc)
 {
 	TransparentBlt(
 		_Hdc,
-		RenderPos.x,
-		RenderPos.y,
-		MyTrans->Size.x,
-		MyTrans->Size.y,
+		(int)RenderPos.x,
+		(int)RenderPos.y,
+		(int)MyTrans->Size.x,
+		(int)MyTrans->Size.y,
 		MyBitMap->MyDC,
 		(int)VectorMySplit[idx].Pos.x,
 		(int)VectorMySplit[idx].Pos.y,

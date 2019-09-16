@@ -108,6 +108,23 @@ bool K2DColliderManager::insert_kcollider(K2DCollider* _Other, const int& _Key/*
 	return true;
 }
 
+bool K2DColliderManager::delete_k2dcollider(K2DCollider* _Other)
+{
+	std::multimap<int, K2DCollider*>::iterator SIter = MapK2DCollider.begin();
+	std::multimap<int, K2DCollider*>::iterator EIter = MapK2DCollider.end();
+	
+	for (; SIter != EIter; SIter++)
+	{
+		if (_Other == SIter->second)
+		{
+			MapK2DCollider.erase(SIter);
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void K2DColliderManager::set_passlink(const int& _Key1, const int& _Key2)
 {
 	ListPassLink.push_back({ _Key1, _Key2 });

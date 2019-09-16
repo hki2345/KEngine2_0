@@ -218,6 +218,13 @@ void TileManager::read_file(const wchar_t* _Name)
 bool TileManager::init(const wchar_t* _Name)
 {
 	read_file(_Name);
+	for (size_t i = 0; i < VectorTile.size(); i++)
+	{
+		MomScene->delete_kone(VectorTile[i]->kone());
+	}
+	VectorTile.clear();
+
+
 	if (0 == VectorTile.size())
 	{
 		create_map();
@@ -314,10 +321,10 @@ void TileManager::update_tile(Tile* _Tile)
 	myBrush = CreateSolidBrush(RGB(0, 0, 0));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(MapHdc, myBrush);
 	Rectangle(MapHdc, 
-		_Tile->kone()->pos().x, 
-		_Tile->kone()->pos().y,
-		_Tile->kone()->pos().x + _Tile->kone()->size().x,
-		_Tile->kone()->pos().y + _Tile->kone()->size().y);
+		(int)_Tile->kone()->pos().x, 
+		(int)_Tile->kone()->pos().y,
+		(int)_Tile->kone()->pos().x + (int)_Tile->kone()->size().x,
+		(int)_Tile->kone()->pos().y + (int)_Tile->kone()->size().y);
 	SelectObject(MapHdc, oldBrush);
 	DeleteObject(myBrush);
 

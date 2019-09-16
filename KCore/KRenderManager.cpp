@@ -54,3 +54,18 @@ bool KRenderManager::insert_krenderer( KRenderer* _Other, const int& _Key/* = 0*
 
 	return true;
 }
+
+void KRenderManager::delete_renderer(KRenderer* _Renderer)
+{
+	std::multimap<int, KRenderer*>::iterator SIter = MapKRenderer.begin();
+	std::multimap<int, KRenderer*>::iterator EIter = MapKRenderer.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		if (_Renderer == SIter->second)
+		{
+			MapKRenderer.erase(SIter);
+			return;
+		}
+	}
+}

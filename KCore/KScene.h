@@ -63,5 +63,8 @@ public:
 	KOne* find_kone(const wchar_t* _Name);
 	bool delete_kone(const wchar_t* _Name);
 	bool delete_kone(KOne* _Other);
+
+	bool delete_krenderer(KRenderer* _Renderer);
+	bool delete_k2dcollider(K2DCollider* _Collider);
 };
 

@@ -43,7 +43,6 @@ void EnemyTank::create()
 bool EnemyTank::init()
 {
 	Tank::init();
-	kone()->size({ 40.0f, 40.0f });
 
 	fDirChangeCurTime = .0f;
 	fDirChangeTime = 2.0f;

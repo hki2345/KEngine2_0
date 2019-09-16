@@ -23,6 +23,8 @@ private:
 	void render();
 	void release();
 
+	void delete_renderer(KRenderer* _Renderer);
+
 
 private:
 	std::multimap<int, KRenderer*> MapKRenderer;

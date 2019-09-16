@@ -201,7 +201,7 @@ void InGameScene::release()
 void InGameScene::stage_start()
 {
 	PlayerManager::instance()->init();
-	EnemyManager::instance()->init(15 + PlayerManager::instance()->iStage * 3);
+	EnemyManager::instance()->init(0 + PlayerManager::instance()->iStage * 3);
 }
 
 void InGameScene::update_start()

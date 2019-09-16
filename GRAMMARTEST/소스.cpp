@@ -21,11 +21,6 @@ public:
 	{
 		return (int)X;
 	}
-
-	operator float()
-	{
-		return X;
-	}
 };
 
 

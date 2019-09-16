@@ -43,7 +43,7 @@ private:
 private:
 	void link(const int& _Key1, const int& _Key2);
 	bool insert_kcollider(K2DCollider* _Other, const int& _Key = 0);
-
+	bool delete_k2dcollider(K2DCollider* _Other);
 
 	void set_passlink(const int& _Key1, const int& _Key2);
 	void clear_passlink();

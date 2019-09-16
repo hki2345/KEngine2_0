@@ -149,8 +149,27 @@ void OutroScene::update_wait()
 		fOutCurTime = .0f;
 		
 		PlayerManager::instance()->set_highscore();
-		PlayerManager::instance()->iScore = 0;
-		KSceneManager::instance()->change_scene(L"Intro");
+
+		if (-1 == PlayerManager::instance()->iWin)
+		{
+			PlayerManager::instance()->iScore = 0;
+			KSceneManager::instance()->change_scene(L"Intro");
+		}
+
+		else
+		{
+			PlayerManager::instance()->iStage += 1;
+
+			if (PlayerManager::instance()->iStage > 3)
+			{
+				PlayerManager::instance()->iStage = 1;
+				KSceneManager::instance()->change_scene(L"Intro");
+			}
+			else
+			{
+				KSceneManager::instance()->change_scene(L"Game");
+			}
+		}		
 	}
 }
 

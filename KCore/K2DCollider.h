@@ -46,6 +46,7 @@ private:
 public:
 	bool init() override;
 	void update() override;
+	void release() override;
 
 	void update_collision(K2DCollider* _Other);
 

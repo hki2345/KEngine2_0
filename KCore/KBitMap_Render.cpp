@@ -62,10 +62,10 @@ void KBitMap_Render::render()
 	{
 		BitBlt(
 			kwindow()->bhdc(),
-			RenderPos.x,
-			RenderPos.y,
-			MyTrans->Size.x,
-			MyTrans->Size.y,
+			(int)RenderPos.x,
+			(int)RenderPos.y,
+			(int)MyTrans->Size.x,
+			(int)MyTrans->Size.y,
 			MyBitMap->MyDC,
 			0,
 			0,
