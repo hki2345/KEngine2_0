@@ -6,12 +6,6 @@
 class KVec2
 {
 public:
-
-	struct
-	{
-		float x;
-		float y;
-	};/*
 	union
 	{
 		float s[2];
@@ -27,24 +21,17 @@ public:
 			float m1;
 			float m2;
 		};
-
-		struct
-		{
-			int ix;
-			int iy;
-		};
-
-		__int64 m_i64;
-	};*/
+	};
 
 
 public:
 	KVec2() : x(.0f), y(.0f) {}
-	/*KVec2(__int64 _Value) : m_i64(_Value) {}*/
 	KVec2(int _Value) : x((float)_Value), y((float)_Value) {}
 	KVec2(float _Value) : x(_Value), y(_Value) {}
+	KVec2(int _x, float _y) : x((float)_x), y(_y) {}
+	KVec2(float _x, int _y) : x(_x), y((float)_y) {}
 	KVec2(float _x, float _y) : x(_x), y(_y) {}
-	/*KVec2(int _x, int _y) : ix(_x), iy(_y) {}*/
+	KVec2(int _x, int _y) : x((float)_x), y((float)_y) {}
 	KVec2(const KVec2& _Other) 
 	{
 		x = _Other.x;
@@ -63,17 +50,6 @@ public:
 	void set_vector2(const float& _X, const float& _Y) { x = _X; y = _Y; }
 	float x_part() const { return x * .5f; }
 	float y_part() const { return y * .5f; }
-
-	/*KVec2 IntToFloat() const
-	{
-		return KVec2((float)ix, (float)iy);
-	}
-
-	KVec2 FloatToInt() const
-	{
-		return KVec2(ix, iy);
-	}
-*/
 	KVec2 operator + (const KVec2& _Other)
 	{
 		return{ x + _Other.x, y + _Other.y };

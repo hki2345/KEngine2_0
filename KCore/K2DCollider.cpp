@@ -60,17 +60,31 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 				OtherColPos + _Other->MyTrans->Size };
 
 
-			if (true ==  (
+			if (true == 
 				(R1.End.x > R2.Start.x) &&
 				(R2.End.x > R1.Start.x) &&
 				(R1.End.y > R2.Start.y) &&
 				(R2.End.y > R1.Start.y))
-				||
+			{
+				MyColliderRect.Start = R2.Start;
+				MyColliderRect.End = R1.End;
+				_Other->MyColliderRect.Start = R2.Start;
+				_Other->MyColliderRect.End = R1.End;
+
+				update_enterorstay(_Other);
+				_Other->update_enterorstay(this);
+			}
+			else if (true ==
 				(R2.End.x > R1.Start.x) &&
 				(R1.End.x > R2.Start.x) &&
 				(R2.End.y > R1.Start.y) &&
 				(R1.End.y > R2.Start.y))
 			{
+				MyColliderRect.Start = R1.Start;
+				MyColliderRect.End = R2.End;
+				_Other->MyColliderRect.Start = R1.Start;
+				_Other->MyColliderRect.End = R2.End;
+
 				update_enterorstay(_Other);
 				_Other->update_enterorstay(this);
 			}

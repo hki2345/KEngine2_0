@@ -73,6 +73,7 @@ void Tile::render(HDC _Hdc)
 
 bool Tile::collision_bullet(const KPos2& _Dir)
 {
+	KRect Tmp = MyCollider->rect_collision();
 	switch (eTileType)
 	{
 	case BG_STONE_BLOCK:

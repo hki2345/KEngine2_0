@@ -34,6 +34,8 @@ protected:
 
 	KTransform* MyTrans;
 	KPos2 MyPivot;
+	KRect MyColliderRect;
+
 
 
 private:
@@ -89,6 +91,10 @@ protected:
 	std::list<K2DCollider*>::iterator find_listcol(K2DCollider* _Other);
 
 public:
+	inline KRect& rect_collision()
+	{
+		return MyColliderRect;
+	}
 
 	inline void pivot(const KPos2& _Pivot)
 	{

@@ -50,7 +50,68 @@ void K2DColliderManager::update_passlink(const int& _Key1, const int& _Key2)
 	update_link(_Key1, _Key2);
 }
 
+
 void K2DColliderManager::update_link(const int& _Key1, const int& _Key2)
+{
+	if (_Key1 == _Key2)
+	{
+		update_evenlink(_Key1, _Key2);
+	}
+	else if(_Key1 != _Key2)
+	{
+		update_differlink(_Key1, _Key2);
+	}
+}
+
+
+
+void K2DColliderManager::update_evenlink(const int& _Key1, const int& _Key2)
+{
+	std::multimap<int, K2DCollider*>::iterator SCI1 = MapK2DCollider.find(_Key1);
+	for (; SCI1 != MapK2DCollider.end();)
+	{
+		if (_Key1 != SCI1->first)
+		{
+			break;
+		}
+		if (false == SCI1->second->kone()->active() ||
+			false == SCI1->second->active())
+		{
+			++SCI1;
+			continue;
+		}
+
+
+
+		std::multimap<int, K2DCollider*>::iterator SCI2 = SCI1;
+
+		++SCI2;
+		for (; SCI2 != MapK2DCollider.end();)
+		{
+			if (_Key2 != SCI2->first)
+			{
+				break;
+			}
+
+			if (false == SCI2->second->kone()->active() ||
+				false == SCI2->second->active() ||
+				SCI1->second == SCI2->second)
+			{
+				++SCI2;
+				continue;
+			}
+
+			SCI1->second->update_collision(SCI2->second);
+			++SCI2;
+		}
+		++SCI1;
+	}
+}
+
+
+
+
+void K2DColliderManager::update_differlink(const int& _Key1, const int& _Key2)
 {
 	std::multimap<int, K2DCollider*>::iterator SCI1 = MapK2DCollider.find(_Key1);
 	for (; SCI1 != MapK2DCollider.end();)

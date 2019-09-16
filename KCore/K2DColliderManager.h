@@ -33,6 +33,8 @@ private:
 
 private:
 	void update_link(const int& _Key1, const int& _Key2);
+	void update_evenlink(const int& _Key1, const int& _Key2);
+	void update_differlink(const int& _Key1, const int& _Key2);
 	void update_passlink(const int& _Key1, const int& _Key2);
 
 private:

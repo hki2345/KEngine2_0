@@ -75,7 +75,7 @@ bool KBitMap_Animator::init()
 {
 	KRenderer::init();
 	
-	if (iAniIdx >= CurAniIter->second.size())
+	if (iAniIdx >= (int)CurAniIter->second.size())
 	{
 		iAniIdx = 0;
 		fAniTime = .0f;
@@ -94,7 +94,7 @@ void KBitMap_Animator::update()
 		fAniTime = .0f;
 	}
 
-	if (CurAniIter->second.size() <= iAniIdx)
+	if ((int)CurAniIter->second.size() <= iAniIdx)
 	{
 		iAniIdx = 0;
 	}
@@ -106,7 +106,7 @@ void KBitMap_Animator::render()
 		return;
 	}
 
-	if (CurAniIter->second.size() <= iAniIdx)
+	if ((int)CurAniIter->second.size() <= iAniIdx)
 	{
 		iAniIdx = 0;
 	}

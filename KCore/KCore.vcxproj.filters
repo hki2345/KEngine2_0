@@ -176,12 +176,6 @@
     <Filter Include="00_KCore">
       <UniqueIdentifier>{c1b1ee7a-98b6-4aa2-b0fa-784385a44dc7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="00_TestClient">
-      <UniqueIdentifier>{f57a02c7-a11f-4f7d-abae-2de3bcc6c6d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_TestClient\ClientCore">
-      <UniqueIdentifier>{49741b91-5ca4-400a-ab89-67849b1ae487}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01_Manager">
       <UniqueIdentifier>{77dacd86-ddfd-4142-9d10-36ebbbfa7a01}</UniqueIdentifier>
     </Filter>
@@ -217,9 +211,6 @@
     </Filter>
     <Filter Include="05_Component\Child">
       <UniqueIdentifier>{70ff25d3-fe0f-4d9b-88a1-c65783057b87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_TestClient\Test">
-      <UniqueIdentifier>{5b67aa49-9b54-40e0-b50e-edadbde28af7}</UniqueIdentifier>
     </Filter>
     <Filter Include="04_Render\Animator">
       <UniqueIdentifier>{375af6da-6956-4fa7-a0af-ffb934ef5a5b}</UniqueIdentifier>

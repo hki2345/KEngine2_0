@@ -55,8 +55,9 @@ void InGameScene::create()
 	link_k2dCollider(3, 0);
 	link_k2dCollider(3, 2);
 	link_k2dCollider(3, 4);
-
+	
 	link_k2dCollider(4, 0);
+	
 	create_startUI();
 	create_gameUI();
 	create_overUI();	
@@ -201,7 +202,7 @@ void InGameScene::release()
 void InGameScene::stage_start()
 {
 	PlayerManager::instance()->init();
-	EnemyManager::instance()->init(0 + PlayerManager::instance()->iStage * 3);
+	EnemyManager::instance()->init(5 + PlayerManager::instance()->iStage * 3);
 }
 
 void InGameScene::update_start()
