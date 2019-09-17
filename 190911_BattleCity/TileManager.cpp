@@ -344,10 +344,11 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 	{
 		if (KPos2::Down == _BulletDir)
 		{
-			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN01, _BulletPos))
-			{
-				_CurTile->kone()->active(false);
-			}
+			_CurTile->kone()->active(false);
+			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN01, _BulletPos))
+			// {
+			// 	_CurTile->kone()->active(false);
+			// }
 		}
 		else if (KPos2::Up == _BulletDir)
 		{
@@ -379,10 +380,11 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
-			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN02, _BulletPos))
-			{
-				_CurTile->kone()->active(false);
-			}
+			_CurTile->kone()->active(false);
+			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN02, _BulletPos))
+			// {
+			// 	_CurTile->kone()->active(false);
+			// }
 		}
 		break;
 	}
@@ -398,10 +400,11 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
-			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN03, _BulletPos))
-			{
-				_CurTile->kone()->active(false);
-			}
+			_CurTile->kone()->active(false);
+			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN03, _BulletPos))
+			// {
+			// 	_CurTile->kone()->active(false);
+			// }
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
@@ -417,10 +420,11 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		else if (KPos2::Up == _BulletDir)
 		{
-			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN04, _BulletPos))
-			{
-				_CurTile->kone()->active(false);
-			}
+			_CurTile->kone()->active(false);
+			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN04, _BulletPos))
+			// {
+			// 	_CurTile->kone()->active(false);
+			// }
 		}
 		else if (KPos2::Left == _BulletDir)
 		{

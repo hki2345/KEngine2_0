@@ -185,6 +185,23 @@ public:
 
 		return KVec2(Tx, Ty);
 	}
+
+
+	KVec2 normalize()
+	{
+		float Tx = x;
+		float Ty = y;
+		Tx /= x + y;
+		Ty /= x + y;
+
+		return KVec2(Tx, Ty);
+	}
+
+	void normalize_ref()
+	{
+		x /= x + y;
+		y /= x + y;
+	}
 };
 typedef KVec2 KPoint;
 typedef KVec2 KSize2;

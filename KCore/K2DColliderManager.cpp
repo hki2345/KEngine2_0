@@ -83,6 +83,7 @@ void K2DColliderManager::update_evenlink(const int& _Key1, const int& _Key2)
 
 
 
+		SCI1->second->checking_deltabox();
 		std::multimap<int, K2DCollider*>::iterator SCI2 = SCI1;
 
 		++SCI2;
@@ -127,6 +128,7 @@ void K2DColliderManager::update_differlink(const int& _Key1, const int& _Key2)
 			continue;
 		}
 
+		SCI1->second->checking_deltabox();
 		std::multimap<int, K2DCollider*>::iterator SCI2 = MapK2DCollider.find(_Key2);
 		for (; SCI2 != MapK2DCollider.end();)
 		{

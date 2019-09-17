@@ -68,7 +68,7 @@ void KSprite_Render::set_idx(const int& _Idx)
 	}
 	else if((int)VectorMySplit.size() <= _Idx)
 	{
-		idx = VectorMySplit.size() - 1;
+		idx = (int)VectorMySplit.size() - 1;
 	}
 	else
 	{

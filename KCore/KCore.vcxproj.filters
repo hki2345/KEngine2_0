@@ -11,7 +11,7 @@
       <Filter>00_KCore</Filter>
     </ClCompile>
     <ClCompile Include="KVector.cpp">
-      <Filter>00_KVector</Filter>
+      <Filter>00_KMath</Filter>
     </ClCompile>
     <ClCompile Include="KWindowManager.cpp">
       <Filter>01_Manager</Filter>
@@ -91,7 +91,7 @@
       <Filter>00_KCore</Filter>
     </ClInclude>
     <ClInclude Include="KVector.h">
-      <Filter>00_KVector</Filter>
+      <Filter>00_KMath</Filter>
     </ClInclude>
     <ClInclude Include="PtrOf_KOne.h">
       <Filter>01_Ptr</Filter>
@@ -171,6 +171,9 @@
     <ClInclude Include="KDebugManager.h">
       <Filter>01_Manager</Filter>
     </ClInclude>
+    <ClInclude Include="KMath.h">
+      <Filter>00_KMath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="00_KCore">
@@ -178,9 +181,6 @@
     </Filter>
     <Filter Include="01_Manager">
       <UniqueIdentifier>{77dacd86-ddfd-4142-9d10-36ebbbfa7a01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00_KVector">
-      <UniqueIdentifier>{f5b8e279-41f1-4e92-a5d7-f49e93bdf770}</UniqueIdentifier>
     </Filter>
     <Filter Include="01_Ptr">
       <UniqueIdentifier>{a41b1314-4f3a-4797-901b-1ecac505c046}</UniqueIdentifier>
@@ -220,6 +220,9 @@
     </Filter>
     <Filter Include="05_Render\Animator">
       <UniqueIdentifier>{375af6da-6956-4fa7-a0af-ffb934ef5a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_KMath">
+      <UniqueIdentifier>{f5b8e279-41f1-4e92-a5d7-f49e93bdf770}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -34,8 +34,11 @@ protected:
 
 	KTransform* MyTrans;
 	KPos2 MyPivot;
-	KPos2 PrevPos;
 	KRect MyColliderRect;
+
+	KPos2 PrevPos;
+	KPos2 DeltaDistance;
+	KRect DeltaBox;
 
 
 private:
@@ -51,8 +54,8 @@ public:
 	void update() override;
 	void release() override;
 
+	void checking_deltabox();
 	void update_collision(K2DCollider* _Other);
-	void checking_deltabox(K2DCollider* _Other);
 
 
 	// 아오 써글...

@@ -181,6 +181,7 @@
     <ClInclude Include="KCore.h" />
     <ClInclude Include="KDebugManager.h" />
     <ClInclude Include="KInputManager.h" />
+    <ClInclude Include="KMath.h" />
     <ClInclude Include="KName.h" />
     <ClInclude Include="KOne.h" />
     <ClInclude Include="KRect_Collision.h" />
