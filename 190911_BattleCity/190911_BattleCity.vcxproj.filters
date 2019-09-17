@@ -19,9 +19,6 @@
     <Filter Include="InGame\Component\Effect">
       <UniqueIdentifier>{54b6df86-135c-495c-8027-20a51bf242b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="InGame\Component\Enemy">
-      <UniqueIdentifier>{c3649efd-b43c-4ba0-a4ed-cb1b942c3a22}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Outro">
       <UniqueIdentifier>{fb57130b-fa6c-41a3-aafb-26cbf219615f}</UniqueIdentifier>
     </Filter>
@@ -63,9 +60,6 @@
     <ClCompile Include="Shield_Effect.cpp">
       <Filter>InGame\Component\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyTank.cpp">
-      <Filter>InGame\Component\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="IntroScene.cpp">
       <Filter>Intro</Filter>
     </ClCompile>
@@ -77,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="Score_Effect.cpp">
       <Filter>InGame\Component\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTank.cpp">
+      <Filter>InGame\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +110,6 @@
     <ClInclude Include="Shield_Effect.h">
       <Filter>InGame\Component\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyTank.h">
-      <Filter>InGame\Component\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="IntroScene.h">
       <Filter>Intro</Filter>
     </ClInclude>
@@ -127,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Score_Effect.h">
       <Filter>InGame\Component\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTank.h">
+      <Filter>InGame\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

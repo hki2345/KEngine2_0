@@ -33,6 +33,8 @@ bool EnemyManager::init(const int& _EnemyNum)
 	fRespawnTime = 5.0f;
 	EnemyMaxCnt = _EnemyNum;
 	EnemyRespawnCnt = 0;
+	EnemyActiveCurCnt = 0;
+	EnemyActiveMaxCnt = 4;
 
 	VectorRespawnPos = *TileManager::instance()->vector_respawnpos();
 	shutdown_enemy();
@@ -66,14 +68,12 @@ void EnemyManager::update_respawn()
 
 void EnemyManager::update_resetpos()
 {
-	for (int i = 0; i < EnemyMaxCnt; i++)
+	for (int i = 0; i < EnemyRespawnCnt; i++)
 	{
 		if (10.0f >= VectorEnemy[i]->kone()->pos().x)
 		{
-			int XXX = 0;
-
-			XXX = rand() % VectorRespawnPos.size();
-			VectorEnemy[i]->kone()->pos(VectorRespawnPos[XXX]);
+			VectorEnemy[i]->active(false);
+			EnemyRespawnCnt -= 1;
 		}
 	}
 }
@@ -91,11 +91,51 @@ int EnemyManager::calculate_remain()
 	return EnemyMaxCnt - EnemyRespawnCnt;
 }
 
+
+
+bool EnemyManager::check_respawn(const KPos2& _Pos)
+{
+	EnemyActiveCurCnt = 0;
+
+	for (int i = 0; i < EnemyRespawnCnt; i++)
+	{
+		if (true == VectorEnemy[i]->kone()->active())
+		{
+			EnemyActiveCurCnt += 1;
+		}
+
+		KPos2 Tmp = VectorEnemy[i]->kone()->pos() - _Pos;
+		if (Tmp.distance() < TILEXSIZE)
+		{
+			return false;
+		}
+	}
+
+	if (EnemyActiveMaxCnt <= EnemyActiveCurCnt)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
 void EnemyManager::set_enemy()
 {
 	int XXX = 0;
 
-	XXX = rand() % VectorRespawnPos.size();
+	int cnt = 0;
+	do
+	{
+		XXX = rand() % VectorRespawnPos.size();
+		cnt += 1;
+
+		if (3 < cnt)
+		{
+			return;
+		}
+	} 
+	while (false == check_respawn(VectorRespawnPos[XXX]));
 
 	VectorEnemy[EnemyRespawnCnt]->set_tank(VectorRespawnPos[XXX]);
 	EnemyRespawnCnt += 1;

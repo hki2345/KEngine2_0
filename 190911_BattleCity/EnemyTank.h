@@ -18,6 +18,9 @@ private:
 	float fShootCurTime;
 	float fShootTime;
 
+	float fDirectionCurTime;
+	float fDirectionTime;
+
 public:
 	void create() override;
 	bool init() override;
@@ -27,7 +30,7 @@ private:
 	void update_AI();
 	void update_move();
 	void update_collisiontile();
-
+	void update_direction();
 
 	void stay_tile(KOne* _Tile) override;
 	void exit_tile(KOne* _Tile) override;

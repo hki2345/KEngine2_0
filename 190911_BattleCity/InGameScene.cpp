@@ -149,7 +149,13 @@ bool InGameScene::init()
 	fOverUICurTime = .0f;
 	fOverUITime = 5.0f;
 
+	KPos2 WSize = kwindow()->size();
+
 	active_vector(CoverUI, true);
+
+	CoverUI[0]->pos(KPos2::Zero);
+	CoverUI[1]->pos(WSize * KPos2::Up * .5f);
+
 	active_vector(EnemyUI, false);
 	active_vector(GameUI, false);
 	active_vector(GameTextUI, false);

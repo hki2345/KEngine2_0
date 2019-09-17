@@ -44,7 +44,6 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 	{
 		MyRenderer->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));
 		MyRenderer->active(true);
-		TankCollider->active(false);
 		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 11);
 	}
 	else
@@ -53,13 +52,13 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 	}
 
 	// 있을거만 있어야함 -> 탱크 통과하는 건 총알도 통과함
-	if (BATTLECITY_GAMETILE::BG_BROWN_BLOCK ||
-		BATTLECITY_GAMETILE::BG_METAL_BLOCK ||
-		BATTLECITY_GAMETILE::BG_WATER_BLOCK01 ||
-		BATTLECITY_GAMETILE::BG_PHOENIX01 || 
-		BATTLECITY_GAMETILE::BG_PHOENIX02 ||
-		BATTLECITY_GAMETILE::BG_PHOENIX03 ||
-		BATTLECITY_GAMETILE::BG_PHOENIX04)
+	if (BATTLECITY_GAMETILE::BG_BROWN_BLOCK == _Info ||
+		BATTLECITY_GAMETILE::BG_STONE_BLOCK == _Info ||
+		BATTLECITY_GAMETILE::BG_WATER_BLOCK01 == _Info ||
+		BATTLECITY_GAMETILE::BG_PHOENIX01 == _Info|| 
+		BATTLECITY_GAMETILE::BG_PHOENIX02 == _Info||
+		BATTLECITY_GAMETILE::BG_PHOENIX03 == _Info||
+		BATTLECITY_GAMETILE::BG_PHOENIX04 == _Info)
 	{
 		TankCollider = kone()->add_component<KRect_Collision>();
 		TankCollider->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));

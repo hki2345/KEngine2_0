@@ -46,36 +46,26 @@ void K2DCollider::checking_deltabox()
 {
 	PrevPos += MyPivot;
 
-	if (MyTrans->Pos.x == PrevPos.x)
+	if (MyTrans->Pos.x >= PrevPos.x)
 	{
 		DeltaBox.Start.x = PrevPos.x;
-		DeltaBox.End.x = MyTrans->Pos.x + MyTrans->Size.x  * .5f;
-	}
-	else if (MyTrans->Pos.x > PrevPos.x)
-	{
-		DeltaBox.Start.x = PrevPos.x;
-		DeltaBox.End.x = MyTrans->Pos.x + MyTrans->Size.x  * .5f;
+		DeltaBox.End.x = MyTrans->Pos.x + MyTrans->Size.x;
 	}
 	else if (MyTrans->Pos.x < PrevPos.x)
 	{
 		DeltaBox.Start.x = MyTrans->Pos.x;
-		DeltaBox.End.x = PrevPos.x + MyTrans->Size.x * .5f;
+		DeltaBox.End.x = PrevPos.x + MyTrans->Size.x;
 	}
 
-	if (MyTrans->Pos.y == PrevPos.y)
+	if (MyTrans->Pos.y >= PrevPos.y)
 	{
 		DeltaBox.Start.y = PrevPos.y;
-		DeltaBox.End.y = MyTrans->Pos.y + MyTrans->Size.y  * .5f;
-	}
-	else if (MyTrans->Pos.y > PrevPos.y)
-	{
-		DeltaBox.Start.y = PrevPos.y;
-		DeltaBox.End.y = MyTrans->Pos.y + MyTrans->Size.y  * .5f;
+		DeltaBox.End.y = MyTrans->Pos.y + MyTrans->Size.y;
 	}
 	else if (MyTrans->Pos.y < PrevPos.y)
 	{
 		DeltaBox.Start.y = MyTrans->Pos.y;
-		DeltaBox.End.y = PrevPos.y + MyTrans->Size.y * .5f;
+		DeltaBox.End.y = PrevPos.y + MyTrans->Size.y;
 	}
 
 	DeltaDistance = 9999999999999.0f;
@@ -102,12 +92,9 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 			KRect R2 = {
 				OtherColPos,
 				OtherColPos + _Other->MyTrans->Size };
-			bool result = false;
 
-			AABB(R1, R2, result);
-			// AABB(DeltaBox, R2, result);
-
-			if (true == result)
+			if (true == kstd::AABB()(R1, R2))
+			// if (true == kstd::AABB()(DeltaBox, R2))
 			{
 				MyColliderRect.Start = R2.Start;
 				MyColliderRect.End = DeltaBox.End;
@@ -117,24 +104,24 @@ void K2DCollider::update_collision(K2DCollider* _Other)
 				update_enterorstay(_Other);
 				_Other->update_enterorstay(this);
 
-				////////////////// 
-				// if (DeltaDistance > OtherDistance)
-				// {
-				// 	DeltaDistance = OtherDistance;
-				// 
-				// 	MyColliderRect.Start = R2.Start;
-				// 	MyColliderRect.End = DeltaBox.End;
-				// 	_Other->MyColliderRect.Start = R2.Start;
-				// 	_Other->MyColliderRect.End = DeltaBox.End;
-				// 
-				// 	update_enterorstay(_Other);
-				// 	_Other->update_enterorstay(this);
-				// }
-				// else
-				// {
-				// 	update_exit(_Other);
-				// 	_Other->update_exit(this);
-				// }
+				///////////////// 
+				//if (DeltaDistance > OtherDistance)
+				//{
+				//	DeltaDistance = OtherDistance;
+				//
+				//	MyColliderRect.Start = R2.Start;
+				//	MyColliderRect.End = DeltaBox.End;
+				//	_Other->MyColliderRect.Start = R2.Start;
+				//	_Other->MyColliderRect.End = DeltaBox.End;
+				//
+				//	update_enterorstay(_Other);
+				//	_Other->update_enterorstay(this);
+				//}
+				//else
+				//{
+				//	update_exit(_Other);
+				//	_Other->update_exit(this);
+				//}
 			}
 			else
 			{

@@ -37,6 +37,8 @@ private:
 	KScene* MomScene;
 	int EnemyRespawnCnt;
 	int EnemyMaxCnt;
+	int EnemyActiveCurCnt;
+	int EnemyActiveMaxCnt;
 
 	float fRespawnCurTime;
 	float fRespawnTime;
@@ -53,6 +55,9 @@ private:
 	void update_respawn();
 	void update_resetpos();
 	void update_playerwin();
+
+
+	bool check_respawn(const KPos2& _Pos);
 
 	void set_enemy();
 };

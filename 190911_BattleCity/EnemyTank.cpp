@@ -45,10 +45,13 @@ bool EnemyTank::init()
 	Tank::init();
 
 	fDirChangeCurTime = .0f;
-	fDirChangeTime = 2.0f;
+	fDirChangeTime = 1.0f;
 
 	fShootCurTime = .0f;
 	fShootTime = 1.0f;
+
+	fDirectionCurTime = .0f;
+	fDirectionTime = .3f;
 
 	return true;
 }
@@ -79,36 +82,14 @@ void EnemyTank::update()
 
 void EnemyTank::update_AI()
 {
-
 	if (fDirChangeCurTime <= fDirChangeTime)
 	{
 		fDirChangeCurTime += KTimeManager::instance()->deltatime();
 	}
 	else
 	{
-		int XXX = 0;
-		fDirChangeCurTime = .0f;
-		XXX = rand() % 4;
-
-		if (0 == XXX)
-		{
-			vDir = KPos2::Down;
-		}
-		else if (1 == XXX)
-		{
-			vDir = KPos2::Up;
-		}
-		else if (2 == XXX)
-		{
-			vDir = KPos2::Left;
-		}
-		else if (3 == XXX)
-		{
-			vDir = KPos2::Right;
-		}
+		update_direction();
 	}
-
-
 
 
 	if (fShootCurTime <= fShootTime)
@@ -130,10 +111,7 @@ void EnemyTank::update_AI()
 			}
 			shoot_bullet();
 		}
-	}
-
-
-	
+	}	
 }
 
 void EnemyTank::update_move()
@@ -147,6 +125,43 @@ void EnemyTank::update_collisiontile()
 	if (true == bTileCol || true == bTankCol)
 	{
 		kone()->pos(vPrevChecPos);
+
+		if (true == bTankCol)
+		{
+			fDirectionCurTime += KTimeManager::instance()->deltatime();
+			if (fDirectionCurTime >= fDirectionTime)
+			{
+				update_direction();
+			}
+		}
+	}
+	else
+	{
+		fDirectionCurTime = .0f;
+	}
+}
+
+void EnemyTank::update_direction()
+{
+	int XXX = 0;
+	fDirChangeCurTime = .0f;
+	XXX = rand() % 4;
+
+	if (0 == XXX)
+	{
+		vDir = KPos2::Down;
+	}
+	else if (1 == XXX)
+	{
+		vDir = KPos2::Up;
+	}
+	else if (2 == XXX)
+	{
+		vDir = KPos2::Left;
+	}
+	else if (3 == XXX)
+	{
+		vDir = KPos2::Right;
 	}
 }
 
@@ -155,18 +170,18 @@ void EnemyTank::stay_tile(KOne* _Other)
 {
 	Tank::stay_tile(_Other);
 
-	PlayerTank* CurTank = _Other->get_component<PlayerTank>();
-	if (nullptr != CurTank)
+	PlayerTank* PTank = _Other->get_component<PlayerTank>();
+	if (nullptr != PTank)
 	{
 		bTankCol = true;
-		PrevColTank = CurTank;
+		PrevColTank = PTank;
 	}
 
 	EnemyTank* ETank = _Other->get_component<EnemyTank>();
 	if (nullptr != ETank)
 	{
 		bTankCol = true;
-		PrevColTank = CurTank;
+		PrevColTank = ETank;
 	}
 }
 
