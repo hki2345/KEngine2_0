@@ -46,8 +46,7 @@ private:
 	bool looping;
 
 
-public:
-	int main(int argc, wchar_t*argv[]) {};
+private:
 	void init(
 		_In_ HINSTANCE _hInstance,
 		_In_ LPWSTR    _lpCmdLine,
@@ -56,13 +55,13 @@ public:
 	void release();
 
 public:
-	// 실행 자 없음
+	// 콘솔용 실행 자 없음
 	void init(int argc, wchar_t* argv[])
 	{
 		KCore::init();
 	}
 
-	// 최초 1회 실행
+	// 콘솔용 최초 1회 실행
 	template <typename INIT>
 	void init(int argc, wchar_t* argv[])
 	{
@@ -85,9 +84,11 @@ public:
 		OneInit.init();
 	}
 
-	// 윈도우용 실행자
+	// 윈도우용 실행자 - 이미 있는 윈도우에 띄우는 용도
 	void init(HWND _hWnd, const KSize2& _Size = KSize2::Zero);
 
+
+	// 최신화
 	template <typename UP>
 	void loop()
 	{
@@ -100,7 +101,7 @@ public:
 		loop_updater();
 	}
 
-
+	// 최신화 및 초기화
 	template <typename UP, typename RELEASE>
 	void loop()
 	{
@@ -117,7 +118,7 @@ public:
 		OneRelease.release();
 	}
 
-	// 코어 업데이트를 실행할 경우 와 아닌경우...
+	// 코어 최신화 과정이 있는 경우 와 아닌경우...
 	void loop();
 	void loop_updater();
 	inline void shut_down()
@@ -131,9 +132,8 @@ private:
 
 
 
-// 엔진 단계는 구조상 단 한번만 실행과 최신화를 엑세스 해준다.
-// 사실 횟수는 ㅋㅋ;; 그냥 내가 정함 ㅋㅋ
-// 엔진 단계 하나 실행
+/******************** Console ********************/
+// 엔진 단계 실행자
 template<typename INIT>
 int core_launch(int argc, wchar_t* argv[])
 {
@@ -195,7 +195,6 @@ int core_launch(
 	return 0;
 }
 
-// 엔진 단계 하나 실행 및 최신화
 template<typename INIT, typename UP>
 int core_launch(
 	_In_ HINSTANCE _hInstance,
@@ -213,7 +212,6 @@ int core_launch(
 }
 
 
-// 엔진 단계 하나 실행 및 최신화
 template<typename INIT, typename UP, typename RELEASE>
 int core_launch(
 	_In_ HINSTANCE _hInstance,

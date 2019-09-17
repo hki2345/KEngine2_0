@@ -36,9 +36,7 @@ void Bullet::create()
 	fSpeed = 300.0f;
 
 	MyCollider = kone()->add_component<KRect_Collision>();
-	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
-
-	MyCollider->insert_stayfunc<Bullet>(this, &Bullet::Stay);
+	MyCollider->insert_stayfunc<Bullet>(this, &Bullet::stay);
 
 	MyEffect = kscene()->create_kone(L"Expolsion")->add_component<Explosion_Effect>();
 
@@ -55,7 +53,7 @@ void Bullet::set_tank(const int& _Layer)
 void Bullet::set_bullet(const KPos2& _Pos, const KPos2& _Dir)
 {
 	kone()->active(true);
-	kone()->size({ 20.0f, 40.0f });
+	kone()->size({ 20.0f, 20.0f });
 	kone()->pos(_Pos);
 	vDir = _Dir;
 
@@ -116,7 +114,7 @@ void Bullet::update_outofgame()
 	}
 }
 
-void Bullet::Stay(KOne* _Collider)
+void Bullet::stay(KOne* _Collider)
 {
 	Bullet* CurBullet = _Collider->get_component<Bullet>();
 	if (nullptr != CurBullet)
@@ -125,7 +123,7 @@ void Bullet::Stay(KOne* _Collider)
 	}
 
 	Tile* CurTile = _Collider->get_component<Tile>();
-	if (nullptr != CurTile && true == CurTile->collision_bullet(vDir))
+	if (nullptr != CurTile && true == CurTile->collision_bullet(vDir, kone()->pos()))
 	{
 		bExplosion = true;
 	}

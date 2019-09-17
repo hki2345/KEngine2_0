@@ -223,7 +223,7 @@ bool TileManager::init(const wchar_t* _Name)
 		MomScene->delete_kone(VectorTile[i]->kone());
 	}
 	VectorTile.clear();
-
+	PhoenixTile.clear();
 
 	if (0 == VectorTile.size())
 	{
@@ -334,6 +334,186 @@ void TileManager::update_tile(Tile* _Tile)
 	}
 	_Tile->render(MapHdc);
 }
+
+
+void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir, const KPos2& _BulletPos)
+{
+	switch (_CurTile->tile_type())
+	{
+	case BG_RECTBROWN01:
+	{
+		if (KPos2::Down == _BulletDir)
+		{
+			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN01, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Up == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Left == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN01);
+		}
+		else if (KPos2::Right == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN02);
+		}
+		break;
+	}
+	case BG_RECTBROWN02:
+	{
+		if (KPos2::Down == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN02);
+		}
+		else if (KPos2::Up == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN03);
+		}
+		else if (KPos2::Left == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Right == _BulletDir)
+		{
+			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN02, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		break;
+	}
+	case BG_RECTBROWN03:
+	{
+		if (KPos2::Down == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN01);
+		}
+		else if (KPos2::Up == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN04);
+		}
+		else if (KPos2::Left == _BulletDir)
+		{
+			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN03, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Right == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		break;
+	}
+	case BG_RECTBROWN04:
+	{
+		if (KPos2::Down == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Up == _BulletDir)
+		{
+			if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN04, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Left == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN04);
+		}
+		else if (KPos2::Right == _BulletDir)
+		{
+			_CurTile->set_tile(BATTLECITY_GAMETILE::BG_SMALLBROWN03);
+		}
+		break;
+	}
+	default:
+		break;
+	}
+	TileManager::instance()->update_tile(_CurTile);
+}
+
+
+Tile* TileManager::posto_tile(const KPos2& _Pos)
+{
+	for (size_t i = 0; i < VectorTile.size(); i++)
+	{
+		if (_Pos == VectorTile[i]->kone()->pos())
+		{
+			return VectorTile[i];
+		}
+	}
+
+	return nullptr;
+}
+
+
+bool TileManager::check_smallbrown(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Type, const KPos2& _BulletPos)
+{
+	switch (_Type)
+	{
+	case BG_RECTBROWN01:
+	case BG_RECTBROWN04:
+	{
+ 		Tile* Tmpile = nullptr;
+		if (_Pos.x + STARTXPOS > _BulletPos.x)
+		{
+			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Left);
+		}
+		else
+		{
+			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Right);
+		}
+
+		if (Tmpile != nullptr)
+		{
+			if (_Type == Tmpile->tile_type() || false == Tmpile->kone()->active())
+			{
+				return true;
+			}
+			return false;
+		}
+
+		return true;
+		break;
+	}
+	case BG_RECTBROWN02:
+	case BG_RECTBROWN03:
+	{
+		Tile* Tmpile = nullptr;
+		if (_Pos.y + STARTYPOS > _BulletPos.y)
+		{
+			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Up);
+		}
+		else
+		{
+			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Down);
+		}
+
+		if (Tmpile != nullptr)
+		{
+			if (_Type == Tmpile->tile_type() || false == Tmpile->kone()->active())
+			{
+				return true;
+			}
+			return false;
+		}
+
+		return true;
+		break;
+	}
+	default:
+		break;
+	}
+
+	return true;
+}
+
 
 void TileManager::render()
 {

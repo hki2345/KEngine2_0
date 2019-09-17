@@ -18,7 +18,7 @@ public:
 
 private:
 	KSprite_Render* MyRenderer;
-	KRect_Collision* MyCollider;
+	KRect_Collision* TankCollider;
 	KPos2 ScreenPos;
 
 	BATTLECITY_GAMETILE eTileType;
@@ -30,7 +30,7 @@ public:
 
 	void update_trans();
 	void render(HDC _Hdc);
-	bool collision_bullet(const KPos2& _Dir);
+	bool collision_bullet(const KPos2& _Dir, const KPos2& _Pos);
 	inline BATTLECITY_GAMETILE& tile_type()
 	{
 		return eTileType;

@@ -19,7 +19,7 @@ K2DCollider::~K2DCollider()
 {
 }
 
-bool K2DCollider::init()
+void K2DCollider::create()
 {
 	if (nullptr == MyTrans)
 	{
@@ -27,7 +27,6 @@ bool K2DCollider::init()
 	}
 
 	ListCollision.clear();
-	return true;
 }
 
 void K2DCollider::update()
@@ -38,6 +37,11 @@ void K2DCollider::update()
 void K2DCollider::release()
 {
 	kscene()->delete_k2dcollider(this);
+}
+
+void K2DCollider::checking_deltabox(K2DCollider* _Other)
+{
+
 }
 
 void K2DCollider::update_collision(K2DCollider* _Other)
@@ -149,7 +153,7 @@ void K2DCollider::update_enterorstay(K2DCollider* _Other)
 	}
 	else
 	{
-		// Stay
+		// stay
 		update_stayfunc(_Other->kone());
 	}
 }

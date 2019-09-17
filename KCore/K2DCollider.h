@@ -34,8 +34,8 @@ protected:
 
 	KTransform* MyTrans;
 	KPos2 MyPivot;
+	KPos2 PrevPos;
 	KRect MyColliderRect;
-
 
 
 private:
@@ -46,11 +46,13 @@ private:
 	std::list<std::function<void(KOne*)>> ListExitFunc;
 
 public:
-	bool init() override;
+	void create() override;
+	bool init() override { return true; };
 	void update() override;
 	void release() override;
 
 	void update_collision(K2DCollider* _Other);
+	void checking_deltabox(K2DCollider* _Other);
 
 
 	// 아오 써글...

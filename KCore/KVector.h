@@ -62,25 +62,6 @@ public:
 		return *this;
 	}
 
-/*
-	KVec2 operator + (const KVec2& _Value1 , const KVec2& _Value2) 
-	{
-		return KVec2(_Value1.x + _Value2.x, _Value1.y + _Value2.y);
-	}
-	KVec2 operator * (const KVec2& _Value) const
-	{
-		return KVec2(x * _Value.x, y * _Value.y);
-	}
-	KVec2 operator - (const KVec2& _Value) const
-	{
-		return KVec2(x - _Value.x, y - _Value.y);
-	}
-	KVec2 operator / (const KVec2& _Value) const
-	{
-		return KVec2(x / _Value.x, y / _Value.y);
-	}
-
-*/
 
 	KVec2 operator + (const KVec2& _Value) const
 	{
@@ -98,6 +79,8 @@ public:
 	{
 		return KVec2(x / _Value.x, y / _Value.y);
 	}
+
+
 
 	KVec2 operator + (const float& _Value) const
 	{
@@ -147,16 +130,6 @@ public:
 		return *this;
 	}
 
-	bool operator == (const KVec2& _Value)
-	{
-		return (x == _Value.x && y == _Value.y);
-	}
-	bool operator != (const KVec2& _Value)
-	{
-		return (x != _Value.x || y != _Value.y);
-	}
-
-
 	bool operator == (const KVec2& _Value) const
 	{
 		return (x == _Value.x && y == _Value.y);
@@ -181,59 +154,37 @@ public:
 	{
 		return (x < _Value.x && y < _Value.y);
 	}
-/*
-	operator __int64() const
-	{
-		return m_i64;
-	}
-*/
-
-	float length() const
-	{
-		return sqrtf(x*x + y * y);
-	}
 
 	float distance() const
 	{
 		return sqrtf((x) * (x)+(y) * (y));
 	}
 
-	float distance(const KVec2& _Value) const
+	KVec2& reverse_ref()
 	{
-		return sqrtf((x - _Value.x) * (x - _Value.x) + (y - _Value.y) * (y - _Value.y));
-	}
+		float Tmp = x;
+		x = y;
+		y = Tmp;
 
-	float dot(const KVec2& _Other) const
-	{
-		return x * _Other.x + y * _Other.y;
+		return *this;
 	}
-
-	KVec2& y_reverse()
+	KVec2& abs()
 	{
-		y *= -1.0f;
+		x = fabsf(x);
+		y = fabsf(y);
 		return *this;
 	}
 
-	float x_ratio() const
+	KVec2 reverse()
 	{
-		if (0 > y)
-		{
-			return .0f;
-		}
+		float Tx = x;
+		float Ty = y;
+		float Tmp = Tx;
+		Tx = Ty;
+		Ty = Tmp;
 
-		return x / y;
+		return KVec2(Tx, Ty);
 	}
-	float y_ratio() const
-	{
-		if (0 > x)
-		{
-			return .0f;
-		}
-
-		return y / x;
-	}
-
-
 };
 typedef KVec2 KPoint;
 typedef KVec2 KSize2;

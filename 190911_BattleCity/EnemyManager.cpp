@@ -30,7 +30,7 @@ void EnemyManager::create(KScene* _Scene)
 bool EnemyManager::init(const int& _EnemyNum)
 {
 	fRespawnCurTime = .0f;
-	fRespawnTime = .3f;
+	fRespawnTime = 5.0f;
 	EnemyMaxCnt = _EnemyNum;
 	EnemyRespawnCnt = 0;
 

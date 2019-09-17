@@ -47,7 +47,7 @@ void Tank::create()
 	fSpeed = 100.0f;
 
 	MyCollider = kone()->add_component<KRect_Collision>();
-	MyCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
+	// TankCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
 
 	for (size_t i = 0; i < 2; i++)
@@ -172,15 +172,12 @@ void Tank::update_wait()
 
 void Tank::shoot_bullet()
 {
-	if (vPrevDir == KPos2::Left || vPrevDir == KPos2::Right)
-	{
-		VectorMyBullet[0]->set_bullet(kone()->pos() + kone()->size() * .25f * vPrevDir, vPrevDir);
-	}
-	else if (vPrevDir == KPos2::Up || vPrevDir == KPos2::Down)
-	{
-		VectorMyBullet[0]->set_bullet(
-			kone()->pos() + kone()->size() * .25f * vPrevDir + KPos2(kone()->size().x * .2f, .0f), vPrevDir);
-	}
+	KPos2 Dir = vPrevDir;
+	VectorMyBullet[0]->set_bullet(
+		kone()->pos() +
+		kone()->size() * Dir * .25f +
+		kone()->size() * Dir.reverse().abs() * .25f,
+		vPrevDir);
 }
 
 

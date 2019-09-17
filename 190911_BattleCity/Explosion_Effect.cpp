@@ -30,7 +30,7 @@ void Explosion_Effect::create()
 void Explosion_Effect::set_bulletexplosion(const KPos2& _Pos)
 {
 	kone()->active(true);
-	kone()->pos(_Pos + KPos2( TILEXSIZE * 1.5f, TILEYSIZE) * -1.0f);
+	kone()->pos(_Pos + KPos2( TILEXSIZE, TILEYSIZE) * -1.5f);
 	MyAnimator->change_animation(L"Bullet");
 	MyAnimator->update_trans(kscene()->SceneCamPos);
 }

@@ -21,6 +21,7 @@ KBitMap_Animator::~KBitMap_Animator()
 
 void KBitMap_Animator::create()
 {
+	KRenderer::create();
 	sName = L"KBitMap_Animator";
 }
 

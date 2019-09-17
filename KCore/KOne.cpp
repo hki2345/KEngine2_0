@@ -40,6 +40,19 @@ void KOne::update()
 		SIter->second->update();
 	}
 }
+
+
+void KOne::render_debug()
+{
+	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();
+	std::multimap<std::wstring, KComponent*>::iterator EIter = MapComponent.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		SIter->second->render_debug();
+	}
+}
+
 void KOne::out()
 {
 	std::multimap<std::wstring, KComponent*>::iterator SIter = MapComponent.begin();

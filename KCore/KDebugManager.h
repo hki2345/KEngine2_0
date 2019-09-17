@@ -7,6 +7,7 @@ class KDebugManager
 {
 public:
 	friend class KCore;
+	friend class KScene;
 
 private:
 	KDebugManager() {}
@@ -29,7 +30,8 @@ public:
 	}
 
 private:
-	bool bDebug;
+	bool bDebugAll;
+	bool bDebugFigure;
 	std::vector<std::wstring> VectorLog;
 
 
@@ -53,8 +55,7 @@ public:
 
 private:
 	void init();
-	void release();
-
-public:
+	void update();
 	void render();
+	void release();
 };

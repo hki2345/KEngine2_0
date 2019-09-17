@@ -32,7 +32,8 @@ protected:
 
 
 public:
-	virtual bool init() override;
+	virtual bool init() override { return true; };
+	virtual void create() override;
 	virtual void update() override {};
 
 	virtual void update_trans(const KPos2& _CameraPos);

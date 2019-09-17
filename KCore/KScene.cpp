@@ -54,7 +54,6 @@ bool KScene::init()
 
 void KScene::update()
 {
-	curK2DColliderMgr->update();
 	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
 	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
 
@@ -70,6 +69,9 @@ void KScene::update()
 			SIter->second->update();
 		}
 	}
+
+	KDebugManager::instance()->update();
+	curK2DColliderMgr->update();
 }
 
 void KScene::out() 
@@ -116,7 +118,31 @@ void KScene::render()
 	curKRenderMgr->update_trans(SceneCamPos);
 	curKRenderMgr->render();
 
+#if _DEBUG
+	render_debug();
+#endif
+
 	KDebugManager::instance()->render();
+}
+
+
+void KScene::render_debug()
+{
+	if (false == KDebugManager::instance()->bDebugAll || false == KDebugManager::instance()->bDebugFigure)
+	{
+		return;
+	}
+
+	std::multimap<std::wstring, KOne*>::iterator SIter = MapKOne.begin();
+	std::multimap<std::wstring, KOne*>::iterator EIter = MapKOne.end();
+
+	for (; SIter != EIter; ++SIter)
+	{
+		if (true == SIter->second->bActing)
+		{
+			SIter->second->render_debug();
+		}
+	}
 }
 
 

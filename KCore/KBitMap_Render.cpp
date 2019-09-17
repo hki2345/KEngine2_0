@@ -22,6 +22,7 @@ KBitMap_Render::~KBitMap_Render()
 
 void KBitMap_Render::create()
 {
+	KRenderer::create();
 	sName = L"KBitMap_Render";
 }
 

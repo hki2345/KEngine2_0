@@ -32,6 +32,6 @@ public:
 private:
 	void update_outofgame();
 
-	void Stay(KOne* _Collider);
+	void stay(KOne* _Collider);
 };
 

@@ -20,6 +20,7 @@ KSprite_Render::~KSprite_Render()
 
 void KSprite_Render::create()
 {
+	KRenderer::create();
 	sName = L"KSprite_Render";
 }
 

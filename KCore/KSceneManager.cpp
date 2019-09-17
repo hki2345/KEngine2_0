@@ -33,7 +33,6 @@ void KSceneManager::render()
 		return;
 	}
 
-
 	curscene->render();
 }
 

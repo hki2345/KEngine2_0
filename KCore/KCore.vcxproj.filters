@@ -32,52 +32,52 @@
       <Filter>03_KScene</Filter>
     </ClCompile>
     <ClCompile Include="KOne.cpp">
-      <Filter>04_KOne</Filter>
+      <Filter>03_KScene\KOne</Filter>
     </ClCompile>
     <ClCompile Include="KRenderManager.cpp">
-      <Filter>04_Render</Filter>
+      <Filter>05_Render</Filter>
     </ClCompile>
     <ClCompile Include="KConsole_Render.cpp">
-      <Filter>04_Render\Child</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClCompile>
     <ClCompile Include="KBitMap_Render.cpp">
-      <Filter>04_Render\Child</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClCompile>
     <ClCompile Include="KBitMap.cpp">
       <Filter>00_Resource</Filter>
     </ClCompile>
     <ClCompile Include="KComponent.cpp">
-      <Filter>05_Component</Filter>
+      <Filter>04_Component</Filter>
     </ClCompile>
     <ClCompile Include="KTransform.cpp">
-      <Filter>05_Component\Child</Filter>
+      <Filter>04_Component\Child</Filter>
     </ClCompile>
     <ClCompile Include="KRenderer.cpp">
-      <Filter>04_Render</Filter>
+      <Filter>05_Render</Filter>
     </ClCompile>
     <ClCompile Include="KSprite_Render.cpp">
-      <Filter>04_Render\Child</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClCompile>
     <ClCompile Include="KBitMap_Animator.cpp">
-      <Filter>04_Render\Animator</Filter>
+      <Filter>05_Render\Animator</Filter>
     </ClCompile>
     <ClCompile Include="KText_Render.cpp">
-      <Filter>04_Render\Child</Filter>
-    </ClCompile>
-    <ClCompile Include="KDebugManager.cpp">
-      <Filter>01_Manager\DebugManager</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClCompile>
     <ClCompile Include="KSprite_Animator.cpp">
-      <Filter>04_Render\Animator</Filter>
+      <Filter>05_Render\Animator</Filter>
     </ClCompile>
     <ClCompile Include="K2DColliderManager.cpp">
-      <Filter>04_Collider</Filter>
+      <Filter>05_Collider</Filter>
     </ClCompile>
     <ClCompile Include="KRect_Collision.cpp">
-      <Filter>04_Collider\Child</Filter>
+      <Filter>05_Collider\Child</Filter>
     </ClCompile>
     <ClCompile Include="K2DCollider.cpp">
-      <Filter>04_Collider</Filter>
+      <Filter>05_Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="KDebugManager.cpp">
+      <Filter>01_Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,52 +124,52 @@
       <Filter>03_KScene</Filter>
     </ClInclude>
     <ClInclude Include="KOne.h">
-      <Filter>04_KOne</Filter>
+      <Filter>03_KScene\KOne</Filter>
     </ClInclude>
     <ClInclude Include="KRenderManager.h">
-      <Filter>04_Render</Filter>
+      <Filter>05_Render</Filter>
     </ClInclude>
     <ClInclude Include="KConsole_Render.h">
-      <Filter>04_Render\Child</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClInclude>
     <ClInclude Include="KBitMap_Render.h">
-      <Filter>04_Render\Child</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClInclude>
     <ClInclude Include="KBitMap.h">
       <Filter>00_Resource</Filter>
     </ClInclude>
     <ClInclude Include="KComponent.h">
-      <Filter>05_Component</Filter>
+      <Filter>04_Component</Filter>
     </ClInclude>
     <ClInclude Include="KTransform.h">
-      <Filter>05_Component\Child</Filter>
+      <Filter>04_Component\Child</Filter>
     </ClInclude>
     <ClInclude Include="KRenderer.h">
-      <Filter>04_Render</Filter>
+      <Filter>05_Render</Filter>
     </ClInclude>
     <ClInclude Include="KSprite_Render.h">
-      <Filter>04_Render\Child</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClInclude>
     <ClInclude Include="KBitMap_Animator.h">
-      <Filter>04_Render\Animator</Filter>
+      <Filter>05_Render\Animator</Filter>
     </ClInclude>
     <ClInclude Include="KText_Render.h">
-      <Filter>04_Render\Child</Filter>
-    </ClInclude>
-    <ClInclude Include="KDebugManager.h">
-      <Filter>01_Manager\DebugManager</Filter>
+      <Filter>05_Render\Child</Filter>
     </ClInclude>
     <ClInclude Include="KSprite_Animator.h">
-      <Filter>04_Render\Animator</Filter>
+      <Filter>05_Render\Animator</Filter>
     </ClInclude>
     <ClInclude Include="K2DColliderManager.h">
-      <Filter>04_Collider</Filter>
+      <Filter>05_Collider</Filter>
     </ClInclude>
     <ClInclude Include="KRect_Collision.h">
-      <Filter>04_Collider\Child</Filter>
+      <Filter>05_Collider\Child</Filter>
     </ClInclude>
     <ClInclude Include="K2DCollider.h">
-      <Filter>04_Collider</Filter>
+      <Filter>05_Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="KDebugManager.h">
+      <Filter>01_Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -194,35 +194,32 @@
     <Filter Include="03_KScene">
       <UniqueIdentifier>{32ad22de-0b4f-4d74-824c-b385aee00c8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04_KOne">
-      <UniqueIdentifier>{605d8b8a-cd1a-465d-8511-c2aeaee0c37e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04_Render">
-      <UniqueIdentifier>{702d9a27-7071-4d21-bcbd-3e27a97e4e04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04_Render\Child">
-      <UniqueIdentifier>{a4e164df-73b2-42db-85f2-778a0ae03c9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="00_Resource">
       <UniqueIdentifier>{340730ba-363d-43c6-b3e7-a7ea62898349}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05_Component">
+    <Filter Include="03_KScene\KOne">
+      <UniqueIdentifier>{605d8b8a-cd1a-465d-8511-c2aeaee0c37e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04_Component">
       <UniqueIdentifier>{fb964d6d-8f9c-446c-880c-2f43d03e7b09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05_Component\Child">
+    <Filter Include="04_Component\Child">
       <UniqueIdentifier>{70ff25d3-fe0f-4d9b-88a1-c65783057b87}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04_Render\Animator">
-      <UniqueIdentifier>{375af6da-6956-4fa7-a0af-ffb934ef5a5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01_Manager\DebugManager">
-      <UniqueIdentifier>{a8b96635-a382-48fe-bc02-7fb0b2e0c2e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04_Collider">
+    <Filter Include="05_Collider">
       <UniqueIdentifier>{d2254df2-8db4-4b7d-943f-eb1eeb1862ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04_Collider\Child">
+    <Filter Include="05_Collider\Child">
       <UniqueIdentifier>{accf7f6e-1859-4bea-a2fe-9778d0317384}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05_Render">
+      <UniqueIdentifier>{702d9a27-7071-4d21-bcbd-3e27a97e4e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05_Render\Child">
+      <UniqueIdentifier>{a4e164df-73b2-42db-85f2-778a0ae03c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05_Render\Animator">
+      <UniqueIdentifier>{375af6da-6956-4fa7-a0af-ffb934ef5a5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

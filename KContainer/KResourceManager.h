@@ -130,7 +130,7 @@ public:
 		return true;
 	}
 
-	// 확장자 추론 자동에 해당 폴더를 다 긁어오신다.ㅎㅎ
+	// 확장자 추론 자동에 해당 폴더를 다 긁어오신다.
 	std::vector<KResourcePath> load_forder(const wchar_t* _Target)
 	{
 		std::wstring Extension;

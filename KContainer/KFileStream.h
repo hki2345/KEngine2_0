@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 
+#include "KMacro.h"
 
 
 class KFileStream
@@ -14,9 +15,7 @@ private:
 	void operator=(const KFileStream& _Stream) = delete;
 	~KFileStream() {};
 
-
 	static KFileStream* pKFileStream;
-
 
 public:
 	static KFileStream* instance()
@@ -28,7 +27,10 @@ public:
 		return pKFileStream;
 	}
 
-	void release();
+	void release() 
+	{
+		RELEASE_PTR(pKFileStream);
+	}
 
 
 public:

@@ -16,6 +16,7 @@ KText_Render::~KText_Render()
 
 void KText_Render::create()
 {
+	KRenderer::create();
 	sName = L"KText_Render";
 }
 

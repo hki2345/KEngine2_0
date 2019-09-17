@@ -27,8 +27,7 @@ void Tile::create()
 	MyRenderer = kone()->add_component<KSprite_Render>();
 	MyRenderer->init();
 	MyRenderer->active(false);
-	MyCollider = kone()->add_component<KRect_Collision>();
-	MyCollider->init();
+
 }
 
 void Tile::set_tile(const BATTLECITY_GAMETILE& _Info)
@@ -45,18 +44,30 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 	{
 		MyRenderer->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));
 		MyRenderer->active(true);
-		MyCollider->active(false);
+		TankCollider->active(false);
 		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 11);
 	}
 	else
 	{
 		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 9);
 	}
+
+	// 있을거만 있어야함 -> 탱크 통과하는 건 총알도 통과함
+	if (BATTLECITY_GAMETILE::BG_BROWN_BLOCK ||
+		BATTLECITY_GAMETILE::BG_METAL_BLOCK ||
+		BATTLECITY_GAMETILE::BG_WATER_BLOCK01 ||
+		BATTLECITY_GAMETILE::BG_PHOENIX01 || 
+		BATTLECITY_GAMETILE::BG_PHOENIX02 ||
+		BATTLECITY_GAMETILE::BG_PHOENIX03 ||
+		BATTLECITY_GAMETILE::BG_PHOENIX04)
+	{
+		TankCollider = kone()->add_component<KRect_Collision>();
+		TankCollider->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));
+		TankCollider->set_rect(0);
+	}
+
 	MyRenderer->set_split(3, 8);
 	MyRenderer->set_idx((int)_Info);
-
-	MyCollider->set_rect(0);
-
 	eTileType = _Info;
 }
 
@@ -71,125 +82,43 @@ void Tile::render(HDC _Hdc)
 }
 
 
-bool Tile::collision_bullet(const KPos2& _Dir)
+bool Tile::collision_bullet(const KPos2& _BulletDir, const KPos2& _BulletPos)
 {
-	KRect Tmp = MyCollider->rect_collision();
+	KRect Tmp = TankCollider->rect_collision();
 	switch (eTileType)
 	{
 	case BG_STONE_BLOCK:
 		return true;
 
 	case BG_BROWN_BLOCK:
-		if (KPos2::Down == _Dir)
+	{
+		if (KPos2::Down == _BulletDir)
 		{
-			MyRenderer->set_idx(0, 5);
-			eTileType = BG_RECTBROWN01;
+			set_tile(BG_RECTBROWN01);
 		}
-		else if (KPos2::Right == _Dir)
+		else if (KPos2::Right == _BulletDir)
 		{
-			MyRenderer->set_idx(1, 5);
-			eTileType = BG_RECTBROWN02;
+			set_tile(BG_RECTBROWN02);
 		}
-		else if (KPos2::Left == _Dir)
+		else if (KPos2::Left == _BulletDir)
 		{
-			MyRenderer->set_idx(2, 5);
-			eTileType = BG_RECTBROWN03;
+			set_tile(BG_RECTBROWN03);
 		}
-		else if (KPos2::Up == _Dir)
+		else if (KPos2::Up == _BulletDir)
 		{
-			MyRenderer->set_idx(0, 6);
-			eTileType = BG_RECTBROWN04;
+			set_tile(BG_RECTBROWN04);
 		}
 		TileManager::instance()->update_tile(this);
-
 		return true;
-
+	}
 	case BG_RECTBROWN01:
-		if (KPos2::Down == _Dir)
-		{
-			kone()->active(false);
-		}
-		else if (KPos2::Up == _Dir)
-		{
-			kone()->active(false);
-		}
-		else if (KPos2::Left == _Dir)
-		{
-			MyRenderer->set_idx(1, 6);
-			eTileType = BG_SMALLBROWN01;
-		}
-		else if (KPos2::Right == _Dir)
-		{
-			MyRenderer->set_idx(2, 6);
-			eTileType = BG_SMALLBROWN02;
-		}
-
-		TileManager::instance()->update_tile(this);
-		return true;
 	case BG_RECTBROWN02:
-		if (KPos2::Down == _Dir)
-		{
-			MyRenderer->set_idx(2, 6);
-			eTileType = BG_SMALLBROWN01;
-		}
-		else if (KPos2::Up == _Dir)
-		{
-			MyRenderer->set_idx(0, 7);
-			eTileType = BG_SMALLBROWN03;
-		}
-		else if (KPos2::Left == _Dir)
-		{
-			kone()->active(false);
-		}
-		else if (KPos2::Right == _Dir)
-		{
-			kone()->active(false);
-		}
-		TileManager::instance()->update_tile(this);
-		return true;
 	case BG_RECTBROWN03:
-		if (KPos2::Down == _Dir)
-		{
-			MyRenderer->set_idx(1, 6);
-			eTileType = BG_SMALLBROWN01;
-		}
-		else if (KPos2::Up == _Dir)
-		{
-			MyRenderer->set_idx(1, 7);
-			eTileType = BG_SMALLBROWN04;
-		}
-		else if (KPos2::Left == _Dir)
-		{
-			kone()->active(false);
-		}
-		else if (KPos2::Right == _Dir)
-		{
-			kone()->active(false);
-		}
-		TileManager::instance()->update_tile(this);
-		return true;
 	case BG_RECTBROWN04:
-		if (KPos2::Down == _Dir)
-		{
-			kone()->active(false);
-		}
-		else if (KPos2::Up == _Dir)
-		{
-			kone()->active(false);
-		}
-		else if (KPos2::Left == _Dir)
-		{
-			MyRenderer->set_idx(1, 7);
-			eTileType = BG_SMALLBROWN04;
-		}
-		else if (KPos2::Right == _Dir)
-		{
-			MyRenderer->set_idx(0, 7);
-			eTileType = BG_SMALLBROWN03;
-		}
-		TileManager::instance()->update_tile(this);
+	{
+		TileManager::instance()->update_brownsmalltile(this, _BulletDir, _BulletPos);
 		return true;
-
+	}
 
 	case BG_SMALLBROWN01:
 	case BG_SMALLBROWN02:
@@ -197,19 +126,16 @@ bool Tile::collision_bullet(const KPos2& _Dir)
 	case BG_SMALLBROWN04:
 		kone()->active(false);
 		TileManager::instance()->update_tile(this);
-		break;
+		return true;
 
 	case BG_PHOENIX01:
 	case BG_PHOENIX02:
 	case BG_PHOENIX03:
 	case BG_PHOENIX04:
 		PlayerManager::instance()->iWin = -1;
-		TileManager::instance()->update_broken();
-		
+		TileManager::instance()->update_broken();		
 		return true;
 
-	case BG_BLOCKNUM:
-		break;
 	default:
 		break;
 	}

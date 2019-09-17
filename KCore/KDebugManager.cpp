@@ -1,5 +1,6 @@
 #include "KDebugManager.h"
 #include "KWindowManager.h"
+#include "KInputManager.h"
 
 #include <Windows.h>
 #include <KMacro.h>
@@ -10,9 +11,26 @@ KDebugManager* KDebugManager::pKDebugManager = nullptr;
 
 void KDebugManager::init()
 {
-	bDebug = true;
+	bDebugAll = true;
+	bDebugFigure = true;
 	VectorLog.clear();
 }
+
+void KDebugManager::update()
+{
+	if (true == KInputManager::instance()->is_press(VK_LSHIFT))
+	{
+		if (true == KInputManager::instance()->is_down(0x42))
+		{
+			bDebugAll = !bDebugAll;
+		}
+		else if (true == KInputManager::instance()->is_down(0x43))
+		{
+			bDebugFigure = !bDebugFigure;
+		}
+	}
+}
+
 
 void KDebugManager::render()
 {
@@ -38,7 +56,7 @@ void KDebugManager::release()
 
 void KDebugManager::insert_log(const wchar_t* const _Str, ...)
 {
-	if (false == bDebug)
+	if (false == bDebugAll)
 	{
 		return;
 	}

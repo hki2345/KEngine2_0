@@ -63,7 +63,7 @@ void KSprite_Animator::reset_animate()
 
 void KSprite_Animator::create()
 {
-	KComponent::create();
+	KRenderer::create();
 
 	sName = L"KSprite_Animator";
 	pSprite = kone()->add_component<KSprite_Render>();

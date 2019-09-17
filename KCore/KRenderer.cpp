@@ -22,14 +22,12 @@ KRenderer::~KRenderer()
 }
 
 
-bool KRenderer::init()
+void KRenderer::create()
 {
 	if (nullptr ==MyTrans)
 	{
 		MyTrans = kone()->get_component<KTransform>();
 	}
-
-	return true;
 }
 
 

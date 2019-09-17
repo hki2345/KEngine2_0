@@ -57,6 +57,8 @@ protected:
 	virtual void release();
 	virtual void render();
 
+	void render_debug();
+
 public:
 	KOne* create_kone(const wchar_t* _Name = L"KOne");
 	KOne* create_kone(KOne* _Other, const wchar_t* _Name = L"KOne");
