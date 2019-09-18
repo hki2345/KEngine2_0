@@ -52,6 +52,9 @@ private:
 		_In_ LPWSTR    _lpCmdLine,
 		_In_ int       _nCmdShow);
 	void init();
+
+public:
+	// 에디터용
 	void release();
 
 public:

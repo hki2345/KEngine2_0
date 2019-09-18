@@ -66,6 +66,7 @@ bool Tank::init()
 	vDir = KPos2::Up;
 	vPrevDir = KPos2::Up;
 	bTileCol = false;
+	bMapCol = false;
 
 	PrevColTile = nullptr;
 	PrevColTank = nullptr;
@@ -253,7 +254,10 @@ void Tank::update_move()
 		Tmp.y <= TileManager::instance()->tilemap_size().End.y)
 	{
 		kone()->moving_pos(Tmp);
+		bMapCol = false;
 	}
+
+	bMapCol = true;
 }
 
 
@@ -268,7 +272,7 @@ void Tank::stay_tile(KOne* _Other)
 	}
 
 	Bullet* CurBullet = _Other->get_component<Bullet>();
-	if (nullptr != CurBullet)
+	if (nullptr != CurBullet && eCurState != TANK_STATUS::TS_RESPAWN)
 	{
 		CurBullet->set_bomb();
 		MyEffect->set_tankexplosion(kone()->pos());

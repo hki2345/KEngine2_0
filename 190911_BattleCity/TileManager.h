@@ -53,7 +53,7 @@ public:
 	void update_broken();
 	void update_alltile();
 	void update_tile(Tile* _Tile);
-	void update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir, const KPos2& _BulletPos);
+	void update_rectbrowntile(Tile* _CurTile, const KPos2& _BulletDir, const KPos2& _BulletPos);
 	void render();
 	void release();
 
@@ -78,9 +78,16 @@ private:
 	void read_file(const wchar_t* _Name);
 
 	void create_map();
-	void init_map();
 
 	Tile* posto_tile(const KPos2& _Pos);
-	bool check_smallbrown(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Type, const KPos2& _BulletPos);
+	bool check_rectbrown(
+		const KPos2& _Pos,
+		const BATTLECITY_GAMETILE& _Type, 
+		const KPos2& _BulletPos);
+	bool check_smallbrown(
+		const KPos2& _Pos, 
+		const BATTLECITY_GAMETILE& _Type, 
+		const KPos2& _BulletDir,
+		const KPos2& _BulletPos);
 };
 

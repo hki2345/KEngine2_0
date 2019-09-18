@@ -26,13 +26,6 @@ void TileManager::create(KScene* _Scene)
 		MapBit = KResourceManager<KBitMap>::instance()->load(L"KCore", L"MapBuffer");
 		MapHdc = MapBit->kwindow_size({ XSize * 2.0f * TILEXSIZE, YSize * 2.0f * TILEYSIZE });
 	}
-
-	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	myBrush = CreateSolidBrush(RGB(0,0,0));
-	HBRUSH oldBrush = (HBRUSH)SelectObject(MapHdc, myBrush);
-	Rectangle(MapHdc, STARTXPOS, STARTYPOS, XSize * (TILEXSIZE), XSize * (TILEXSIZE));
-	SelectObject(MapHdc, oldBrush);
-	DeleteObject(myBrush);
 }
 
 
@@ -225,15 +218,7 @@ bool TileManager::init(const wchar_t* _Name)
 	VectorTile.clear();
 	PhoenixTile.clear();
 
-	if (0 == VectorTile.size())
-	{
-		create_map();
-	}
-	else if (0 < VectorTile.size())
-	{
-		init_map();
-	}
-
+	create_map();
 	return 0;
 }
 
@@ -264,26 +249,6 @@ void TileManager::create_map()
 			PhoenixTile.push_back(NewTile);
 		}
 	}
-}
-
-void TileManager::init_map()
-{
-	int PhoenixCnt = 0;
-	int TileCnt = 0;
-
-	for (int i = 0; i < XSize * YSize; i++)
-	{
-		if (BATTLECITY_GAMETILE::BG_NONE == VectorTileInfo[i])
-		{
-			continue;
-		}
-
-		VectorTile[TileCnt]->set_tile(VectorTileInfo[i]);
-		VectorTile[TileCnt]->kone()->active(true);
-		++TileCnt;
-	}
-
-	update_alltile();
 }
 
 
@@ -336,7 +301,12 @@ void TileManager::update_tile(Tile* _Tile)
 }
 
 
-void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir, const KPos2& _BulletPos)
+
+
+void TileManager::update_rectbrowntile(
+	Tile* _CurTile, 
+	const KPos2& _BulletDir,
+	const KPos2& _BulletPos)
 {
 	switch (_CurTile->tile_type())
 	{
@@ -344,11 +314,10 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 	{
 		if (KPos2::Down == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
-			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN01, _BulletPos))
-			// {
-			// 	_CurTile->kone()->active(false);
-			// }
+			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN01, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
 		}
 		else if (KPos2::Up == _BulletDir)
 		{
@@ -380,11 +349,10 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
-			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN02, _BulletPos))
-			// {
-			// 	_CurTile->kone()->active(false);
-			// }
+			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN02, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
 		}
 		break;
 	}
@@ -400,11 +368,10 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
-			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN03, _BulletPos))
-			// {
-			// 	_CurTile->kone()->active(false);
-			// }
+			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN03, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
@@ -420,11 +387,10 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		else if (KPos2::Up == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
-			// if (true == check_smallbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN04, _BulletPos))
-			// {
-			// 	_CurTile->kone()->active(false);
-			// }
+			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN04, _BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
@@ -436,28 +402,109 @@ void TileManager::update_brownsmalltile(Tile* _CurTile, const KPos2& _BulletDir,
 		}
 		break;
 	}
+
+	case BG_SMALLBROWN01:
+	{
+		if (KPos2::Up == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Down == _BulletDir || KPos2::Left == _BulletDir)
+		{
+			if (true == check_smallbrown(
+				_CurTile->kone()->pos(),
+				BATTLECITY_GAMETILE::BG_SMALLBROWN01,
+				_BulletDir,
+				_BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Right == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		break;
+	}
+	case BG_SMALLBROWN02:
+	{
+		if (KPos2::Up == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Down == _BulletDir || KPos2::Right == _BulletDir)
+		{
+			if (true == check_smallbrown(
+				_CurTile->kone()->pos(), 
+				BATTLECITY_GAMETILE::BG_SMALLBROWN02,
+				_BulletDir, 
+				_BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Left == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		break;
+	}
+	case BG_SMALLBROWN03:
+	{
+		if (KPos2::Down == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Up == _BulletDir || KPos2::Right == _BulletDir)
+		{
+			if (true == check_smallbrown(
+				_CurTile->kone()->pos(),
+				BATTLECITY_GAMETILE::BG_SMALLBROWN03,
+				_BulletDir,
+				_BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Left == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		break;
+	}
+	case BG_SMALLBROWN04:
+	{
+		if (KPos2::Down == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		else if (KPos2::Up == _BulletDir || KPos2::Left == _BulletDir)
+		{
+			if (true == check_smallbrown(
+				_CurTile->kone()->pos(),
+				BATTLECITY_GAMETILE::BG_SMALLBROWN04,
+				_BulletDir, 
+				_BulletPos))
+			{
+				_CurTile->kone()->active(false);
+			}
+		}
+		else if (KPos2::Right == _BulletDir)
+		{
+			_CurTile->kone()->active(false);
+		}
+		break;
+	}
+
 	default:
 		break;
 	}
 	TileManager::instance()->update_tile(_CurTile);
 }
-
-
-Tile* TileManager::posto_tile(const KPos2& _Pos)
-{
-	for (size_t i = 0; i < VectorTile.size(); i++)
-	{
-		if (_Pos == VectorTile[i]->kone()->pos())
-		{
-			return VectorTile[i];
-		}
-	}
-
-	return nullptr;
-}
-
-
-bool TileManager::check_smallbrown(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Type, const KPos2& _BulletPos)
+bool TileManager::check_rectbrown(
+	const KPos2& _Pos, 
+	const BATTLECITY_GAMETILE& _Type,
+	const KPos2& _BulletPos)
 {
 	switch (_Type)
 	{
@@ -476,7 +523,12 @@ bool TileManager::check_smallbrown(const KPos2& _Pos, const BATTLECITY_GAMETILE&
 
 		if (Tmpile != nullptr)
 		{
-			if (_Type == Tmpile->tile_type() || false == Tmpile->kone()->active())
+			if (_Type == Tmpile->tile_type() ||
+				BG_SMALLBROWN01 == Tmpile->tile_type() ||
+				BG_SMALLBROWN02 == Tmpile->tile_type() ||
+				BG_SMALLBROWN03 == Tmpile->tile_type() ||
+				BG_SMALLBROWN04 == Tmpile->tile_type() ||
+				false == Tmpile->kone()->active())
 			{
 				return true;
 			}
@@ -484,7 +536,6 @@ bool TileManager::check_smallbrown(const KPos2& _Pos, const BATTLECITY_GAMETILE&
 		}
 
 		return true;
-		break;
 	}
 	case BG_RECTBROWN02:
 	case BG_RECTBROWN03:
@@ -492,30 +543,83 @@ bool TileManager::check_smallbrown(const KPos2& _Pos, const BATTLECITY_GAMETILE&
 		Tile* Tmpile = nullptr;
 		if (_Pos.y + STARTYPOS > _BulletPos.y)
 		{
-			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Up);
+			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Down);
 		}
 		else
 		{
-			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Down);
+			Tmpile = posto_tile(_Pos + KPos2(TILEXSIZE, TILEXSIZE) * KPos2::Up);
 		}
 
 		if (Tmpile != nullptr)
 		{
-			if (_Type == Tmpile->tile_type() || false == Tmpile->kone()->active())
+			if (_Type == Tmpile->tile_type() ||
+				BG_SMALLBROWN01 == Tmpile->tile_type() ||
+				BG_SMALLBROWN02 == Tmpile->tile_type() ||
+				BG_SMALLBROWN03 == Tmpile->tile_type() ||
+				BG_SMALLBROWN04 == Tmpile->tile_type() ||
+				false == Tmpile->kone()->active())
 			{
 				return true;
 			}
 			return false;
 		}
-
 		return true;
-		break;
 	}
 	default:
 		break;
 	}
 
 	return true;
+}
+
+bool TileManager::check_smallbrown(
+	const KPos2& _Pos, 
+	const BATTLECITY_GAMETILE& _Type,
+	const KPos2& _BulletDir,
+	const KPos2& _BulletPos)
+{
+	if (KPos2::Left == _BulletDir && (
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN01 ||
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN04))
+	{
+		return check_rectbrown(_Pos, BG_RECTBROWN03, _BulletPos);
+	}
+	else if (KPos2::Right == _BulletDir && (
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN02 ||
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN03))
+	{
+		return check_rectbrown(_Pos, BG_RECTBROWN02, _BulletPos);
+	}
+
+	else if (KPos2::Down == _BulletDir && (
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN01 ||
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN02))
+	{
+		return check_rectbrown(_Pos, BG_RECTBROWN01, _BulletPos);
+	}
+	else if (KPos2::Up == _BulletDir && (
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN03 ||
+		_Type == BATTLECITY_GAMETILE::BG_SMALLBROWN04))
+	{
+		return check_rectbrown(_Pos, BG_RECTBROWN04, _BulletPos);
+	}
+
+	return false;
+}
+
+
+
+Tile* TileManager::posto_tile(const KPos2& _Pos)
+{
+	for (size_t i = 0; i < VectorTile.size(); i++)
+	{
+		if (_Pos == VectorTile[i]->kone()->pos())
+		{
+			return VectorTile[i];
+		}
+	}
+
+	return nullptr;
 }
 
 

@@ -22,9 +22,12 @@ private:
 	KPos2 ScreenPos;
 
 	BATTLECITY_GAMETILE eTileType;
+	BATTLECITY_GAMETILE ePrevTileType;
 
 public:
-	void create();
+	void create() override;
+	void update() override;
+
 	void set_tile(const BATTLECITY_GAMETILE& _Info);
 	void set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info);
 

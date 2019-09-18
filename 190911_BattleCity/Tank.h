@@ -39,6 +39,7 @@ protected:
 
 	bool bTileCol;
 	bool bTankCol;
+	bool bMapCol;
 
 	Tile* PrevColTile;
 	Tank* PrevColTank;

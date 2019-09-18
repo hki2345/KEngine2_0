@@ -27,13 +27,22 @@ void Tile::create()
 	MyRenderer = kone()->add_component<KSprite_Render>();
 	MyRenderer->init();
 	MyRenderer->active(false);
+}
 
+
+void Tile::update()
+{
+	KComponent::update();
+	if (eTileType != ePrevTileType)
+	{
+		eTileType = ePrevTileType;
+	}
 }
 
 void Tile::set_tile(const BATTLECITY_GAMETILE& _Info)
 {
 	MyRenderer->set_idx((int)_Info);
-	eTileType = _Info;
+	ePrevTileType = _Info;
 }
 
 void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
@@ -67,7 +76,7 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 
 	MyRenderer->set_split(3, 8);
 	MyRenderer->set_idx((int)_Info);
-	eTileType = _Info;
+	ePrevTileType = _Info;
 }
 
 void Tile::update_trans()
@@ -114,19 +123,14 @@ bool Tile::collision_bullet(const KPos2& _BulletDir, const KPos2& _BulletPos)
 	case BG_RECTBROWN02:
 	case BG_RECTBROWN03:
 	case BG_RECTBROWN04:
-	{
-		TileManager::instance()->update_brownsmalltile(this, _BulletDir, _BulletPos);
-		return true;
-	}
-
 	case BG_SMALLBROWN01:
 	case BG_SMALLBROWN02:
 	case BG_SMALLBROWN03:
 	case BG_SMALLBROWN04:
-		kone()->active(false);
-		TileManager::instance()->update_tile(this);
+	{
+		TileManager::instance()->update_rectbrowntile(this, _BulletDir, _BulletPos);
 		return true;
-
+	}
 	case BG_PHOENIX01:
 	case BG_PHOENIX02:
 	case BG_PHOENIX03:

@@ -59,6 +59,6 @@ private:
 
 	bool check_respawn(const KPos2& _Pos);
 
-	void set_enemy();
+	void set_enemy(EnemyTank* Tank = nullptr, const bool& _Set = true);
 };
 

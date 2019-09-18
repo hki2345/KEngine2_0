@@ -160,6 +160,14 @@ bool InGameScene::init()
 	active_vector(GameUI, false);
 	active_vector(GameTextUI, false);
 	active_vector(OverTextUI, false);
+
+
+
+	std::wstring Tmp = L"res\\Stage";
+	Tmp += std::to_wstring(PlayerManager::instance()->iStage);
+	Tmp += L".btd";
+
+	TileManager::instance()->init(Tmp.c_str());
 	return true;
 }
 
@@ -185,7 +193,6 @@ void InGameScene::update()
 	default:
 		break;
 	}
-	
 }
 
 void InGameScene::render()
@@ -204,13 +211,6 @@ void InGameScene::release()
 
 
 
-
-void InGameScene::stage_start()
-{
-	PlayerManager::instance()->init();
-	EnemyManager::instance()->init(5 + PlayerManager::instance()->iStage * 3);
-}
-
 void InGameScene::update_start()
 {
 	fStartUICurTime += KTimeManager::instance()->deltatime();
@@ -222,14 +222,6 @@ void InGameScene::update_start()
 		CoverUI[2]->active(false);
 
 		KWindowManager::instance()->backcolor(RGB(128, 128, 128));
-
-		std::wstring Tmp = L"res\\Stage";
-		Tmp += std::to_wstring(Stage);
-		Tmp += L".btd";
-
-		TileManager::instance()->init(Tmp.c_str());
-		TileManager::instance()->update_alltile();
-
 	}
 	else
 	{
@@ -242,6 +234,8 @@ void InGameScene::update_start()
 		Tmp += std::to_wstring(Stage);
 		CoverUI[2]->get_component<KText_Render>()->set_text(Tmp.c_str());
 		CoverUI[2]->pos( WSize * .5f );
+
+		TileManager::instance()->update_alltile();
 	}
 }
 
@@ -258,10 +252,15 @@ void InGameScene::update_wait()
 		active_vector(GameUI, true);
 		active_vector(GameTextUI, true);
 
-
-
 		stage_start();
 	}
+}
+
+
+void InGameScene::stage_start()
+{
+	PlayerManager::instance()->init();
+	EnemyManager::instance()->init(5 + PlayerManager::instance()->iStage * 3);
 }
 
 void InGameScene::update_play()

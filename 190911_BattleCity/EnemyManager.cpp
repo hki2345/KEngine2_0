@@ -72,8 +72,7 @@ void EnemyManager::update_resetpos()
 	{
 		if (10.0f >= VectorEnemy[i]->kone()->pos().x)
 		{
-			VectorEnemy[i]->active(false);
-			EnemyRespawnCnt -= 1;
+			set_enemy(VectorEnemy[i], false);
 		}
 	}
 }
@@ -103,6 +102,10 @@ bool EnemyManager::check_respawn(const KPos2& _Pos)
 		{
 			EnemyActiveCurCnt += 1;
 		}
+		else
+		{
+			continue;
+		}
 
 		KPos2 Tmp = VectorEnemy[i]->kone()->pos() - _Pos;
 		if (Tmp.distance() < TILEXSIZE)
@@ -120,7 +123,7 @@ bool EnemyManager::check_respawn(const KPos2& _Pos)
 }
 
 
-void EnemyManager::set_enemy()
+void EnemyManager::set_enemy(EnemyTank* _Tank /*= nullptr*/, const bool& _Set /*= true*/)
 {
 	int XXX = 0;
 
@@ -137,8 +140,15 @@ void EnemyManager::set_enemy()
 	} 
 	while (false == check_respawn(VectorRespawnPos[XXX]));
 
-	VectorEnemy[EnemyRespawnCnt]->set_tank(VectorRespawnPos[XXX]);
-	EnemyRespawnCnt += 1;
+	if (true == _Set)
+	{
+		VectorEnemy[EnemyRespawnCnt]->set_tank(VectorRespawnPos[XXX]);
+		EnemyRespawnCnt += 1;
+	}
+	else if (false == _Set && nullptr != _Tank)
+	{
+		_Tank->kone()->pos(VectorRespawnPos[XXX]);
+	}
 }
 
 void EnemyManager::shutdown_enemy()
