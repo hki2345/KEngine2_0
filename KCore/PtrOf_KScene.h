@@ -4,7 +4,7 @@
 class KScene;
 class PtrOf_KScene
 {
-public:
+protected:
 	PtrOf_KScene() : pKScene(nullptr) {};
 	PtrOf_KScene(const PtrOf_KScene& _Core) = delete;
 	PtrOf_KScene(const PtrOf_KScene&& _Core) = delete;

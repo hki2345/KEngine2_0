@@ -12,8 +12,6 @@ public:
 	KSprite_Animator();
 	~KSprite_Animator();
 
-
-
 private:
 	class Clip
 	{
@@ -36,6 +34,13 @@ private:
 	std::map<std::wstring, Clip>::iterator CurClip;
 
 public:
+	void create() override;
+	bool init() override;
+	void update() override;
+	void render() override;
+
+
+public:
 	void insert_animation(
 		const wchar_t* _AniName,
 		const int& _Start,
@@ -48,11 +53,6 @@ public:
 	void change_bit(const wchar_t* _Name = L"NONE");
 	void set_split(const int& _X, const int& _Y);
 	void reset_animate();
-
-	void create() override;
-	bool init() override;
-	void update() override;
-	void render() override;
 	void render(HDC _Hdc);
 
 	bool isover_animate();

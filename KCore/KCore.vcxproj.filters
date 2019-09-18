@@ -102,9 +102,6 @@
     <ClInclude Include="PtrOf_KWindow.h">
       <Filter>01_Ptr</Filter>
     </ClInclude>
-    <ClInclude Include="PtrOf_Transform.h">
-      <Filter>01_Ptr</Filter>
-    </ClInclude>
     <ClInclude Include="KWindowManager.h">
       <Filter>01_Manager</Filter>
     </ClInclude>

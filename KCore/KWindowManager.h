@@ -44,17 +44,13 @@ private:
 		_In_ int       _nCmdShow);
 
 	void init();
-
-public:
 	void update();
 	void release();
-	void backcolor(const COLORREF& _Color);
-	
-
-
-private:
 	int create_window(const wchar_t* _Name);
 	int create_window(HWND _Name, const KSize2& _Size = KSize2::Zero);
+	
+public:
+	void backcolor(const COLORREF& _Color);
 
 public:
 	static inline HINSTANCE& hinstance()

@@ -1,5 +1,6 @@
 #include "OutroScene.h"
 #include <KText_Render.h>
+#include <KSprite_Render.h>
 #include <KOne.h>
 
 #include <KWindowManager.h>
@@ -55,8 +56,15 @@ void OutroScene::create()
 
 	Text1 = VectorUI[7]->add_component< KText_Render>();
 	Text1->set_font(L"гу╟Х ", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_RIGHT);
+
 	ActionText.push_back(VectorUI[8]->add_component< KText_Render>());
 	ActionText[5]->set_font(L"123455", FSize, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
+
+
+	KSprite_Render* Renderer = VectorUI[9]->add_component< KSprite_Render>();
+	Renderer->set_bit(L"res\\WhiteTank.bmp");
+	Renderer->set_split(8, 9);
+	Renderer->set_idx(0);
 }
 bool OutroScene::init()
 {
@@ -74,11 +82,13 @@ bool OutroScene::init()
 	VectorUI[4]->pos({ 280.0f, 200.0f });
 
 	VectorUI[5]->pos({ 280.0f, 250.0f });
-	VectorUI[6]->pos({ 300.0f, 250.0f });
+	VectorUI[6]->pos({ 350.0f, 250.0f });
 
 	VectorUI[7]->pos({ 280.0f, 450.0f });
 	VectorUI[8]->pos({ 300.0f, 450.0f });
 
+	VectorUI[9]->size({ 40.0f, 40.0f });
+	VectorUI[9]->pos({ 300.0f, 240.0f });
 
 	fOutCurTime = .0f;
 	fOutTime = 20.0f;

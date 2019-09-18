@@ -197,7 +197,6 @@
     <ClInclude Include="KVector.h" />
     <ClInclude Include="KWindow.h" />
     <ClInclude Include="KWindowManager.h" />
-    <ClInclude Include="PtrOf_Transform.h" />
     <ClInclude Include="PtrOf_KOne.h" />
     <ClInclude Include="PtrOf_KScene.h" />
     <ClInclude Include="PtrOf_KWindow.h" />

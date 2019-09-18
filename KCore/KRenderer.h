@@ -10,7 +10,7 @@
 class KTransform;
 class KRenderer : public KComponent
 {
-public:
+protected:
 	KRenderer();
 	KRenderer(const KRenderer& _Core) = delete;
 	KRenderer(const KRenderer&& _Core) = delete;

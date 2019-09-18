@@ -36,19 +36,6 @@ private:
 
 
 public:
-	void operator<<(const wchar_t* _Log)
-	{
-		VectorLog.push_back(_Log);
-	}
-	void operator<<(const int& _Log)
-	{
-		VectorLog.push_back(std::to_wstring(_Log));
-	}
-	void operator<<(const float& _Log)
-	{
-		VectorLog.push_back(std::to_wstring(_Log));
-	}
-
 	void insert_log(const wchar_t* const _Str, ...);
 
 

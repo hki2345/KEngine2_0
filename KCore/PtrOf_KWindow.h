@@ -7,7 +7,7 @@
 class KWindow;
 class PtrOf_KWindow
 {
-public:
+protected:
 	PtrOf_KWindow() {};
 	PtrOf_KWindow(const PtrOf_KWindow& _Other) = delete;
 	PtrOf_KWindow(const PtrOf_KWindow&& _Other) = delete;

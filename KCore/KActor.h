@@ -8,7 +8,7 @@ class KActor
 public:
 	friend KScene;
 
-public:
+protected:
 	KActor();
 	KActor(const KActor& _Core) = delete;
 	KActor(const KActor&& _Core) = delete;

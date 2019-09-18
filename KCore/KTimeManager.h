@@ -73,9 +73,7 @@ private:
 private:
 	void init();
 	void update();
-	void release();
-
-	
+	void release();	
 	
 	KTimeManager::KTimer* find_ActingTimer(const wchar_t* _Name);
 	KTimeManager::KTimer* find_PauseTimer(const wchar_t* _Name);
@@ -102,6 +100,7 @@ public:
 		return MainTimer->AccumulateTime;
 	}
 	
+	// 타이머의...
 	float& fps(const wchar_t* _Name);
 	float& deltatime(const wchar_t* _Name);
 	

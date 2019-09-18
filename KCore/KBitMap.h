@@ -8,17 +8,15 @@
 class KBitMap  final : public KResource
 {
 public:
-	friend class KBitMap_Render;
-	friend class KSprite_Render;
-	friend class KBitMap_Animator;
-
-public:
 	KBitMap();
 	~KBitMap() override;
 
-private:
+public:
 	HDC MyDC;
-	HBITMAP MyBitMap, OldBitmap;
+	HBITMAP MyBitMap;
+
+private:
+	HBITMAP OldBitmap;
 	BITMAP	BitMapData;
 
 

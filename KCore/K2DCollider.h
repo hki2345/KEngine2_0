@@ -48,15 +48,28 @@ private:
 	std::list<std::function<void(KOne*)>> ListStayFunc;
 	std::list<std::function<void(KOne*)>> ListExitFunc;
 
-public:
+protected:
 	void create() override;
 	bool init() override { return true; };
 	void update() override;
 	void release() override;
 
+private:
 	void checking_deltabox();
 	void update_collision(K2DCollider* _Other);
 
+	void update_enterorstay(K2DCollider* _Other);
+	void update_exit(K2DCollider* _Other);
+
+	void update_enterfunc(KOne* _Other);
+	void update_stayfunc(KOne* _Other);
+	void update_exitfunc(KOne* _Other);
+
+	void udpate_list(std::list<std::function<void(KOne*)>>& _List, KOne* _Other);
+
+	std::list<K2DCollider*>::iterator find_listcol(K2DCollider* _Other);
+
+public:
 
 	// 아오 써글...
 	// 일당 ㅍ어셔널 사용법
@@ -82,18 +95,6 @@ public:
 	{
 		ListExitFunc.push_back(std::bind(_Func, _This, std::placeholders::_1));
 	}
-
-protected:
-	void update_enterorstay(K2DCollider* _Other);
-	void update_exit(K2DCollider* _Other);
-
-	void update_enterfunc(KOne* _Other);
-	void update_stayfunc(KOne* _Other);
-	void update_exitfunc(KOne* _Other);
-
-	void udpate_list(std::list<std::function<void(KOne*)>>& _List, KOne* _Other);
-
-	std::list<K2DCollider*>::iterator find_listcol(K2DCollider* _Other);
 
 public:
 	inline KRect& rect_collision()

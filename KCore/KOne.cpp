@@ -99,7 +99,7 @@ void KOne::moving_pos(const KPos2& _Value)
 	MyTrans->moving_pos(_Value);
 }
 
-void KOne::moving_delta(const KSize2& _Value)
+void KOne::moving_delta(const KPos2& _Value)
 {
 	MyTrans->moving_delta(_Value);
 }

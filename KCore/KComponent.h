@@ -18,7 +18,7 @@ public:
 	friend class KOne;
 
 
-public:
+protected:
 	KComponent();
 	KComponent(const KComponent& _Core) = delete;
 	KComponent(const KComponent&& _Core) = delete;

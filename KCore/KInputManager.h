@@ -37,6 +37,7 @@ public:
 	bool is_up(const int& _Value);
 	bool is_unpress(const int& _Value);
 
+private:
 	void release();
 };
 

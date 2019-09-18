@@ -33,9 +33,9 @@ private:
 	void update();
 	void render();
 	void release();
+	int create();
 
 public:
-	int create();
 	BOOL show_window();
 
 private:
@@ -47,7 +47,6 @@ public:
 	{
 		return MyWinSize;
 	}
-
 	inline HDC& bhdc()
 	{
 		return hBackDC;

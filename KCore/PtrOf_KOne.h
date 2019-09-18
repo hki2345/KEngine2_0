@@ -4,14 +4,14 @@
 class KOne;
 class PtrOf_KOne
 {
-public:
+protected:
 	PtrOf_KOne() : pKOne(nullptr) {};
 	PtrOf_KOne(const PtrOf_KOne& _Core) = delete;
 	PtrOf_KOne(const PtrOf_KOne&& _Core) = delete;
 	void operator=(const PtrOf_KOne& _Core) = delete;
 	~PtrOf_KOne() {};
 
-private:
+public:
 	KOne* pKOne;
 
 public:

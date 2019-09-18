@@ -31,10 +31,7 @@ private:
 
 private:
 	std::multimap<std::wstring, KComponent*> MapComponent;
-
 	KTransform* MyTrans;
-
-public:
 
 protected:
 	virtual void create();

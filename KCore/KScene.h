@@ -30,6 +30,7 @@ protected:
 
 public:
 	KPos2 SceneCamPos;
+	KPos2 outof_screen(KOne* _Target);
 
 
 protected:
@@ -37,6 +38,8 @@ protected:
 	K2DColliderManager* curK2DColliderMgr;
 
 	std::multimap<std::wstring, KOne*> MapKOne;
+
+
 	
 public:
 	bool insert_krender(KRenderer* _Render, const int& _Key = 0);
@@ -45,9 +48,8 @@ public:
 
 	void link_k2dCollider(const int& _Key1, const int& _Key2);
 	void passlink_k2dCollider(const int& _Key1, const int& _Key2);
-	void clearpasslink();
 
-	KPos2 outof_screen(KOne* _Target);
+	void clearpasslink();
 
 protected:
 	virtual void create();

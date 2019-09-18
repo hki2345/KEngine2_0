@@ -23,7 +23,12 @@ private:
 
 public:
 	void create() override;
+	bool init() override;
+	void update() override;
+	void render() override;
+	void release() override;
 
+public:
 	void insert_animation(
 		const wchar_t* _AniName, 
 		const std::vector<std::wstring>& _Source,
@@ -33,9 +38,5 @@ public:
 		const bool& _BitRender = false);
 	void change_animation(const wchar_t* _AniName);
 
-	bool init() override;
-	void update() override;
-	void render() override;
-	void release() override;
 };
 
