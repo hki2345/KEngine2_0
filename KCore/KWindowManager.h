@@ -44,6 +44,8 @@ private:
 		_In_ int       _nCmdShow);
 
 	void init();
+
+public:
 	void update();
 	void release();
 	int create_window(const wchar_t* _Name);

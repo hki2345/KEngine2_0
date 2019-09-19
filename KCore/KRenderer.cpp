@@ -11,7 +11,8 @@
 KRenderer::KRenderer() :
 	MyPivot(KPos2::Zero),
 	bHold (false),
-	bRender (false)
+	bRender (false),
+	MyTrans(nullptr)
 {
 
 }

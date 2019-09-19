@@ -362,7 +362,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
 
-	case WM_TIMER:	
+	case WM_TIMER:
 	{
 		reset_render();
 
@@ -370,7 +370,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		TextOutW(hMainDC, CurOneMap->pos().x - 100, CurOneMap->pos().y + 10, Text, lstrlenW(Text));
 
 		KWindowManager::instance()->update();
-		
+
 		for (int i = 0; i < (int)VectorButtonBitMap.size(); i++)
 		{
 			VectorButtonBitMap[i]->render(hMainDC);
