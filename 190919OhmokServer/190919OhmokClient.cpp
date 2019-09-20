@@ -198,6 +198,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}	
 	case WM_TIMER:
 	{
+		OhmokManager::instance()->update();
 		KWindowManager::instance()->update();
 		break;
 	}

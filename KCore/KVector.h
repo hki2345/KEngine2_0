@@ -1,6 +1,6 @@
 #pragma once
 #include <math.h>
-
+#include <Windows.h>
 
 
 class KVec2
@@ -62,6 +62,12 @@ public:
 		return *this;
 	}
 
+	KVec2& operator = (const POINT& _Value)
+	{
+		x = (float)_Value.x;
+		y = (float)_Value.y;
+		return *this;
+	}
 
 	KVec2 operator + (const KVec2& _Value) const
 	{

@@ -99,9 +99,6 @@
     <ClInclude Include="PtrOf_KScene.h">
       <Filter>01_Ptr</Filter>
     </ClInclude>
-    <ClInclude Include="PtrOf_KWindow.h">
-      <Filter>01_Ptr</Filter>
-    </ClInclude>
     <ClInclude Include="KWindowManager.h">
       <Filter>01_Manager</Filter>
     </ClInclude>
@@ -170,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="KMath.h">
       <Filter>00_KMath</Filter>
+    </ClInclude>
+    <ClInclude Include="PtrOf_KWindow.h">
+      <Filter>01_Ptr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

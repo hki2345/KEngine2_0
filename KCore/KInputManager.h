@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include "KMacro.h"
+#include "KVector.h"
 
 
 
@@ -36,6 +37,8 @@ public:
 	bool is_press(const int& _Value);
 	bool is_up(const int& _Value);
 	bool is_unpress(const int& _Value);
+
+	KPos2 pos_mouse();
 
 private:
 	void release();

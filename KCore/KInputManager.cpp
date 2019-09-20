@@ -1,4 +1,6 @@
 #include "KInputManager.h"
+#include "KWindowManager.h"
+
 #include <Windows.h>
 
 #include <iostream>
@@ -51,6 +53,19 @@ bool KInputManager::is_unpress(const int& _Value)
 	}
 
 	return false;
+}
+
+KPos2 KInputManager::pos_mouse()
+{
+	POINT pt;
+	KPos2 Tmp;
+	GetCursorPos(&pt);
+
+	ScreenToClient(KWindowManager::instance()->main_hwnd(), &pt);
+
+
+	Tmp = pt;
+	return Tmp;
 }
 
 
