@@ -2,8 +2,8 @@
 #include <KOne.h>
 #include <KScene.h>
 
-#include <KSprite_Animator.h>
-#include <KRect_Collision.h>
+#include <KSpriteAnimator.h>
+#include <KRectCollision.h>
 #include <KTimeManager.h>
 #include <KDebugManager.h>
 
@@ -27,10 +27,12 @@ Tank::~Tank()
 void Tank::create()
 {
 	sName = L"Tank";
+	kone()->size({ 39.0f, 39.0f });
 
-	MyAnimator = kone()->add_component<KSprite_Animator>();
+
+	MyAnimator = kone()->add_component<KSpriteAnimator>();
 	MyAnimator->init();
-	MyAnimator->set_bit(L"res\\WhiteTank.bmp", 10);
+	MyAnimator->set_bit(L"BattleCity\\WhiteTank.bmp", 10);
 	MyAnimator->set_split(8, 9);
 	MyAnimator->insert_animation(L"UpIdle", 0, 0);
 	MyAnimator->insert_animation(L"DownIdle", 4, 4);
@@ -46,7 +48,7 @@ void Tank::create()
 
 	fSpeed = 100.0f;
 
-	MyCollider = kone()->add_component<KRect_Collision>();
+	MyCollider = kone()->add_component<KRectCollision>();
 	// TankCollider->pivot(KPos2(STARTXPOS * -1.0f, STARTYPOS * -1.0f));
 
 
@@ -61,8 +63,6 @@ void Tank::create()
 
 bool Tank::init()
 {
-	kone()->size({ 39.0f, 39.0f });
-
 	vDir = KPos2::Up;
 	vPrevDir = KPos2::Up;
 	bTileCol = false;
@@ -78,7 +78,7 @@ bool Tank::init()
 
 void Tank::set_tank(const KPos2& _StartPos)
 {
-	kone()->active(true);
+	kone()->active_frame(true);
 	kone()->pos(_StartPos);
 
 	vDir = KPos2::Up;
@@ -108,12 +108,12 @@ void Tank::update()
 
 void Tank::update_respawn()
 {
-	MyCollider->active(true);
+	MyCollider->active_frame(true);
 	MyAnimator->change_animation(L"Respawn");
 	fRespawnCurTime += KTimeManager::instance()->deltatime();
 	if (fRespawnCurTime >= fRespawnTime)
 	{
-		// MyCollider->active(true);
+		// MyCollider->active_frame(true);
 		fRespawnCurTime = .0f;
 		eCurState = TANK_STATUS::TS_PLAY;
 	}
@@ -162,7 +162,7 @@ void Tank::update_play()
 }
 void Tank::update_die()
 {
-	kone()->active(false);
+	kone()->active_frame(false);
 	eCurState = TANK_STATUS::TS_WAIT;
 }
 
@@ -184,13 +184,13 @@ void Tank::shoot_bullet()
 
 void Tank::update_coltile()
 {
-	if (nullptr != PrevColTile && false == PrevColTile->kone()->active())
+	if (nullptr != PrevColTile && false == PrevColTile->kone()->active_frame())
 	{
 		PrevColTile = nullptr;
 		bTileCol = false;
 	}
 
-	if (nullptr != PrevColTank && false == PrevColTank->kone()->active())
+	if (nullptr != PrevColTank && false == PrevColTank->kone()->active_frame())
 	{
 		PrevColTank = nullptr;
 		bTankCol = false;

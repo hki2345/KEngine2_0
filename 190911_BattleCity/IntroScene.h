@@ -26,7 +26,7 @@ private:
 
 	KSize2 vSize;
 	INTRO_STATE eIntroState;
-	int UISize;
+	int VectorUISize;
 	float MaxYPos;
 
 	float fOutCurTime;

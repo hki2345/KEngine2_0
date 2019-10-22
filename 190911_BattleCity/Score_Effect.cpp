@@ -1,5 +1,5 @@
 #include "Score_Effect.h"
-#include <KText_Render.h>
+#include <KTextRender.h>
 
 #include <KTimeManager.h>
 #include <BattleTile.h>
@@ -17,8 +17,8 @@ Score_Effect::~Score_Effect()
 
 void Score_Effect::create()
 {
-	kone()->active(false);
-	MyRender = kone()->add_component<KText_Render>();
+	kone()->active_frame(false);
+	MyRender = kone()->add_component<KTextRender>();
 	MyRender->set_font(L"1", 15
 		
 		
@@ -30,7 +30,7 @@ void Score_Effect::create()
 }
 void Score_Effect::set_score(const KPos2& _Pos, const int& _Score)
 {
-	kone()->active(true);
+	kone()->active_frame(true);
 	kone()->pos(_Pos + KPos2(TILEXSIZE, TILEYSIZE));
 
 	std::wstring Tmp;
@@ -48,7 +48,7 @@ void Score_Effect::update()
 	fFloatingCurTime += KTimeManager::instance()->deltatime();
 	if (fFloatingCurTime >= fFloatingTime)
 	{
-		kone()->active(false);
+		kone()->active_frame(false);
 	}
 
 	kone()->moving_delta(KPos2::Down * 50.0f);

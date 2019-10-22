@@ -5,8 +5,8 @@
 #include <KSceneManager.h>
 #include <KTimeManager.h>
 
-#include <KBitMap_Render.h>
-#include <KText_Render.h>
+#include <KBitMapRender.h>
+#include <KTextRender.h>
 #include <KOne.h>
 
 #include "PlayerManager.h"
@@ -24,42 +24,48 @@ IntroScene::~IntroScene()
 void IntroScene::create()
 {
 	KScene::create();
-	UISize = 9;
-	VectorUI.reserve(UISize);
+	VectorUISize = 9;
+	VectorUI.reserve(VectorUISize);
 	
-	for (int i = 0; i < UISize; i++)
+	for (int i = 0; i < VectorUISize; i++)
 	{
 		VectorUI.push_back(KScene::create_kone(L"IntroUI"));
 	}
 
-	KBitMap_Render* BattleSprite = VectorUI[0]->add_component<KBitMap_Render>();
-	BattleSprite->set_bit(L"res\\BattleLogo.bmp", 10);
+	KSize2 UISize = KSize2(600.0f, 300.0f);
+	KBitMapRender* BattleSprite = VectorUI[0]->add_component<KBitMapRender>();
+	BattleSprite->set_bit(L"BattleCity\\BattleLogo.bmp", 10);
+	BattleSprite->render_size(UISize);
 
-	KText_Render* Text1 = VectorUI[1]->add_component<KText_Render>();
+	KTextRender* Text1 = VectorUI[1]->add_component<KTextRender>();
 	Text1->set_font(L"점수판...", 20, 10, L"DungGeunMo", RGB(255, 255, 255));
-	KText_Render* Text2 = VectorUI[2]->add_component<KText_Render>();
+	KTextRender* Text2 = VectorUI[2]->add_component<KTextRender>();
 	Text2->set_font(L"1 플레이어", 20, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
-	KText_Render* Text3 = VectorUI[3]->add_component<KText_Render>();
+	KTextRender* Text3 = VectorUI[3]->add_component<KTextRender>();
 	Text3->set_font(L"2 플레이어", 20, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
-	KText_Render* Text4 = VectorUI[4]->add_component<KText_Render>();
+	KTextRender* Text4 = VectorUI[4]->add_component<KTextRender>();
 	Text4->set_font(L"제작하기", 20, 10, L"DungGeunMo", RGB(255, 255, 255), TA_LEFT);
-	KText_Render* Text5 = VectorUI[5]->add_component<KText_Render>();
+	KTextRender* Text5 = VectorUI[5]->add_component<KTextRender>();
 	Text5->set_font(L"NAMCOT", 15, 10, L"휴먼둥근헤드라인", RGB(255, 0, 0));
-	KText_Render* Text6 = VectorUI[6]->add_component<KText_Render>();
+	KTextRender* Text6 = VectorUI[6]->add_component<KTextRender>();
 	Text6->set_font(L"ⓒ 1980 1985 NAMCO LTD.", 15, 10, L"DungGeunMo", RGB(255, 255, 255));
-	KText_Render* Text7 = VectorUI[7]->add_component<KText_Render>();
+	KTextRender* Text7 = VectorUI[7]->add_component<KTextRender>();
 	Text7->set_font(L"ALL RIGHTS RESERVED", 15, 10, L"DungGeunMo", RGB(255, 255, 255));
 
+	UISize = KSize2(20.0f, 20.0f);
+	KBitMapRender* BattleSelect = VectorUI[8]->add_component<KBitMapRender>();
+	BattleSelect->set_bit(L"BattleCity\\PlayerSelect.bmp", 10);
+	BattleSelect->render_size(UISize);
 
-	KBitMap_Render* BattleSelect = VectorUI[8]->add_component<KBitMap_Render>();
-	BattleSelect->set_bit(L"res\\PlayerSelect.bmp", 10);
-
-
+	
+	
+	UISize = KSize2(800.0f, 300.0f);
 	for (int i = 0; i < 2; i++)
 	{
 		GrayBackBoard[i] = KScene::create_kone(L"BackBoard");
-		GrayBackBoard[i]->add_component<KBitMap_Render>()->set_bit(L"res\\GrayBackBoard.bmp", 10);
-		GrayBackBoard[i]->size({ 800.0f, 300.0f });
+		KBitMapRender* Renderer = GrayBackBoard[i]->add_component<KBitMapRender>();
+		Renderer->render_size(UISize);
+		Renderer->set_bit(L"BattleCity\\GrayBackBoard.bmp", 10);
 	}
 
 
@@ -77,16 +83,15 @@ bool IntroScene::init()
 
 	for (size_t i = 0; i < VectorUI.size(); i++)
 	{
-		VectorUI[i]->active(true);
+		VectorUI[i]->active_frame(true);
 	}
 
 	for (int i = 0; i < 2; i++)
 	{
-		GrayBackBoard[i]->active(false);
+		GrayBackBoard[i]->active_frame(false);
 	}
 
 
-	VectorUI[0]->size({ 600.0f, 300.0f });
 	VectorUI[0]->pos({ 100.0f, 60.0f });
 
 	VectorUI[1]->pos({ vSize.x / 2, MaxYPos });
@@ -94,15 +99,14 @@ bool IntroScene::init()
 	VectorUI[3]->pos({ 350.0f, 400.0f });
 	VectorUI[4]->pos({ 350.0f, 425.0f });
 	
-	VectorUI[3]->active(false);
-	VectorUI[4]->active(false);
+	VectorUI[3]->active_frame(false);
+	VectorUI[4]->active_frame(false);
 	
 	VectorUI[5]->pos({ vSize.x / 2, 475.0f });
 	VectorUI[6]->pos({ vSize.x / 2, 500.0f });
 	VectorUI[7]->pos({ vSize.x / 2, 525.0f });
 
-	VectorUI[8]->size({ 20.0f, 20.0f });
-	VectorUI[8]->active(false);
+	VectorUI[8]->active_frame(false);
 
 
 	GrayBackBoard[0]->pos({ .0f, 300.0f * -1.0f });
@@ -114,7 +118,7 @@ bool IntroScene::init()
 	Tmp += L" 최고 점수 - ";
 	Tmp += std::to_wstring(PlayerManager::instance()->iHighScore);
 
-	KText_Render* Text1 = VectorUI[1]->get_component<KText_Render>();
+	KTextRender* Text1 = VectorUI[1]->get_component<KTextRender>();
 	Text1->set_text(Tmp.c_str());
 
 
@@ -160,7 +164,7 @@ void IntroScene::update_wait()
 
 	if (VectorUI[1]->pos().y <= MaxYPos || true == KInputManager::instance()->is_down(VK_SPACE))
 	{
-		VectorUI[8]->active(true);
+		VectorUI[8]->active_frame(true);
 		VectorUI[8]->pos({ 300.0f, 375.0f });
 		eIntroState = INTRO_STATE::IS_PLAY;
 	}
@@ -183,11 +187,11 @@ void IntroScene::update_play()
 
 		for (size_t i = 0; i < VectorUI.size(); i++)
 		{
-			VectorUI[i]->active(false);
+			VectorUI[i]->active_frame(false);
 		}
 		for (int i = 0; i < 2; i++)
 		{
-			GrayBackBoard[i]->active(true);
+			GrayBackBoard[i]->active_frame(true);
 		}
 
 	}

@@ -4,7 +4,7 @@
 
 
 
-class KSprite_Animator;
+class KSpriteAnimator;
 class Explosion_Effect : public KComponent
 {
 public:
@@ -12,7 +12,7 @@ public:
 	~Explosion_Effect();
 
 private:
-	KSprite_Animator* MyAnimator;
+	KSpriteAnimator* MyAnimator;
 
 public:
 	void create() override;

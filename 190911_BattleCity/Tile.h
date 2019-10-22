@@ -5,8 +5,8 @@
 #include <Windows.h>
 
 
-class KSprite_Render;
-class KRect_Collision;
+class KSpriteRender;
+class KRectCollision;
 class KScene;
 class KOne;
 class Tile : public KComponent
@@ -17,8 +17,8 @@ public:
 
 
 private:
-	KSprite_Render* MyRenderer;
-	KRect_Collision* TankCollider;
+	KSpriteRender* MyRenderer;
+	KRectCollision* TankCollider;
 	KPos2 ScreenPos;
 
 	BATTLECITY_GAMETILE eTileType;

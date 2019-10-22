@@ -3,7 +3,7 @@
 #include <KVector.h>
 
 
-class KText_Render;
+class KTextRender;
 class Score_Effect : public KComponent
 {
 public:
@@ -15,7 +15,7 @@ public:
 
 private:
 	KOne* MyTarget;
-	KText_Render* MyRender;
+	KTextRender* MyRender;
 
 	float fFloatingCurTime;
 	float fFloatingTime;

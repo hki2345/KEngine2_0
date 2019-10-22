@@ -4,7 +4,7 @@
 
 
 class KOne;
-class KSprite_Animator;
+class KSpriteAnimator;
 class Shield_Effect : public KComponent
 {
 public:
@@ -14,7 +14,7 @@ public:
 
 private:
 	KOne* MyTarget;
-	KSprite_Animator* MyAnimator;
+	KSpriteAnimator* MyAnimator;
 
 public:
 	void create() override;

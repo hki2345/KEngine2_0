@@ -1,8 +1,8 @@
 #include "EnemyTank.h"
 #include <KTimeManager.h>
 
-#include <KSprite_Animator.h>
-#include <KRect_Collision.h>
+#include <KSpriteAnimator.h>
+#include <KRectCollision.h>
 #include <KScene.h>
 #include <KOne.h>
 
@@ -26,7 +26,7 @@ void EnemyTank::create()
 	Tank::create();
 
 	MyCollider->set_rect(2);
-	MyAnimator->set_bit(L"res\\WhiteTank.bmp", 10);
+	MyAnimator->set_bit(L"BattleCity\\WhiteTank.bmp", 10);
 
 	MyCollider->insert_stayfunc<EnemyTank>(this, &EnemyTank::stay_tile);
 	MyCollider->insert_exitfunc<EnemyTank>(this, &EnemyTank::exit_tile);
@@ -105,7 +105,7 @@ void EnemyTank::update_AI()
 
 		// if (3 < XXX)
 		{
-			if (true == VectorMyBullet[0]->kone()->active())
+			if (true == VectorMyBullet[0]->kone()->active_frame())
 			{
 				return;
 			}

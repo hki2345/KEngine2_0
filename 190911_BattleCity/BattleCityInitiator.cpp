@@ -1,5 +1,6 @@
 #include "BattleCityInitiator.h"
 
+#include <KOne.h>
 #include <KWindowManager.h>
 #include <KSceneManager.h>
 #include <KResourceManager.h>
@@ -7,7 +8,7 @@
 #include <KDebugManager.h>
 #include <KBitMap.h>
 
-#include "InGameScene.h"
+#include "BattleScene.h"
 #include "IntroScene.h"
 #include "OutroScene.h"
 
@@ -27,11 +28,11 @@ bool BattleCityInitiator::init()
 	srand(GetTickCount());
 
 	KResourceManager<KBitMap>::instance()->init();
-	KResourceManager<KBitMap>::instance()->load_forder(L"res");
-	AddFontResourceA("res\\DungGeunMo.ttf");
+	KResourceManager<KBitMap>::instance()->load_forder(L"BattleCity");
+	KResourceManager<KBitMap>::instance()->add_font(L"BattleCity\\DungGeunMo.ttf");
 
 	IntroScene*  NewIntroScene = new IntroScene();
-	InGameScene*  NewGameScene = new InGameScene();
+	BattleScene*  NewGameScene = new BattleScene();
 	OutroScene* NewOutroScene = new OutroScene();
 
 	KSceneManager::instance()->create_scene(NewIntroScene, L"Intro");

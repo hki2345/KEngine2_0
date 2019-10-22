@@ -19,6 +19,7 @@ void TileManager::create(KScene* _Scene)
 	XSize = 13 * 2;
 	YSize = 13 * 2;
 	MomScene = _Scene;
+	MapBit = nullptr;
 
 
 	if (nullptr == MapBit)
@@ -293,7 +294,7 @@ void TileManager::update_tile(Tile* _Tile)
 	SelectObject(MapHdc, oldBrush);
 	DeleteObject(myBrush);
 
-	if (false == _Tile->kone()->active())
+	if (false == _Tile->kone()->active_frame())
 	{
 		return;
 	}
@@ -316,12 +317,12 @@ void TileManager::update_rectbrowntile(
 		{
 			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN01, _BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Up == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
@@ -345,13 +346,13 @@ void TileManager::update_rectbrowntile(
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
 			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN02, _BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		break;
@@ -370,12 +371,12 @@ void TileManager::update_rectbrowntile(
 		{
 			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN03, _BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		break;
 	}
@@ -383,13 +384,13 @@ void TileManager::update_rectbrowntile(
 	{
 		if (KPos2::Down == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Up == _BulletDir)
 		{
 			if (true == check_rectbrown(_CurTile->kone()->pos(), BATTLECITY_GAMETILE::BG_RECTBROWN04, _BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Left == _BulletDir)
@@ -407,7 +408,7 @@ void TileManager::update_rectbrowntile(
 	{
 		if (KPos2::Up == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Down == _BulletDir || KPos2::Left == _BulletDir)
 		{
@@ -417,12 +418,12 @@ void TileManager::update_rectbrowntile(
 				_BulletDir,
 				_BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		break;
 	}
@@ -430,7 +431,7 @@ void TileManager::update_rectbrowntile(
 	{
 		if (KPos2::Up == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Down == _BulletDir || KPos2::Right == _BulletDir)
 		{
@@ -440,12 +441,12 @@ void TileManager::update_rectbrowntile(
 				_BulletDir, 
 				_BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		break;
 	}
@@ -453,7 +454,7 @@ void TileManager::update_rectbrowntile(
 	{
 		if (KPos2::Down == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Up == _BulletDir || KPos2::Right == _BulletDir)
 		{
@@ -463,12 +464,12 @@ void TileManager::update_rectbrowntile(
 				_BulletDir,
 				_BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Left == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		break;
 	}
@@ -476,7 +477,7 @@ void TileManager::update_rectbrowntile(
 	{
 		if (KPos2::Down == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		else if (KPos2::Up == _BulletDir || KPos2::Left == _BulletDir)
 		{
@@ -486,12 +487,12 @@ void TileManager::update_rectbrowntile(
 				_BulletDir, 
 				_BulletPos))
 			{
-				_CurTile->kone()->active(false);
+				_CurTile->kone()->active_frame(false);
 			}
 		}
 		else if (KPos2::Right == _BulletDir)
 		{
-			_CurTile->kone()->active(false);
+			_CurTile->kone()->active_frame(false);
 		}
 		break;
 	}
@@ -528,7 +529,7 @@ bool TileManager::check_rectbrown(
 				BG_SMALLBROWN02 == Tmpile->tile_type() ||
 				BG_SMALLBROWN03 == Tmpile->tile_type() ||
 				BG_SMALLBROWN04 == Tmpile->tile_type() ||
-				false == Tmpile->kone()->active())
+				false == Tmpile->kone()->active_frame())
 			{
 				return true;
 			}
@@ -557,7 +558,7 @@ bool TileManager::check_rectbrown(
 				BG_SMALLBROWN02 == Tmpile->tile_type() ||
 				BG_SMALLBROWN03 == Tmpile->tile_type() ||
 				BG_SMALLBROWN04 == Tmpile->tile_type() ||
-				false == Tmpile->kone()->active())
+				false == Tmpile->kone()->active_frame())
 			{
 				return true;
 			}

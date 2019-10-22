@@ -5,8 +5,8 @@
 
 
 class Explosion_Effect;
-class KSprite_Animator;
-class KRect_Collision;
+class KSpriteAnimator;
+class KRectCollision;
 class Bullet;
 class Tile;
 class Tank : public KComponent
@@ -29,8 +29,8 @@ protected:
 
 	std::vector<Bullet*> VectorMyBullet;
 	Explosion_Effect* MyEffect;
-	KSprite_Animator* MyAnimator;
-	KRect_Collision* MyCollider;
+	KSpriteAnimator* MyAnimator;
+	KRectCollision* MyCollider;
 
 	KPos2 vPrevDir;
 	KPos2 vDir;

@@ -2,8 +2,8 @@
 #include "TileManager.h"
 #include "PlayerManager.h"
 
-#include <KSprite_Render.h>
-#include <KRect_Collision.h>
+#include <KSpriteRender.h>
+#include <KRectCollision.h>
 #include <KScene.h>
 #include <KOne.h>
 
@@ -24,9 +24,9 @@ void Tile::create()
 	sName = L"Tile";
 
 	kone()->size({ TILEXSIZE, TILEYSIZE });
-	MyRenderer = kone()->add_component<KSprite_Render>();
+	MyRenderer = kone()->add_component<KSpriteRender>();
 	MyRenderer->init();
-	MyRenderer->active(false);
+	MyRenderer->active_frame(false);
 }
 
 
@@ -52,12 +52,12 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 	if (BATTLECITY_GAMETILE::BG_WOOD_BLOCK == _Info)
 	{
 		MyRenderer->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));
-		MyRenderer->active(true);
-		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 11);
+		MyRenderer->active_frame(true);
+		MyRenderer->set_bit(L"BattleCity\\TileSpriteSub.bmp", 11);
 	}
 	else
 	{
-		MyRenderer->set_bit(L"res\\TileSpriteSub.bmp", 9);
+		MyRenderer->set_bit(L"BattleCity\\TileSpriteSub.bmp", 9);
 	}
 
 	// 있을거만 있어야함 -> 탱크 통과하는 건 총알도 통과함
@@ -69,7 +69,7 @@ void Tile::set_tile(const KPos2& _Pos, const BATTLECITY_GAMETILE& _Info)
 		BATTLECITY_GAMETILE::BG_PHOENIX03 == _Info||
 		BATTLECITY_GAMETILE::BG_PHOENIX04 == _Info)
 	{
-		TankCollider = kone()->add_component<KRect_Collision>();
+		TankCollider = kone()->add_component<KRectCollision>();
 		TankCollider->pivot(KPos2(STARTXPOS * 1.0f, STARTYPOS * 1.0f));
 		TankCollider->set_rect(0);
 	}

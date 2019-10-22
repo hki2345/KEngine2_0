@@ -4,8 +4,8 @@
 
 
 class Explosion_Effect;
-class KSprite_Render;
-class KRect_Collision;
+class KSpriteRender;
+class KRectCollision;
 class K2DCollider;
 class Bullet : public KComponent
 {
@@ -15,8 +15,8 @@ public:
 
 private:
 	Explosion_Effect* MyEffect;
-	KSprite_Render* MySprite;
-	KRect_Collision* MyCollider;
+	KSpriteRender* MyMoveSprite;
+	KRectCollision* MyCollider;
 	KPos2 vDir;
 	float fSpeed;
 

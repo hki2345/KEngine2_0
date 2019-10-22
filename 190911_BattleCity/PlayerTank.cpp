@@ -5,8 +5,8 @@
 #include <KTimeManager.h>
 #include <KDebugManager.h>
 
-#include <KSprite_Animator.h>
-#include <KRect_Collision.h>
+#include <KSpriteAnimator.h>
+#include <KRectCollision.h>
 #include <KScene.h>
 #include <KOne.h>
 
@@ -31,7 +31,7 @@ void PlayerTank::create()
 	Tank::create();
 	
 	MyCollider->set_rect(1);
-	MyAnimator->set_bit(L"res\\YellowTank.bmp", 10);
+	MyAnimator->set_bit(L"BattleCity\\YellowTank.bmp", 10);
 
 
 	MyCollider->insert_stayfunc<PlayerTank>(this, &PlayerTank::stay_tile);
@@ -44,7 +44,7 @@ void PlayerTank::create()
 
 
 	MyShieldEffect = kscene()->create_kone(L"Shield")->add_component<Shield_Effect>();
-	MyShieldEffect->kone()->active(false);
+	MyShieldEffect->kone()->active_frame(false);
 	MyShieldEffect->set_shield(kone());
 }
 
@@ -95,7 +95,7 @@ void PlayerTank::update_respawn()
 		fRespawnCurTime = .0f;
 		eCurState = TANK_STATUS::TS_PLAY;
 		fShieldCurTime = .0f;
-		MyShieldEffect->kone()->active(true);
+		MyShieldEffect->kone()->active_frame(true);
 		kscene()->passlink_k2dCollider(1, 2);
 		kscene()->passlink_k2dCollider(1, 4);
 	}
@@ -106,7 +106,7 @@ void PlayerTank::update_shield()
 	fShieldCurTime += KTimeManager::instance()->deltatime();
 	if (fShieldCurTime >= fShieldTime)
 	{
-		MyShieldEffect->kone()->active(false);
+		MyShieldEffect->kone()->active_frame(false);
 		kscene()->clearpasslink();
 	}
 }
@@ -134,7 +134,7 @@ void PlayerTank::update_input()
 
 	if (true == KInputManager::instance()->is_down(VK_SPACE))
 	{
-		if (true == VectorMyBullet[0]->kone()->active())
+		if (true == VectorMyBullet[0]->kone()->active_frame())
 		{
 			return;
 		}

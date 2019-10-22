@@ -58,12 +58,12 @@ void PlayerManager::update_playerdie()
 
 void PlayerManager::load_highscore()
 {
-	KFileStream::instance()->read_file(L"res\\highscore.btscore", iHighScore);
+	KFileStream::instance()->read_file(L"BattleCity\\highscore.btscore", iHighScore);
 }
 
 void PlayerManager::save_highscore()
 {
-	KFileStream::instance()->write_file(L"res\\highscore.btscore", iHighScore);
+	KFileStream::instance()->write_file(L"BattleCity\\highscore.btscore", iHighScore);
 }
 
 void PlayerManager::set_highscore()

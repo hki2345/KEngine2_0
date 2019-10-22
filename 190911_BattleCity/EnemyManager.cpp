@@ -22,7 +22,7 @@ void EnemyManager::create(KScene* _Scene)
 		EnemyTank* Enemy = CurSorEnemy->add_component<EnemyTank>();
 
 		VectorEnemy.push_back(Enemy);
-		Enemy->kone()->active(false);
+		Enemy->kone()->active_frame(false);
 	}
 }
 
@@ -98,7 +98,7 @@ bool EnemyManager::check_respawn(const KPos2& _Pos)
 
 	for (int i = 0; i < EnemyRespawnCnt; i++)
 	{
-		if (true == VectorEnemy[i]->kone()->active())
+		if (true == VectorEnemy[i]->kone()->active_frame())
 		{
 			EnemyActiveCurCnt += 1;
 		}
@@ -155,6 +155,6 @@ void EnemyManager::shutdown_enemy()
 {
 	for (int i = 0; i < 50; i++)
 	{
-		VectorEnemy[i]->kone()->active(false);
+		VectorEnemy[i]->kone()->active_frame(false);
 	}
 }
